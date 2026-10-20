@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="ru">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Библиотека XML</title>
+<style>
+body{font:16px system-ui;background:#f5f7fa;color:#233647;max-width:900px;margin:40px auto;padding:20px}article{background:white;padding:20px;border-radius:12px;margin:16px 0}a{color:#287bb5;margin-right:16px;display:inline-block;margin-top:12px}button{font:inherit;padding:9px 15px;border:1px solid #b8c8d6;border-radius:7px;background:white;color:#287bb5;cursor:pointer;margin:12px 12px 0 0}button:disabled{opacity:.5;cursor:wait}button[aria-pressed=true]{background:#287bb5;color:white;border-color:#287bb5}.delete{color:#ab3429;border-color:#d9b1ac}.actions{display:flex;flex-wrap:wrap;align-items:center;gap:0 8px}.note{color:#647481;font-size:14px;line-height:1.5}#notice{padding:12px 16px;border-radius:8px;background:#eaf2f8;margin:16px 0}#notice:empty{display:none}#status{min-height:24px}strong{overflow-wrap:anywhere}:focus-visible{outline:3px solid #75a9ce;outline-offset:3px}
+.owner-entry{float:right;border:1px solid #b8c8d6;border-radius:7px;padding:8px 14px;font-size:14px;text-decoration:none;margin:0 0 12px 12px}@media(max-width:520px){.owner-entry{float:none;display:block;width:fit-content;margin:12px 0}}
+</style>
+<h1>Библиотека XML</h1>
+<a href="/">Вернуться к редактору</a>
+<a id="owner-entry" class="owner-entry" href="/owner/login">Вход для редактирования</a>
+<nav id="library-tabs" aria-label="Раздел библиотеки" hidden><button id="active" type="button" aria-pressed="true">Библиотека</button><button id="trash" type="button" aria-pressed="false">Корзина</button></nav>
+<p class="note" id="edit-note" hidden>Удаление перемещает всю пару — исходный XML и HOG4 — в корзину. Из корзины можно восстановить оба файла.</p>
+<div id="notice" role="status" aria-live="polite"></div>
+<p id="status" aria-live="polite">Загрузка списка…</p>
+<main id="files"></main>
+<script>
+const status=document.getElementById('status'),files=document.getElementById('files'),notice=document.getElementById('notice');
+let view='active',busy=false,revision=0,canEdit=false;
+async function api(path,options={}){
+ const response=await fetch(path,{credentials:'same-origin',cache:'no-store',...options});
+ if(response.status===401){location.href='/owner/login';throw Error('Войдите в личный кабинет.');}
+ if(response.redirected){location.href='/owner/login';throw Error('Войдите в личный кабинет.');}
+ const data=await response.json();if(!response.ok)throw Error(data.error||'Не удалось выполнить действие.');return data;
+}
+function message(text,id){
+ notice.replaceChildren(document.createTextNode(text));
+ if(id){const undo=document.createElement('button');undo.type='button';undo.textContent='Восстановить';undo.addEventListener('click',()=>change(id,'restore',undo));notice.append(document.createElement('br'),undo);}
+}
+async function change(id,action,button){
+ if(busy||!canEdit)return;
+ if(action==='delete'&&!confirm('Переместить эту пару файлов (исходный XML и HOG4) в корзину?'))return;
+ busy=true;button.disabled=true;
+ try{
+  await api('/api/files/'+id+'/'+action,{method:'POST'});
+  message(action==='delete'?'Пара файлов перемещена в корзину.':'Пара файлов восстановлена.',action==='delete'?id:null);
+  await load();
+ }catch(error){message(error.message);}
+ finally{busy=false;button.disabled=false;}
+}
+async function load(){
+ const version=++revision;status.textContent='Загрузка списка…';files.replaceChildren();
+ try{
+  const items=await api(view==='trash'?'/api/files/trash':'/library/index.json');
+  if(version!==revision)return;
+  if(!Array.isArray(items))throw Error('Неверный формат списка.');
+  const valid=items.filter(item=>/^[a-f0-9]{32}$/.test(item.id));
+  status.textContent=view==='trash'?'В корзине: '+valid.length:'Сохранённых пар: '+valid.length;
+  if(!valid.length){const empty=document.createElement('p');empty.textContent=view==='trash'?'Корзина пуста.':'В библиотеке пока нет файлов.';files.append(empty);}
+  for(const item of valid){
+   const row=document.createElement('article'),title=document.createElement('strong'),actions=document.createElement('div');
+   title.textContent=item.name+' — '+new Date(item.date).toLocaleString('ru-RU');row.append(title);actions.className='actions';
+   if(view==='active'){
+    for(const [kind,label] of [['source','Открыть исходный XML'],['hog','Открыть HOG4']]){const link=document.createElement('a');link.href='/?saved='+item.id+'&kind='+kind;link.textContent=label;actions.append(link);}
+    const zip=document.createElement('a');zip.href='/api/files/'+item.id+'.zip';zip.textContent='Скачать пару XML';actions.append(zip);
+   }
+   if(canEdit){const button=document.createElement('button');button.type='button';button.className=view==='active'?'delete':'';button.textContent=view==='active'?'Удалить':'Восстановить';button.setAttribute('aria-label',button.textContent+' пару '+item.name);
+   const action=view==='active'?'delete':'restore';button.addEventListener('click',()=>change(item.id,action,button));actions.append(button);}
+   row.append(actions);files.append(row);
+  }
+ }catch(error){if(version===revision)status.textContent=error.message||'Не удалось загрузить список.';}
+}
+for(const tab of ['active','trash'])document.getElementById(tab).addEventListener('click',()=>{
+ if(busy||(!canEdit&&tab==='trash'))return;view=tab;notice.replaceChildren();
+ for(const other of ['active','trash'])document.getElementById(other).setAttribute('aria-pressed',String(other===view));load();
+});
+async function init(){
+ try{const session=await api('/api/files/session?t='+Date.now());canEdit=session.can_edit===true&&new URLSearchParams(location.search).get('view')!=='guest';document.getElementById('library-tabs').hidden=!canEdit;document.getElementById('edit-note').hidden=!canEdit;if(canEdit){message('Режим редактирования: доступны удаление, восстановление и корзина.');const entry=document.getElementById('owner-entry');entry.textContent='Перейти к просмотру';entry.href='/library/?view=guest';}else message('Режим просмотра: доступны просмотр и скачивание файлов. Для управления библиотекой нажмите «Вход для редактирования».');await load();}
+ catch(error){status.textContent=error.message||'Не удалось проверить доступ.';}
+}
+init();
+</script>
+</html>
