@@ -44,3 +44,5 @@ with tempfile.TemporaryDirectory() as tmp:
 library=Path('library/index.html').read_text(encoding='utf-8')
 assert "const zip=document.createElement" not in library
 assert "confirm('Удалить безвозвратно" in library and 'request-ip' in library
+
+

@@ -52,7 +52,7 @@ button.delete{font-size:var(--font-small)}
         <span>👤 Разработчик: Prokhorov Vadim</span>
       </a>
       <span>✉️ vlighte@mail.ru</span>
-      <span>| 📦 Версия софта: 2.00.33</span>
+      <span>| 📦 Версия софта: 2.00.38</span>
 
     </div></div>
 <script>
@@ -128,7 +128,7 @@ async function load(){
    if(view==='active'){
     const open=document.createElement('div'),downloads=document.createElement('div'),openLabel=document.createElement('span'),downloadLabel=document.createElement('span');open.className=downloads.className='action-group';openLabel.className=downloadLabel.className='action-label';openLabel.textContent='Открыть:';downloadLabel.textContent='Скачать:';open.append(openLabel);downloads.append(downloadLabel);
     for(const [kind,label] of [['source','Исходный'],['hog','HOG'],...(item.formats&&item.formats.includes('ma2')?[['ma2','MA']]:[])]){const link=document.createElement('a');link.href='/?saved='+item.id+'&kind='+kind;link.textContent=label;link.setAttribute('aria-label','Открыть '+label);open.append(link);}
-    for(const [kind,label] of [['hog','HOG'],...(item.formats&&item.formats.includes('ma2')?[['ma2','MA']]:[])]){const link=document.createElement('a');link.href='/api/files/'+item.id+'/download/'+kind;link.textContent=label;link.setAttribute('aria-label','Скачать '+label);link.download='';downloads.append(link);}
+    for(const [kind,label] of [['hog','HOG'],...(item.formats&&item.formats.includes('ma2')?[['ma2','MA']]:[]),...(item.formats&&item.formats.includes('gdtf')?[['gdtf','GDTF']]:[])]){const link=document.createElement('a');link.href='/api/files/'+item.id+'/download/'+kind;link.textContent=label;link.setAttribute('aria-label','Скачать '+label);link.download='';downloads.append(link);}
     actions.append(open,downloads);
    }
    if(canEdit){const controls=document.createElement('div'),button=document.createElement('button');controls.className='action-group';button.type='button';button.className=view==='active'?'delete':'';button.textContent=view==='active'?'Удалить':'Восстановить';button.setAttribute('aria-label',button.textContent+' комплект '+item.name);

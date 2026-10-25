@@ -354,6 +354,27 @@ def materialize_modules(root,payload,metadata):
    for attached in descendants(node,'AttachedChannel'):attached.text=str(address-begin+2)
    out.append(node);address+=size
   groups.append((owner,begin,out,address-begin))
+ # HOG rejects a Type containing only unused channels. Keep padding bytes
+ # inside an adjacent active segment, preserving absolute DMX and Fine links.
+ def active(segment):return any(c.get('unused')!='true' and descendants(c,'Range') for c in segment[2])
+ def join(left,right,owner):
+  begin=left[1];nodes=[]
+  for segment in (left,right):
+   shift=segment[1]-begin
+   for channel in segment[2]:
+    node=copy.deepcopy(channel);node.set('number',str(int(node.get('number'))+shift))
+    for attached in descendants(node,'AttachedChannel'):attached.text=str(int(attached.text)+shift)
+    nodes.append(node)
+  return (owner,begin,nodes,left[3]+right[3])
+ safe=[];pending=None
+ for segment in groups:
+  if active(segment):
+   if pending is not None:segment=join(pending,segment,segment[0]);pending=None
+   safe.append(segment)
+  elif safe:safe[-1]=join(safe[-1],segment,safe[-1][0])
+  else:pending=segment if pending is None else join(pending,segment,None)
+ if pending is not None:raise ValueError('HOG4 не поддерживает фикстуру только с неиспользуемыми каналами.')
+ groups=safe
  # Reuse one output type for equal module segments across all instances.
  group=next(n for n in root.iter() if local(n)=='Types');group.clear()
  parts=first(compound,'Parts');parts.clear();cache={};numbers=set();extra=1
@@ -715,7 +736,12 @@ def generate_formats(payload):
  hog=attach_ma2_roundtrip(bare_hog,bare_ma,payload['name'].strip())
  ma=attach_hog_roundtrip(bare_ma,bare_hog)
  if len(hog.encode('utf-8'))>2_000_000 or len(ma.encode('utf-8'))>2_000_000:raise ValueError('Сформированный XML превышает 2 МБ с данными восстановления.')
- return {'xml':hog,'ma2Xml':ma,'warnings':warnings}
+ result={'xml':hog,'ma2Xml':ma,'warnings':warnings}
+ if payload.get('exportGdtf'):
+  try:
+   result['gdtfBase64'],notes=gdtf_from_ma(ma,payload['name'].strip());warnings.extend(notes)
+  except ValueError as error:result['gdtfError']=str(error);warnings.append('GDTF не сформирован: '+str(error))
+ return result
 
 
 # Offline lookup: visitor addresses are never sent to a geolocation service.
@@ -818,10 +844,11 @@ def capture_origin(environ):
  address=request_ip(environ)
  return {'ip':address,'countryCode':lookup_country(address),'generatedAt':datetime.datetime.now(datetime.timezone.utc).isoformat()}
 
-def origin_receipt(origin,hog,ma):
+def origin_receipt(origin,hog,ma,gdtf=None):
  record=owner_credentials()
  if not record:return None
  data={**origin,'expires':int(time.time())+86400,'hog':hashlib.sha256(hog.encode()).hexdigest(),'ma':hashlib.sha256((ma or '').encode()).hexdigest()}
+ if gdtf:data['gdtf']=hashlib.sha256(gdtf.encode()).hexdigest()
  value=base64.urlsafe_b64encode(json.dumps(data,separators=(',',':')).encode()).decode()
  signature=hmac.new(bytes.fromhex(record['hash']),('vlighte-origin:'+value).encode(),hashlib.sha256).hexdigest()
  return value+'.'+signature
@@ -837,6 +864,7 @@ def archive_origin(payload,environ):
   data=json.loads(base64.urlsafe_b64decode(value))
   if not 0<data['expires']-int(time.time())<=86400:raise ValueError()
   if data['hog']!=hashlib.sha256(payload['xml'].encode()).hexdigest() or data['ma']!=hashlib.sha256((payload.get('ma2Xml') or '').encode()).hexdigest():raise ValueError()
+  if (data.get('gdtf') or payload.get('gdtfBase64')) and data.get('gdtf')!=hashlib.sha256((payload.get('gdtfBase64') or '').encode()).hexdigest():raise ValueError()
   return {key:data[key] for key in ('ip','countryCode','generatedAt')}
  except (ValueError,TypeError,KeyError,AttributeError):raise ValueError('Срок подтверждения генерации истёк или данные изменились. Сгенерируйте файл повторно.')
 
@@ -860,9 +888,9 @@ if os.environ.get('VLIGHTE_GEO_BOOTSTRAP','1')=='1':threading.Thread(target=ensu
 STORE=ROOT/'saved-files'
 
 def export_filename(source,kind,name):
- origin='MA' if parse(source).tag=='{'+M+'}MA' else 'HOG'
+ origin='GDTF' if GDTF_MARKER in source else 'MA' if parse(source).tag=='{'+M+'}MA' else 'HOG'
  title=re.sub(r'[^a-zA-Z0-9а-яА-ЯёЁ_-]','_',str(name))[:100] or 'Fixture'
- return origin+'-'+('MA' if kind=='ma2' else 'HOG')+'_'+title+'_vlighte_ru.xml'
+ return origin+'-'+('GDTF' if kind=='gdtf' else 'MA' if kind=='ma2' else 'HOG')+'_'+title+'_vlighte_ru'+('.gdtf' if kind=='gdtf' else '.xml')
 
 def object_fingerprint(xml):
  root=parse(xml);ids={}
@@ -916,8 +944,27 @@ def save_pair(payload,generated):
  with (STORE/'.archive.lock').open('a') as lock:
   fcntl.flock(lock,fcntl.LOCK_EX)
   existing=find_existing(payload,generated)
-  if existing:return {**existing,'duplicate':True}
+  if existing:
+   if payload.get('gdtfBase64'):existing=complete_gdtf_record(existing,payload)
+   return {**existing,'duplicate':True}
   return save_pair_unlocked(payload,generated)
+
+def complete_gdtf_record(info,payload):
+ folder=STORE/info['id']
+ if 'gdtf' in info.get('formats',[]) and len(list(folder.glob('GDTF_*.gdtf')))==1:return info
+ raw=validate_gdtf_export(payload['gdtfBase64']);filename='GDTF_'+export_filename(payload['sourceXml'],'gdtf',info['name'])
+ (folder/filename).write_bytes(raw)
+ bundle=folder/('bundle.'+uuid.uuid4().hex+'.new')
+ try:
+  with zipfile.ZipFile(bundle,'w',zipfile.ZIP_DEFLATED) as archive:
+   for file in sorted(folder.iterdir()):
+    if file.is_file() and file.name.startswith(('HOG4_','MA2_','GDTF_')):archive.write(file,info['folder']+'/'+file.name.split('_',1)[1])
+  bundle.replace(folder/'bundle.zip')
+  info={**info,'formats':list(dict.fromkeys(info.get('formats',['hog','ma2'])+['gdtf']))}
+  temporary=folder/('info.'+uuid.uuid4().hex+'.new');temporary.write_text(json.dumps(info,ensure_ascii=False),encoding='utf-8');temporary.replace(folder/'info.json')
+ finally:
+  if bundle.exists():bundle.unlink()
+ refresh_library();return info
 
 def save_pair_unlocked(payload,generated):
  source=payload.get('sourceXml')
@@ -934,14 +981,15 @@ def save_pair_unlocked(payload,generated):
   (folder/('source_'+filename)).write_bytes(source.encode('utf-8'))
   (folder/('HOG4_'+export_filename(source,'hog',payload.get('name',name)))).write_bytes(generated.encode('utf-8'))
   if payload.get('ma2Xml'):(folder/('MA2_'+export_filename(source,'ma2',payload.get('name',name)))).write_bytes(payload['ma2Xml'].encode('utf-8'))
+  if payload.get('gdtfBase64'):(folder/('GDTF_'+export_filename(source,'gdtf',payload.get('name',name)))).write_bytes(validate_gdtf_export(payload['gdtfBase64']))
   info={'id':token,'name':name,'folder':stamp+'_'+name,'source':filename,'date':datetime.datetime.now(datetime.timezone.utc).isoformat(),'url':'/api/files/'+token+'.zip'}
   info['origin']=payload.get('_requestOrigin',{})
   info['countryCode']=info['origin'].get('countryCode')
   if payload.get('ma2Xml'):
-   info['formats']=['hog','ma2']
+   info['formats']=['hog','ma2']+(['gdtf'] if payload.get('gdtfBase64') else [])
    with zipfile.ZipFile(folder/'bundle.zip','w',zipfile.ZIP_DEFLATED) as archive:
-    for file in sorted(folder.glob('*.xml')):
-     if file.name.startswith(('HOG4_','MA2_')):archive.write(file,info['folder']+'/'+file.name.split('_',1)[1])
+    for file in sorted(folder.iterdir()):
+     if file.is_file() and file.name.startswith(('HOG4_','MA2_','GDTF_')):archive.write(file,info['folder']+'/'+file.name.split('_',1)[1])
   (folder/'info.json').write_text(json.dumps(info,ensure_ascii=False),encoding='utf-8')
  except Exception:
   shutil.rmtree(folder);raise
@@ -983,6 +1031,314 @@ def read_saved_xml(path):
  if len(files)!=1:return None
  return {'xml':files[0].read_text(encoding='utf-8'),'filename':files[0].name[len(prefix):]}
 
+# GDTF import uses only description.xml; models and thumbnails are not extracted.
+GDTF_MARKER='VLIGHTE_GDTF_SOURCE:'
+
+def read_gdtf(encoded):
+ try:
+  if not isinstance(encoded,str) or len(encoded)>28_000_000:raise ValueError('GDTF превышает 20 МБ.')
+  raw=base64.b64decode(encoded,validate=True)
+  if len(raw)>20_000_000:raise ValueError('GDTF превышает 20 МБ.')
+  with zipfile.ZipFile(io.BytesIO(raw)) as archive:
+   matches=[n for n in archive.infolist() if n.filename=='description.xml']
+   if len(matches)!=1 or len(archive.infolist())>2048:raise ValueError('В GDTF требуется один description.xml.')
+   info=matches[0]
+   if info.file_size>2_000_000 or info.flag_bits&1:raise ValueError('description.xml слишком большой или зашифрован.')
+   with archive.open(info) as stream:data=stream.read(2_000_001)
+   if len(data)>2_000_000:raise ValueError('description.xml превышает 2 МБ.')
+  root=parse(data.decode('utf-8-sig'))
+  if root.tag!='GDTF' or root.get('DataVersion') not in ('1.0','1.1','1.2'):raise ValueError('Поддерживаются GDTF 1.0–1.2.')
+  fixture=root.find('FixtureType');modes=fixture.findall('./DMXModes/DMXMode') if fixture is not None else []
+  if not modes or len(modes)>256:raise ValueError('В GDTF нет DMX-режимов или их слишком много.')
+  names=[m.get('Name','') for m in modes]
+  if any(not n for n in names) or len(set(names))!=len(names):raise ValueError('Названия DMX-режимов должны быть уникальны.')
+  return root,fixture,modes
+ except (zipfile.BadZipFile,RuntimeError,UnicodeError,base64.binascii.Error,NotImplementedError):raise ValueError('Некорректный архив GDTF.')
+
+def gdtf_dmx(value,bits):
+ match=re.fullmatch(r'(\d+)/(\d+)(s?)',value or '0/1')
+ if not match:raise ValueError('Некорректное значение DMX в GDTF.')
+ number,count=int(match[1]),int(match[2]);target=bits//8
+ if not 1<=count<=4 or not 0<=number<256**count:raise ValueError('Некорректная разрядность DMX в GDTF.')
+ if count>=target:return number//256**(count-target)
+ if match[3]:return number*256**(target-count)
+ return round(number*(256**target-1)/(256**count-1))
+
+def merge_identical_modules(fixture):
+ # Only display names and local module IDs are excluded. Channel order,
+ # offsets, attributes, defaults, ranges and virtual channels must all match.
+ modules=first(fixture,'Modules');instances=first(fixture,'Instances')
+ if modules is None or instances is None:return
+ def signature(node,root=False):
+  ignored={'index','name'} if root else set()
+  return (node.tag,tuple(sorted((k,v) for k,v in node.attrib.items() if k not in ignored)),(node.text or '').strip(),tuple(signature(c) for c in node))
+ seen={};mapping={}
+ for module in list(modules):
+  key=signature(module,True);old=module.get('index')
+  if key in seen:
+   mapping[old]=seen[key];modules.remove(module)
+  else:seen[key]=old;mapping[old]=old
+ for instance in instances:
+  old=instance.get('module_index')
+  if old not in mapping:raise ValueError('Неизвестный модуль фикстуры.')
+  instance.set('module_index',mapping[old])
+
+def gdtf_to_ma(root,fixture,mode):
+ import math
+ geometries=fixture.find('Geometries')
+ if geometries is None:raise ValueError('В GDTF отсутствует геометрия.')
+ named={n.get('Name'):n for n in geometries.iter() if n.get('Name')}
+ start=named.get(mode.get('Geometry'))
+ if start is None:raise ValueError('Не найдена геометрия DMX-режима.')
+ channels=mode.findall('./DMXChannels/DMXChannel')
+ if not channels or len(channels)>1024:raise ValueError('Некорректное число каналов GDTF.')
+ if mode.findall('./DMXRelations/Relation'):raise ValueError('DMX Relations в этом GDTF требуют отдельного сопоставления.')
+ groups=[];visited=0
+ def walk(node,shift=0,path=(),stack=()):
+  nonlocal visited
+  visited+=1
+  if visited>2048 or len(stack)>32:raise ValueError('Слишком сложная геометрия GDTF.')
+  name=node.get('Name','');key=path+(name,)
+  if node.tag=='GeometryReference':
+   target=named.get(node.get('Geometry'))
+   if target is None or node.get('Geometry') in stack:raise ValueError('Циклическая или неизвестная геометрия GDTF.')
+   breaks=node.findall('Break')
+   if len(breaks)>1 or any(b.get('DMXBreak','1')!='1' for b in breaks):raise ValueError('Несколько DMX Break пока не поддерживаются.')
+   delta=int(breaks[0].get('DMXOffset','1'))-1 if breaks else 0
+   walk(target,shift+delta,key,stack+(node.get('Geometry'),));return
+  own=[c for c in channels if c.get('Geometry')==name]
+  if own:groups.append((key,shift,own))
+  for child in node:
+   if child.get('Name'):walk(child,shift,key,stack)
+ walk(start)
+ reached={id(c) for _,_,own in groups for c in own}
+ if len(reached)!=len(channels):raise ValueError('Некоторые каналы GDTF не связаны с геометрией выбранного режима.')
+ ma=E.Element(mq('MA'),major_vers='3',minor_vers='9',stream_vers='60');f=E.SubElement(ma,mq('FixtureType'),name=fixture.get('Name','GDTF'),manufacturer=fixture.get('Manufacturer',''),mode=mode.get('Name'))
+ mods=E.SubElement(f,mq('Modules'));instances=E.SubElement(f,mq('Instances'));occupied=set();virtual=0;functions=0;sets=0;unmapped=set();built=[]
+ aliases={'Dimmer':'DIM','Pan':'PAN','Tilt':'TILT','ColorAdd_R':'COLORRGB1','ColorAdd_G':'COLORRGB2','ColorAdd_B':'COLORRGB3','ColorAdd_W':'WHITE','ColorAdd_A':'AMBER','ColorAdd_C':'CYAN','ColorSub_C':'CYAN','ColorSub_M':'MAGENTA','ColorSub_Y':'YELLOW','PositionMSpeed':'PANTILTSPEED','IntensityMSpeed':'DIMMERSPEED','Effects1':'EFFECT','ColorEffects1':'COLORMACRO','ColorMacro1Rate':'MACRORATE','StrobeMode':'SHUTTER1','Shutter1':'SHUTTER1','Shutter1Strobe':'SHUTTER1','NoFeature':'DUMMY'}
+ for key,shift,own in groups:
+  physical=[]
+  for c in own:
+   offsets=[int(n.strip())+shift for n in c.get('Offset','').split(',') if n.strip() and n.strip()!='None']
+   if c.get('DMXBreak','1') not in ('1','Overwrite'):raise ValueError('Несколько DMX Break пока не поддерживаются.')
+   if len(offsets)>2 or len(offsets)==2 and offsets[1]!=offsets[0]+1:raise ValueError('Поддерживаются последовательные 8/16-битные каналы GDTF.')
+   for address in offsets:
+    if address in occupied or not 1<=address<=512:raise ValueError('Пересечение или выход за 512 DMX в GDTF.')
+    occupied.add(address)
+   physical.append((c,offsets))
+  patch=min((n for _,offsets in physical for n in offsets),default=1)
+  if not any(offsets for _,offsets in physical):raise ValueError('Отдельная геометрия только с виртуальными каналами требует сопоставления.')
+  built.append((patch,key,physical))
+ # Assign explicit NoFeature bytes to their nearest preceding active DMX
+ # module before making module definitions. This affects editor and exports.
+ def empty_channel(channel):
+  logical=channel.findall('LogicalChannel')
+  return bool(logical) and all(n.get('Attribute','NoFeature')=='NoFeature' and all(fn.get('Attribute','NoFeature')=='NoFeature' for fn in n.findall('ChannelFunction')) for n in logical)
+ owners={address:i for i,(_,_,entries) in enumerate(built) for c,offsets in entries if not empty_channel(c) for address in offsets}
+ active_addresses=sorted(owners)
+ for i,(_,_,entries) in enumerate(built):
+  for entry in list(entries):
+   channel,offsets=entry
+   if not offsets or not empty_channel(channel):continue
+   before=[a for a in active_addresses if a<min(offsets)]
+   after=[a for a in active_addresses if a>max(offsets)]
+   if not before and not after:raise ValueError('Профиль состоит только из неиспользуемых DMX-каналов.')
+   destination=owners[before[-1] if before else after[0]]
+   if destination!=i:entries.remove(entry);built[destination][2].append(entry)
+ normalized=[]
+ for _,key,entries in built:
+  if not entries:continue
+  offsets=[a for _,values in entries for a in values]
+  if not offsets:raise ValueError('Виртуальный модуль без физических каналов требует сопоставления.')
+  entries.sort(key=lambda entry:min(entry[1]) if entry[1] else 513)
+  normalized.append((min(offsets),key,entries))
+ built=normalized
+ for index,(patch,key,physical) in enumerate(sorted(built,key=lambda n:n[0])):
+  module=E.SubElement(mods,mq('Module'),index=str(index),name=' / '.join(key),**{'class':'LED'})
+  E.SubElement(instances,mq('Instance'),index=str(index),module_index=str(index),patch=str(patch))
+  for ci,(channel,offsets) in enumerate(physical):
+   logical=channel.findall('LogicalChannel')
+   if len(logical)!=1:raise ValueError('Несколько LogicalChannel на одном адресе требуют сопоставления.')
+   logical=logical[0];attr=logical.get('Attribute','NoFeature');mapped=aliases.get(attr,attr.upper())
+   if attr not in aliases and not re.fullmatch(r'Zoom|Focus|Iris|Frost|CTO|CTB|Gobo\d+|Color\d+',attr):unmapped.add(attr)
+   c=E.SubElement(module,mq('ChannelType'),index=str(ci),attribute=mapped)
+   if offsets:
+    c.set('coarse',str(offsets[0]-patch+1))
+    if len(offsets)==2:c.set('fine',str(offsets[1]-patch+1))
+   else:virtual+=1;c.set('virtual','true')
+   bits=8*len(offsets) if offsets else 32;maximum=2**bits-1
+   fs=logical.findall('ChannelFunction')
+   if not fs:raise ValueError('В GDTF отсутствует ChannelFunction.')
+   starts=[gdtf_dmx(fn.get('DMXFrom','0/1'),bits) for fn in fs]
+   if starts[0]!=0 or any(a>=b for a,b in zip(starts,starts[1:])):raise ValueError('Диапазоны ChannelFunction должны возрастать от нуля.')
+   for fi,fn in enumerate(fs):
+    if fn.get('ModeMaster'):raise ValueError('Условные функции ModeMaster требуют отдельного сопоставления.')
+    lo,hi=starts[fi],starts[fi+1]-1 if fi+1<len(starts) else maximum
+    pf,pt=float(fn.get('PhysicalFrom','0')),float(fn.get('PhysicalTo','1'))
+    if not all(math.isfinite(n) for n in (pf,pt)):raise ValueError('Некорректный физический диапазон GDTF.')
+    scale=100 if mapped in ('DIM','COLORRGB1','COLORRGB2','COLORRGB3','WHITE','AMBER') else 1
+    feature,preset=('POSITION','POSITION') if mapped in ('PAN','TILT') else ('DIMMER','DIMMER') if mapped=='DIM' else ('COLORRGB','COLOR') if mapped.startswith('COLORRGB') or mapped in ('WHITE','AMBER') else ('SHUTTER','BEAM') if mapped=='SHUTTER1' else ('CONTROL','CONTROL') if mapped=='DUMMY' else ('BEAM','BEAM')
+    c.set('feature',feature);c.set('preset',preset)
+    initial=channel.get('InitialFunction','').split('.')[-1]
+    if fi==0 or fn.get('Name')==initial:c.set('default',str(gdtf_dmx(fn.get('Default','0/1'),bits)))
+    attrs={'index':str(fi),'attribute':mapped,'subattribute':'RESERVED' if mapped=='DUMMY' else mapped,'attribute_user_name':fn.get('Name',attr),'feature':feature,'preset':preset,'min_dmx_24':str(round(lo*16777215/maximum)),'max_dmx_24':str(round(hi*16777215/maximum)),'physfrom':str(pf),'physto':str(pt),'from':str(pf*scale),'to':str(pt*scale)}
+    out=E.SubElement(c,mq('ChannelFunction'),attrs);functions+=1
+    channel_sets=fn.findall('ChannelSet');set_starts=[gdtf_dmx(s.get('DMXFrom','0/1'),bits) for s in channel_sets]
+    if any(a>=b for a,b in zip(set_starts,set_starts[1:])) or any(not lo<=s<=hi for s in set_starts):raise ValueError('Некорректные ChannelSet в GDTF.')
+    for si,s in enumerate(channel_sets):
+     end=set_starts[si+1]-1 if si+1<len(set_starts) else hi
+     E.SubElement(out,mq('ChannelSet'),index=str(si),name=s.get('Name',''),from_dmx=str(set_starts[si]),to_dmx=str(end));sets+=1
+ if not occupied:raise ValueError('Нет физических каналов GDTF.')
+ merge_identical_modules(f)
+ validate_ma2(ma)
+ ma.insert(0,E.Comment(GDTF_MARKER+base64.b64encode(json.dumps({'mode':mode.get('Name'),'descriptionXml':serialize(root)},ensure_ascii=True,separators=(',',':')).encode()).decode()))
+ warnings=['Импортируются DMX-данные; 3D-модели, колёса и изображения GDTF в HOG4/MA2 не переносятся.']
+ if unmapped:warnings.append('Общие управляющие каналы, требующие проверки на пульте: '+', '.join(sorted(unmapped)))
+ return ma,{'mode':mode.get('Name'),'footprint':max(occupied),'dmxSlots':len(occupied),'modules':len(list(mods)),'instances':len(built),'virtualChannels':virtual,'functions':functions,'channelSets':sets},warnings
+
+def import_profile(payload):
+ if 'gdtf' not in payload:
+  root,system=convert(parse(payload['xml']));return {'xml':serialize(root),'system':system}
+ root,fixture,modes=read_gdtf(payload['gdtf']);choices=[{'name':m.get('Name')} for m in modes]
+ if payload.get('mode') is None:return {'system':'GDTF','modes':choices,'fixture':fixture.get('Name','GDTF')}
+ mode=next((m for m in modes if m.get('Name')==payload['mode']),None)
+ if mode is None:raise ValueError('Неизвестный DMX-режим GDTF.')
+ ma,summary,warnings=gdtf_to_ma(root,fixture,mode);recovered=gdtf_ma_recovery(root)
+ if recovered is not None:
+  ma=recovered;summary['footprint']=validate_ma2(ma)
+ source=ma2_serialize(ma);hog,_=convert(ma)
+ hog=attach_ma2_roundtrip(serialize(normalize_compound_location(hog)),source,first(hog,'CompoundType').get('name'))
+ if len(source.encode())>2_000_000 or len(hog.encode())>2_000_000:raise ValueError('Профиль GDTF превышает лимит XML после преобразования.')
+ return {'xml':hog,'sourceXml':source,'system':'GDTF','modes':choices,'summary':summary,'warnings':warnings}
+
+
+GDTF_EXPORT_MARKER='VLIGHTE_MA2_GDTF:'
+
+def ma_channel_layout(root):
+ fixture=first(root,'FixtureType');modules={n.get('index'):n for n in descendants(fixture,'Module')}
+ def node(n):return [local(n),sorted((k,v) for k,v in n.attrib.items() if k!='index'),(n.text or '').strip(),[node(c) for c in n if isinstance(c.tag,str)]]
+ return [(inst.get('patch','1'),[node(c) for c in children(modules[inst.get('module_index')],'ChannelType')]) for inst in descendants(fixture,'Instance')]
+
+def gdtf_ma_recovery(root):
+ for comment in root:
+  if comment.tag is E.Comment and (comment.text or '').startswith(GDTF_EXPORT_MARKER):
+   try:
+    data=json.loads(base64.b64decode(comment.text[len(GDTF_EXPORT_MARKER):],validate=True))
+    if data['hash']!=object_fingerprint(serialize(root)):raise ValueError('GDTF изменён: данные восстановления MA2 больше не соответствуют профилю.')
+    ma=parse(data['ma2Xml']);validate_ma2(ma);return ma
+   except (KeyError,TypeError,UnicodeError,json.JSONDecodeError):raise ValueError('Повреждены данные восстановления MA2 в GDTF.')
+ return None
+
+def gdtf_from_ma(ma_xml,name):
+ import math
+ ma=parse(ma_xml);validate_ma2(ma);fixture=first(ma,'FixtureType');warnings=[];root=None
+ # Restore original channel definitions only while the generated MA layout
+ # still matches the retained GDTF. Never reuse a stale source after edits.
+ for comment in ma:
+  if comment.tag is E.Comment and (comment.text or '').startswith(GDTF_MARKER):
+   original=json.loads(base64.b64decode(comment.text[len(GDTF_MARKER):],validate=True));candidate=parse(original['descriptionXml']);of=first(candidate,'FixtureType');mode=next((n for n in descendants(of,'DMXMode') if n.get('Name')==original['mode']),None)
+   if mode is not None:
+    normalized,_,_=gdtf_to_ma(candidate,of,mode)
+    if ma_channel_layout(ma)==ma_channel_layout(normalized):
+     root=candidate;container=of.find('DMXModes')
+     for other in list(container):
+      if other is not mode:container.remove(other)
+     break
+ if root is None:
+  identity='{1,0,0,0}{0,1,0,0}{0,0,1,0}{0,0,0,1}'
+  root=E.Element('GDTF',DataVersion='1.2');f=E.SubElement(root,'FixtureType',Name='Fixture',ShortName='Fixture',LongName=name,Manufacturer=fixture.get('manufacturer','User Created'),Description='DMX profile generated by vlighte.ru',FixtureTypeID=str(uuid.uuid4()).upper(),CanHaveChildren='No')
+  definitions=E.SubElement(f,'AttributeDefinitions');features=E.SubElement(definitions,'FeatureGroups');attributes=E.SubElement(definitions,'Attributes');defined=set();feature_groups={}
+  geometries=E.SubElement(f,'Geometries');base=E.SubElement(geometries,'Geometry',Name='Base',Position=identity);modes=E.SubElement(f,'DMXModes');mode=E.SubElement(modes,'DMXMode',Name=fixture.get('mode') or str(validate_ma2(ma))+'ch',Geometry='Base');dmx=E.SubElement(mode,'DMXChannels')
+  modules={n.get('index'):n for n in descendants(fixture,'Module')}
+  aliases={'DIM':'Dimmer','PAN':'Pan','TILT':'Tilt','COLORRGB1':'ColorAdd_R','COLORRGB2':'ColorAdd_G','COLORRGB3':'ColorAdd_B','COLORRGB4':'ColorAdd_A','COLORRGB5':'ColorAdd_W','COLORRGB7':'ColorAdd_W','WHITE':'ColorAdd_W','RED':'ColorAdd_R','GREEN':'ColorAdd_G','BLUE':'ColorAdd_B','AMBER':'ColorAdd_A','COLORCMY1':'ColorSub_C','COLORCMY2':'ColorSub_M','COLORCMY3':'ColorSub_Y','DUMMY':'NoFeature','RESERVED':'NoFeature','SHUTTER1':'Shutter1','STROBE':'Shutter1Strobe','ZOOM':'Zoom','FOCUS':'Focus','IRIS':'Iris','FROST':'Frost','CTO':'CTO','CTB':'CTB','PANTILTSPEED':'PositionMSpeed','DIMMERSPEED':'IntensityMSpeed','MACRORATE':'ColorMacro1Rate','COLORMACRO':'ColorEffects1','EFFECT':'Effects1'}
+  def attribute(value):
+   if value in aliases:result=aliases[value]
+   elif re.fullmatch(r'DIM\d+',value):result='Dimmer'+value[3:]
+   elif re.fullmatch(r'GOBO\d+',value):result='Gobo'+value[4:]
+   elif re.fullmatch(r'COLOR\d+',value):result='Color'+value[5:]
+   else:
+    result='Vlighte_'+re.sub(r'[^a-zA-Z0-9_]','_',value or 'Control');warnings.append(value+': пользовательский атрибут GDTF, требуется проверка назначения.')
+   if result not in defined:
+    defined.add(result)
+    group='Dimmer' if result.startswith('Dimmer') else 'Position' if result in ('Pan','Tilt','PositionMSpeed') else 'Color' if result.startswith(('Color','CTO','CTB')) else 'Beam'
+    if group not in feature_groups:
+     fg=E.SubElement(features,'FeatureGroup',Name=group,Pretty=group);E.SubElement(fg,'Feature',Name=group);feature_groups[group]=True
+    E.SubElement(attributes,'Attribute',Name=result,Pretty=value,Feature=group+'.'+group,PhysicalUnit='Angle' if result in ('Pan','Tilt') else 'None')
+   return result
+  for ii,inst in enumerate(descendants(fixture,'Instance')):
+   module=modules[inst.get('module_index')];geometry='Module_'+str(ii);E.SubElement(base,'Geometry',Name=geometry,Position=identity);used={}
+   for ci,c in enumerate(children(module,'ChannelType')):
+    attr=attribute(c.get('attribute','DUMMY'));used[attr]=used.get(attr,0)+1;cg=geometry
+    if used[attr]>1:
+     cg=geometry+'_Channel_'+str(ci);E.SubElement(next(n for n in base if n.get('Name')==geometry),'Geometry',Name=cg,Position=identity)
+    offsets=[int(inst.get('patch','1'))+int(c.get(key))-1 for key in ('coarse','fine') if key in c.attrib];bits=8*len(offsets) if offsets else 32;maximum=2**bits-1;resolution=bits//8
+    dc=E.SubElement(dmx,'DMXChannel',DMXBreak='1',Offset=','.join(map(str,offsets)) if offsets else 'None',Geometry=cg,Highlight='None')
+    lc=E.SubElement(dc,'LogicalChannel',Attribute=attr,Snap='No',Master='Grand' if attr.startswith('Dimmer') else 'None');functions=children(c,'ChannelFunction')
+    if not functions:raise ValueError('У канала MA2 отсутствуют функции для GDTF.')
+    starts=[]
+    for fn in functions:starts.append(round(int(fn.get('min_dmx_24','0'))*maximum/16777215))
+    if starts[0]!=0 or any(a>=b for a,b in zip(starts,starts[1:])):raise ValueError('Диапазоны MA2 не представимы в GDTF без потери данных.')
+    for fi,fn in enumerate(functions):
+     low=starts[fi];high=round(int(fn.get('max_dmx_24','16777215'))*maximum/16777215)
+     if high!=(starts[fi+1]-1 if fi+1<len(starts) else maximum):raise ValueError('Разрывы диапазонов MA2 требуют сопоставления GDTF.')
+     physical=[float(fn.get(k,'0' if k=='physfrom' else '1')) for k in ('physfrom','physto')]
+     if not all(math.isfinite(v) for v in physical):raise ValueError('Некорректные физические диапазоны MA2.')
+     fname='Function_'+str(fi);fa=attribute(fn.get('attribute',c.get('attribute','DUMMY')))
+     default=float(c.get('default','0'))
+     if not math.isfinite(default):raise ValueError('Некорректный Default MA2.')
+     out=E.SubElement(lc,'ChannelFunction',Name=fname,Attribute=fa,OriginalAttribute=fn.get('attribute_user_name',fn.get('attribute','')),DMXFrom=f'{low}/{resolution}',Default=f'{max(0,min(maximum,round(default)))}/{resolution}',PhysicalFrom=str(physical[0]),PhysicalTo=str(physical[1]))
+     if fi==0:dc.set('InitialFunction',cg+'_'+attr+'.'+attr+'.'+fname)
+     channel_sets=children(fn,'ChannelSet');ranges=[]
+     for si,s in enumerate(channel_sets):
+      start=int(s.get('from_dmx',str(round(int(s.get('min_dmx_24',str(round(low*16777215/maximum))))*maximum/16777215))))
+      end=int(s.get('to_dmx',str(round(int(s.get('max_dmx_24',str(round(high*16777215/maximum))))*maximum/16777215))))
+      if not low<=start<=end<=high:raise ValueError('ChannelSet MA2 выходит за диапазон функции GDTF.')
+      ranges.append((start,end,s))
+     ranges.sort(key=lambda n:n[0]);cursor=low
+     for start,end,s in ranges:
+      if start<cursor:raise ValueError('Пересечение ChannelSet MA2.')
+      if start>cursor:E.SubElement(out,'ChannelSet',Name='',DMXFrom=f'{cursor}/{resolution}')
+      E.SubElement(out,'ChannelSet',Name=s.get('name',''),DMXFrom=f'{start}/{resolution}');cursor=end+1
+     if ranges and cursor<=high:E.SubElement(out,'ChannelSet',Name='',DMXFrom=f'{cursor}/{resolution}')
+ f=first(root,'FixtureType');safe_name=re.sub(r'[^\w -]','_',name).strip()[:200] or 'Fixture';f.set('Name',safe_name);f.set('ShortName',safe_name[:32]);f.set('LongName',name)
+ # No external resources are available for HOG/MA inputs. Do not emit broken
+ # thumbnail/model references when restoring an original GDTF description.
+ for key in ('Thumbnail','ThumbnailOffsetX','ThumbnailOffsetY'):f.attrib.pop(key,None)
+ for node in list(f):
+  if node.tag=='Models':f.remove(node)
+ for node in f.iter():
+  node.attrib.pop('Model',None);node.attrib.pop('MediaFileName',None)
+ for node in list(root):
+  if node.tag is E.Comment:root.remove(node)
+ bare=copy.deepcopy(ma)
+ for parent in bare.iter():
+  for child in list(parent):
+   if child.tag is E.Comment and (child.text or '').startswith(('VLIGHTE_',)):parent.remove(child)
+ recovery={'hash':object_fingerprint(serialize(root)),'ma2Xml':ma2_serialize(bare)}
+ root.insert(0,E.Comment(GDTF_EXPORT_MARKER+base64.b64encode(json.dumps(recovery,separators=(',',':')).encode()).decode()))
+ description=serialize(root).encode('utf-8')
+ if len(description)>2_000_000:raise ValueError('GDTF description.xml превышает 2 МБ с данными восстановления.')
+ buffer=io.BytesIO()
+ with zipfile.ZipFile(buffer,'w',zipfile.ZIP_DEFLATED) as archive:
+  info=zipfile.ZipInfo('description.xml',date_time=(2026,1,1,0,0,0));info.compress_type=zipfile.ZIP_DEFLATED;archive.writestr(info,description)
+ warnings.append('GDTF содержит DMX-профиль без 3D-моделей и изображений.')
+ return base64.b64encode(buffer.getvalue()).decode(),list(dict.fromkeys(warnings))
+
+def validate_gdtf_export(encoded):
+ root,_,_=read_gdtf(encoded)
+ if gdtf_ma_recovery(root) is None:raise ValueError('GDTF не содержит данных проверки генерации.')
+ return base64.b64decode(encoded,validate=True)
+
+def download_gdtf(environ,start_response,path):
+ match=re.fullmatch(r'/api/files/([a-f0-9]{32})/download/gdtf',path)
+ if not match:return None
+ folder=STORE/match[1];files=list(folder.glob('GDTF_*.gdtf'))
+ if not (folder/'info.json').is_file() or len(files)!=1:return library_json(start_response,'404 Not Found',{'error':'GDTF не найден.'})
+ from urllib.parse import quote
+ body=files[0].read_bytes();filename=files[0].name[len('GDTF_'):]
+ start_response('200 OK',[('Content-Type','application/octet-stream'),('Content-Length',str(len(body))),('Content-Disposition',"attachment; filename=fixture_vlighte_ru.gdtf; filename*=UTF-8''"+quote(filename,safe='')),('Cache-Control','no-store'),('X-Content-Type-Options','nosniff')]);return [body]
+
+
 def application(environ,start_response):
  status='200 OK';content_type='application/json; charset=utf-8'
  try:
@@ -998,19 +1354,20 @@ def application(environ,start_response):
    origin=environ.get('HTTP_ORIGIN');host=environ.get('HTTP_HOST','')
    if origin and urlsplit(origin).netloc!=host:raise ValueError('Запрос с другого сайта запрещён.')
    size=int(environ.get('CONTENT_LENGTH','0'))
-   if not 0<size<=(12_600_000 if path=='/api/archive' else 8_400_000 if path=='/api/generate' else 2_100_000):raise ValueError('Размер запроса превышает лимит.')
+   if not 0<size<=(12_600_000 if path=='/api/archive' else 8_400_000 if path=='/api/generate' else 28_100_000):raise ValueError('Размер запроса превышает лимит.')
    if not environ.get('CONTENT_TYPE','').startswith('application/json'):raise ValueError('Ожидается JSON.')
    payload=json.loads(environ['wsgi.input'].read(size))
-   if path=='/api/import':root,system=convert(parse(payload['xml']));data={'xml':serialize(root),'system':system}
+   if path=='/api/import':data=import_profile(payload)
    elif path=='/api/generate':
     data=generate_formats(payload) if payload.get('exportBoth') else {'xml':generate(payload)}
-    data['originReceipt']=origin_receipt(capture_origin(environ),data['xml'],data.get('ma2Xml'))
+    data['originReceipt']=origin_receipt(capture_origin(environ),data['xml'],data.get('ma2Xml'),data.get('gdtfBase64'))
     existing=find_existing({**payload,'ma2Xml':data.get('ma2Xml')},data['xml'])
     if existing:data['existingId']=existing['id']
    else:
     if not payload.get('sourceXml'):raise ValueError('Отсутствует исходный XML.')
     generated=payload['xml'];validate_hog(parse(generated))
     if payload.get('ma2Xml'):validate_ma2(parse(payload['ma2Xml']))
+    if payload.get('gdtfBase64'):validate_gdtf_export(payload['gdtfBase64'])
     payload['_requestOrigin']=archive_origin(payload,environ)
     data={'saved':public_record(save_pair(payload,generated))}
    body=json.dumps(data,ensure_ascii=False).encode()
@@ -1227,6 +1584,8 @@ def application(environ,start_response):
  managed=library_manage(environ,start_response,path)
  if managed is not None:return managed
  if path.startswith('/api/files/'):
+  attachment=download_gdtf(environ,start_response,path)
+  if attachment is not None:return attachment
   attachment=download_xml(environ,start_response,path)
   if attachment is not None:return attachment
   saved = read_saved_xml(path)

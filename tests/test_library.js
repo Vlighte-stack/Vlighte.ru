@@ -11,7 +11,7 @@ class Element{
 const descendants=e=>[e,...e.children.flatMap(descendants)];
 async function test(owner){
  const elements={};const element=id=>elements[id]||(elements[id]=new Element());
- let items=[{id:'a'.repeat(32),name:'Fixture A',date:'2026-10-21',formats:['hog','ma2'],requestIp:'8.8.8.8'},{id:'b'.repeat(32),name:'Fixture B',date:'2026-10-21'}];
+ let items=[{id:'a'.repeat(32),name:'Fixture A',date:'2026-10-21',formats:['hog','ma2','gdtf'],requestIp:'8.8.8.8'},{id:'b'.repeat(32),name:'Fixture B',date:'2026-10-21'}];
  const purges=[];let approve=false,confirmations=[];
  const ctx={document:{getElementById:element,createElement:tag=>new Element(tag),createTextNode:text=>Object.assign(new Element('#text'),{textContent:text})},location:{search:owner?'?view=edit':'?view=guest'},URLSearchParams,Intl,Date,confirm:text=>{confirmations.push(text);return approve;},fetch:async(path,options={})=>{
   let data;if(path.startsWith('/api/files/session'))data={can_edit:owner};
@@ -22,7 +22,7 @@ async function test(owner){
  vm.createContext(ctx);vm.runInContext(source,ctx);await ctx.init();
  let nodes=descendants(element('files'));assert.equal(element('files').children.length,2);
  assert(nodes.some(x=>x.className==='record-top'));assert(nodes.some(x=>x.textContent==='Открыть:'));
- assert(!nodes.some(x=>String(x.textContent).includes('ZIP')));
+ assert(!nodes.some(x=>String(x.textContent).includes('ZIP')));assert(nodes.some(x=>x.textContent==='GDTF'&&x.href.endsWith('/download/gdtf')));
  assert.equal(nodes.filter(x=>x.className==='request-ip').length,owner?2:0);
  if(!owner){await ctx.removeFromTrash(items[0].id,'Fixture A',new Element('button'));assert.equal(purges.length,0);return;}
  vm.runInContext("view='trash'",ctx);await ctx.load();nodes=descendants(element('files'));
@@ -35,3 +35,5 @@ async function test(owner){
  await ctx.emptyTrash();assert.deepEqual(purges,[['a'.repeat(32)],['b'.repeat(32)]]);assert(element('clear-trash').disabled);
 }
 (async()=>{await test(false);await test(true);console.log('PASS guest/owner compact rendering, grouped links no ZIP, owner-only IP, per-record purge and restore, cancellation, exactly one ID removed, bulk clear retained')})();
+
+
