@@ -1,0 +1,14 @@
+{
+  "nativeVirtualDimmerInBothHogStages": true,
+  "finalMaVirtualDimmer": 1,
+  "footprint": 42,
+  "rangeBoundariesCompared": 71,
+  "whiteGoboSegments": 7,
+  "rgbGoboSegments": 52,
+  "whiteShutterSegments": 7,
+  "constantDmx3": 255,
+  "hogNativeDefinitionsXsdValid": true,
+  "hogSchemaStructuralRelocationForValidationOnly": true,
+  "allAuditArtifactsCommentFree": true,
+  "macroReverseMapping": true
+}

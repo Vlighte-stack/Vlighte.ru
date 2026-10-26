@@ -1,0 +1,18 @@
+{
+  "archive-files.sha256.json": "142e4bce6f01315c4939466658451b07bd67f6d8dcee206ad932aad8ae616126",
+  "breaks-conditional-verification.json": "13f0ebfb9a7052745bc985e293135dd21f5a4fd468c6ad3424fb2dd2a889f2a7",
+  "deployment-verification.json": "2d5644ca52ce978c611f0871060b18b7a1e26af3761e3bb8ada4c40fd52cedc5",
+  "live-breaks-2.00.40.png": "bb3e9ce7e9ef32e378f698a0fe8d9f921a6d955683d5cefdeb5c5af4491298e6",
+  "matrix-18-by-fixture.csv": "52a644705e6d035f8dbe00573ddd502aaec84fc09ca242df26b8cc4d27951b43",
+  "matrix-18-chains.csv": "2adc0410032eec037f25b2a26f83ad0a6898d13d9af06fcc51df192c9cf838f0",
+  "matrix.csv": "9a3bd141670e01b7eae2c760d3d980eff9b14d61ba9266044014a8468fbf660e",
+  "matrix.html": "74f86309faee201160ac0ab53c72c1ab3acf90dcffaf5dc2cf28bf5d05cea062",
+  "matrix.json": "8b3ab4f356c05aeb4e33855ebbabc394c4f6e7d3bf2663ed1d100d849d275e12",
+  "native-verification.json": "064f7fc925cbc9c9e857b014e5d55d4213ac747763cf6dac7da189e09928d9f8",
+  "README.md": "d29703e2c1cf872cd548f9e1f32ac8fe81eaf1e33e4ead4052a8919be8d93b19",
+  "results.tar.xz": "1c8b146e9d9c5d947611e2bcc3995f0ac20603ab3de7e31ca1eb1a134e378ff0",
+  "seeds.json": "0cfb04f1187e43eef6f8a2db6ef9800ce4272cb7704e8303ea2134ed6a4f7061",
+  "sources.json": "22524575da87b6d140c7c7cd9f73a9ae58a5b6235687e0c53f5609eb37cbc34a",
+  "summary.json": "ab3fa7fdff7526e5d9580d795b0ba5123be9cf2e85470c896bcf9ce9744ee395",
+  "Итог.md": "17033c99158db3fe63eb9b96f579750e2e725177bdef28140741c89135192606"
+}

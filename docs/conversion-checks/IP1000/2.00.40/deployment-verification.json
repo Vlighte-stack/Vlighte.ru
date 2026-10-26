@@ -1,0 +1,11 @@
+{
+  "deployed": true,
+  "date": "2026-10-26",
+  "version": "2.00.40",
+  "appSha256": "d2c445789f3f43a233ff8fe6665558f2dd977774fa8c440d0918bdcca8570cd8",
+  "allFourFilesReadBackAndVerified": true,
+  "browserBreak1Footprint": 1,
+  "browserBreak2Footprint": 2,
+  "screenshot": "../live-breaks-2.00.40.png",
+  "liveArchiveWritten": false
+}

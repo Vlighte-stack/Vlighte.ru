@@ -70,7 +70,7 @@ def convert_channels(root):
      if fn is None or 'physfrom' not in fn.attrib or 'physto' not in fn.attrib:raise ValueError('В профиле отсутствует физический диапазон Tilt.')
      lo=float(fn.get('physfrom'));hi=float(fn.get('physto'))
      import math
-     if not math.isfinite(lo) or not math.isfinite(hi) or hi<=lo:raise ValueError('Некорректный диапазон Tilt.')
+     if not math.isfinite(lo) or not math.isfinite(hi):raise ValueError('Некорректный диапазон Tilt.')
      ranges=first(channel,'Ranges');ranges.clear();E.SubElement(ranges,q('Range'),dmxstart='0',dmxend=str(65535 if fine else 255),function='Tilt',feature='Tilt',start=str(lo),end=str(hi))
     types.append(t);defs[key]=(name,size)
    name,size=defs[key];absolute=patch+coarse-1
@@ -193,7 +193,7 @@ def map_module_channels(target,source,module):
     for mode in functions:
      low=float(mode.get('physfrom','0'));high=float(mode.get('physto','10'))
      dlow=int(mode.get('min_dmx_24','0'));dhigh=int(mode.get('max_dmx_24','16777215'))
-     if not all(math.isfinite(v) for v in (low,high)) or high<low or not 0<=dlow<=dhigh<=16777215:raise ValueError(f'Некорректный диапазон {attr}.')
+     if not all(math.isfinite(v) for v in (low,high)) or not 0<=dlow<=dhigh<=16777215:raise ValueError(f'Некорректный диапазон {attr}.')
      E.SubElement(ranges,q('Range'),dmxstart=str(round(dlow*maximum/16777215)),dmxend=str(round(dhigh*maximum/16777215)),function=function,feature=feature,start=str(low),end=str(high))
     continue
   elif compact_attr in ('PANTILTSPEED','PANSPEED','TILTSPEED','POSITIONSPEED','PT_SPEED','YZHOUSPEED','MOVEMENTSPEED'):
@@ -235,7 +235,7 @@ def map_module_channels(target,source,module):
    function='Beam Fx' if fallback==1 else f'Beam Fx {fallback}';feature='Continuous'
    comment='MA2 '+attr+' ('+label+'): no reliable HOG correspondence; Beam Fx fallback.'
   import math
-  if not all(math.isfinite(float(v)) for v in (lo,hi)) or hi<=lo:raise ValueError(f'Некорректный диапазон {attr}.')
+  if not all(math.isfinite(float(v)) for v in (lo,hi)):raise ValueError(f'Некорректный диапазон {attr}.')
   E.SubElement(ranges,q('Range'),dmxstart='0',dmxend=str(maximum),function=function,feature=feature,start=str(lo),end=str(hi))
   if inverse and any(prior.get('attribute','').upper() in ({'Cyan':{'CYAN','COLORCMY1'},'Magenta':{'MAGENTA','COLORCMY2'},'Yellow':{'YELLOW','COLORCMY3','COLORRGB14'}}[inverse]) for prior in source):inverse=None
   if inverse:E.SubElement(ranges,q('Range'),dmxstart=str(maximum),dmxend='0',function=inverse,feature='Variable',start='0',end='100')
@@ -1115,7 +1115,7 @@ def gdtf_to_ma(root,fixture,mode):
  if len(reached)!=len(channels):raise ValueError('Некоторые каналы GDTF не связаны с геометрией выбранного режима.')
  ma=E.Element(mq('MA'),major_vers='3',minor_vers='9',stream_vers='60');f=E.SubElement(ma,mq('FixtureType'),name=fixture.get('Name','GDTF'),manufacturer=fixture.get('Manufacturer',''),mode=mode.get('Name'))
  mods=E.SubElement(f,mq('Modules'));instances=E.SubElement(f,mq('Instances'));occupied=set();virtual=0;functions=0;sets=0;unmapped=set();built=[]
- aliases={'Dimmer':'DIM','Pan':'PAN','Tilt':'TILT','ColorAdd_R':'COLORRGB1','ColorAdd_G':'COLORRGB2','ColorAdd_B':'COLORRGB3','ColorAdd_W':'WHITE','ColorAdd_A':'AMBER','ColorAdd_C':'CYAN','ColorSub_C':'CYAN','ColorSub_M':'MAGENTA','ColorSub_Y':'YELLOW','PositionMSpeed':'PANTILTSPEED','IntensityMSpeed':'DIMMERSPEED','Effects1':'EFFECT','ColorEffects1':'COLORMACRO','ColorMacro1Rate':'MACRORATE','StrobeMode':'SHUTTER1','Shutter1':'SHUTTER1','Shutter1Strobe':'SHUTTER1','NoFeature':'DUMMY'}
+ aliases={'Dimmer':'DIM','Pan':'PAN','Tilt':'TILT','ColorAdd_R':'COLORRGB1','ColorAdd_G':'COLORRGB2','ColorAdd_B':'COLORRGB3','ColorAdd_W':'WHITE','ColorAdd_A':'AMBER','ColorAdd_C':'CYAN','ColorSub_C':'CYAN','ColorSub_M':'MAGENTA','ColorSub_Y':'YELLOW','PositionMSpeed':'PANTILTSPEED','IntensityMSpeed':'DIMMERSPEED','Effects1':'EFFECT','ColorEffects1':'COLORMACRO','ColorMacro1Rate':'MACRORATE','StrobeMode':'SHUTTER1','Shutter1':'SHUTTER1','Shutter1Strobe':'SHUTTER1','NoFeature':'DUMMY','ColorMacro1Rate':'MACRORATE','ColorEffects1':'COLORMACRO','PanRotate':'PAN2','TiltRotate':'TILT2','Gobo1Pos':'GOBO1_POS','Gobo1PosRotate':'GOBO1_POS','Gobo2Pos':'GOBO2_POS','Gobo2PosRotate':'GOBO2_POS'}
  for key,shift,own in groups:
   physical=[]
   for c in own:
@@ -1159,7 +1159,7 @@ def gdtf_to_ma(root,fixture,mode):
   for ci,(channel,offsets) in enumerate(physical):
    logical=channel.findall('LogicalChannel')
    if len(logical)!=1:raise ValueError('Несколько LogicalChannel на одном адресе требуют сопоставления.')
-   logical=logical[0];attr=logical.get('Attribute','NoFeature');mapped=aliases.get(attr,attr.upper())
+   logical=logical[0];attr=logical.get('Attribute','NoFeature');attr=attr[8:] if attr.startswith('Vlighte_') else attr;mapped=aliases.get(attr,attr.upper())
    if attr not in aliases and not re.fullmatch(r'Zoom|Focus|Iris|Frost|CTO|CTB|Gobo\d+|Color\d+',attr):unmapped.add(attr)
    c=E.SubElement(module,mq('ChannelType'),index=str(ci),attribute=mapped)
    if offsets:
@@ -1167,13 +1167,10 @@ def gdtf_to_ma(root,fixture,mode):
     if len(offsets)==2:c.set('fine',str(offsets[1]-patch+1))
    else:virtual+=1;c.set('virtual','true')
    bits=8*len(offsets) if offsets else 32;maximum=2**bits-1
-   fs=logical.findall('ChannelFunction')
-   if not fs:raise ValueError('В GDTF отсутствует ChannelFunction.')
-   starts=[gdtf_dmx(fn.get('DMXFrom','0/1'),bits) for fn in fs]
-   if starts[0]!=0 or any(a>=b for a,b in zip(starts,starts[1:])):raise ValueError('Диапазоны ChannelFunction должны возрастать от нуля.')
-   for fi,fn in enumerate(fs):
-    if fn.get('ModeMaster'):raise ValueError('Условные функции ModeMaster требуют отдельного сопоставления.')
-    lo,hi=starts[fi],starts[fi+1]-1 if fi+1<len(starts) else maximum
+   intervals=gdtf_function_intervals(logical,bits,mode)
+   for fi,(fn,lo,hi,condition) in enumerate(intervals):
+    if condition[0]:
+     master=gdtf_master(mode,condition[0]);c.set('mode',gdtf_native_attribute(master.find('LogicalChannel').get('Attribute')))
     pf,pt=float(fn.get('PhysicalFrom','0')),float(fn.get('PhysicalTo','1'))
     if not all(math.isfinite(n) for n in (pf,pt)):raise ValueError('Некорректный физический диапазон GDTF.')
     scale=100 if mapped in ('DIM','COLORRGB1','COLORRGB2','COLORRGB3','WHITE','AMBER') else 1
@@ -1182,6 +1179,7 @@ def gdtf_to_ma(root,fixture,mode):
     initial=channel.get('InitialFunction','').split('.')[-1]
     if fi==0 or fn.get('Name')==initial:c.set('default',str(gdtf_dmx(fn.get('Default','0/1'),bits)))
     attrs={'index':str(fi),'attribute':mapped,'subattribute':'RESERVED' if mapped=='DUMMY' else mapped,'attribute_user_name':fn.get('Name',attr),'feature':feature,'preset':preset,'min_dmx_24':str(round(lo*16777215/maximum)),'max_dmx_24':str(round(hi*16777215/maximum)),'physfrom':str(pf),'physto':str(pt),'from':str(pf*scale),'to':str(pt*scale)}
+    if condition[0]:attrs.update(mode_dmx_start=str(condition[1]),mode_dmx_end=str(condition[2]))
     out=E.SubElement(c,mq('ChannelFunction'),attrs);functions+=1
     channel_sets=fn.findall('ChannelSet');set_starts=[gdtf_dmx(s.get('DMXFrom','0/1'),bits) for s in channel_sets]
     if any(a>=b for a,b in zip(set_starts,set_starts[1:])) or any(not lo<=s<=hi for s in set_starts):raise ValueError('Некорректные ChannelSet в GDTF.')
@@ -1337,6 +1335,402 @@ def download_gdtf(environ,start_response,path):
  from urllib.parse import quote
  body=files[0].read_bytes();filename=files[0].name[len('GDTF_'):]
  start_response('200 OK',[('Content-Type','application/octet-stream'),('Content-Length',str(len(body))),('Content-Disposition',"attachment; filename=fixture_vlighte_ru.gdtf; filename*=UTF-8''"+quote(filename,safe='')),('Cache-Control','no-store'),('X-Content-Type-Options','nosniff')]);return [body]
+
+
+# Native HOG/MA channel conversion. No source snapshots or private XML extensions.
+def real_number(value):
+ import math
+ result=float(value)
+ if not math.isfinite(result):raise ValueError('Некорректное числовое значение диапазона.')
+ return result
+
+def native_scale(function):
+ return 100 if function in ('Intensity','I Red','I Green','I Blue','I White','I Amber','BG Red','BG Green','BG Blue','BG White','Cyan','Magenta','Yellow') or function.startswith('Sub Intensity') else 1
+
+_map_module_channels38=map_module_channels
+def map_module_channels(target,source,module):
+ _map_module_channels38(target,source,module)
+ for channel,ma in zip(children(target,'Channel'),source):
+  ranges=first(channel,'Ranges')
+  if ranges is None or channel.get('unused')=='true':
+   if 'default' in ma.attrib:
+    value=real_number(ma.get('default'));maximum=65535 if 'fine' in ma.attrib else 255
+    if not value.is_integer() or not 0<=value<=maximum:raise ValueError('Некорректное постоянное значение DMX.')
+    if value!=0:channel.attrib.pop('unused',None);channel.set('constant',str(int(value)))
+   continue
+  originals=children(ranges,'Range');primary=originals[0];function=primary.get('function');feature=primary.get('feature');scale=native_scale(function);maximum=65535 if 'fine' in ma.attrib else 255
+  # Keep an explicitly numbered native control stable across repeated imports.
+  attr=ma.get('attribute','').upper()
+  dim=re.fullmatch(r'DIM(?:MER)?(\d+)',attr)
+  if dim and int(dim[1])>1:function='Sub Intensity '+str(int(dim[1])-1);feature='Intensity'
+  shutter=re.fullmatch(r'SHUTTER([1-4])',attr)
+  if shutter:function='Strobe'+(' '+shutter[1] if shutter[1]!='1' else '');feature='Rate'
+  if re.fullmatch(r'MACRORATE\d*',attr):function='Macro'+(' '+attr[9:] if attr[9:] else '')+' Rate';feature='Rate'
+  output=[]
+  for fn in children(ma,'ChannelFunction'):
+   low=round(int(fn.get('min_dmx_24','0'))*maximum/16777215);high=round(int(fn.get('max_dmx_24','16777215'))*maximum/16777215)
+   if not 0<=low<=high<=maximum:raise ValueError('Некорректный диапазон MA2.')
+   pf=real_number(fn.get('physfrom',str(real_number(fn.get('from','0'))/scale)))*scale
+   pt=real_number(fn.get('physto',str(real_number(fn.get('to','100'))/scale)))*scale
+   points={low,high+1}
+   sets=[]
+   for s in children(fn,'ChannelSet'):
+    start=int(s.get('from_dmx',str(low)));end=int(s.get('to_dmx',str(high)))
+    if not low<=start<=end<=high:raise ValueError('ChannelSet выходит за диапазон MA2.')
+    if any(start<=b and a<=end for a,b in sets):raise ValueError('Пересечение ChannelSet MA2.')
+    sets.append((start,end));points.update((start,end+1))
+   points=sorted(points)
+   for start,stop in zip(points,points[1:]):
+    end=stop-1
+    interpolate=lambda n:pf+(pt-pf)*(n-low)/(high-low) if high!=low else pf
+    output.append(E.Element(q('Range'),dmxstart=str(start),dmxend=str(end),function=function,feature=feature,start=str(interpolate(start)),end=str(interpolate(end))))
+  if not output:continue
+  ranges.clear();ranges.extend(output)
+  # Complementary colour controls must describe each same sub-range.
+  inverse={'I Red':'Cyan','I Green':'Magenta','I Blue':'Yellow'}.get(function)
+  if inverse and any(r.get('function')==inverse for r in originals):
+   for r in output:
+    attrs=dict(r.attrib);attrs.update(function=inverse,feature='Variable',dmxstart=r.get('dmxend'),dmxend=r.get('dmxstart'));E.SubElement(ranges,q('Range'),attrs)
+
+def hog_type_section(t,name):
+ section=next(iter(children(t,name)),None)
+ if section is None:
+  section=E.Element(q(name));order=['History','Origin','Icon','Interchange','Notes','Defaults','Virtuals','ColourMatcher','Protocols','Previewpackages'];rank=order.index(name);position=next((i for i,n in enumerate(t) if local(n) in order and order.index(local(n))>rank),len(t));t.insert(position,section)
+ return section
+
+_convert38=convert
+def convert(root):
+ hog,system=_convert38(root)
+ if root.tag!=mq('MA') or read_hog_roundtrip(root) is not None:return hog,system
+ fixture=first(root,'FixtureType');modules={n.get('index'):n for n in descendants(fixture,'Module')};types={t.get('name'):t for t in descendants(hog,'Type')}
+ for mid,module in modules.items():
+  t=types.get(f"{fixture.get('name','MA2')} M{mid}")
+  if t is None:continue
+  physical=sorted([c for c in children(module,'ChannelType') if 'coarse' in c.attrib],key=lambda c:int(c.get('coarse')))
+  for c,ch in zip(physical,descendants(t,'Channel')):
+   if 'default' not in c.attrib or 'constant' in ch.attrib or ch.get('unused')=='true':continue
+   default=real_number(c.get('default'));maximum=65535 if 'fine' in c.attrib else 255
+   if not 0<=default<=maximum:raise ValueError('Некорректное значение Default MA2.')
+   default=round(default) # HOG range boundaries and DMX output are integer slots.
+   candidates=[r for r in descendants(ch,'Range') if int(r.get('dmxstart'))<=default<=int(r.get('dmxend',r.get('dmxstart')))]
+   if not candidates:raise ValueError('Default MA2 не входит в диапазоны HOG.')
+   r=candidates[0];low=int(r.get('dmxstart'));high=int(r.get('dmxend',str(low)));start=real_number(r.get('start','0'));end=real_number(r.get('end',str(start)));value=start+(end-start)*(default-low)/(high-low) if high!=low else start
+   E.SubElement(hog_type_section(t,'Defaults'),q('Default'),function=r.get('function'),feature=r.get('feature'),value=str(value))
+  virtual=[c for c in children(module,'ChannelType') if 'coarse' not in c.attrib]
+  for c in virtual:
+   if not re.fullmatch(r'DIM(?:MER)?\d*',c.get('attribute','')):raise ValueError('Требуется сопоставление виртуального канала '+c.get('attribute',''))
+   affected=sorted({(r.get('function'),r.get('feature')) for r in descendants(t,'Range') if r.get('feature')=='Intensity' and r.get('dmxstart')!=r.get('dmxend')})
+   if not affected:raise ValueError('Виртуальный DIM не имеет управляемых каналов интенсивности в своём модуле.')
+   fns=children(c,'ChannelFunction');low=min(real_number(f.get('physfrom','0')) for f in fns)*100;high=max(real_number(f.get('physto','1')) for f in fns)*100
+   v=E.SubElement(hog_type_section(t,'Virtuals'),q('Virtual'),function='Intensity',feature='Intensity',start=str(low),end=str(high))
+   for function,feature in affected:E.SubElement(v,q('Affected'),function=function,feature=feature)
+ return hog,system
+
+_ma2_attribute38=ma2_attribute
+def ma2_attribute(function,feature):
+ match=re.fullmatch(r'Macro(?: ([1-8]))?( Rate)?',function)
+ if match:
+  number=int(match[1] or 1)
+  return (('MACRORATE'+(str(number) if number>1 else '')) if match[2] else ('GOBOWHEELS' if number==1 else 'GOBO'+str(number)),'GOBOALL','GOBO',1)
+ match=re.fullmatch(r'Beam Fx(?: ([1-9]))?( <>)?',function)
+ if match:
+  number=int(match[1] or 1);return (('GOBOWHEELS' if number==1 else 'GOBO'+str(number))+('_POS' if match[2] else ''),'GOBOALL','GOBO',1)
+ match=re.fullmatch(r'Strobe(?: ([2-4]))?',function)
+ if match:return ('SHUTTER'+(match[1] or '1'),'SHUTTER','BEAM',1)
+ extra={'CTO':('CTO','COLOR','COLOR',1),'CTB':('CTB','COLOR','COLOR',1),'Frost':('FROST','BEAM','BEAM',1),'Position Time':('PANTILTSPEED','POSITION','POSITION',1),'Colour':('COLOR1','COLOR','COLOR',1),'Gobo':('GOBO1','GOBO','GOBO',1),'I Amber':('AMBER','COLORRGB','COLOR',.01),'BG White':('WHITE','COLORRGB','COLOR',.01)}
+ if function in extra:return extra[function]
+ return _ma2_attribute38(function,feature)
+
+def ma2_from_hog(payload,hog_xml):
+ hog=parse(hog_xml);types={n.get('name'):n for n in descendants(hog,'Type')};compound=next((c for c in descendants(hog,'CompoundType') if c.get('name')==payload['name'].strip()),None)
+ if compound is None:raise ValueError('Не найдена составная фикстура.')
+ root=E.Element(mq('MA'),{'{http://www.w3.org/2001/XMLSchema-instance}schemaLocation':M+' http://schemas.malighting.de/grandma2/xml/3.1.2/MA.xsd','major_vers':'3','minor_vers':'1','stream_vers':'2'});E.SubElement(root,mq('Info'),datetime=datetime.datetime.now(datetime.timezone.utc).isoformat(),showfile='Vlighte')
+ fixture=E.SubElement(root,mq('FixtureType'),index='0',name=payload['name'].strip(),mode='');E.SubElement(fixture,mq('short_name')).text=payload['name'].strip()[:32];modules=E.SubElement(fixture,mq('Modules'),index='0');instances=E.SubElement(fixture,mq('Instances'),index='1');ids={};cursor=1;warnings=[]
+ for ii,part in enumerate(children(first(compound,'Parts'),'Part')):
+  name=part.get('type');t=types[name];width=int(first(t,'Dmxfootprint').get('size'))
+  if name not in ids:
+   mid=str(len(ids));ids[name]=mid;module=E.SubElement(modules,mq('Module'),index=mid,name=name,**{'class':'LED','beamtype':'Wash'});occupied=set();attrs=set()
+   for ch in descendants(t,'Channel'):
+    coarse=int(ch.get('number'));attached=descendants(ch,'AttachedChannel');fine=int(attached[0].text) if attached else None
+    if len(attached)>1 or fine is not None and fine!=coarse+1:raise ValueError('Неподдерживаемая точность канала HOG4 для MA2.')
+    for offset in [coarse]+([fine] if fine else []):
+     if not 1<=offset<=width or offset in occupied:raise ValueError('Некорректная структура DMX HOG4.')
+     occupied.add(offset)
+    maximum=65535 if fine else 255;rs=descendants(ch,'Range') if ch.get('unused')!='true' else []
+    if any(children(r,'Escapes') for r in rs):raise ValueError('Escapes требуют отдельного сопоставления MA2.')
+    inverse={'I Red':'Cyan','I Green':'Magenta','I Blue':'Yellow'}
+    if rs:rs=[r for r in rs if r.get('function')!=inverse.get(rs[0].get('function'))]
+    if not rs:rs=[E.Element('Range',dmxstart='0',dmxend=str(maximum),function='Unused',feature='Continuous',start='0',end='100')]
+    rs=sorted(rs,key=lambda r:int(r.get('dmxstart','0')));label=rs[0].get('function','Unused')
+    if any(r.get('function')!=label for r in rs):raise ValueError('Несколько функций в одном HOG4-канале требуют сопоставления MA2.')
+    attr,feature,preset,scale=('DUMMY','CONTROL','CONTROL',1) if label=='Unused' else ma2_attribute(label,rs[0].get('feature',''))
+    if attr in attrs and attr!='DUMMY':raise ValueError('Повтор атрибута MA2 в одном модуле: '+attr)
+    attrs.add(attr);c=E.SubElement(module,mq('ChannelType'),index=str(len(children(module,'ChannelType'))),attribute=attr,feature=feature,preset=preset,coarse=str(coarse))
+    if fine:c.set('fine',str(fine))
+    previous={}
+    for ri,r in enumerate(rs):
+     low=int(r.get('dmxstart','0'));high=int(r.get('dmxend',str(low)))
+     condition=native_qualifier_condition(t,r)
+     if not 0<=low<=high<=maximum or low<=previous.get(condition,-1):raise ValueError('Пересечение диапазонов при одинаковом условии HOG4.')
+     previous[condition]=high;start=real_number(r.get('start','0'));end=real_number(r.get('end',r.get('start','0')))
+     fn=E.SubElement(c,mq('ChannelFunction'),index=str(ri),**{'from':str(start),'to':str(end),'min_dmx_24':str(round(low*16777215/maximum)),'max_dmx_24':str(round(high*16777215/maximum)),'physfrom':str(start*scale),'physto':str(end*scale),'subattribute':'RESERVED' if attr=='DUMMY' else attr,'attribute':attr,'attribute_user_name':label,'feature':feature,'preset':preset})
+     if condition:
+      c.set('mode',condition[0]);fn.set('mode_dmx_start',str(condition[1]));fn.set('mode_dmx_end',str(condition[2]))
+    if 'constant' in ch.attrib:c.set('default',str(int(ch.get('constant'))))
+    else:
+     default=next((d for d in descendants(t,'Default') if d.get('function')==label and any(r.get('feature')==d.get('feature') for r in rs)),None)
+     if default is not None:
+      value=real_number(default.get('value','0'))
+      for r in rs:
+       start=real_number(r.get('start','0'));end=real_number(r.get('end',str(start)))
+       if min(start,end)<=value<=max(start,end):
+        low=int(r.get('dmxstart'));high=int(r.get('dmxend',str(low)));dmx=low+(high-low)*(value-start)/(end-start) if end!=start else low;c.set('default',str(dmx));break
+    if label.startswith(('Macro','Beam Fx')):warnings.append(label+': исходный атрибут неоднозначен; сохранены независимое управление и числовые диапазоны как '+attr+'.')
+   for offset in range(1,width+1):
+    if offset not in occupied:
+     c=E.SubElement(module,mq('ChannelType'),index=str(len(children(module,'ChannelType'))),attribute='DUMMY',feature='CONTROL',preset='CONTROL',coarse=str(offset));E.SubElement(c,mq('ChannelFunction'),index='0',**{'from':'0','to':'100','min_dmx_24':'0','max_dmx_24':'16777215','physfrom':'0','physto':'100','subattribute':'RESERVED','attribute':'DUMMY','feature':'CONTROL','preset':'CONTROL'})
+   for vi,v in enumerate(descendants(t,'Virtual')):
+    if v.get('function')!='Intensity' or v.get('feature')!='Intensity':raise ValueError('Неизвестный виртуальный канал HOG4.')
+    if 'DIM' in attrs:raise ValueError('Физический и виртуальный DIM одного модуля требуют сопоставления.')
+    attrs.add('DIM');c=E.SubElement(module,mq('ChannelType'),index=str(len(children(module,'ChannelType'))),attribute='DIM',feature='DIMMER',preset='DIMMER');start=real_number(v.get('start','0'));end=real_number(v.get('end','100'))
+    E.SubElement(c,mq('ChannelFunction'),index='0',**{'from':str(start),'to':str(end),'min_dmx_24':'0','max_dmx_24':'16777215','physfrom':str(start/100),'physto':str(end/100),'subattribute':'DIM','attribute':'DIM','feature':'DIMMER','preset':'DIMMER'})
+  E.SubElement(instances,mq('Instance'),index=str(ii),module_index=ids[name],patch=str(cursor),X=part.get('plotX','0'),Y=part.get('plotY','0'));cursor+=width
+ for tag,idx in [('Wheels','2'),('VirtualFunctionBlocks','3'),('FixtureMacroCollect','5')]:E.SubElement(fixture,mq(tag),index=idx)
+ E.SubElement(fixture,mq('Body'));E.SubElement(fixture,mq('AutoPresets'),index='4');fixture.set('mode',str(cursor-1)+'ch');validate_ma2(root)
+ return ma2_serialize(root),sorted(set(warnings))
+
+
+def expanded_gdtf_channels(fixture,mode):
+ geometries=fixture.find('Geometries')
+ if geometries is None:raise ValueError('В GDTF отсутствует геометрия.')
+ named={n.get('Name'):n for n in geometries.iter() if n.get('Name')};start=named.get(mode.get('Geometry'));channels=mode.findall('./DMXChannels/DMXChannel');records=[];seen=set();visits=0
+ if not channels or len(channels)>1024 or any(len(c.findall('LogicalChannel'))!=1 for c in channels):raise ValueError('Требуется один LogicalChannel на физический канал GDTF.')
+ if start is None:raise ValueError('Не найдена геометрия режима GDTF.')
+ def walk(node,offsets=None,path=(),stack=()):
+  nonlocal visits
+  visits+=1
+  if visits>2048 or len(stack)>32:raise ValueError('Слишком сложная геометрия GDTF.')
+  offsets=offsets or {};key=path+(node.get('Name',''),)
+  if node.tag=='GeometryReference':
+   target=named.get(node.get('Geometry'))
+   if target is None or node.get('Geometry') in stack:raise ValueError('Циклическая или неизвестная геометрия GDTF.')
+   local_offsets={}
+   for b in node.findall('Break'):
+    number=int(b.get('DMXBreak','1'));shift=int(b.get('DMXOffset','1'))-1
+    if not 1<=number<=255 or not 0<=shift<=511 or number in local_offsets:raise ValueError('Некорректное определение DMX Break геометрии.')
+    local_offsets[number]=shift
+   inherited=dict(offsets)
+   for number,shift in local_offsets.items():inherited[number]=offsets.get(number,0)+shift
+   # Unused entries are valid: the same reference can serve different modes.
+   target_names={n.get('Name') for n in target.iter() if n.get('Name')};fixed={int(c.get('DMXBreak','1')) for c in channels if c.get('Geometry') in target_names and c.get('DMXBreak','1')!='Overwrite'};available=set(local_offsets)-fixed
+   inherited['overwrite']=next(iter(available)) if len(available)==1 else next(iter(local_offsets)) if len(local_offsets)==1 else offsets.get('overwrite')
+   walk(target,inherited,key,stack+(node.get('Geometry'),));return
+  for c in channels:
+   if c.get('Geometry')!=node.get('Name'):continue
+   rawbreak=c.get('DMXBreak','1')
+   number=offsets.get('overwrite') if rawbreak=='Overwrite' else int(rawbreak)
+   if number is None:raise ValueError('Для Overwrite требуется однозначный DMX Break в GeometryReference.')
+   if not 1<=number<=255:raise ValueError('Некорректный номер DMX Break.')
+   values=[int(n.strip())+offsets.get(number,0) for n in c.get('Offset','').split(',') if n.strip() and n.strip()!='None']
+   if any(not 1<=v<=512 for v in values):raise ValueError('Адрес DMX Break выходит за 512.')
+   records.append((key,c,number,values));seen.add(id(c))
+   if len(records)>8192:raise ValueError('Слишком много развёрнутых каналов GDTF.')
+  for child in node:
+   if child.get('Name'):walk(child,offsets,key,stack)
+ walk(start)
+ if len(seen)!=len(channels):raise ValueError('Не все каналы связаны с геометрией режима GDTF.')
+ return records
+
+def gdtf_native_attribute(value):
+ return {'PanRotate':'PAN2','TiltRotate':'TILT2','Gobo1Pos':'GOBO1_POS','Gobo1PosRotate':'GOBO1_POS','Gobo2Pos':'GOBO2_POS','Gobo2PosRotate':'GOBO2_POS','Gobo1':'GOBO1','Gobo2':'GOBO2'}.get(value,value[8:] if value.startswith('Vlighte_') else value.upper())
+
+def normalize_gdtf_break(root,fixture,mode,selected=None):
+ records=expanded_gdtf_channels(fixture,mode);active=sorted({b for _,_,b,values in records if values})
+ if not active:raise ValueError('Нет физических DMX Break.')
+ if selected is None and len(active)>1:raise ValueError('Несколько активных DMX Break: выберите отдельный профиль Break.')
+ selected=selected or active[0]
+ if selected not in active:raise ValueError('Выбранный DMX Break не используется в режиме.')
+ needs=selected!=1 or len(active)>1 or any(len(n.findall('Break'))>1 for n in fixture.iter('GeometryReference')) or any(fn.get('ModeMaster') for c in mode.findall('./DMXChannels/DMXChannel') for fn in c.findall('./LogicalChannel/ChannelFunction'))
+ if not needs:return root,fixture,mode,[]
+ root=copy.deepcopy(root);fixture=root.find('FixtureType');original_name=mode.get('Name');mode=next(n for n in fixture.findall('./DMXModes/DMXMode') if n.get('Name')==original_name)
+ geos=fixture.find('Geometries');geos.clear();base=E.SubElement(geos,'Geometry',Name='Break_Profile',Position='{1,0,0,0}{0,1,0,0}{0,0,1,0}{0,0,0,1}');mode.set('Geometry','Break_Profile');target=mode.find('DMXChannels');target.clear();grouped={};aliases={}
+ conditional=any(fn.get('ModeMaster') for _,c,b,values in records if b==selected for fn in c.findall('./LogicalChannel/ChannelFunction'))
+ # A conditional controller and its follower must live in the same HOG Type.
+ for path,c,b,values in records:
+  if b!=selected:continue
+  key=('Conditional',) if conditional else path
+  if key not in grouped:
+   name='Group_'+str(len(grouped));grouped[key]=name;E.SubElement(base,'Geometry',Name=name,Position='{1,0,0,0}{0,1,0,0}{0,0,1,0}{0,0,0,1}')
+  clone=copy.deepcopy(c);name=grouped[key];oldid=c.get('Geometry')+'_'+c.find('LogicalChannel').get('Attribute');newid=name+'_'+c.find('LogicalChannel').get('Attribute');aliases.setdefault(oldid,[]).append(newid);clone.set('Geometry',name);clone.set('DMXBreak','1');clone.set('Offset',','.join(map(str,values)) if values else 'None')
+  initial=clone.get('InitialFunction')
+  if initial:clone.set('InitialFunction',newid+'.'+'.'.join(initial.split('.')[1:]))
+  target.append(clone)
+ for c in target:
+  for fn in c.findall('./LogicalChannel/ChannelFunction'):
+   master=fn.get('ModeMaster')
+   if not master:continue
+   head,*tail=master.split('.');matches=aliases.get(head,[])
+   if len(set(matches))!=1:raise ValueError('ModeMaster отсутствует в выбранном Break или неоднозначен.')
+   fn.set('ModeMaster',matches[0]+('.'+'.'.join(tail) if tail else ''))
+ modes=fixture.find('DMXModes')
+ for other in list(modes):
+  if other is not mode:modes.remove(other)
+ warnings=[]
+ if len(active)>1 or selected!=1:
+  mode.set('Name',original_name+' [DMX Break '+str(selected)+']');warnings.append('Отдельный профиль DMX Break '+str(selected)+': адреса внутри Break сохранены; остальные Break выбираются отдельными профилями.')
+ return root,fixture,mode,warnings
+
+def gdtf_master(mode,reference):
+ head=reference.split('.')[0]
+ matches=[c for c in mode.findall('./DMXChannels/DMXChannel') if c.get('Geometry')+'_'+c.find('LogicalChannel').get('Attribute')==head]
+ if len(matches)!=1:raise ValueError('Неоднозначный или неизвестный ModeMaster.')
+ return matches[0]
+
+def gdtf_function_intervals(logical,bits,mode):
+ fs=logical.findall('ChannelFunction');maximum=2**bits-1;groups={}
+ if not fs:raise ValueError('В GDTF отсутствуют функции канала.')
+ for fn in fs:
+  master=fn.get('ModeMaster','');lowmode=highmode=None
+  if master:
+   c=gdtf_master(mode,master);offsets=[n for n in c.get('Offset','').split(',') if n and n!='None'];mbits=len(offsets)*8 if offsets else 32;lowmode=gdtf_dmx(fn.get('ModeFrom','0/1'),mbits);highmode=gdtf_dmx(fn.get('ModeTo','0/1'),mbits)
+   if not 0<=lowmode<=highmode<=2**mbits-1:raise ValueError('Некорректный диапазон ModeMaster.')
+  groups.setdefault((master,lowmode,highmode),[]).append(fn)
+ result=[]
+ for condition,functions in groups.items():
+  functions=sorted(functions,key=lambda fn:gdtf_dmx(fn.get('DMXFrom','0/1'),bits));starts=[gdtf_dmx(fn.get('DMXFrom','0/1'),bits) for fn in functions]
+  if len(set(starts))!=len(starts):raise ValueError('Пересечение ChannelFunction при одном и том же условии ModeMaster.')
+  if starts[0]!=0:raise ValueError('Начальный незаданный диапазон функции требует явного NoFeature.')
+  for index,fn in enumerate(functions):result.append((fn,starts[index],starts[index+1]-1 if index+1<len(starts) else maximum,condition))
+ for i,(a,lo,hi,cond) in enumerate(result):
+  for b,bl,bh,bc in result[i+1:]:
+   if max(lo,bl)>min(hi,bh):continue
+   if not cond[0] or cond[0]!=bc[0] or max(cond[1],bc[1])<=min(cond[2],bc[2]):raise ValueError('Неоднозначное пересечение условных диапазонов ChannelFunction.')
+ return result
+
+_gdtf_to_ma39=gdtf_to_ma
+def gdtf_to_ma(root,fixture,mode,selected_break=None):
+ normalized,f,selected,warnings=normalize_gdtf_break(root,fixture,mode,selected_break);ma,summary,notes=_gdtf_to_ma39(normalized,f,selected)
+ if any(c.get('mode') for c in descendants(ma,'ChannelType')):warnings.append('ModeMaster сохранён; управляющие параметры HOG используют шкалу DMX вместо исходной физической шкалы селектора.')
+ return ma,summary,notes+warnings
+
+_import_profile39=import_profile
+def import_profile(payload):
+ if 'gdtf' not in payload:return _import_profile39(payload)
+ root,fixture,modes=read_gdtf(payload['gdtf']);choices=[];bindings={}
+ for mode in modes:
+  active=sorted({b for _,_,b,values in expanded_gdtf_channels(fixture,mode) if values})
+  for b in active:
+   label=mode.get('Name') if len(active)==1 else mode.get('Name')+' [DMX Break '+str(b)+']'
+   if label in bindings:raise ValueError('Неоднозначные названия профилей DMX Break.')
+   bindings[label]=(mode,b);choices.append({'name':label})
+   if len(choices)>512:raise ValueError('Слишком много профилей DMX Break.')
+ if payload.get('mode') is None:return {'system':'GDTF','modes':choices,'fixture':fixture.get('Name','GDTF')}
+ if payload['mode'] not in bindings:raise ValueError('Выберите отдельный профиль нужного DMX Break.')
+ mode,number=bindings[payload['mode']];ma,summary,warnings=gdtf_to_ma(root,fixture,mode,number);recovered=gdtf_ma_recovery(root)
+ if recovered is not None and len(choices)==1:ma=recovered;summary['footprint']=validate_ma2(ma)
+ source=ma2_serialize(ma);hog,_=convert(ma);hog=attach_ma2_roundtrip(serialize(normalize_compound_location(hog)),source,first(hog,'CompoundType').get('name'))
+ if len(source.encode())>2_000_000 or len(hog.encode())>2_000_000:raise ValueError('Профиль превышает лимит XML после преобразования.')
+ return {'xml':hog,'sourceXml':source,'system':'GDTF','modes':choices,'summary':summary,'warnings':warnings}
+
+_ma2_attribute39=ma2_attribute
+def ma2_attribute(function,feature):
+ match=re.fullmatch(r'(Pan|Tilt) ([1-6])',function)
+ if match:return (match[1].upper()+match[2],'POSITION','POSITION',1)
+ return _ma2_attribute39(function,feature)
+
+_map_module_channels39=map_module_channels
+def map_module_channels(target,source,module):
+ prepared=[]
+ for c in source:
+  clone=copy.deepcopy(c)
+  if re.fullmatch(r'(PAN|TILT)[2-6]',c.get('attribute','')):clone.set('attribute',c.get('attribute')[:-1])
+  prepared.append(clone)
+ _map_module_channels39(target,prepared,module)
+ pairs=list(zip(children(target,'Channel'),source));controls={c.get('attribute'):ch for ch,c in pairs};masters={c.get('mode') for _,c in pairs if c.get('mode')}
+ # HOG qualifiers address real-world parameter values. A mode controller is
+ # exposed as a raw DMX selector so even constant/overlapping physical ranges
+ # have an unambiguous native qualifier value. This is surfaced as a warning.
+ for attr in masters:
+  if attr not in controls:raise ValueError('ModeMaster должен находиться в одном модуле с управляемым каналом.')
+  for r in descendants(controls[attr],'Range'):
+   r.set('start',r.get('dmxstart'));r.set('end',r.get('dmxend',r.get('dmxstart')))
+ for ch,c in pairs:
+  master=c.get('mode')
+  if not master:continue
+  controller=first(controls[master],'Range')
+  if controller is None:raise ValueError('ModeMaster не имеет рабочего диапазона.')
+  ranges=[r for r in descendants(ch,'Range') if r.get('function') not in ('Cyan','Magenta','Yellow')];cursor=0
+  for fn in children(c,'ChannelFunction'):
+   maximum=65535 if 'fine' in c.attrib else 255;lo=round(int(fn.get('min_dmx_24','0'))*maximum/16777215);hi=round(int(fn.get('max_dmx_24','16777215'))*maximum/16777215);points={lo,hi+1}
+   for s in children(fn,'ChannelSet'):points.update((int(s.get('from_dmx',str(lo))),int(s.get('to_dmx',str(hi)))+1))
+   count=len(points)-1
+   for r in ranges[cursor:cursor+count]:
+    master_source=next(mc for _,mc in pairs if mc.get('attribute')==master);maximum_master='65535' if 'fine' in master_source.attrib else '255';qualifiers=E.SubElement(r,q('Qualifiers'),match='all');E.SubElement(qualifiers,q('Qualifier'),function=controller.get('function'),feature=controller.get('feature'),start=fn.get('mode_dmx_start','0'),end=fn.get('mode_dmx_end',maximum_master))
+   cursor+=count
+  if cursor!=len(ranges):raise ValueError('Не удалось сопоставить условные диапазоны HOG.')
+
+def native_qualifier_condition(t,r):
+ groups=children(r,'Qualifiers')
+ if not groups:return None
+ qualifiers=children(groups[0],'Qualifier')
+ if len(groups)!=1 or groups[0].get('match')!='all' or len(qualifiers)!=1:raise ValueError('Поддерживается одно условие ModeMaster на диапазон.')
+ qualifier=qualifiers[0];function=qualifier.get('function');feature=qualifier.get('feature');start=real_number(qualifier.get('start','0'));end=real_number(qualifier.get('end',str(start)))
+ if end<start:raise ValueError('Обратный диапазон Qualifier требует сопоставления.')
+ spans=[]
+ for channel in descendants(t,'Channel'):
+  for candidate in descendants(channel,'Range'):
+   if candidate.get('function')!=function or candidate.get('feature')!=feature:continue
+   a=real_number(candidate.get('start','0'));b=real_number(candidate.get('end',str(a)));low=int(candidate.get('dmxstart'));high=int(candidate.get('dmxend',str(low)))
+   if a!=low or b!=high:raise ValueError('ModeMaster с нелинейной шкалой требует отдельного сопоставления.')
+   left=max(start,a);right=min(end,b)
+   if left<=right:spans.append((round(left),round(right),channel))
+ if not spans:raise ValueError('Qualifier ссылается на неизвестный управляющий канал.')
+ owners={id(c) for _,_,c in spans}
+ if len(owners)!=1:raise ValueError('Qualifier неоднозначен между несколькими каналами.')
+ intervals=sorted((a,b) for a,b,_ in spans);cursor=round(start)
+ for a,b in intervals:
+  if a>cursor:raise ValueError('Разрыв диапазона ModeMaster.')
+  cursor=max(cursor,b+1)
+ if cursor<=round(end):raise ValueError('Неполный диапазон ModeMaster.')
+ return (ma2_attribute(function,feature)[0],round(start),round(end))
+
+_gdtf_from_ma39=gdtf_from_ma
+def gdtf_from_ma(ma_xml,name):
+ ma=parse(ma_xml)
+ if not any(c.get('mode') for c in descendants(ma,'ChannelType')):return _gdtf_from_ma39(ma_xml,name)
+ bare=copy.deepcopy(ma)
+ for parent in bare.iter():
+  for child in list(parent):
+   if child.tag is E.Comment:parent.remove(child)
+ simplified=copy.deepcopy(bare)
+ for c in descendants(simplified,'ChannelType'):
+  if not c.get('mode'):continue
+  functions=children(c,'ChannelFunction');firstcondition=(functions[0].get('mode_dmx_start','0'),functions[0].get('mode_dmx_end','255'))
+  for fn in functions:
+   if (fn.get('mode_dmx_start','0'),fn.get('mode_dmx_end','255'))!=firstcondition:c.remove(fn)
+  c.attrib.pop('mode',None)
+ encoded,warnings=_gdtf_from_ma39(ma2_serialize(simplified),name);root,fixture,modes=read_gdtf(encoded);mode=modes[0];dcs=mode.findall('./DMXChannels/DMXChannel');modules={n.get('index'):n for n in descendants(bare,'Module')};expanded=[(inst,c) for inst in descendants(bare,'Instance') for c in children(modules[inst.get('module_index')],'ChannelType')]
+ if len(expanded)!=len(dcs):raise ValueError('Не удалось сопоставить условные каналы GDTF.')
+ for index,(inst,c) in enumerate(expanded):
+  if not c.get('mode'):continue
+  masterindices=[j for j,(other,mc) in enumerate(expanded) if other is inst and mc.get('attribute')==c.get('mode')]
+  if len(masterindices)!=1:raise ValueError('Неоднозначный ModeMaster MA2.')
+  master=dcs[masterindices[0]];masterid=master.get('Geometry')+'_'+master.find('LogicalChannel').get('Attribute');lc=dcs[index].find('LogicalChannel');prototype=copy.deepcopy(lc.find('ChannelFunction'));lc.clear();lc.set('Attribute',prototype.get('Attribute'));lc.set('Master','None');bits=16 if 'fine' in c.attrib else 8 if 'coarse' in c.attrib else 32;maximum=2**bits-1;resolution=bits//8
+  for fi,fn in enumerate(children(c,'ChannelFunction')):
+   out=copy.deepcopy(prototype)
+   for child in list(out):out.remove(child)
+   out.set('Name','Function_'+str(fi));out.set('DMXFrom',str(round(int(fn.get('min_dmx_24','0'))*maximum/16777215))+'/'+str(resolution));out.set('PhysicalFrom',fn.get('physfrom','0'));out.set('PhysicalTo',fn.get('physto','1'));out.set('ModeMaster',masterid)
+   mbits=16 if 'fine' in expanded[masterindices[0]][1].attrib else 8;out.set('ModeFrom',fn.get('mode_dmx_start','0')+'/'+str(mbits//8));out.set('ModeTo',fn.get('mode_dmx_end',str(2**mbits-1))+'/'+str(mbits//8))
+   for s in children(fn,'ChannelSet'):E.SubElement(out,'ChannelSet',Name=s.get('name',''),DMXFrom=s.get('from_dmx','0')+'/'+str(resolution))
+   lc.append(out)
+  dcs[index].set('InitialFunction',dcs[index].get('Geometry')+'_'+lc.get('Attribute')+'.'+lc.get('Attribute')+'.Function_0')
+ for child in list(root):
+  if child.tag is E.Comment:root.remove(child)
+ data={'hash':object_fingerprint(serialize(root)),'ma2Xml':ma2_serialize(bare)};root.insert(0,E.Comment(GDTF_EXPORT_MARKER+base64.b64encode(json.dumps(data,separators=(',',':')).encode()).decode()));description=serialize(root).encode()
+ if len(description)>2_000_000:raise ValueError('GDTF превышает 2 МБ.')
+ buf=io.BytesIO()
+ with zipfile.ZipFile(buf,'w',zipfile.ZIP_DEFLATED) as z:z.writestr('description.xml',description)
+ return base64.b64encode(buf.getvalue()).decode(),warnings+['Условия ModeMaster сохранены; управляющие параметры HOG используют шкалу DMX.']
 
 
 def application(environ,start_response):

@@ -1,0 +1,15 @@
+{
+  "version": "2.00.40",
+  "sourceSha256": "d2c445789f3f43a233ff8fe6665558f2dd977774fa8c440d0918bdcca8570cd8",
+  "primary": {
+    "DIFFERENT": 185,
+    "MATCH": 13
+  },
+  "extended": {
+    "MATCH": 91,
+    "DIFFERENT": 800
+  },
+  "sourcesVerified": 10,
+  "allPrimaryCompleted": true,
+  "allExtendedCompleted": true
+}
