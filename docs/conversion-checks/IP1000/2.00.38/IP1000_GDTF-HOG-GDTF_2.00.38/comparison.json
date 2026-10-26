@@ -1,0 +1,467 @@
+{
+  "version": "2.00.38",
+  "chain": [
+    "original GDTF",
+    "saved and reopened HOG XML",
+    "final GDTF"
+  ],
+  "mode": "44ch Mode",
+  "original": {
+    "mode": "44ch Mode",
+    "footprint": 44,
+    "dmxSlots": 44,
+    "modules": 6,
+    "instances": 16,
+    "virtualChannels": 8,
+    "functions": 53,
+    "channelSets": 19
+  },
+  "result": {
+    "mode": "44ch Mode",
+    "footprint": 44,
+    "dmxSlots": 44,
+    "modules": 6,
+    "instances": 16,
+    "virtualChannels": 8,
+    "functions": 53,
+    "channelSets": 19
+  },
+  "hogFootprint": 44,
+  "dmxXmlDifferences": [],
+  "xmlAttributeOrTextDifferences": [
+    {
+      "path": "/GDTF/FixtureType[1]/@LongName",
+      "original": "IP1000 Tilt Strobe",
+      "result": "IP1000 Tilt Strobe 44ch Mode HOG4"
+    },
+    {
+      "path": "/GDTF/FixtureType[1]/@Name",
+      "original": "IP1000 Tilt Strobe",
+      "result": "IP1000 Tilt Strobe 44ch Mode HOG4"
+    },
+    {
+      "path": "/GDTF/FixtureType[1]/@ShortName",
+      "original": "IP1000 Tilt Strobe",
+      "result": "IP1000 Tilt Strobe 44ch Mode HOG"
+    },
+    {
+      "path": "/GDTF/FixtureType[1]/@Thumbnail",
+      "original": "thumbnail",
+      "result": null
+    },
+    {
+      "path": "/GDTF/FixtureType[1]/@ThumbnailOffsetX",
+      "original": "190",
+      "result": null
+    },
+    {
+      "path": "/GDTF/FixtureType[1]/@ThumbnailOffsetY",
+      "original": "154",
+      "result": null
+    },
+    {
+      "path": "/GDTF/FixtureType[1]/Geometries[1]/Beam[1]/@Model",
+      "original": "RGB Pixel",
+      "result": null
+    },
+    {
+      "path": "/GDTF/FixtureType[1]/Geometries[1]/Beam[2]/@Model",
+      "original": "CW Pixel",
+      "result": null
+    },
+    {
+      "path": "/GDTF/FixtureType[1]/Geometries[1]/Geometry[1]/@Model",
+      "original": "Base",
+      "result": null
+    },
+    {
+      "path": "/GDTF/FixtureType[1]/Geometries[1]/Geometry[1]/Axis[1]/@Model",
+      "original": "Head",
+      "result": null
+    },
+    {
+      "path": "/GDTF/FixtureType[1]/Geometries[1]/Geometry[1]/Axis[1]/Geometry[1]/GeometryReference[1]/@Model",
+      "original": "RGB Pixel",
+      "result": null
+    },
+    {
+      "path": "/GDTF/FixtureType[1]/Geometries[1]/Geometry[1]/Axis[1]/Geometry[1]/GeometryReference[2]/@Model",
+      "original": "RGB Pixel",
+      "result": null
+    },
+    {
+      "path": "/GDTF/FixtureType[1]/Geometries[1]/Geometry[1]/Axis[1]/Geometry[1]/GeometryReference[3]/@Model",
+      "original": "RGB Pixel",
+      "result": null
+    },
+    {
+      "path": "/GDTF/FixtureType[1]/Geometries[1]/Geometry[1]/Axis[1]/Geometry[1]/GeometryReference[4]/@Model",
+      "original": "RGB Pixel",
+      "result": null
+    },
+    {
+      "path": "/GDTF/FixtureType[1]/Geometries[1]/Geometry[1]/Axis[1]/Geometry[1]/GeometryReference[5]/@Model",
+      "original": "RGB Pixel",
+      "result": null
+    },
+    {
+      "path": "/GDTF/FixtureType[1]/Geometries[1]/Geometry[1]/Axis[1]/Geometry[1]/GeometryReference[6]/@Model",
+      "original": "RGB Pixel",
+      "result": null
+    },
+    {
+      "path": "/GDTF/FixtureType[1]/Geometries[1]/Geometry[1]/Axis[1]/Geometry[1]/GeometryReference[7]/@Model",
+      "original": "RGB Pixel",
+      "result": null
+    },
+    {
+      "path": "/GDTF/FixtureType[1]/Geometries[1]/Geometry[1]/Axis[1]/Geometry[1]/GeometryReference[8]/@Model",
+      "original": "RGB Pixel",
+      "result": null
+    },
+    {
+      "path": "/GDTF/FixtureType[1]/Geometries[1]/Geometry[1]/Axis[1]/Geometry[2]/GeometryReference[1]/@Model",
+      "original": "CW Pixel",
+      "result": null
+    },
+    {
+      "path": "/GDTF/FixtureType[1]/Geometries[1]/Geometry[1]/Axis[1]/Geometry[2]/GeometryReference[2]/@Model",
+      "original": "CW Pixel",
+      "result": null
+    },
+    {
+      "path": "/GDTF/FixtureType[1]/Geometries[1]/Geometry[1]/Axis[1]/Geometry[2]/GeometryReference[3]/@Model",
+      "original": "CW Pixel",
+      "result": null
+    },
+    {
+      "path": "/GDTF/FixtureType[1]/Geometries[1]/Geometry[1]/Axis[1]/Geometry[2]/GeometryReference[4]/@Model",
+      "original": "CW Pixel",
+      "result": null
+    },
+    {
+      "path": "/GDTF/FixtureType[1]/Geometries[1]/Geometry[1]/Geometry[1]/@Model",
+      "original": "Pigtail",
+      "result": null
+    },
+    {
+      "path": "/GDTF/FixtureType[1]/Geometries[1]/Geometry[1]/Geometry[2]/@Model",
+      "original": "Pigtail",
+      "result": null
+    },
+    {
+      "path": "/GDTF/FixtureType[1]/Models[1]/Model[1]/@File",
+      "original": "IP1000 Strobe Base(1)",
+      "result": null
+    },
+    {
+      "path": "/GDTF/FixtureType[1]/Models[1]/Model[1]/@Height",
+      "original": "0.240000",
+      "result": null
+    },
+    {
+      "path": "/GDTF/FixtureType[1]/Models[1]/Model[1]/@Length",
+      "original": "0.478000",
+      "result": null
+    },
+    {
+      "path": "/GDTF/FixtureType[1]/Models[1]/Model[1]/@Name",
+      "original": "Base",
+      "result": null
+    },
+    {
+      "path": "/GDTF/FixtureType[1]/Models[1]/Model[1]/@PrimitiveType",
+      "original": "Undefined",
+      "result": null
+    },
+    {
+      "path": "/GDTF/FixtureType[1]/Models[1]/Model[1]/@SVGFrontOffsetX",
+      "original": "0.000000",
+      "result": null
+    },
+    {
+      "path": "/GDTF/FixtureType[1]/Models[1]/Model[1]/@SVGFrontOffsetY",
+      "original": "0.000000",
+      "result": null
+    },
+    {
+      "path": "/GDTF/FixtureType[1]/Models[1]/Model[1]/@SVGOffsetX",
+      "original": "0.000000",
+      "result": null
+    },
+    {
+      "path": "/GDTF/FixtureType[1]/Models[1]/Model[1]/@SVGOffsetY",
+      "original": "0.000000",
+      "result": null
+    },
+    {
+      "path": "/GDTF/FixtureType[1]/Models[1]/Model[1]/@SVGSideOffsetX",
+      "original": "0.000000",
+      "result": null
+    },
+    {
+      "path": "/GDTF/FixtureType[1]/Models[1]/Model[1]/@SVGSideOffsetY",
+      "original": "0.000000",
+      "result": null
+    },
+    {
+      "path": "/GDTF/FixtureType[1]/Models[1]/Model[1]/@Width",
+      "original": "0.136000",
+      "result": null
+    },
+    {
+      "path": "/GDTF/FixtureType[1]/Models[1]/Model[2]/@File",
+      "original": "IP1000 Strobe Head(2)",
+      "result": null
+    },
+    {
+      "path": "/GDTF/FixtureType[1]/Models[1]/Model[2]/@Height",
+      "original": "0.129000",
+      "result": null
+    },
+    {
+      "path": "/GDTF/FixtureType[1]/Models[1]/Model[2]/@Length",
+      "original": "0.394000",
+      "result": null
+    },
+    {
+      "path": "/GDTF/FixtureType[1]/Models[1]/Model[2]/@Name",
+      "original": "Head",
+      "result": null
+    },
+    {
+      "path": "/GDTF/FixtureType[1]/Models[1]/Model[2]/@PrimitiveType",
+      "original": "Undefined",
+      "result": null
+    },
+    {
+      "path": "/GDTF/FixtureType[1]/Models[1]/Model[2]/@SVGFrontOffsetX",
+      "original": "0.000000",
+      "result": null
+    },
+    {
+      "path": "/GDTF/FixtureType[1]/Models[1]/Model[2]/@SVGFrontOffsetY",
+      "original": "0.000000",
+      "result": null
+    },
+    {
+      "path": "/GDTF/FixtureType[1]/Models[1]/Model[2]/@SVGOffsetX",
+      "original": "0.000000",
+      "result": null
+    },
+    {
+      "path": "/GDTF/FixtureType[1]/Models[1]/Model[2]/@SVGOffsetY",
+      "original": "0.000000",
+      "result": null
+    },
+    {
+      "path": "/GDTF/FixtureType[1]/Models[1]/Model[2]/@SVGSideOffsetX",
+      "original": "0.000000",
+      "result": null
+    },
+    {
+      "path": "/GDTF/FixtureType[1]/Models[1]/Model[2]/@SVGSideOffsetY",
+      "original": "0.000000",
+      "result": null
+    },
+    {
+      "path": "/GDTF/FixtureType[1]/Models[1]/Model[2]/@Width",
+      "original": "0.182000",
+      "result": null
+    },
+    {
+      "path": "/GDTF/FixtureType[1]/Models[1]/Model[3]/@File",
+      "original": "",
+      "result": null
+    },
+    {
+      "path": "/GDTF/FixtureType[1]/Models[1]/Model[3]/@Height",
+      "original": "0.035000",
+      "result": null
+    },
+    {
+      "path": "/GDTF/FixtureType[1]/Models[1]/Model[3]/@Length",
+      "original": "0.100000",
+      "result": null
+    },
+    {
+      "path": "/GDTF/FixtureType[1]/Models[1]/Model[3]/@Name",
+      "original": "Pigtail",
+      "result": null
+    },
+    {
+      "path": "/GDTF/FixtureType[1]/Models[1]/Model[3]/@PrimitiveType",
+      "original": "Pigtail",
+      "result": null
+    },
+    {
+      "path": "/GDTF/FixtureType[1]/Models[1]/Model[3]/@SVGFrontOffsetX",
+      "original": "0.000000",
+      "result": null
+    },
+    {
+      "path": "/GDTF/FixtureType[1]/Models[1]/Model[3]/@SVGFrontOffsetY",
+      "original": "0.000000",
+      "result": null
+    },
+    {
+      "path": "/GDTF/FixtureType[1]/Models[1]/Model[3]/@SVGOffsetX",
+      "original": "0.000000",
+      "result": null
+    },
+    {
+      "path": "/GDTF/FixtureType[1]/Models[1]/Model[3]/@SVGOffsetY",
+      "original": "0.000000",
+      "result": null
+    },
+    {
+      "path": "/GDTF/FixtureType[1]/Models[1]/Model[3]/@SVGSideOffsetX",
+      "original": "0.000000",
+      "result": null
+    },
+    {
+      "path": "/GDTF/FixtureType[1]/Models[1]/Model[3]/@SVGSideOffsetY",
+      "original": "0.000000",
+      "result": null
+    },
+    {
+      "path": "/GDTF/FixtureType[1]/Models[1]/Model[3]/@Width",
+      "original": "0.015000",
+      "result": null
+    },
+    {
+      "path": "/GDTF/FixtureType[1]/Models[1]/Model[4]/@File",
+      "original": "IP1000 Strobe Emitter CW",
+      "result": null
+    },
+    {
+      "path": "/GDTF/FixtureType[1]/Models[1]/Model[4]/@Height",
+      "original": "0.010000",
+      "result": null
+    },
+    {
+      "path": "/GDTF/FixtureType[1]/Models[1]/Model[4]/@Length",
+      "original": "0.097016",
+      "result": null
+    },
+    {
+      "path": "/GDTF/FixtureType[1]/Models[1]/Model[4]/@Name",
+      "original": "CW Pixel",
+      "result": null
+    },
+    {
+      "path": "/GDTF/FixtureType[1]/Models[1]/Model[4]/@PrimitiveType",
+      "original": "Cube",
+      "result": null
+    },
+    {
+      "path": "/GDTF/FixtureType[1]/Models[1]/Model[4]/@SVGFrontOffsetX",
+      "original": "0.000000",
+      "result": null
+    },
+    {
+      "path": "/GDTF/FixtureType[1]/Models[1]/Model[4]/@SVGFrontOffsetY",
+      "original": "0.000000",
+      "result": null
+    },
+    {
+      "path": "/GDTF/FixtureType[1]/Models[1]/Model[4]/@SVGOffsetX",
+      "original": "0.000000",
+      "result": null
+    },
+    {
+      "path": "/GDTF/FixtureType[1]/Models[1]/Model[4]/@SVGOffsetY",
+      "original": "0.000000",
+      "result": null
+    },
+    {
+      "path": "/GDTF/FixtureType[1]/Models[1]/Model[4]/@SVGSideOffsetX",
+      "original": "0.000000",
+      "result": null
+    },
+    {
+      "path": "/GDTF/FixtureType[1]/Models[1]/Model[4]/@SVGSideOffsetY",
+      "original": "0.000000",
+      "result": null
+    },
+    {
+      "path": "/GDTF/FixtureType[1]/Models[1]/Model[4]/@Width",
+      "original": "0.018161",
+      "result": null
+    },
+    {
+      "path": "/GDTF/FixtureType[1]/Models[1]/Model[5]/@File",
+      "original": "",
+      "result": null
+    },
+    {
+      "path": "/GDTF/FixtureType[1]/Models[1]/Model[5]/@Height",
+      "original": "0.010000",
+      "result": null
+    },
+    {
+      "path": "/GDTF/FixtureType[1]/Models[1]/Model[5]/@Length",
+      "original": "0.097000",
+      "result": null
+    },
+    {
+      "path": "/GDTF/FixtureType[1]/Models[1]/Model[5]/@Name",
+      "original": "RGB Pixel",
+      "result": null
+    },
+    {
+      "path": "/GDTF/FixtureType[1]/Models[1]/Model[5]/@PrimitiveType",
+      "original": "Cube",
+      "result": null
+    },
+    {
+      "path": "/GDTF/FixtureType[1]/Models[1]/Model[5]/@SVGFrontOffsetX",
+      "original": "0.000000",
+      "result": null
+    },
+    {
+      "path": "/GDTF/FixtureType[1]/Models[1]/Model[5]/@SVGFrontOffsetY",
+      "original": "0.000000",
+      "result": null
+    },
+    {
+      "path": "/GDTF/FixtureType[1]/Models[1]/Model[5]/@SVGOffsetX",
+      "original": "0.000000",
+      "result": null
+    },
+    {
+      "path": "/GDTF/FixtureType[1]/Models[1]/Model[5]/@SVGOffsetY",
+      "original": "0.000000",
+      "result": null
+    },
+    {
+      "path": "/GDTF/FixtureType[1]/Models[1]/Model[5]/@SVGSideOffsetX",
+      "original": "0.000000",
+      "result": null
+    },
+    {
+      "path": "/GDTF/FixtureType[1]/Models[1]/Model[5]/@SVGSideOffsetY",
+      "original": "0.000000",
+      "result": null
+    },
+    {
+      "path": "/GDTF/FixtureType[1]/Models[1]/Model[5]/@Width",
+      "original": "0.075000",
+      "result": null
+    }
+  ],
+  "removedArchiveMembers": [
+    "models/gltf/IP1000 Strobe Base(1).glb",
+    "models/gltf/IP1000 Strobe Head(2).glb",
+    "thumbnail.svg"
+  ],
+  "addedArchiveMembers": [],
+  "gdtf12XsdValid": true,
+  "usesRecoveryComments": true,
+  "physicalConsoleImportTested": false,
+  "sha256": {
+    "original": "3dcd830155d3f051d961f8ee650a32c997a013d077eca4851645069b6f54c580",
+    "hog": "f063809c98097837f35a58c85daaa55d95ea656fe84052c463d424d2793cd09c",
+    "result": "45adf67bb7b4fc2c5a254a8871b7b1115cb3e4f115435b9e5b8f0e690d15289a"
+  }
+}

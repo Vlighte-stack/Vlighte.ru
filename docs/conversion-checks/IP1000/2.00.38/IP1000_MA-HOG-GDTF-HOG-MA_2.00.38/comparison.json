@@ -1,0 +1,68 @@
+{
+  "version": "2.00.38",
+  "source": "@strobe1000_light@42ch.xml",
+  "chain": "MA → HOG → GDTF → HOG → MA",
+  "original": {
+    "footprint": 42,
+    "modules": 3,
+    "instances": 13,
+    "expandedChannels": 42,
+    "virtualChannels": 1,
+    "functions": 42,
+    "channelSets": 67
+  },
+  "result": {
+    "footprint": 42,
+    "modules": 3,
+    "instances": 13,
+    "expandedChannels": 42,
+    "virtualChannels": 1,
+    "functions": 42,
+    "channelSets": 67
+  },
+  "channelLayoutEqual": true,
+  "xmlDifferences": [],
+  "gdtfXsdValid": true,
+  "warnings": [
+    [
+      "SHUTTER2: пользовательский атрибут GDTF, требуется проверка назначения.",
+      "GOBOWHEELS: пользовательский атрибут GDTF, требуется проверка назначения.",
+      "SHUTTER3: пользовательский атрибут GDTF, требуется проверка назначения.",
+      "GOBO5_POS: пользовательский атрибут GDTF, требуется проверка назначения.",
+      "GOBO5FORWARD: пользовательский атрибут GDTF, требуется проверка назначения.",
+      "GDTF содержит DMX-профиль без 3D-моделей и изображений."
+    ],
+    [
+      "SHUTTER2: пользовательский атрибут GDTF, требуется проверка назначения.",
+      "GOBOWHEELS: пользовательский атрибут GDTF, требуется проверка назначения.",
+      "SHUTTER3: пользовательский атрибут GDTF, требуется проверка назначения.",
+      "GOBO5_POS: пользовательский атрибут GDTF, требуется проверка назначения.",
+      "GOBO5FORWARD: пользовательский атрибут GDTF, требуется проверка назначения.",
+      "GDTF содержит DMX-профиль без 3D-моделей и изображений."
+    ],
+    [
+      "SHUTTER2: пользовательский атрибут GDTF, требуется проверка назначения.",
+      "GOBOWHEELS: пользовательский атрибут GDTF, требуется проверка назначения.",
+      "SHUTTER3: пользовательский атрибут GDTF, требуется проверка назначения.",
+      "GOBO5_POS: пользовательский атрибут GDTF, требуется проверка назначения.",
+      "GOBO5FORWARD: пользовательский атрибут GDTF, требуется проверка назначения.",
+      "GDTF содержит DMX-профиль без 3D-моделей и изображений."
+    ],
+    [
+      "SHUTTER2: пользовательский атрибут GDTF, требуется проверка назначения.",
+      "GOBOWHEELS: пользовательский атрибут GDTF, требуется проверка назначения.",
+      "SHUTTER3: пользовательский атрибут GDTF, требуется проверка назначения.",
+      "GOBO5_POS: пользовательский атрибут GDTF, требуется проверка назначения.",
+      "GOBO5FORWARD: пользовательский атрибут GDTF, требуется проверка назначения.",
+      "GDTF содержит DMX-профиль без 3D-моделей и изображений."
+    ]
+  ],
+  "usesRecoveryComments": true,
+  "physicalConsoleTested": false,
+  "hashes": {
+    "01_MA-HOG_IP1000_vlighte_ru.xml": "4d2d836b7fcbd5059bed29e0d5ba9d6b13eb5876edbaf38298ca3edf89169fea",
+    "02_HOG-GDTF_IP1000_vlighte_ru.gdtf": "7f724be7ba89518cd2c1b8dbe4b0ab3009da613847ddf07212c3108eb0c63ec3",
+    "03_GDTF-HOG_IP1000_vlighte_ru.xml": "e9adf73d3ed3843198a9f255aa182ba713e51bbe2f9488a0d22b3bdacf7facdc",
+    "04_HOG-MA_IP1000_vlighte_ru.xml": "f3c1ebf3b3140f524b639d11bc5473bf3654755f45f1f1591b0481c413ed1e12"
+  }
+}

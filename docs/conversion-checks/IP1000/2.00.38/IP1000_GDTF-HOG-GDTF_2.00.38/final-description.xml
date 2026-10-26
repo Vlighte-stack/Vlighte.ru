@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GDTF DataVersion="1.2">
+	<!--VLIGHTE_MA2_GDTF:eyJoYXNoIjoiNmIzZmVjMDM0NzA5ZDhkOGQxZDFkMWJkNzlhOGQ1MjU3MWI2ZmVkNjMyYWIyZjEyNmM2MTJmMjlkNTNjY2U3NyIsIm1hMlhtbCI6Ijw/eG1sIHZlcnNpb249XCIxLjBcIiBlbmNvZGluZz1cIlVURi04XCI/PlxuPE1BIG1ham9yX3ZlcnM9XCIzXCIgbWlub3JfdmVycz1cIjlcIiBzdHJlYW1fdmVycz1cIjYwXCIgeG1sbnM9XCJodHRwOi8vc2NoZW1hcy5tYWxpZ2h0aW5nLmRlL2dyYW5kbWEyL3htbC9NQVwiPlxuXHQ8Rml4dHVyZVR5cGUgbmFtZT1cIklQMTAwMCBUaWx0IFN0cm9iZVwiIG1hbnVmYWN0dXJlcj1cIkV4dHJlbWUgU3RhZ2VsaWdodHNcIiBtb2RlPVwiNDRjaCBNb2RlXCI+XG5cdFx0PE1vZHVsZXM+XG5cdFx0XHQ8TW9kdWxlIGluZGV4PVwiMFwiIG5hbWU9XCJCYXNlIC8gSGVhZFwiIGNsYXNzPVwiTEVEXCI+XG5cdFx0XHRcdDxDaGFubmVsVHlwZSBpbmRleD1cIjBcIiBhdHRyaWJ1dGU9XCJUSUxUXCIgY29hcnNlPVwiMVwiIGZpbmU9XCIyXCIgZmVhdHVyZT1cIlBPU0lUSU9OXCIgcHJlc2V0PVwiUE9TSVRJT05cIiBkZWZhdWx0PVwiMzI3NjdcIj5cblx0XHRcdFx0XHQ8Q2hhbm5lbEZ1bmN0aW9uIGluZGV4PVwiMFwiIGF0dHJpYnV0ZT1cIlRJTFRcIiBzdWJhdHRyaWJ1dGU9XCJUSUxUXCIgYXR0cmlidXRlX3VzZXJfbmFtZT1cIlRpbHQgMVwiIGZlYXR1cmU9XCJQT1NJVElPTlwiIHByZXNldD1cIlBPU0lUSU9OXCIgbWluX2RteF8yND1cIjBcIiBtYXhfZG14XzI0PVwiMTY3NzcyMTVcIiBwaHlzZnJvbT1cIi05Mi41XCIgcGh5c3RvPVwiOTIuNVwiIGZyb209XCItOTIuNVwiIHRvPVwiOTIuNVwiPlxuXHRcdFx0XHRcdFx0PENoYW5uZWxTZXQgaW5kZXg9XCIwXCIgbmFtZT1cIlwiIGZyb21fZG14PVwiMFwiIHRvX2RteD1cIjMyNzY3XCIgLz5cblx0XHRcdFx0XHRcdDxDaGFubmVsU2V0IGluZGV4PVwiMVwiIG5hbWU9XCJIb21lXCIgZnJvbV9kbXg9XCIzMjc2OFwiIHRvX2RteD1cIjMyNzY4XCIgLz5cblx0XHRcdFx0XHRcdDxDaGFubmVsU2V0IGluZGV4PVwiMlwiIG5hbWU9XCJcIiBmcm9tX2RteD1cIjMyNzY5XCIgdG9fZG14PVwiNjU1MzVcIiAvPlxuXHRcdFx0XHRcdDwvQ2hhbm5lbEZ1bmN0aW9uPlxuXHRcdFx0XHQ8L0NoYW5uZWxUeXBlPlxuXHRcdFx0PC9Nb2R1bGU+XG5cdFx0XHQ8TW9kdWxlIGluZGV4PVwiMVwiIG5hbWU9XCJCYXNlIC8gSGVhZCAvIENXIEJhc2VcIiBjbGFzcz1cIkxFRFwiPlxuXHRcdFx0XHQ8Q2hhbm5lbFR5cGUgaW5kZXg9XCIwXCIgYXR0cmlidXRlPVwiRElNXCIgY29hcnNlPVwiMVwiIGZlYXR1cmU9XCJESU1NRVJcIiBwcmVzZXQ9XCJESU1NRVJcIiBkZWZhdWx0PVwiMFwiPlxuXHRcdFx0XHRcdDxDaGFubmVsRnVuY3Rpb24gaW5kZXg9XCIwXCIgYXR0cmlidXRlPVwiRElNXCIgc3ViYXR0cmlidXRlPVwiRElNXCIgYXR0cmlidXRlX3VzZXJfbmFtZT1cIlR1YmUgRGltbWVyXCIgZmVhdHVyZT1cIkRJTU1FUlwiIHByZXNldD1cIkRJTU1FUlwiIG1pbl9kbXhfMjQ9XCIwXCIgbWF4X2RteF8yND1cIjE2Nzc3MjE1XCIgcGh5c2Zyb209XCIwLjBcIiBwaHlzdG89XCIxLjBcIiBmcm9tPVwiMC4wXCIgdG89XCIxMDAuMFwiIC8+XG5cdFx0XHRcdDwvQ2hhbm5lbFR5cGU+XG5cdFx0XHRcdDxDaGFubmVsVHlwZSBpbmRleD1cIjFcIiBhdHRyaWJ1dGU9XCJTSFVUVEVSMVwiIGNvYXJzZT1cIjJcIiBmZWF0dXJlPVwiU0hVVFRFUlwiIHByZXNldD1cIkJFQU1cIiBkZWZhdWx0PVwiMFwiPlxuXHRcdFx0XHRcdDxDaGFubmVsRnVuY3Rpb24gaW5kZXg9XCIwXCIgYXR0cmlidXRlPVwiU0hVVFRFUjFcIiBzdWJhdHRyaWJ1dGU9XCJTSFVUVEVSMVwiIGF0dHJpYnV0ZV91c2VyX25hbWU9XCJUdWJlIFN0cm9iZSBPZmZcIiBmZWF0dXJlPVwiU0hVVFRFUlwiIHByZXNldD1cIkJFQU1cIiBtaW5fZG14XzI0PVwiMFwiIG1heF9kbXhfMjQ9XCIzMjg5NjVcIiBwaHlzZnJvbT1cIjEuMFwiIHBoeXN0bz1cIjEuMFwiIGZyb209XCIxLjBcIiB0bz1cIjEuMFwiPlxuXHRcdFx0XHRcdFx0PENoYW5uZWxTZXQgaW5kZXg9XCIwXCIgbmFtZT1cIk9wZW5cIiBmcm9tX2RteD1cIjBcIiB0b19kbXg9XCI1XCIgLz5cblx0XHRcdFx0XHQ8L0NoYW5uZWxGdW5jdGlvbj5cblx0XHRcdFx0XHQ8Q2hhbm5lbEZ1bmN0aW9uIGluZGV4PVwiMVwiIGF0dHJpYnV0ZT1cIlNIVVRURVIxXCIgc3ViYXR0cmlidXRlPVwiU0hVVFRFUjFcIiBhdHRyaWJ1dGVfdXNlcl9uYW1lPVwiVHViZSBTdHJvYmVNb2Rlc1wiIGZlYXR1cmU9XCJTSFVUVEVSXCIgcHJlc2V0PVwiQkVBTVwiIG1pbl9kbXhfMjQ9XCIzOTQ3NThcIiBtYXhfZG14XzI0PVwiMTY3NzcyMTVcIiBwaHlzZnJvbT1cIjEuMFwiIHBoeXN0bz1cIjYuMFwiIGZyb209XCIxLjBcIiB0bz1cIjYuMFwiPlxuXHRcdFx0XHRcdFx0PENoYW5uZWxTZXQgaW5kZXg9XCIwXCIgbmFtZT1cIk1vZGUxXCIgZnJvbV9kbXg9XCI2XCIgdG9fZG14PVwiNDJcIiAvPlxuXHRcdFx0XHRcdFx0PENoYW5uZWxTZXQgaW5kZXg9XCIxXCIgbmFtZT1cIk1vZGUyXCIgZnJvbV9kbXg9XCI0M1wiIHRvX2RteD1cIjg1XCIgLz5cblx0XHRcdFx0XHRcdDxDaGFubmVsU2V0IGluZGV4PVwiMlwiIG5hbWU9XCJNb2RlM1wiIGZyb21fZG14PVwiODZcIiB0b19kbXg9XCIxMjhcIiAvPlxuXHRcdFx0XHRcdFx0PENoYW5uZWxTZXQgaW5kZXg9XCIzXCIgbmFtZT1cIk1vZGU0XCIgZnJvbV9kbXg9XCIxMjlcIiB0b19kbXg9XCIxNzFcIiAvPlxuXHRcdFx0XHRcdFx0PENoYW5uZWxTZXQgaW5kZXg9XCI0XCIgbmFtZT1cIk1vZGU1XCIgZnJvbV9kbXg9XCIxNzJcIiB0b19kbXg9XCIyMTRcIiAvPlxuXHRcdFx0XHRcdFx0PENoYW5uZWxTZXQgaW5kZXg9XCI1XCIgbmFtZT1cIk1vZGU2XCIgZnJvbV9kbXg9XCIyMTVcIiB0b19kbXg9XCIyNTVcIiAvPlxuXHRcdFx0XHRcdDwvQ2hhbm5lbEZ1bmN0aW9uPlxuXHRcdFx0XHQ8L0NoYW5uZWxUeXBlPlxuXHRcdFx0XHQ8Q2hhbm5lbFR5cGUgaW5kZXg9XCIyXCIgYXR0cmlidXRlPVwiRFVNTVlcIiBjb2Fyc2U9XCIzXCIgZmVhdHVyZT1cIkNPTlRST0xcIiBwcmVzZXQ9XCJDT05UUk9MXCIgZGVmYXVsdD1cIjBcIj5cblx0XHRcdFx0XHQ8Q2hhbm5lbEZ1bmN0aW9uIGluZGV4PVwiMFwiIGF0dHJpYnV0ZT1cIkRVTU1ZXCIgc3ViYXR0cmlidXRlPVwiUkVTRVJWRURcIiBhdHRyaWJ1dGVfdXNlcl9uYW1lPVwiTm9GZWF0dXJlIDFcIiBmZWF0dXJlPVwiQ09OVFJPTFwiIHByZXNldD1cIkNPTlRST0xcIiBtaW5fZG14XzI0PVwiMFwiIG1heF9kbXhfMjQ9XCIxNjc3NzIxNVwiIHBoeXNmcm9tPVwiMC4wXCIgcGh5c3RvPVwiMS4wXCIgZnJvbT1cIjAuMFwiIHRvPVwiMS4wXCIgLz5cblx0XHRcdFx0PC9DaGFubmVsVHlwZT5cblx0XHRcdFx0PENoYW5uZWxUeXBlIGluZGV4PVwiM1wiIGF0dHJpYnV0ZT1cIkVGRkVDVFwiIGNvYXJzZT1cIjRcIiBmZWF0dXJlPVwiQkVBTVwiIHByZXNldD1cIkJFQU1cIiBkZWZhdWx0PVwiMFwiPlxuXHRcdFx0XHRcdDxDaGFubmVsRnVuY3Rpb24gaW5kZXg9XCIwXCIgYXR0cmlidXRlPVwiRUZGRUNUXCIgc3ViYXR0cmlidXRlPVwiRUZGRUNUXCIgYXR0cmlidXRlX3VzZXJfbmFtZT1cIlR1YmUgTWFjcm9cIiBmZWF0dXJlPVwiQkVBTVwiIHByZXNldD1cIkJFQU1cIiBtaW5fZG14XzI0PVwiMFwiIG1heF9kbXhfMjQ9XCIxNjc3NzIxNVwiIHBoeXNmcm9tPVwiMC4wXCIgcGh5c3RvPVwiMS4wXCIgZnJvbT1cIjAuMFwiIHRvPVwiMS4wXCI+XG5cdFx0XHRcdFx0XHQ8Q2hhbm5lbFNldCBpbmRleD1cIjBcIiBuYW1lPVwiT3BlblwiIGZyb21fZG14PVwiMFwiIHRvX2RteD1cIjE1XCIgLz5cblx0XHRcdFx0XHRcdDxDaGFubmVsU2V0IGluZGV4PVwiMVwiIG5hbWU9XCJNYWNybyAxXCIgZnJvbV9kbXg9XCIxNlwiIHRvX2RteD1cIjU3XCIgLz5cblx0XHRcdFx0XHRcdDxDaGFubmVsU2V0IGluZGV4PVwiMlwiIG5hbWU9XCJNYWNybyAyXCIgZnJvbV9kbXg9XCI1OFwiIHRvX2RteD1cIjk5XCIgLz5cblx0XHRcdFx0XHRcdDxDaGFubmVsU2V0IGluZGV4PVwiM1wiIG5hbWU9XCJNYWNybyAyXCIgZnJvbV9kbXg9XCIxMDBcIiB0b19kbXg9XCIxNDFcIiAvPlxuXHRcdFx0XHRcdFx0PENoYW5uZWxTZXQgaW5kZXg9XCI0XCIgbmFtZT1cIk1hY3JvIDNcIiBmcm9tX2RteD1cIjE0MlwiIHRvX2RteD1cIjE4M1wiIC8+XG5cdFx0XHRcdFx0XHQ8Q2hhbm5lbFNldCBpbmRleD1cIjVcIiBuYW1lPVwiTWFjcm8gNFwiIGZyb21fZG14PVwiMTg0XCIgdG9fZG14PVwiMjI1XCIgLz5cblx0XHRcdFx0XHRcdDxDaGFubmVsU2V0IGluZGV4PVwiNlwiIG5hbWU9XCJNYWNybyA1XCIgZnJvbV9kbXg9XCIyMjZcIiB0b19kbXg9XCIyNTVcIiAvPlxuXHRcdFx0XHRcdDwvQ2hhbm5lbEZ1bmN0aW9uPlxuXHRcdFx0XHQ8L0NoYW5uZWxUeXBlPlxuXHRcdFx0PC9Nb2R1bGU+XG5cdFx0XHQ8TW9kdWxlIGluZGV4PVwiMlwiIG5hbWU9XCJCYXNlIC8gSGVhZCAvIFJHQiBCYXNlXCIgY2xhc3M9XCJMRURcIj5cblx0XHRcdFx0PENoYW5uZWxUeXBlIGluZGV4PVwiMFwiIGF0dHJpYnV0ZT1cIkNPTE9SUkdCMVwiIGNvYXJzZT1cIjFcIiBmZWF0dXJlPVwiQ09MT1JSR0JcIiBwcmVzZXQ9XCJDT0xPUlwiIGRlZmF1bHQ9XCIwXCI+XG5cdFx0XHRcdFx0PENoYW5uZWxGdW5jdGlvbiBpbmRleD1cIjBcIiBhdHRyaWJ1dGU9XCJDT0xPUlJHQjFcIiBzdWJhdHRyaWJ1dGU9XCJDT0xPUlJHQjFcIiBhdHRyaWJ1dGVfdXNlcl9uYW1lPVwiQ29sb3JBZGRfUiAxXCIgZmVhdHVyZT1cIkNPTE9SUkdCXCIgcHJlc2V0PVwiQ09MT1JcIiBtaW5fZG14XzI0PVwiMFwiIG1heF9kbXhfMjQ9XCIxNjc3NzIxNVwiIHBoeXNmcm9tPVwiMC4wXCIgcGh5c3RvPVwiMS4wXCIgZnJvbT1cIjAuMFwiIHRvPVwiMTAwLjBcIiAvPlxuXHRcdFx0XHQ8L0NoYW5uZWxUeXBlPlxuXHRcdFx0XHQ8Q2hhbm5lbFR5cGUgaW5kZXg9XCIxXCIgYXR0cmlidXRlPVwiQ09MT1JSR0IyXCIgY29hcnNlPVwiMlwiIGZlYXR1cmU9XCJDT0xPUlJHQlwiIHByZXNldD1cIkNPTE9SXCIgZGVmYXVsdD1cIjBcIj5cblx0XHRcdFx0XHQ8Q2hhbm5lbEZ1bmN0aW9uIGluZGV4PVwiMFwiIGF0dHJpYnV0ZT1cIkNPTE9SUkdCMlwiIHN1YmF0dHJpYnV0ZT1cIkNPTE9SUkdCMlwiIGF0dHJpYnV0ZV91c2VyX25hbWU9XCJDb2xvckFkZF9HIDFcIiBmZWF0dXJlPVwiQ09MT1JSR0JcIiBwcmVzZXQ9XCJDT0xPUlwiIG1pbl9kbXhfMjQ9XCIwXCIgbWF4X2RteF8yND1cIjE2Nzc3MjE1XCIgcGh5c2Zyb209XCIwLjBcIiBwaHlzdG89XCIxLjBcIiBmcm9tPVwiMC4wXCIgdG89XCIxMDAuMFwiIC8+XG5cdFx0XHRcdDwvQ2hhbm5lbFR5cGU+XG5cdFx0XHRcdDxDaGFubmVsVHlwZSBpbmRleD1cIjJcIiBhdHRyaWJ1dGU9XCJDT0xPUlJHQjNcIiBjb2Fyc2U9XCIzXCIgZmVhdHVyZT1cIkNPTE9SUkdCXCIgcHJlc2V0PVwiQ09MT1JcIiBkZWZhdWx0PVwiMFwiPlxuXHRcdFx0XHRcdDxDaGFubmVsRnVuY3Rpb24gaW5kZXg9XCIwXCIgYXR0cmlidXRlPVwiQ09MT1JSR0IzXCIgc3ViYXR0cmlidXRlPVwiQ09MT1JSR0IzXCIgYXR0cmlidXRlX3VzZXJfbmFtZT1cIkNvbG9yQWRkX0IgMVwiIGZlYXR1cmU9XCJDT0xPUlJHQlwiIHByZXNldD1cIkNPTE9SXCIgbWluX2RteF8yND1cIjBcIiBtYXhfZG14XzI0PVwiMTY3NzcyMTVcIiBwaHlzZnJvbT1cIjAuMFwiIHBoeXN0bz1cIjEuMFwiIGZyb209XCIwLjBcIiB0bz1cIjEwMC4wXCIgLz5cblx0XHRcdFx0PC9DaGFubmVsVHlwZT5cblx0XHRcdFx0PENoYW5uZWxUeXBlIGluZGV4PVwiM1wiIGF0dHJpYnV0ZT1cIlNIVVRURVIxXCIgY29hcnNlPVwiNFwiIGZlYXR1cmU9XCJTSFVUVEVSXCIgcHJlc2V0PVwiQkVBTVwiIGRlZmF1bHQ9XCIwXCI+XG5cdFx0XHRcdFx0PENoYW5uZWxGdW5jdGlvbiBpbmRleD1cIjBcIiBhdHRyaWJ1dGU9XCJTSFVUVEVSMVwiIHN1YmF0dHJpYnV0ZT1cIlNIVVRURVIxXCIgYXR0cmlidXRlX3VzZXJfbmFtZT1cIlJHQiBTaCBPcGVuXCIgZmVhdHVyZT1cIlNIVVRURVJcIiBwcmVzZXQ9XCJCRUFNXCIgbWluX2RteF8yND1cIjBcIiBtYXhfZG14XzI0PVwiMzI4OTY1XCIgcGh5c2Zyb209XCIxLjBcIiBwaHlzdG89XCIxLjBcIiBmcm9tPVwiMS4wXCIgdG89XCIxLjBcIj5cblx0XHRcdFx0XHRcdDxDaGFubmVsU2V0IGluZGV4PVwiMFwiIG5hbWU9XCJPcGVuXCIgZnJvbV9kbXg9XCIwXCIgdG9fZG14PVwiNVwiIC8+XG5cdFx0XHRcdFx0PC9DaGFubmVsRnVuY3Rpb24+XG5cdFx0XHRcdFx0PENoYW5uZWxGdW5jdGlvbiBpbmRleD1cIjFcIiBhdHRyaWJ1dGU9XCJTSFVUVEVSMVwiIHN1YmF0dHJpYnV0ZT1cIlNIVVRURVIxXCIgYXR0cmlidXRlX3VzZXJfbmFtZT1cIlJHQiBTdHJvYmVcIiBmZWF0dXJlPVwiU0hVVFRFUlwiIHByZXNldD1cIkJFQU1cIiBtaW5fZG14XzI0PVwiMzk0NzU4XCIgbWF4X2RteF8yND1cIjE2Nzc3MjE1XCIgcGh5c2Zyb209XCIxLjBcIiBwaHlzdG89XCIyMC4wXCIgZnJvbT1cIjEuMFwiIHRvPVwiMjAuMFwiPlxuXHRcdFx0XHRcdFx0PENoYW5uZWxTZXQgaW5kZXg9XCIwXCIgbmFtZT1cIlNsb3dUb0Zhc3RcIiBmcm9tX2RteD1cIjZcIiB0b19kbXg9XCIyNTVcIiAvPlxuXHRcdFx0XHRcdDwvQ2hhbm5lbEZ1bmN0aW9uPlxuXHRcdFx0XHQ8L0NoYW5uZWxUeXBlPlxuXHRcdFx0XHQ8Q2hhbm5lbFR5cGUgaW5kZXg9XCI0XCIgYXR0cmlidXRlPVwiRUZGRUNUXCIgY29hcnNlPVwiNVwiIGZlYXR1cmU9XCJCRUFNXCIgcHJlc2V0PVwiQkVBTVwiIGRlZmF1bHQ9XCIwXCI+XG5cdFx0XHRcdFx0PENoYW5uZWxGdW5jdGlvbiBpbmRleD1cIjBcIiBhdHRyaWJ1dGU9XCJFRkZFQ1RcIiBzdWJhdHRyaWJ1dGU9XCJFRkZFQ1RcIiBhdHRyaWJ1dGVfdXNlcl9uYW1lPVwiRWZmZWN0czEgMVwiIGZlYXR1cmU9XCJCRUFNXCIgcHJlc2V0PVwiQkVBTVwiIG1pbl9kbXhfMjQ9XCIwXCIgbWF4X2RteF8yND1cIjE2Nzc3MjE1XCIgcGh5c2Zyb209XCIwLjBcIiBwaHlzdG89XCI1MS4wXCIgZnJvbT1cIjAuMFwiIHRvPVwiNTEuMFwiIC8+XG5cdFx0XHRcdDwvQ2hhbm5lbFR5cGU+XG5cdFx0XHRcdDxDaGFubmVsVHlwZSBpbmRleD1cIjVcIiBhdHRyaWJ1dGU9XCJDT0xPUk1BQ1JPXCIgY29hcnNlPVwiNlwiIGZlYXR1cmU9XCJCRUFNXCIgcHJlc2V0PVwiQkVBTVwiIGRlZmF1bHQ9XCIwXCI+XG5cdFx0XHRcdFx0PENoYW5uZWxGdW5jdGlvbiBpbmRleD1cIjBcIiBhdHRyaWJ1dGU9XCJDT0xPUk1BQ1JPXCIgc3ViYXR0cmlidXRlPVwiQ09MT1JNQUNST1wiIGF0dHJpYnV0ZV91c2VyX25hbWU9XCJDb2xvckVmZmVjdHMxIDFcIiBmZWF0dXJlPVwiQkVBTVwiIHByZXNldD1cIkJFQU1cIiBtaW5fZG14XzI0PVwiMFwiIG1heF9kbXhfMjQ9XCIxNjc3NzIxNVwiIHBoeXNmcm9tPVwiMC4wXCIgcGh5c3RvPVwiMS4wXCIgZnJvbT1cIjAuMFwiIHRvPVwiMS4wXCIgLz5cblx0XHRcdFx0PC9DaGFubmVsVHlwZT5cblx0XHRcdFx0PENoYW5uZWxUeXBlIGluZGV4PVwiNlwiIGF0dHJpYnV0ZT1cIk1BQ1JPUkFURVwiIGNvYXJzZT1cIjdcIiBmZWF0dXJlPVwiQkVBTVwiIHByZXNldD1cIkJFQU1cIiBkZWZhdWx0PVwiMFwiPlxuXHRcdFx0XHRcdDxDaGFubmVsRnVuY3Rpb24gaW5kZXg9XCIwXCIgYXR0cmlidXRlPVwiTUFDUk9SQVRFXCIgc3ViYXR0cmlidXRlPVwiTUFDUk9SQVRFXCIgYXR0cmlidXRlX3VzZXJfbmFtZT1cIkNvbG9yTWFjcm8xUmF0ZSAxXCIgZmVhdHVyZT1cIkJFQU1cIiBwcmVzZXQ9XCJCRUFNXCIgbWluX2RteF8yND1cIjBcIiBtYXhfZG14XzI0PVwiMTY3NzcyMTVcIiBwaHlzZnJvbT1cIjAuMFwiIHBoeXN0bz1cIjEuMFwiIGZyb209XCIwLjBcIiB0bz1cIjEuMFwiIC8+XG5cdFx0XHRcdDwvQ2hhbm5lbFR5cGU+XG5cdFx0XHRcdDxDaGFubmVsVHlwZSBpbmRleD1cIjdcIiBhdHRyaWJ1dGU9XCJESU1cIiBjb2Fyc2U9XCI4XCIgZmVhdHVyZT1cIkRJTU1FUlwiIHByZXNldD1cIkRJTU1FUlwiIGRlZmF1bHQ9XCIwXCI+XG5cdFx0XHRcdFx0PENoYW5uZWxGdW5jdGlvbiBpbmRleD1cIjBcIiBhdHRyaWJ1dGU9XCJESU1cIiBzdWJhdHRyaWJ1dGU9XCJESU1cIiBhdHRyaWJ1dGVfdXNlcl9uYW1lPVwiUkdCIERpbW1lclwiIGZlYXR1cmU9XCJESU1NRVJcIiBwcmVzZXQ9XCJESU1NRVJcIiBtaW5fZG14XzI0PVwiMFwiIG1heF9kbXhfMjQ9XCIxNjc3NzIxNVwiIHBoeXNmcm9tPVwiMC4wXCIgcGh5c3RvPVwiMS4wXCIgZnJvbT1cIjAuMFwiIHRvPVwiMTAwLjBcIiAvPlxuXHRcdFx0XHQ8L0NoYW5uZWxUeXBlPlxuXHRcdFx0PC9Nb2R1bGU+XG5cdFx0XHQ8TW9kdWxlIGluZGV4PVwiM1wiIG5hbWU9XCJCYXNlIC8gSGVhZCAvIENXIEJhc2UgLyBFbWl0dGVyIENXIDEgLyBDVyBQaXhlbFwiIGNsYXNzPVwiTEVEXCI+XG5cdFx0XHRcdDxDaGFubmVsVHlwZSBpbmRleD1cIjBcIiBhdHRyaWJ1dGU9XCJXSElURVwiIGNvYXJzZT1cIjFcIiBmZWF0dXJlPVwiQ09MT1JSR0JcIiBwcmVzZXQ9XCJDT0xPUlwiIGRlZmF1bHQ9XCIwXCI+XG5cdFx0XHRcdFx0PENoYW5uZWxGdW5jdGlvbiBpbmRleD1cIjBcIiBhdHRyaWJ1dGU9XCJXSElURVwiIHN1YmF0dHJpYnV0ZT1cIldISVRFXCIgYXR0cmlidXRlX3VzZXJfbmFtZT1cIkNvbG9yQWRkX1cgMVwiIGZlYXR1cmU9XCJDT0xPUlJHQlwiIHByZXNldD1cIkNPTE9SXCIgbWluX2RteF8yND1cIjBcIiBtYXhfZG14XzI0PVwiMTY3NzcyMTVcIiBwaHlzZnJvbT1cIjAuMFwiIHBoeXN0bz1cIjEuMFwiIGZyb209XCIwLjBcIiB0bz1cIjEwMC4wXCIgLz5cblx0XHRcdFx0PC9DaGFubmVsVHlwZT5cblx0XHRcdDwvTW9kdWxlPlxuXHRcdFx0PE1vZHVsZSBpbmRleD1cIjdcIiBuYW1lPVwiQmFzZSAvIEhlYWQgLyBSR0IgQmFzZSAvIEVtaXR0ZXIgUkdCIC8gUkdCIFBpeGVsXCIgY2xhc3M9XCJMRURcIj5cblx0XHRcdFx0PENoYW5uZWxUeXBlIGluZGV4PVwiMFwiIGF0dHJpYnV0ZT1cIkNPTE9SUkdCMVwiIGNvYXJzZT1cIjFcIiBmZWF0dXJlPVwiQ09MT1JSR0JcIiBwcmVzZXQ9XCJDT0xPUlwiIGRlZmF1bHQ9XCIwXCI+XG5cdFx0XHRcdFx0PENoYW5uZWxGdW5jdGlvbiBpbmRleD1cIjBcIiBhdHRyaWJ1dGU9XCJDT0xPUlJHQjFcIiBzdWJhdHRyaWJ1dGU9XCJDT0xPUlJHQjFcIiBhdHRyaWJ1dGVfdXNlcl9uYW1lPVwiQ29sb3JBZGRfUiAxXCIgZmVhdHVyZT1cIkNPTE9SUkdCXCIgcHJlc2V0PVwiQ09MT1JcIiBtaW5fZG14XzI0PVwiMFwiIG1heF9kbXhfMjQ9XCIxNjc3NzIxNVwiIHBoeXNmcm9tPVwiMC4wXCIgcGh5c3RvPVwiMS4wXCIgZnJvbT1cIjAuMFwiIHRvPVwiMTAwLjBcIiAvPlxuXHRcdFx0XHQ8L0NoYW5uZWxUeXBlPlxuXHRcdFx0XHQ8Q2hhbm5lbFR5cGUgaW5kZXg9XCIxXCIgYXR0cmlidXRlPVwiQ09MT1JSR0IyXCIgY29hcnNlPVwiMlwiIGZlYXR1cmU9XCJDT0xPUlJHQlwiIHByZXNldD1cIkNPTE9SXCIgZGVmYXVsdD1cIjBcIj5cblx0XHRcdFx0XHQ8Q2hhbm5lbEZ1bmN0aW9uIGluZGV4PVwiMFwiIGF0dHJpYnV0ZT1cIkNPTE9SUkdCMlwiIHN1YmF0dHJpYnV0ZT1cIkNPTE9SUkdCMlwiIGF0dHJpYnV0ZV91c2VyX25hbWU9XCJDb2xvckFkZF9HIDFcIiBmZWF0dXJlPVwiQ09MT1JSR0JcIiBwcmVzZXQ9XCJDT0xPUlwiIG1pbl9kbXhfMjQ9XCIwXCIgbWF4X2RteF8yND1cIjE2Nzc3MjE1XCIgcGh5c2Zyb209XCIwLjBcIiBwaHlzdG89XCIxLjBcIiBmcm9tPVwiMC4wXCIgdG89XCIxMDAuMFwiIC8+XG5cdFx0XHRcdDwvQ2hhbm5lbFR5cGU+XG5cdFx0XHRcdDxDaGFubmVsVHlwZSBpbmRleD1cIjJcIiBhdHRyaWJ1dGU9XCJDT0xPUlJHQjNcIiBjb2Fyc2U9XCIzXCIgZmVhdHVyZT1cIkNPTE9SUkdCXCIgcHJlc2V0PVwiQ09MT1JcIiBkZWZhdWx0PVwiMFwiPlxuXHRcdFx0XHRcdDxDaGFubmVsRnVuY3Rpb24gaW5kZXg9XCIwXCIgYXR0cmlidXRlPVwiQ09MT1JSR0IzXCIgc3ViYXR0cmlidXRlPVwiQ09MT1JSR0IzXCIgYXR0cmlidXRlX3VzZXJfbmFtZT1cIkNvbG9yQWRkX0IgMVwiIGZlYXR1cmU9XCJDT0xPUlJHQlwiIHByZXNldD1cIkNPTE9SXCIgbWluX2RteF8yND1cIjBcIiBtYXhfZG14XzI0PVwiMTY3NzcyMTVcIiBwaHlzZnJvbT1cIjAuMFwiIHBoeXN0bz1cIjEuMFwiIGZyb209XCIwLjBcIiB0bz1cIjEwMC4wXCIgLz5cblx0XHRcdFx0PC9DaGFubmVsVHlwZT5cblx0XHRcdFx0PENoYW5uZWxUeXBlIGluZGV4PVwiM1wiIGF0dHJpYnV0ZT1cIkRJTVwiIHZpcnR1YWw9XCJ0cnVlXCIgZmVhdHVyZT1cIkRJTU1FUlwiIHByZXNldD1cIkRJTU1FUlwiIGRlZmF1bHQ9XCIwXCI+XG5cdFx0XHRcdFx0PENoYW5uZWxGdW5jdGlvbiBpbmRleD1cIjBcIiBhdHRyaWJ1dGU9XCJESU1cIiBzdWJhdHRyaWJ1dGU9XCJESU1cIiBhdHRyaWJ1dGVfdXNlcl9uYW1lPVwiUkdCIFBpeGVsIERpbW1lclwiIGZlYXR1cmU9XCJESU1NRVJcIiBwcmVzZXQ9XCJESU1NRVJcIiBtaW5fZG14XzI0PVwiMFwiIG1heF9kbXhfMjQ9XCIxNjc3NzIxNVwiIHBoeXNmcm9tPVwiMC4wXCIgcGh5c3RvPVwiMS4wXCIgZnJvbT1cIjAuMFwiIHRvPVwiMTAwLjBcIiAvPlxuXHRcdFx0XHQ8L0NoYW5uZWxUeXBlPlxuXHRcdFx0PC9Nb2R1bGU+XG5cdFx0XHQ8TW9kdWxlIGluZGV4PVwiMTVcIiBuYW1lPVwiQmFzZVwiIGNsYXNzPVwiTEVEXCI+XG5cdFx0XHRcdDxDaGFubmVsVHlwZSBpbmRleD1cIjBcIiBhdHRyaWJ1dGU9XCJQQU5USUxUU1BFRURcIiBjb2Fyc2U9XCIxXCIgZmVhdHVyZT1cIkJFQU1cIiBwcmVzZXQ9XCJCRUFNXCIgZGVmYXVsdD1cIjBcIj5cblx0XHRcdFx0XHQ8Q2hhbm5lbEZ1bmN0aW9uIGluZGV4PVwiMFwiIGF0dHJpYnV0ZT1cIlBBTlRJTFRTUEVFRFwiIHN1YmF0dHJpYnV0ZT1cIlBBTlRJTFRTUEVFRFwiIGF0dHJpYnV0ZV91c2VyX25hbWU9XCJQb3NpdGlvbk1TcGVlZCAxXCIgZmVhdHVyZT1cIkJFQU1cIiBwcmVzZXQ9XCJCRUFNXCIgbWluX2RteF8yND1cIjBcIiBtYXhfZG14XzI0PVwiMTY3NzcyMTVcIiBwaHlzZnJvbT1cIjAuMFwiIHBoeXN0bz1cIjEuMFwiIGZyb209XCIwLjBcIiB0bz1cIjEuMFwiIC8+XG5cdFx0XHRcdDwvQ2hhbm5lbFR5cGU+XG5cdFx0XHRcdDxDaGFubmVsVHlwZSBpbmRleD1cIjFcIiBhdHRyaWJ1dGU9XCJESU1NRVJTUEVFRFwiIGNvYXJzZT1cIjJcIiBmZWF0dXJlPVwiQkVBTVwiIHByZXNldD1cIkJFQU1cIiBkZWZhdWx0PVwiMFwiPlxuXHRcdFx0XHRcdDxDaGFubmVsRnVuY3Rpb24gaW5kZXg9XCIwXCIgYXR0cmlidXRlPVwiRElNTUVSU1BFRURcIiBzdWJhdHRyaWJ1dGU9XCJESU1NRVJTUEVFRFwiIGF0dHJpYnV0ZV91c2VyX25hbWU9XCJJbnRlbnNpdHlNU3BlZWQgMVwiIGZlYXR1cmU9XCJCRUFNXCIgcHJlc2V0PVwiQkVBTVwiIG1pbl9kbXhfMjQ9XCIwXCIgbWF4X2RteF8yND1cIjE2Nzc3MjE1XCIgcGh5c2Zyb209XCIwLjBcIiBwaHlzdG89XCIxLjBcIiBmcm9tPVwiMC4wXCIgdG89XCIxLjBcIiAvPlxuXHRcdFx0XHQ8L0NoYW5uZWxUeXBlPlxuXHRcdFx0PC9Nb2R1bGU+XG5cdFx0PC9Nb2R1bGVzPlxuXHRcdDxJbnN0YW5jZXM+XG5cdFx0XHQ8SW5zdGFuY2UgaW5kZXg9XCIwXCIgbW9kdWxlX2luZGV4PVwiMFwiIHBhdGNoPVwiMVwiIC8+XG5cdFx0XHQ8SW5zdGFuY2UgaW5kZXg9XCIxXCIgbW9kdWxlX2luZGV4PVwiMVwiIHBhdGNoPVwiM1wiIC8+XG5cdFx0XHQ8SW5zdGFuY2UgaW5kZXg9XCIyXCIgbW9kdWxlX2luZGV4PVwiMlwiIHBhdGNoPVwiN1wiIC8+XG5cdFx0XHQ8SW5zdGFuY2UgaW5kZXg9XCIzXCIgbW9kdWxlX2luZGV4PVwiM1wiIHBhdGNoPVwiMTVcIiAvPlxuXHRcdFx0PEluc3RhbmNlIGluZGV4PVwiNFwiIG1vZHVsZV9pbmRleD1cIjNcIiBwYXRjaD1cIjE2XCIgLz5cblx0XHRcdDxJbnN0YW5jZSBpbmRleD1cIjVcIiBtb2R1bGVfaW5kZXg9XCIzXCIgcGF0Y2g9XCIxN1wiIC8+XG5cdFx0XHQ8SW5zdGFuY2UgaW5kZXg9XCI2XCIgbW9kdWxlX2luZGV4PVwiM1wiIHBhdGNoPVwiMThcIiAvPlxuXHRcdFx0PEluc3RhbmNlIGluZGV4PVwiN1wiIG1vZHVsZV9pbmRleD1cIjdcIiBwYXRjaD1cIjE5XCIgLz5cblx0XHRcdDxJbnN0YW5jZSBpbmRleD1cIjhcIiBtb2R1bGVfaW5kZXg9XCI3XCIgcGF0Y2g9XCIyMlwiIC8+XG5cdFx0XHQ8SW5zdGFuY2UgaW5kZXg9XCI5XCIgbW9kdWxlX2luZGV4PVwiN1wiIHBhdGNoPVwiMjVcIiAvPlxuXHRcdFx0PEluc3RhbmNlIGluZGV4PVwiMTBcIiBtb2R1bGVfaW5kZXg9XCI3XCIgcGF0Y2g9XCIyOFwiIC8+XG5cdFx0XHQ8SW5zdGFuY2UgaW5kZXg9XCIxMVwiIG1vZHVsZV9pbmRleD1cIjdcIiBwYXRjaD1cIjMxXCIgLz5cblx0XHRcdDxJbnN0YW5jZSBpbmRleD1cIjEyXCIgbW9kdWxlX2luZGV4PVwiN1wiIHBhdGNoPVwiMzRcIiAvPlxuXHRcdFx0PEluc3RhbmNlIGluZGV4PVwiMTNcIiBtb2R1bGVfaW5kZXg9XCI3XCIgcGF0Y2g9XCIzN1wiIC8+XG5cdFx0XHQ8SW5zdGFuY2UgaW5kZXg9XCIxNFwiIG1vZHVsZV9pbmRleD1cIjdcIiBwYXRjaD1cIjQwXCIgLz5cblx0XHRcdDxJbnN0YW5jZSBpbmRleD1cIjE1XCIgbW9kdWxlX2luZGV4PVwiMTVcIiBwYXRjaD1cIjQzXCIgLz5cblx0XHQ8L0luc3RhbmNlcz5cblx0PC9GaXh0dXJlVHlwZT5cbjwvTUE+In0=-->
+	<FixtureType CanHaveChildren="No" Description="" FixtureTypeID="2996DDFE-E0B4-4A81-A0C0-9F8D9335185B" LongName="IP1000 Tilt Strobe 44ch Mode HOG4" Manufacturer="Extreme Stagelights" Name="IP1000 Tilt Strobe 44ch Mode HOG4" RefFT="" ShortName="IP1000 Tilt Strobe 44ch Mode HOG">
+		<AttributeDefinitions>
+			<ActivationGroups>
+				<ActivationGroup Name="PanTilt" />
+				<ActivationGroup Name="ColorRGB" />
+			</ActivationGroups>
+			<FeatureGroups>
+				<FeatureGroup Name="Position" Pretty="Position">
+					<Feature Name="PanTilt" />
+				</FeatureGroup>
+				<FeatureGroup Name="Dimmer" Pretty="Dimmer">
+					<Feature Name="Dimmer" />
+				</FeatureGroup>
+				<FeatureGroup Name="Control" Pretty="Control">
+					<Feature Name="Control" />
+				</FeatureGroup>
+				<FeatureGroup Name="Beam" Pretty="Beam">
+					<Feature Name="Beam" />
+				</FeatureGroup>
+				<FeatureGroup Name="Color" Pretty="Color">
+					<Feature Name="RGB" />
+					<Feature Name="Color" />
+				</FeatureGroup>
+			</FeatureGroups>
+			<Attributes>
+				<Attribute ActivationGroup="PanTilt" Feature="Position.PanTilt" Name="Tilt" PhysicalUnit="Angle" Pretty="T" />
+				<Attribute Feature="Dimmer.Dimmer" Name="Dimmer" PhysicalUnit="None" Pretty="Dim" />
+				<Attribute Feature="Control.Control" Name="StrobeMode" PhysicalUnit="None" Pretty="Strobe Mode" />
+				<Attribute Feature="Beam.Beam" Name="Shutter1" PhysicalUnit="None" Pretty="Sh1" />
+				<Attribute Feature="Control.Control" Name="NoFeature" PhysicalUnit="None" Pretty="NoFeature" />
+				<Attribute Feature="Beam.Beam" Name="Effects1" PhysicalUnit="None" Pretty="FX1" />
+				<Attribute ActivationGroup="ColorRGB" Feature="Color.RGB" Name="ColorAdd_R" PhysicalUnit="ColorComponent" Pretty="R" />
+				<Attribute ActivationGroup="ColorRGB" Feature="Color.RGB" Name="ColorAdd_G" PhysicalUnit="ColorComponent" Pretty="G" />
+				<Attribute ActivationGroup="ColorRGB" Feature="Color.RGB" Name="ColorAdd_B" PhysicalUnit="ColorComponent" Pretty="B" />
+				<Attribute Feature="Beam.Beam" MainAttribute="Shutter1" Name="Shutter1Strobe" PhysicalUnit="Frequency" Pretty="Strobe1">
+					<SubPhysicalUnit PhysicalFrom="0.000000" PhysicalTo="0.000000" PhysicalUnit="Time" Type="Duration" />
+					<SubPhysicalUnit PhysicalFrom="1.000000" PhysicalTo="1.000000" PhysicalUnit="Percent" Type="TimeOffset" />
+				</Attribute>
+				<Attribute Feature="Color.Color" Name="ColorEffects1" PhysicalUnit="None" Pretty="Color FX1" />
+				<Attribute Feature="Color.RGB" Name="ColorMacro1Rate" PhysicalUnit="None" Pretty="Color Macro1 Rate" />
+				<Attribute ActivationGroup="ColorRGB" Feature="Color.RGB" Name="ColorAdd_W" PhysicalUnit="ColorComponent" Pretty="White" />
+				<Attribute Feature="Control.Control" Name="PositionMSpeed" PhysicalUnit="None" Pretty="Pos MSpeed" />
+				<Attribute Feature="Control.Control" Name="IntensityMSpeed" PhysicalUnit="None" Pretty="Intensity MSpeed" />
+			</Attributes>
+		</AttributeDefinitions>
+		<Wheels />
+		<PhysicalDescriptions>
+			<ColorSpace Mode="sRGB" Name="" />
+			<AdditionalColorSpaces />
+			<Gamuts />
+			<Filters />
+			<Emitters>
+				<Emitter Color="0.640000,0.330000,21.270000" DiodePart="" DominantWaveLength="0.000000" Name="R">
+					<Measurement InterpolationTo="Linear" LuminousIntensity="1.000000" Physical="100.000000" />
+				</Emitter>
+				<Emitter Color="0.300100,0.600000,71.520000" DiodePart="" DominantWaveLength="0.000000" Name="G">
+					<Measurement InterpolationTo="Linear" LuminousIntensity="1.000000" Physical="100.000000" />
+				</Emitter>
+				<Emitter Color="0.150000,0.060000,7.218000" DiodePart="" DominantWaveLength="0.000000" Name="B">
+					<Measurement InterpolationTo="Linear" LuminousIntensity="1.000000" Physical="100.000000" />
+				</Emitter>
+				<Emitter Color="0.309600,0.329000,99.050000" DiodePart="" DominantWaveLength="0.000000" Name="CW">
+					<Measurement InterpolationTo="Linear" LuminousIntensity="1.000000" Physical="100.000000" />
+				</Emitter>
+			</Emitters>
+			<DMXProfiles />
+			<CRIs />
+			<Connectors />
+			<Properties>
+				<OperatingTemperature High="45.000000" Low="-30.000000" />
+				<Weight Value="10.000000" />
+				<LegHeight Value="0.025000" />
+			</Properties>
+		</PhysicalDescriptions>
+		<Geometries>
+			<Geometry Name="Base" Position="{1.000000,0.000000,0.000000,0.000000}{0.000000,1.000000,0.000000,0.000000}{0.000000,0.000000,1.000000,0.000000}{0,0,0,1}">
+				<Geometry Name="Pigtail" Position="{0.000000,-1.000000,0.000000,0.232000}{1.000000,0.000000,0.000000,0.000000}{0.000000,0.000000,1.000000,-0.067000}{0,0,0,1}">
+					<WiringObject ComponentType="Output" ConnectorType="PowerconTRUE1" CosPhi="0.000000" ElectricalPayLoad="0.000000" FrequencyRangeMax="0.000000" FrequencyRangeMin="0.000000" FuseCurrent="0.000000" FuseRating="B" MaxPayLoad="0.000000" Name="Power OUT" Orientation="Left" PinCount="3" Position="{1.000000,0.000000,0.000000,0.000000}{0.000000,1.000000,0.000000,0.000000}{0.000000,0.000000,1.000000,0.000000}{0,0,0,1}" SignalLayer="1" SignalType="Power" Voltage="0.000000" VoltageRangeMax="0.000000" VoltageRangeMin="0.000000" WireGroup="" />
+					<WiringObject ComponentType="NetworkOutput" ConnectorType="XLR3" CosPhi="0.000000" ElectricalPayLoad="0.000000" FrequencyRangeMax="0.000000" FrequencyRangeMin="0.000000" FuseCurrent="0.000000" FuseRating="B" MaxPayLoad="0.000000" Name="DMX 3Pin OUT" Orientation="Left" PinCount="3" Position="{1.000000,0.000000,0.000000,0.000000}{0.000000,1.000000,0.000000,0.000000}{0.000000,0.000000,1.000000,0.000000}{0,0,0,1}" SignalLayer="2" SignalType="DMX512" Voltage="0.000000" VoltageRangeMax="0.000000" VoltageRangeMin="0.000000" WireGroup="" />
+				</Geometry>
+				<Geometry Name="Pigtail 1" Position="{0.000000,1.000000,0.000000,-0.232000}{-1.000000,0.000000,0.000000,0.000000}{0.000000,0.000000,1.000000,-0.067000}{0,0,0,1}">
+					<WiringObject ComponentType="Consumer" ConnectorType="PowerconTRUE1" CosPhi="0.970000" ElectricalPayLoad="850.000000" FrequencyRangeMax="60.000000" FrequencyRangeMin="50.000000" FuseCurrent="0.000000" FuseRating="B" MaxPayLoad="0.000000" Name="Power IN 1" Orientation="Left" PinCount="3" Position="{1.000000,0.000000,0.000000,0.000000}{0.000000,1.000000,0.000000,0.000000}{0.000000,0.000000,1.000000,0.000000}{0,0,0,1}" SignalLayer="1" SignalType="Power" Voltage="0.000000" VoltageRangeMax="240.000000" VoltageRangeMin="100.000000" WireGroup="" />
+					<WiringObject ComponentType="NetworkInput" ConnectorType="XLR3" CosPhi="0.000000" ElectricalPayLoad="0.000000" FrequencyRangeMax="0.000000" FrequencyRangeMin="0.000000" FuseCurrent="0.000000" FuseRating="B" MaxPayLoad="0.000000" Name="DMX 3Pin IN 1" Orientation="Left" PinCount="3" Position="{1.000000,0.000000,0.000000,0.000000}{0.000000,1.000000,0.000000,0.000000}{0.000000,0.000000,1.000000,0.000000}{0,0,0,1}" SignalLayer="2" SignalType="DMX512" Voltage="0.000000" VoltageRangeMax="0.000000" VoltageRangeMin="0.000000" WireGroup="" />
+				</Geometry>
+				<Axis Name="Head" Position="{1.000000,0.000000,0.000000,0.000000}{0.000000,1.000000,0.000000,0.000000}{0.000000,0.000000,1.000000,-0.180000}{0,0,0,1}">
+					<Geometry Name="RGB Base" Position="{1.000000,0.000000,0.000000,0.000000}{0.000000,1.000000,0.000000,0.000000}{0.000000,0.000000,1.000000,0.000000}{0,0,0,1}">
+						<GeometryReference Geometry="RGB Pixel" Name="Emitter RGB 7" Position="{1.000000,0.000000,0.000000,0.146000}{0.000000,1.000000,0.000000,0.047000}{0.000000,0.000000,1.000000,-0.060000}{0,0,0,1}">
+							<Break DMXBreak="1" DMXOffset="22" />
+						</GeometryReference>
+						<GeometryReference Geometry="RGB Pixel" Name="Emitter RGB 6" Position="{1.000000,0.000000,0.000000,0.049000}{0.000000,1.000000,0.000000,0.047000}{0.000000,0.000000,1.000000,-0.060000}{0,0,0,1}">
+							<Break DMXBreak="1" DMXOffset="19" />
+						</GeometryReference>
+						<GeometryReference Geometry="RGB Pixel" Name="Emitter RGB 5" Position="{1.000000,0.000000,0.000000,-0.048000}{0.000000,1.000000,0.000000,0.047000}{0.000000,0.000000,1.000000,-0.060000}{0,0,0,1}">
+							<Break DMXBreak="1" DMXOffset="16" />
+						</GeometryReference>
+						<GeometryReference Geometry="RGB Pixel" Name="Emitter RGB 4" Position="{1.000000,0.000000,0.000000,-0.145000}{0.000000,1.000000,0.000000,0.047000}{0.000000,0.000000,1.000000,-0.060000}{0,0,0,1}">
+							<Break DMXBreak="1" DMXOffset="13" />
+						</GeometryReference>
+						<GeometryReference Geometry="RGB Pixel" Name="Emitter RGB 3" Position="{1.000000,0.000000,0.000000,0.146000}{0.000000,1.000000,0.000000,-0.047000}{0.000000,0.000000,1.000000,-0.060000}{0,0,0,1}">
+							<Break DMXBreak="1" DMXOffset="10" />
+						</GeometryReference>
+						<GeometryReference Geometry="RGB Pixel" Name="Emitter RGB 2" Position="{1.000000,0.000000,0.000000,0.049000}{0.000000,1.000000,0.000000,-0.047000}{0.000000,0.000000,1.000000,-0.060000}{0,0,0,1}">
+							<Break DMXBreak="1" DMXOffset="7" />
+						</GeometryReference>
+						<GeometryReference Geometry="RGB Pixel" Name="Emitter RGB 1" Position="{1.000000,0.000000,0.000000,-0.048000}{0.000000,1.000000,0.000000,-0.047000}{0.000000,0.000000,1.000000,-0.060000}{0,0,0,1}">
+							<Break DMXBreak="1" DMXOffset="4" />
+						</GeometryReference>
+						<GeometryReference Geometry="RGB Pixel" Name="Emitter RGB" Position="{1.000000,0.000000,0.000000,-0.145000}{0.000000,1.000000,0.000000,-0.047000}{0.000000,0.000000,1.000000,-0.060000}{0,0,0,1}">
+							<Break DMXBreak="1" DMXOffset="1" />
+						</GeometryReference>
+					</Geometry>
+					<Geometry Name="CW Base" Position="{1.000000,0.000000,0.000000,0.000000}{0.000000,1.000000,0.000000,0.000000}{0.000000,0.000000,1.000000,0.000000}{0,0,0,1}">
+						<GeometryReference Geometry="CW Pixel" Name="Emitter CW 4" Position="{1.000000,0.000000,0.000000,0.146000}{0.000000,1.000000,0.000000,0.000000}{0.000000,0.000000,1.000000,-0.065000}{0,0,0,1}">
+							<Break DMXBreak="1" DMXOffset="4" />
+						</GeometryReference>
+						<GeometryReference Geometry="CW Pixel" Name="Emitter CW 3" Position="{1.000000,0.000000,0.000000,0.049000}{0.000000,1.000000,0.000000,0.000000}{0.000000,0.000000,1.000000,-0.065000}{0,0,0,1}">
+							<Break DMXBreak="1" DMXOffset="3" />
+						</GeometryReference>
+						<GeometryReference Geometry="CW Pixel" Name="Emitter CW 2" Position="{1.000000,0.000000,0.000000,-0.048000}{0.000000,1.000000,0.000000,0.000000}{0.000000,0.000000,1.000000,-0.065000}{0,0,0,1}">
+							<Break DMXBreak="1" DMXOffset="2" />
+						</GeometryReference>
+						<GeometryReference Geometry="CW Pixel" Name="Emitter CW 1" Position="{1.000000,0.000000,0.000000,-0.145000}{0.000000,1.000000,0.000000,0.000000}{0.000000,0.000000,1.000000,-0.065000}{0,0,0,1}">
+							<Break DMXBreak="1" DMXOffset="1" />
+						</GeometryReference>
+					</Geometry>
+				</Axis>
+			</Geometry>
+			<Beam BeamAngle="80.000000" BeamRadius="0.048500" BeamType="Wash" ColorRenderingIndex="90" ColorTemperature="6000.000000" FieldAngle="120.000000" LampType="LED" LuminousFlux="13500.000000" Name="RGB Pixel" Position="{1.000000,0.000000,0.000000,0.000000}{0.000000,1.000000,0.000000,0.000000}{0.000000,0.000000,1.000000,0.000000}{0,0,0,1}" PowerConsumption="90.000000" RectangleRatio="1.777700" ThrowRatio="1.000000" />
+			<Beam BeamAngle="80.000000" BeamRadius="0.048500" BeamType="Wash" ColorRenderingIndex="100" ColorTemperature="6500.000000" FieldAngle="120.000000" LampType="LED" LuminousFlux="27000.000000" Name="CW Pixel" Position="{1.000000,0.000000,0.000000,0.000000}{0.000000,1.000000,0.000000,0.000000}{0.000000,0.000000,1.000000,0.000000}{0,0,0,1}" PowerConsumption="180.000000" RectangleRatio="1.777700" ThrowRatio="1.000000" />
+		</Geometries>
+		<DMXModes>
+			<DMXMode Description="" Geometry="Base" Name="44ch Mode">
+				<DMXChannels>
+					<DMXChannel DMXBreak="1" Geometry="Head" Highlight="None" InitialFunction="Head_Tilt.Tilt.Tilt 1" Offset="1,2">
+						<LogicalChannel Attribute="Tilt" DMXChangeTimeLimit="0.000000" Master="None" MibFade="0.000000" Snap="No">
+							<ChannelFunction Attribute="Tilt" CustomName="" DMXFrom="0/2" Default="32767/2" Max="1.000000" Min="0.000000" Name="Tilt 1" OriginalAttribute="" PhysicalFrom="-92.500000" PhysicalTo="92.500000" RealAcceleration="0.000000" RealFade="0.000000">
+								<ChannelSet DMXFrom="0/2" Name="" WheelSlotIndex="0" />
+								<ChannelSet DMXFrom="32768/2" Name="Home" WheelSlotIndex="0" />
+								<ChannelSet DMXFrom="32769/2" Name="" WheelSlotIndex="0" />
+							</ChannelFunction>
+						</LogicalChannel>
+					</DMXChannel>
+					<DMXChannel DMXBreak="1" Geometry="CW Base" Highlight="255/1" InitialFunction="CW Base_Dimmer.Dimmer.Tube Dimmer" Offset="3">
+						<LogicalChannel Attribute="Dimmer" DMXChangeTimeLimit="0.000000" Master="None" MibFade="0.000000" Snap="No">
+							<ChannelFunction Attribute="Dimmer" CustomName="" DMXFrom="0/1" Default="0/1" Emitter="CW" Max="1.000000" Min="0.000000" Name="Tube Dimmer" OriginalAttribute="" PhysicalFrom="0.000000" PhysicalTo="1.000000" RealAcceleration="0.000000" RealFade="0.000000" />
+						</LogicalChannel>
+					</DMXChannel>
+					<DMXChannel DMXBreak="1" Geometry="CW Base" Highlight="0/1" InitialFunction="CW Base_StrobeMode.StrobeMode.Tube Strobe Off" Offset="4">
+						<LogicalChannel Attribute="StrobeMode" DMXChangeTimeLimit="0.000000" Master="None" MibFade="0.000000" Snap="No">
+							<ChannelFunction Attribute="Shutter1" CustomName="" DMXFrom="0/1" Default="0/1" Max="1.000000" Min="0.000000" Name="Tube Strobe Off" OriginalAttribute="" PhysicalFrom="1.000000" PhysicalTo="1.000000" RealAcceleration="0.000000" RealFade="0.000000">
+								<ChannelSet DMXFrom="0/1" Name="Open" WheelSlotIndex="0" />
+							</ChannelFunction>
+							<ChannelFunction Attribute="StrobeMode" CustomName="" DMXFrom="6/1" Default="6/1" Max="1.000000" Min="0.000000" Name="Tube StrobeModes" OriginalAttribute="" PhysicalFrom="1.000000" PhysicalTo="6.000000" RealAcceleration="0.000000" RealFade="0.000000">
+								<ChannelSet DMXFrom="6/1" Name="Mode1" PhysicalFrom="1.000000" PhysicalTo="1.000000" WheelSlotIndex="0" />
+								<ChannelSet DMXFrom="43/1" Name="Mode2" PhysicalFrom="1.000000" PhysicalTo="1.000000" WheelSlotIndex="0" />
+								<ChannelSet DMXFrom="86/1" Name="Mode3" PhysicalFrom="1.000000" PhysicalTo="1.000000" WheelSlotIndex="0" />
+								<ChannelSet DMXFrom="129/1" Name="Mode4" PhysicalFrom="1.000000" PhysicalTo="1.000000" WheelSlotIndex="0" />
+								<ChannelSet DMXFrom="172/1" Name="Mode5" PhysicalFrom="1.000000" PhysicalTo="1.000000" WheelSlotIndex="0" />
+								<ChannelSet DMXFrom="215/1" Name="Mode6" PhysicalFrom="1.000000" PhysicalTo="1.000000" WheelSlotIndex="0" />
+							</ChannelFunction>
+						</LogicalChannel>
+					</DMXChannel>
+					<DMXChannel DMXBreak="1" Geometry="Base" Highlight="None" InitialFunction="Base_NoFeature.NoFeature.NoFeature 1" Offset="5">
+						<LogicalChannel Attribute="NoFeature" DMXChangeTimeLimit="0.000000" Master="None" MibFade="0.000000" Snap="No">
+							<ChannelFunction Attribute="NoFeature" CustomName="" DMXFrom="0/1" Default="0/1" Max="1.000000" Min="0.000000" Name="NoFeature 1" OriginalAttribute="" PhysicalFrom="0.000000" PhysicalTo="1.000000" RealAcceleration="0.000000" RealFade="0.000000" />
+						</LogicalChannel>
+					</DMXChannel>
+					<DMXChannel DMXBreak="1" Geometry="CW Base" Highlight="None" InitialFunction="CW Base_Effects1.Effects1.Tube Macro" Offset="6">
+						<LogicalChannel Attribute="Effects1" DMXChangeTimeLimit="0.000000" Master="None" MibFade="0.000000" Snap="No">
+							<ChannelFunction Attribute="Effects1" CustomName="" DMXFrom="0/1" Default="0/1" Max="1.000000" Min="0.000000" Name="Tube Macro" OriginalAttribute="" PhysicalFrom="0.000000" PhysicalTo="1.000000" RealAcceleration="0.000000" RealFade="0.000000">
+								<ChannelSet DMXFrom="0/1" Name="Open" PhysicalFrom="0.000000" PhysicalTo="0.000000" WheelSlotIndex="0" />
+								<ChannelSet DMXFrom="16/1" Name="Macro 1" PhysicalFrom="1.000000" PhysicalTo="1.000000" WheelSlotIndex="0" />
+								<ChannelSet DMXFrom="58/1" Name="Macro 2" PhysicalFrom="2.000000" PhysicalTo="2.000000" WheelSlotIndex="0" />
+								<ChannelSet DMXFrom="100/1" Name="Macro 2" PhysicalFrom="3.000000" PhysicalTo="3.000000" WheelSlotIndex="0" />
+								<ChannelSet DMXFrom="142/1" Name="Macro 3" PhysicalFrom="4.000000" PhysicalTo="4.000000" WheelSlotIndex="0" />
+								<ChannelSet DMXFrom="184/1" Name="Macro 4" PhysicalFrom="5.000000" PhysicalTo="5.000000" WheelSlotIndex="0" />
+								<ChannelSet DMXFrom="226/1" Name="Macro 5" PhysicalFrom="6.000000" PhysicalTo="6.000000" WheelSlotIndex="0" />
+							</ChannelFunction>
+						</LogicalChannel>
+					</DMXChannel>
+					<DMXChannel DMXBreak="1" Geometry="RGB Base" Highlight="255/1" InitialFunction="RGB Base_ColorAdd_R.ColorAdd_R.ColorAdd_R 1" Offset="7">
+						<LogicalChannel Attribute="ColorAdd_R" DMXChangeTimeLimit="0.000000" Master="None" MibFade="0.000000" Snap="No">
+							<ChannelFunction Attribute="ColorAdd_R" CustomName="" DMXFrom="0/1" Default="0/1" Max="1.000000" Min="0.000000" Name="ColorAdd_R 1" OriginalAttribute="" PhysicalFrom="0.000000" PhysicalTo="1.000000" RealAcceleration="0.000000" RealFade="0.000000" />
+						</LogicalChannel>
+					</DMXChannel>
+					<DMXChannel DMXBreak="1" Geometry="RGB Base" Highlight="255/1" InitialFunction="RGB Base_ColorAdd_G.ColorAdd_G.ColorAdd_G 1" Offset="8">
+						<LogicalChannel Attribute="ColorAdd_G" DMXChangeTimeLimit="0.000000" Master="None" MibFade="0.000000" Snap="No">
+							<ChannelFunction Attribute="ColorAdd_G" CustomName="" DMXFrom="0/1" Default="0/1" Max="1.000000" Min="0.000000" Name="ColorAdd_G 1" OriginalAttribute="" PhysicalFrom="0.000000" PhysicalTo="1.000000" RealAcceleration="0.000000" RealFade="0.000000" />
+						</LogicalChannel>
+					</DMXChannel>
+					<DMXChannel DMXBreak="1" Geometry="RGB Base" Highlight="255/1" InitialFunction="RGB Base_ColorAdd_B.ColorAdd_B.ColorAdd_B 1" Offset="9">
+						<LogicalChannel Attribute="ColorAdd_B" DMXChangeTimeLimit="0.000000" Master="None" MibFade="0.000000" Snap="No">
+							<ChannelFunction Attribute="ColorAdd_B" CustomName="" DMXFrom="0/1" Default="0/1" Max="1.000000" Min="0.000000" Name="ColorAdd_B 1" OriginalAttribute="" PhysicalFrom="0.000000" PhysicalTo="1.000000" RealAcceleration="0.000000" RealFade="0.000000" />
+						</LogicalChannel>
+					</DMXChannel>
+					<DMXChannel DMXBreak="1" Geometry="RGB Base" Highlight="0/1" InitialFunction="RGB Base_Shutter1.Shutter1.RGB Sh Open" Offset="10">
+						<LogicalChannel Attribute="Shutter1" DMXChangeTimeLimit="0.000000" Master="None" MibFade="0.000000" Snap="No">
+							<ChannelFunction Attribute="Shutter1" CustomName="" DMXFrom="0/1" Default="0/1" Max="1.000000" Min="0.000000" Name="RGB Sh Open" OriginalAttribute="" PhysicalFrom="1.000000" PhysicalTo="1.000000" RealAcceleration="0.000000" RealFade="0.000000">
+								<ChannelSet DMXFrom="0/1" Name="Open" WheelSlotIndex="0" />
+							</ChannelFunction>
+							<ChannelFunction Attribute="Shutter1Strobe" CustomName="" DMXFrom="6/1" Default="6/1" Max="1.000000" Min="0.000000" Name="RGB Strobe" OriginalAttribute="" PhysicalFrom="1.000000" PhysicalTo="20.000000" RealAcceleration="0.000000" RealFade="0.000000">
+								<ChannelSet DMXFrom="6/1" Name="SlowToFast" WheelSlotIndex="0" />
+							</ChannelFunction>
+						</LogicalChannel>
+					</DMXChannel>
+					<DMXChannel DMXBreak="1" Geometry="RGB Base" Highlight="0/1" InitialFunction="RGB Base_Effects1.Effects1.Effects1 1" Offset="11">
+						<LogicalChannel Attribute="Effects1" DMXChangeTimeLimit="0.000000" Master="None" MibFade="0.000000" Snap="No">
+							<ChannelFunction Attribute="Effects1" CustomName="" DMXFrom="0/1" Default="0/1" Max="1.000000" Min="0.000000" Name="Effects1 1" OriginalAttribute="" PhysicalFrom="0.000000" PhysicalTo="51.000000" RealAcceleration="0.000000" RealFade="0.000000" />
+						</LogicalChannel>
+					</DMXChannel>
+					<DMXChannel DMXBreak="1" Geometry="RGB Base" Highlight="0/1" InitialFunction="RGB Base_ColorEffects1.ColorEffects1.ColorEffects1 1" Offset="12">
+						<LogicalChannel Attribute="ColorEffects1" DMXChangeTimeLimit="0.000000" Master="None" MibFade="0.000000" Snap="No">
+							<ChannelFunction Attribute="ColorEffects1" CustomName="" DMXFrom="0/1" Default="0/1" Max="1.000000" Min="0.000000" Name="ColorEffects1 1" OriginalAttribute="" PhysicalFrom="0.000000" PhysicalTo="1.000000" RealAcceleration="0.000000" RealFade="0.000000" />
+						</LogicalChannel>
+					</DMXChannel>
+					<DMXChannel DMXBreak="1" Geometry="RGB Base" Highlight="0/1" InitialFunction="RGB Base_ColorMacro1Rate.ColorMacro1Rate.ColorMacro1Rate 1" Offset="13">
+						<LogicalChannel Attribute="ColorMacro1Rate" DMXChangeTimeLimit="0.000000" Master="None" MibFade="0.000000" Snap="No">
+							<ChannelFunction Attribute="ColorMacro1Rate" CustomName="" DMXFrom="0/1" Default="0/1" Max="1.000000" Min="0.000000" Name="ColorMacro1Rate 1" OriginalAttribute="" PhysicalFrom="0.000000" PhysicalTo="1.000000" RealAcceleration="0.000000" RealFade="0.000000" />
+						</LogicalChannel>
+					</DMXChannel>
+					<DMXChannel DMXBreak="1" Geometry="RGB Base" Highlight="255/1" InitialFunction="RGB Base_Dimmer.Dimmer.RGB Dimmer" Offset="14">
+						<LogicalChannel Attribute="Dimmer" DMXChangeTimeLimit="0.000000" Master="None" MibFade="0.000000" Snap="No">
+							<ChannelFunction Attribute="Dimmer" CustomName="" DMXFrom="0/1" Default="0/1" Max="1.000000" Min="0.000000" Name="RGB Dimmer" OriginalAttribute="" PhysicalFrom="0.000000" PhysicalTo="1.000000" RealAcceleration="0.000000" RealFade="0.000000" />
+						</LogicalChannel>
+					</DMXChannel>
+					<DMXChannel DMXBreak="1" Geometry="CW Pixel" Highlight="255/1" InitialFunction="CW Pixel_ColorAdd_W.ColorAdd_W.ColorAdd_W 1" Offset="15">
+						<LogicalChannel Attribute="ColorAdd_W" DMXChangeTimeLimit="0.000000" Master="None" MibFade="0.000000" Snap="No">
+							<ChannelFunction Attribute="ColorAdd_W" CustomName="" DMXFrom="0/1" Default="0/1" Emitter="CW" Max="1.000000" Min="0.000000" Name="ColorAdd_W 1" OriginalAttribute="" PhysicalFrom="0.000000" PhysicalTo="1.000000" RealAcceleration="0.000000" RealFade="0.000000" />
+						</LogicalChannel>
+					</DMXChannel>
+					<DMXChannel DMXBreak="1" Geometry="RGB Pixel" Highlight="None" InitialFunction="RGB Pixel_ColorAdd_R.ColorAdd_R.ColorAdd_R 1" Offset="19">
+						<LogicalChannel Attribute="ColorAdd_R" DMXChangeTimeLimit="0.000000" Master="None" MibFade="0.000000" Snap="No">
+							<ChannelFunction Attribute="ColorAdd_R" CustomName="" DMXFrom="0/1" Default="0/1" Emitter="R" Max="1.000000" Min="0.000000" Name="ColorAdd_R 1" OriginalAttribute="" PhysicalFrom="0.000000" PhysicalTo="1.000000" RealAcceleration="0.000000" RealFade="0.000000" />
+						</LogicalChannel>
+					</DMXChannel>
+					<DMXChannel DMXBreak="1" Geometry="RGB Pixel" Highlight="None" InitialFunction="RGB Pixel_ColorAdd_G.ColorAdd_G.ColorAdd_G 1" Offset="20">
+						<LogicalChannel Attribute="ColorAdd_G" DMXChangeTimeLimit="0.000000" Master="None" MibFade="0.000000" Snap="No">
+							<ChannelFunction Attribute="ColorAdd_G" CustomName="" DMXFrom="0/1" Default="0/1" Emitter="G" Max="1.000000" Min="0.000000" Name="ColorAdd_G 1" OriginalAttribute="" PhysicalFrom="0.000000" PhysicalTo="1.000000" RealAcceleration="0.000000" RealFade="0.000000" />
+						</LogicalChannel>
+					</DMXChannel>
+					<DMXChannel DMXBreak="1" Geometry="RGB Pixel" Highlight="None" InitialFunction="RGB Pixel_ColorAdd_B.ColorAdd_B.ColorAdd_B 1" Offset="21">
+						<LogicalChannel Attribute="ColorAdd_B" DMXChangeTimeLimit="0.000000" Master="None" MibFade="0.000000" Snap="No">
+							<ChannelFunction Attribute="ColorAdd_B" CustomName="" DMXFrom="0/1" Default="0/1" Emitter="B" Max="1.000000" Min="0.000000" Name="ColorAdd_B 1" OriginalAttribute="" PhysicalFrom="0.000000" PhysicalTo="1.000000" RealAcceleration="0.000000" RealFade="0.000000" />
+						</LogicalChannel>
+					</DMXChannel>
+					<DMXChannel DMXBreak="1" Geometry="Base" Highlight="None" InitialFunction="Base_PositionMSpeed.PositionMSpeed.PositionMSpeed 1" Offset="43">
+						<LogicalChannel Attribute="PositionMSpeed" DMXChangeTimeLimit="0.000000" Master="None" MibFade="0.000000" Snap="No">
+							<ChannelFunction Attribute="PositionMSpeed" CustomName="" DMXFrom="0/1" Default="0/1" Max="1.000000" Min="0.000000" Name="PositionMSpeed 1" OriginalAttribute="" PhysicalFrom="0.000000" PhysicalTo="1.000000" RealAcceleration="0.000000" RealFade="0.000000" />
+						</LogicalChannel>
+					</DMXChannel>
+					<DMXChannel DMXBreak="1" Geometry="Base" Highlight="None" InitialFunction="Base_IntensityMSpeed.IntensityMSpeed.IntensityMSpeed 1" Offset="44">
+						<LogicalChannel Attribute="IntensityMSpeed" DMXChangeTimeLimit="0.000000" Master="None" MibFade="0.000000" Snap="No">
+							<ChannelFunction Attribute="IntensityMSpeed" CustomName="" DMXFrom="0/1" Default="0/1" Max="1.000000" Min="0.000000" Name="IntensityMSpeed 1" OriginalAttribute="" PhysicalFrom="0.000000" PhysicalTo="1.000000" RealAcceleration="0.000000" RealFade="0.000000" />
+						</LogicalChannel>
+					</DMXChannel>
+					<DMXChannel DMXBreak="1" Geometry="RGB Pixel" Highlight="None" InitialFunction="RGB Pixel_Dimmer.Dimmer.RGB Pixel Dimmer" Offset="">
+						<LogicalChannel Attribute="Dimmer" DMXChangeTimeLimit="0.000000" Master="None" MibFade="0.000000" Snap="No">
+							<ChannelFunction Attribute="Dimmer" CustomName="" DMXFrom="0/4" Default="0/4" Max="1.000000" Min="0.000000" Name="RGB Pixel Dimmer" OriginalAttribute="" PhysicalFrom="0.000000" PhysicalTo="1.000000" RealAcceleration="0.000000" RealFade="0.000000" />
+						</LogicalChannel>
+					</DMXChannel>
+				</DMXChannels>
+				<Relations>
+					<Relation Follower="RGB Pixel_ColorAdd_R.ColorAdd_R.ColorAdd_R 1" Master="RGB Pixel_Dimmer" Name="Red" Type="Multiply" />
+					<Relation Follower="RGB Pixel_ColorAdd_G.ColorAdd_G.ColorAdd_G 1" Master="RGB Pixel_Dimmer" Name="Green" Type="Multiply" />
+					<Relation Follower="RGB Pixel_ColorAdd_B.ColorAdd_B.ColorAdd_B 1" Master="RGB Pixel_Dimmer" Name="Blue" Type="Multiply" />
+				</Relations>
+				<FTMacros />
+			</DMXMode>
+		</DMXModes>
+		<Revisions>
+			<Revision Date="2023-09-13T11:32:14" ModifiedBy="" Text="" UserID="0" />
+			<Revision Date="2025-08-25T11:28:34" ModifiedBy="" Text="rev1" UserID="0" />
+			<Revision Date="2025-08-25T11:53:34" ModifiedBy="" Text="rev2" UserID="0" />
+			<Revision Date="2025-08-25T12:54:16" ModifiedBy="" Text="rev3" UserID="0" />
+			<Revision Date="2025-08-25T12:56:38" ModifiedBy="" Text="rev4" UserID="0" />
+			<Revision Date="2025-08-25T13:00:47" ModifiedBy="" Text="rev5" UserID="0" />
+			<Revision Date="2025-08-25T13:05:26" ModifiedBy="" Text="rev6" UserID="0" />
+			<Revision Date="2025-08-25T13:08:37" ModifiedBy="" Text="rev7" UserID="0" />
+			<Revision Date="2025-08-25T13:20:52" ModifiedBy="" Text="rev8" UserID="0" />
+			<Revision Date="2025-08-25T13:43:02" ModifiedBy="" Text="rev9" UserID="0" />
+			<Revision Date="2025-08-25T13:58:46" ModifiedBy="" Text="rev10" UserID="0" />
+			<Revision Date="2025-08-25T14:07:17" ModifiedBy="" Text="rev11" UserID="0" />
+			<Revision Date="2025-08-25T14:11:54" ModifiedBy="" Text="rev12" UserID="0" />
+			<Revision Date="2025-08-25T14:25:31" ModifiedBy="" Text="rev13" UserID="0" />
+			<Revision Date="2025-08-25T14:47:27" ModifiedBy="GDTF Builder V1.9.4" Text="rev14" UserID="49257" />
+		</Revisions>
+		<FTPresets />
+		<Protocols />
+	</FixtureType>
+</GDTF>
