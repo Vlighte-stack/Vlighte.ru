@@ -1,0 +1,27 @@
+{
+  "sourceResourceFiles": 11,
+  "imageSha256PreservedAcrossPackages": {
+    "wheels/image_0001.png": "69eb13f9d1083b659ff25cbb76345224327d3b6f3951653bcc93a4b34f37c8d8",
+    "wheels/image_0002.png": "a36874f4e6b68e8b43fe4f9498fae1b52e90f855309431c22205bcea34339653",
+    "wheels/image_0003.png": "07d69361ed10fe94c41954e18f97d8f796f55943534ed079eb7ae0a1655c8f05",
+    "wheels/image_0004.png": "259916a8fdc26776e52855380d82c90f885e6d6e31be14d05b63d1e21e34c3c6",
+    "wheels/image_0005.png": "de7320931083d5ac64458e8c6c7cfb822303fa4bd14da8ca2812f5eaf3c1a200",
+    "wheels/image_0006.png": "ef5ccfb19841c27795d73fb89a41187b116b060c51834dbc4f2c062a827f3a27",
+    "wheels/image_0007.png": "d1df1a28accccfda908459a81ccdfa99475379a8bc9f1c7953836bfcab869da3",
+    "wheels/image_0008.png": "9d33df3738a1883e1e9d6974d85715febe9028f70d1f0b482b361eded9ebf161",
+    "wheels/image_0009.png": "8e5f4c123b52651b269338fef2c94042e13e175c6671910849a272fb16fd2970",
+    "wheels/image_0010.png": "9cc138c5be1deab7ffcda9ac5c6273e6c5916b7cf38c6fd4accb886f5f78255c",
+    "wheels/image_0011.png": "7a271b0c73aca5f1dfe3b48095a2613d69cfc2d8585510cbef12870e2543f02d"
+  },
+  "finalGdtfImageLinksValid": 11,
+  "gdtfXsd": true,
+  "hogNativeDefinitionsXsd": true,
+  "unsafePackagesRejected": 4,
+  "recoveryCommentsStrippedAtBoundaries": true,
+  "consoleImportTested": false,
+  "resourceReceiptTamperRejected": true,
+  "resourceBundleUpgradePreserved": true,
+  "sameResourceDuplicateDetected": true,
+  "changedResourcesAreDifferentObject": true,
+  "resourceWriteFailureRolledBack": true
+}

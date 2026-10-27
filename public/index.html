@@ -171,7 +171,7 @@ button.main-generate{font-size:var(--font-body)}
     <div class="manual">
       <h3>📖 Инструкция:</h3>
       <ol style="margin: 0; padding-left: 20px;">
-        <li>Загрузите HOG4 XML, MA2 XML или GDTF. Файл будет обработан сервером.</li>
+        <li>Загрузите HOG4 XML, MA2 XML, GDTF или ZIP с ресурсами. Файл будет обработан сервером.</li>
         <li>Если блок уже есть — он автоматически загрузится в список для редактирования.</li>
         <li>Добавьте новые модули через панель управления.</li>
         <li>Укажите имя и нажмите "Сгенерировать". Выбранная фикстура будет обновлена; остальные фикстуры сохранятся.</li>
@@ -179,8 +179,8 @@ button.main-generate{font-size:var(--font-body)}
     </div>
 
     <div class="file-input" onclick="document.getElementById('fileInput').click()">
-      📁 Загрузить файл (HOG4, MA2 или GDTF)
-      <input type="file" id="fileInput" accept=".xml,.gdtf" onchange="handleFile(this)">
+      📁 Загрузить файл (HOG4, MA2, GDTF или ZIP)
+      <input type="file" id="fileInput" accept=".xml,.gdtf,.zip" onchange="handleFile(this)">
     </div>
       <div id="gdtfPanel" hidden style="margin:14px 0;font-size:16px"><label for="gdtfMode">DMX-режим / профиль Break: </label><select id="gdtfMode" onchange="importGdtfMode()"></select></div>
 
@@ -235,6 +235,7 @@ button.main-generate{font-size:var(--font-body)}
 
       <label for="exportFormat">Формат сохранения на ПК:</label>
       <select id="exportFormat"><option value="hog">HOG4 XML</option><option value="ma2">MA2 XML</option><option value="gdtf">GDTF</option></select>
+      <label style="display:block;margin-top:10px;font-size:16px"><input type="checkbox" id="resourcePackage"> ZIP с XML и ресурсами (для HOG4/MA2)</label><p class="save-hint">Для точного переноса цвета CIE через MA2 используйте ZIP с colorimetry.json. Для импорта XML в MA2 распакуйте архив.</p>
       <p style="font-size:13px;color:#596a78">После сохранения на ПК файлы будут добавлены в библиотеку.</p>
       <button class="main-generate" onclick="generateAndSave()">✅ Сгенерировать и сохранить файл</button>
     </div>
@@ -250,7 +251,7 @@ button.main-generate{font-size:var(--font-body)}
         <span>👤 Разработчик: Prokhorov Vadim</span>
       </a>
       <span>✉️ vlighte@mail.ru</span>
-      <span>| 📦 Версия софта: 2.00.40</span>
+      <span>| 📦 Версия софта: 2.00.45</span>
       
     </div>
   </div>
@@ -274,7 +275,7 @@ let parts = [];
 let compoundNodes = [];
 let selectedCompound = null;
 let loadRevision = 0;
-let sourceXml = null, sourceName = '';
+let sourceXml = null, sourceName = '', sourceResources = null;
 let savedPairs=[];
 try{savedPairs=JSON.parse(localStorage.getItem('vlighte.savedPairs')||'[]');if(!Array.isArray(savedPairs))savedPairs=[];}catch(error){}
 function renderSavedFiles(){
@@ -290,11 +291,11 @@ function renderSavedFiles(){
  });
 }
 async function openSaved(item,kind){
- const revision=++loadRevision;resetUI();resetGdtf();sourceXml=null;sourceName='';showStatus('Загрузка сохранённого профиля…','success');
+ const revision=++loadRevision;resetUI();resetGdtf();sourceXml=null;sourceName='';sourceResources=null;el('resourcePackage').checked=false;showStatus('Загрузка сохранённого профиля…','success');
  try{
   const response=await fetch('/api/files/'+item.id+'/'+kind);const saved=await response.json();if(!response.ok)throw new Error('Сохранённый файл недоступен.');
-  const data=await api('/api/import',{xml:saved.xml});if(revision!==loadRevision)return;
-  loadXml(data.xml,saved.filename);sourceXml=saved.xml;sourceName=saved.filename;el('savedPanel').open=false;
+  const data=await api('/api/import',{xml:saved.xml,resourceBase64:saved.resourceBase64});if(revision!==loadRevision)return;
+  loadXml(data.xml,saved.filename);sourceXml=saved.xml;sourceName=saved.filename;sourceResources=saved.resourceBase64||null;el('resourcePackage').checked=!!sourceResources||data.preciseColors===true;el('savedPanel').open=false;
   showStatus('Сохранённый профиль открыт. Готов к правкам.','success');
  }catch(error){if(revision===loadRevision)showStatus(error.message,'error');}
 }
@@ -383,27 +384,30 @@ function resetGdtf(){pendingGdtf=null;el('gdtfPanel').hidden=true;el('gdtfMode')
 function fileBase64(file){return new Promise((resolve,reject)=>{const reader=new FileReader();reader.onload=()=>resolve(String(reader.result).split(',')[1]);reader.onerror=()=>reject(new Error('Не удалось прочитать GDTF.'));reader.readAsDataURL(file);});}
 async function importGdtfMode(){
  if(!pendingGdtf)return;
- const revision=++loadRevision;const pending=pendingGdtf;const mode=el('gdtfMode').value;resetUI();sourceXml=null;sourceName='';showStatus('Обработка режима GDTF…','success');
+ const revision=++loadRevision;const pending=pendingGdtf;const mode=el('gdtfMode').value;resetUI();sourceXml=null;sourceName='';sourceResources=null;el('resourcePackage').checked=false;showStatus('Обработка режима GDTF…','success');
  try{
   const data=await api('/api/import',{gdtf:pending.data,mode});if(revision!==loadRevision)return;
-  loadXml(data.xml,pending.name);sourceXml=data.sourceXml;sourceName=pending.name.replace(/\.gdtf$/i,'')+'_'+mode.replace(/[^a-zA-Z0-9_-]/g,'_')+'.xml';
+  loadXml(data.xml,pending.name);sourceXml=data.sourceXml;sourceResources=data.resourceBase64||null;el('resourcePackage').checked=!!sourceResources||data.preciseColors===true;sourceName=pending.name.replace(/\.gdtf$/i,'')+'_'+mode.replace(/[^a-zA-Z0-9_-]/g,'_')+'.xml';
   if(xmlDocument){const s=data.summary;showStatus('GDTF: '+s.mode+' · '+s.footprint+' DMX · '+s.modules+' модулей · виртуальных каналов: '+s.virtualChannels+'. '+data.warnings.join(' '),'success');}
  }catch(error){if(revision===loadRevision){resetUI();showStatus(error.message,'error');}}
 }
 async function handleFile(input) {
  const file=input.files[0];if(!file)return;
- const revision=++loadRevision;resetUI();resetGdtf();sourceXml=null;sourceName='';const gdtf=/\.gdtf$/i.test(file.name);
- if(!/\.(xml|gdtf)$/i.test(file.name)){showStatus('Выберите XML или GDTF.','error');return;}
- if(file.size>(gdtf?20000000:2000000)){showStatus(gdtf?'Размер GDTF превышает 20 МБ.':'Размер XML превышает 2 МБ.','error');return;}
+ const revision=++loadRevision;resetUI();resetGdtf();sourceXml=null;sourceName='';sourceResources=null;el('resourcePackage').checked=false;const gdtf=/\.gdtf$/i.test(file.name),packaged=/\.zip$/i.test(file.name);
+ if(!/\.(xml|gdtf|zip)$/i.test(file.name)){showStatus('Выберите XML, GDTF или ZIP с ресурсами.','error');return;}
+ if(file.size>(gdtf||packaged?20000000:2000000)){showStatus(gdtf||packaged?'Размер архива превышает 20 МБ.':'Размер XML превышает 2 МБ.','error');return;}
  showStatus('Обработка профиля на сервере…','success');
  try{
+  if(packaged){
+   const encoded=await fileBase64(file);const data=await api('/api/import',{package:encoded});if(revision!==loadRevision)return;loadXml(data.xml,file.name);sourceXml=data.sourceXml;sourceName=file.name.replace(/\.zip$/i,'.xml');sourceResources=data.resourceBase64||null;el('resourcePackage').checked=!!sourceResources||data.preciseColors===true;showStatus('ZIP-профиль загружен. Ресурсов: '+(data.resourceCount||0)+'.','success');return;
+  }
   if(gdtf){
    const encoded=await fileBase64(file);if(revision!==loadRevision)return;const data=await api('/api/import',{gdtf:encoded});if(revision!==loadRevision)return;
    pendingGdtf={data:encoded,name:file.name};for(const mode of data.modes){const option=document.createElement('option');option.value=mode.name;option.textContent=mode.name;el('gdtfMode').append(option);}el('gdtfPanel').hidden=false;
    await importGdtfMode();return;
   }
   const xml=await file.text();const data=await api('/api/import',{xml});if(revision!==loadRevision)return;
-  loadXml(data.xml,file.name);sourceXml=xml;sourceName=file.name;
+  loadXml(data.xml,file.name);sourceXml=xml;sourceName=file.name;el('resourcePackage').checked=data.preciseColors===true;
   if(xmlDocument)showStatus(data.system==='MA2'?'MA2 преобразован в HOG. Готов к правкам.':'HOG загружен. Готов к правкам.','success');
  }catch(error){if(revision===loadRevision){resetUI();showStatus(error.message,'error');}}
 }
@@ -503,8 +507,8 @@ function saveAction(job,label,action){
  button.style.cssText='margin:8px 8px 0 0;padding:10px 16px;cursor:pointer';
  button.onclick=async()=>{button.disabled=true;await action();};job.row.append(button);
 }
-function generatedBlob(job){if(job.format!=='gdtf')return new Blob([job.xml],{type:'application/xml;charset=utf-8'});const binary=atob(job.gdtfBase64);const bytes=new Uint8Array(binary.length);for(let i=0;i<binary.length;i++)bytes[i]=binary.charCodeAt(i);return new Blob([bytes],{type:'application/octet-stream'});}
-function pickerTypes(format){return format==='gdtf'?[{description:'GDTF профиль',accept:{'application/octet-stream':['.gdtf']}}]:[{description:'XML профиль',accept:{'application/xml':['.xml']}}];}
+function generatedBlob(job){if(!job.packaged&&job.format!=='gdtf')return new Blob([job.xml],{type:'application/xml;charset=utf-8'});const binary=atob(job.packaged?job.packageBase64:job.gdtfBase64);const bytes=new Uint8Array(binary.length);for(let i=0;i<binary.length;i++)bytes[i]=binary.charCodeAt(i);return new Blob([bytes],{type:job.packaged?'application/zip':'application/octet-stream'});}
+function pickerTypes(format,packaged=false){return packaged?[{description:'Профиль с ресурсами',accept:{'application/zip':['.zip']}}]:format==='gdtf'?[{description:'GDTF профиль',accept:{'application/octet-stream':['.gdtf']}}]:[{description:'XML профиль',accept:{'application/xml':['.xml']}}];}
 function saveMessage(job,message){job.row.replaceChildren();const text=document.createElement('div');text.textContent=job.filename+' — '+message+(job.warnings&&job.warnings.length?' Примечания: '+job.warnings.join(' '):'');job.row.append(text);}
 function exportFilename(source,format,name){
  const root=new DOMParser().parseFromString(source,'application/xml').documentElement;
@@ -515,7 +519,7 @@ async function archiveLocalSave(job){
  if(job.archived||job.archiving)return;
  job.archiving=true;saveMessage(job,'сохранён на компьютере. Отправка в библиотеку…');
  try{
-  const data=await api('/api/archive',{sourceXml:job.sourceXml,sourceName:job.sourceName,name:job.name,xml:job.hogXml,ma2Xml:job.ma2Xml,gdtfBase64:job.gdtfBase64,originReceipt:job.originReceipt});
+  const data=await api('/api/archive',{sourceXml:job.sourceXml,sourceName:job.sourceName,name:job.name,xml:job.hogXml,ma2Xml:job.ma2Xml,gdtfBase64:job.gdtfBase64,resourceBase64:job.resourceBase64,originReceipt:job.originReceipt});
   job.archived=true;saveMessage(job,data.saved&&data.saved.duplicate?'сохранён на компьютере. Такой объект уже есть в библиотеке; повторная копия на сайте не создана.':'сохранён на компьютере. Файлы сохранены в библиотеке.');
   if(data.saved&&!data.saved.duplicate){savedPairs.unshift(data.saved);try{localStorage.setItem('vlighte.savedPairs',JSON.stringify(savedPairs));}catch(error){}renderSavedFiles();}
  }catch(error){saveMessage(job,'на компьютере сохранён. Не удалось отправить в библиотеку: '+error.message);saveAction(job,'Повторить отправку на сайт',()=>archiveLocalSave(job));}
@@ -532,12 +536,12 @@ async function saveGeneratedFile(job,selectedHandle){
  }
  let writable;
  try{
-  const handle=selectedHandle||await window.showSaveFilePicker({suggestedName:job.filename,types:pickerTypes(job.format)});
+  const handle=selectedHandle||await window.showSaveFilePicker({suggestedName:job.filename,types:pickerTypes(job.format,job.packaged)});
   writable=await handle.createWritable();await writable.write(generatedBlob(job));await writable.close();writable=null;
   void archiveLocalSave(job);
  }catch(error){
   if(writable){try{await writable.abort();}catch(ignored){}}
-  saveMessage(job,error.name==='AbortError'?'сохранение отменено. На сайт не отправлен.':error.name==='SecurityError'?'XML готов. Нажмите кнопку для выбора места сохранения.':'Не удалось сохранить на компьютер: '+error.message+'. На сайт не отправлен.');
+  saveMessage(job,error.name==='AbortError'?'сохранение отменено. На сайт не отправлен.':error.name==='SecurityError'?'Файл готов. Нажмите кнопку для выбора места сохранения.':'Не удалось сохранить на компьютер: '+error.message+'. На сайт не отправлен.');
   saveAction(job,'Сохранить на компьютер',()=>saveGeneratedFile(job));
  }
 }
@@ -550,12 +554,14 @@ async function generateAndSave(){
   const oldParts=selectedCompound?children(children(selectedCompound,'Parts')[0]||selectedCompound,'Part'):[];
   const name=el('compoundName').value.trim();
   const format=el('exportFormat').value;
-  const job={name,sourceXml,sourceName,format,filename:exportFilename(sourceXml,format,name)};
+  const packaged=format!=='gdtf'&&el('resourcePackage').checked;
+  const job={name,sourceXml,sourceName,format,packaged,filename:exportFilename(sourceXml,format,name)};
+  if(packaged)job.filename=job.filename.replace(/\.xml$/i,'.zip');
   if(!name||!parts.length)throw new Error('Укажите имя и части фикстуры.');
-  const payload={exportBoth:true,exportGdtf:true,sourceXml,xml:new XMLSerializer().serializeToString(xmlDocument),compoundIndex:selectedCompound?compoundNodes.indexOf(selectedCompound):null,name,parts:parts.map(p=>({type:p.type,number:p.number,plotX:p.plotX,plotY:p.plotY,sourceIndex:p.source?oldParts.indexOf(p.source):null}))};
+  const payload={resourceBase64:sourceResources,packageFormat:packaged?format:null,exportBoth:true,exportGdtf:true,sourceXml,xml:new XMLSerializer().serializeToString(xmlDocument),compoundIndex:selectedCompound?compoundNodes.indexOf(selectedCompound):null,name,parts:parts.map(p=>({type:p.type,number:p.number,plotX:p.plotX,plotY:p.plotY,sourceIndex:p.source?oldParts.indexOf(p.source):null}))};
   let selectedHandle;
   if(typeof window.showSaveFilePicker==='function'){
-   selectedHandle=await window.showSaveFilePicker({suggestedName:job.filename,types:pickerTypes(job.format)});
+   selectedHandle=await window.showSaveFilePicker({suggestedName:job.filename,types:pickerTypes(job.format,job.packaged)});
   }
   if(revision!==loadRevision)return;
   showStatus('Генерация XML…','success');
@@ -563,8 +569,9 @@ async function generateAndSave(){
   if(revision!==loadRevision)return;
   if(!data.xml||!data.ma2Xml)throw new Error('Не удалось сформировать оба формата. Обновите страницу и попробуйте снова.');
   if(job.format==='gdtf'&&!data.gdtfBase64)throw new Error(data.gdtfError||'Не удалось сформировать GDTF.');
-  job.gdtfBase64=data.gdtfBase64;job.originReceipt=data.originReceipt;job.warnings=data.warnings||[];job.hogXml=data.xml;job.ma2Xml=data.ma2Xml;job.xml=job.format==='ma2'?data.ma2Xml:data.xml;job.row=document.createElement('div');job.row.style.cssText='margin-top:12px;padding:12px;background:#edf2f7;border-radius:6px';el('saveResults').prepend(job.row);
-  saveMessage(job,'Файл готов к сохранению.'+(data.warnings&&data.warnings.length?' '+data.warnings.join(' '):''));showStatus('Сначала сохраните XML на компьютер. Затем он будет отправлен в библиотеку.','success');
+  if(job.packaged&&!data.packageBase64)throw new Error('Не удалось сформировать ZIP с ресурсами.');
+  job.packageBase64=data.packageBase64;job.resourceBase64=data.resourceBase64;job.gdtfBase64=data.gdtfBase64;job.originReceipt=data.originReceipt;job.warnings=data.warnings||[];job.hogXml=data.xml;job.ma2Xml=data.ma2Xml;job.xml=job.format==='ma2'?data.ma2Xml:data.xml;job.row=document.createElement('div');job.row.style.cssText='margin-top:12px;padding:12px;background:#edf2f7;border-radius:6px';el('saveResults').prepend(job.row);
+  saveMessage(job,'Файл готов к сохранению.'+(data.warnings&&data.warnings.length?' '+data.warnings.join(' '):''));showStatus('Сначала сохраните файл на компьютер. Затем он будет отправлен в библиотеку.','success');
   await saveGeneratedFile(job,selectedHandle);
  }catch(error){if(revision===loadRevision)showStatus(error.name==='AbortError'?'Сохранение отменено. На сайт ничего не отправлено.':error.message,'error');}
  finally{saveFlowBusy=false;button.disabled=false;}

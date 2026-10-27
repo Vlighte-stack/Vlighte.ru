@@ -1,0 +1,44 @@
+[
+  {
+    "test": "tests/test_library.py",
+    "exit": 0,
+    "stdout": "PASS owner-only IP, public IP excluded, owner-only purge/POST/CSRF, malformed IDs rejected, snapshot-only deletion, active/new trash protected, empty trash idempotent\n",
+    "stderr": ""
+  },
+  {
+    "test": "tests/test_padding.py",
+    "exit": 0,
+    "stdout": "PASS leading/trailing padding attaches to working module; all-empty profile rejected\n",
+    "stderr": ""
+  },
+  {
+    "test": "tests/test_gdtf.py",
+    "exit": 0,
+    "stdout": "PASS GDTF binary ZIP/recovery, 16-bit and virtual channel definitions, three formats in one record, download, signed hash tampering\n",
+    "stderr": ""
+  },
+  {
+    "test": "tests/test_breaks.py",
+    "exit": 0,
+    "stdout": "PASS separate active Break profiles, no implicit dropping, native ModeMaster/Qualifiers roundtrip without comments, native virtual DIM\n",
+    "stderr": ""
+  },
+  {
+    "test": "tests/test_colorimetry.py",
+    "exit": 0,
+    "stdout": "PASS: native XYZ, MA2 ZIP colorimetry, four-step cycles without comments, nonfinite rejection\n",
+    "stderr": ""
+  },
+  {
+    "test": "tests/test_library.js",
+    "exit": 0,
+    "stdout": "PASS guest/owner compact rendering, grouped links no ZIP, owner-only IP, per-record purge and restore, cancellation, exactly one ID removed, bulk clear retained\n",
+    "stderr": ""
+  },
+  {
+    "test": "tests/test_save_flow.js",
+    "exit": 0,
+    "stdout": "PASS: both selections open picker synchronously; selected XML written; both archived only after close; cancellation and disk failure never archive\n",
+    "stderr": ""
+  }
+]

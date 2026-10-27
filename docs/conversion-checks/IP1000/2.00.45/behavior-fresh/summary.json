@@ -1,0 +1,14 @@
+{
+  "version": "IP1000_external_no-recovery_2.00.45",
+  "rows": 891,
+  "previousDifferentRows": 663,
+  "classifications": {
+    "labels_structure_or_quantization": 701,
+    "control_or_visualization_change": 190
+  },
+  "categoryRows": {
+    "quantization": 26,
+    "set_labels": 304,
+    "wheel_visualization": 190
+  }
+}

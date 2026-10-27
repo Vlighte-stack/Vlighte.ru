@@ -1,0 +1,80 @@
+﻿fixture,chain,before,after,transport,afterIssueCount
+02_BeskydBeam,GDTF-MA-MA-MA-GDTF,CIE → RGB precision loss,CIE/XYZ preserved within numerical tolerance,MA2 ZIP + colorimetry.json,0
+02_BeskydBeam,GDTF-MA-MA-HOG-GDTF,CIE → RGB precision loss,CIE/XYZ preserved within numerical tolerance,MA2 ZIP + colorimetry.json,0
+02_BeskydBeam,GDTF-MA-MA-GDTF-GDTF,CIE → RGB precision loss,CIE/XYZ preserved within numerical tolerance,MA2 ZIP + colorimetry.json,0
+02_BeskydBeam,GDTF-MA-HOG-MA-GDTF,CIE → RGB precision loss,CIE/XYZ preserved within numerical tolerance,MA2 ZIP + colorimetry.json,0
+02_BeskydBeam,GDTF-MA-HOG-HOG-GDTF,CIE → RGB precision loss,CIE/XYZ preserved within numerical tolerance,MA2 ZIP + colorimetry.json,0
+02_BeskydBeam,GDTF-MA-HOG-GDTF-GDTF,CIE → RGB precision loss,CIE/XYZ preserved within numerical tolerance,MA2 ZIP + colorimetry.json,0
+02_BeskydBeam,GDTF-MA-GDTF-MA-GDTF,CIE → RGB precision loss,CIE/XYZ preserved within numerical tolerance,MA2 ZIP + colorimetry.json,0
+02_BeskydBeam,GDTF-MA-GDTF-HOG-GDTF,CIE → RGB precision loss,CIE/XYZ preserved within numerical tolerance,MA2 ZIP + colorimetry.json,0
+02_BeskydBeam,GDTF-MA-GDTF-GDTF-GDTF,CIE → RGB precision loss,CIE/XYZ preserved within numerical tolerance,MA2 ZIP + colorimetry.json,0
+02_BeskydBeam,GDTF-HOG-MA-MA-GDTF,CIE → RGB precision loss,CIE/XYZ preserved within numerical tolerance,MA2 ZIP + colorimetry.json,0
+02_BeskydBeam,GDTF-HOG-MA-HOG-GDTF,CIE → RGB precision loss,CIE/XYZ preserved within numerical tolerance,MA2 ZIP + colorimetry.json,0
+02_BeskydBeam,GDTF-HOG-MA-GDTF-GDTF,CIE → RGB precision loss,CIE/XYZ preserved within numerical tolerance,MA2 ZIP + colorimetry.json,0
+02_BeskydBeam,GDTF-HOG-HOG-MA-GDTF,CIE → RGB precision loss,CIE/XYZ preserved within numerical tolerance,MA2 ZIP + colorimetry.json,0
+02_BeskydBeam,GDTF-HOG-HOG-HOG-GDTF,CIE → RGB precision loss,CIE/XYZ preserved within numerical tolerance,native HOG XYZ / GDTF CIE,0
+02_BeskydBeam,GDTF-HOG-HOG-GDTF-GDTF,CIE → RGB precision loss,CIE/XYZ preserved within numerical tolerance,native HOG XYZ / GDTF CIE,0
+02_BeskydBeam,GDTF-HOG-GDTF-MA-GDTF,CIE → RGB precision loss,CIE/XYZ preserved within numerical tolerance,MA2 ZIP + colorimetry.json,0
+02_BeskydBeam,GDTF-HOG-GDTF-HOG-GDTF,CIE → RGB precision loss,CIE/XYZ preserved within numerical tolerance,native HOG XYZ / GDTF CIE,0
+02_BeskydBeam,GDTF-HOG-GDTF-GDTF-GDTF,CIE → RGB precision loss,CIE/XYZ preserved within numerical tolerance,native HOG XYZ / GDTF CIE,0
+02_BeskydBeam,GDTF-GDTF-MA-MA-GDTF,CIE → RGB precision loss,CIE/XYZ preserved within numerical tolerance,MA2 ZIP + colorimetry.json,0
+02_BeskydBeam,GDTF-GDTF-MA-HOG-GDTF,CIE → RGB precision loss,CIE/XYZ preserved within numerical tolerance,MA2 ZIP + colorimetry.json,0
+02_BeskydBeam,GDTF-GDTF-MA-GDTF-GDTF,CIE → RGB precision loss,CIE/XYZ preserved within numerical tolerance,MA2 ZIP + colorimetry.json,0
+02_BeskydBeam,GDTF-GDTF-HOG-MA-GDTF,CIE → RGB precision loss,CIE/XYZ preserved within numerical tolerance,MA2 ZIP + colorimetry.json,0
+02_BeskydBeam,GDTF-GDTF-HOG-HOG-GDTF,CIE → RGB precision loss,CIE/XYZ preserved within numerical tolerance,native HOG XYZ / GDTF CIE,0
+02_BeskydBeam,GDTF-GDTF-HOG-GDTF-GDTF,CIE → RGB precision loss,CIE/XYZ preserved within numerical tolerance,native HOG XYZ / GDTF CIE,0
+02_BeskydBeam,GDTF-GDTF-GDTF-MA-GDTF,CIE → RGB precision loss,CIE/XYZ preserved within numerical tolerance,MA2 ZIP + colorimetry.json,0
+02_BeskydBeam,GDTF-GDTF-GDTF-HOG-GDTF,CIE → RGB precision loss,CIE/XYZ preserved within numerical tolerance,native HOG XYZ / GDTF CIE,0
+02_BeskydBeam,GDTF-GDTF-GDTF-GDTF-GDTF,CIE → RGB precision loss,CIE/XYZ preserved within numerical tolerance,native HOG XYZ / GDTF CIE,0
+09_Robin iSpiiderX,GDTF-MA-MA-MA-GDTF,CIE → RGB precision loss,CIE/XYZ preserved within numerical tolerance,MA2 ZIP + colorimetry.json,0
+09_Robin iSpiiderX,GDTF-MA-MA-HOG-GDTF,CIE → RGB precision loss,CIE/XYZ preserved within numerical tolerance,MA2 ZIP + colorimetry.json,0
+09_Robin iSpiiderX,GDTF-MA-MA-GDTF-GDTF,CIE → RGB precision loss,CIE/XYZ preserved within numerical tolerance,MA2 ZIP + colorimetry.json,0
+09_Robin iSpiiderX,GDTF-MA-HOG-MA-GDTF,CIE → RGB precision loss,CIE/XYZ preserved within numerical tolerance,MA2 ZIP + colorimetry.json,0
+09_Robin iSpiiderX,GDTF-MA-HOG-HOG-GDTF,CIE → RGB precision loss,CIE/XYZ preserved within numerical tolerance,MA2 ZIP + colorimetry.json,0
+09_Robin iSpiiderX,GDTF-MA-HOG-GDTF-GDTF,CIE → RGB precision loss,CIE/XYZ preserved within numerical tolerance,MA2 ZIP + colorimetry.json,0
+09_Robin iSpiiderX,GDTF-MA-GDTF-MA-GDTF,CIE → RGB precision loss,CIE/XYZ preserved within numerical tolerance,MA2 ZIP + colorimetry.json,0
+09_Robin iSpiiderX,GDTF-MA-GDTF-HOG-GDTF,CIE → RGB precision loss,CIE/XYZ preserved within numerical tolerance,MA2 ZIP + colorimetry.json,0
+09_Robin iSpiiderX,GDTF-MA-GDTF-GDTF-GDTF,CIE → RGB precision loss,CIE/XYZ preserved within numerical tolerance,MA2 ZIP + colorimetry.json,0
+09_Robin iSpiiderX,GDTF-HOG-MA-MA-GDTF,CIE → RGB precision loss,CIE/XYZ preserved within numerical tolerance,MA2 ZIP + colorimetry.json,0
+09_Robin iSpiiderX,GDTF-HOG-MA-HOG-GDTF,CIE → RGB precision loss,CIE/XYZ preserved within numerical tolerance,MA2 ZIP + colorimetry.json,0
+09_Robin iSpiiderX,GDTF-HOG-MA-GDTF-GDTF,CIE → RGB precision loss,CIE/XYZ preserved within numerical tolerance,MA2 ZIP + colorimetry.json,0
+09_Robin iSpiiderX,GDTF-HOG-HOG-MA-GDTF,CIE → RGB precision loss,CIE/XYZ preserved within numerical tolerance,MA2 ZIP + colorimetry.json,0
+09_Robin iSpiiderX,GDTF-HOG-HOG-HOG-GDTF,CIE → RGB precision loss,CIE/XYZ preserved within numerical tolerance,native HOG XYZ / GDTF CIE,0
+09_Robin iSpiiderX,GDTF-HOG-HOG-GDTF-GDTF,CIE → RGB precision loss,CIE/XYZ preserved within numerical tolerance,native HOG XYZ / GDTF CIE,0
+09_Robin iSpiiderX,GDTF-HOG-GDTF-MA-GDTF,CIE → RGB precision loss,CIE/XYZ preserved within numerical tolerance,MA2 ZIP + colorimetry.json,0
+09_Robin iSpiiderX,GDTF-HOG-GDTF-HOG-GDTF,CIE → RGB precision loss,CIE/XYZ preserved within numerical tolerance,native HOG XYZ / GDTF CIE,0
+09_Robin iSpiiderX,GDTF-HOG-GDTF-GDTF-GDTF,CIE → RGB precision loss,CIE/XYZ preserved within numerical tolerance,native HOG XYZ / GDTF CIE,0
+09_Robin iSpiiderX,GDTF-GDTF-MA-MA-GDTF,CIE → RGB precision loss,CIE/XYZ preserved within numerical tolerance,MA2 ZIP + colorimetry.json,0
+09_Robin iSpiiderX,GDTF-GDTF-MA-HOG-GDTF,CIE → RGB precision loss,CIE/XYZ preserved within numerical tolerance,MA2 ZIP + colorimetry.json,0
+09_Robin iSpiiderX,GDTF-GDTF-MA-GDTF-GDTF,CIE → RGB precision loss,CIE/XYZ preserved within numerical tolerance,MA2 ZIP + colorimetry.json,0
+09_Robin iSpiiderX,GDTF-GDTF-HOG-MA-GDTF,CIE → RGB precision loss,CIE/XYZ preserved within numerical tolerance,MA2 ZIP + colorimetry.json,0
+09_Robin iSpiiderX,GDTF-GDTF-HOG-HOG-GDTF,CIE → RGB precision loss,CIE/XYZ preserved within numerical tolerance,native HOG XYZ / GDTF CIE,0
+09_Robin iSpiiderX,GDTF-GDTF-HOG-GDTF-GDTF,CIE → RGB precision loss,CIE/XYZ preserved within numerical tolerance,native HOG XYZ / GDTF CIE,0
+09_Robin iSpiiderX,GDTF-GDTF-GDTF-MA-GDTF,CIE → RGB precision loss,CIE/XYZ preserved within numerical tolerance,MA2 ZIP + colorimetry.json,0
+09_Robin iSpiiderX,GDTF-GDTF-GDTF-HOG-GDTF,CIE → RGB precision loss,CIE/XYZ preserved within numerical tolerance,native HOG XYZ / GDTF CIE,0
+10_pixelPATT,GDTF-MA-MA-MA-GDTF,CIE → RGB precision loss,CIE/XYZ preserved within numerical tolerance,MA2 ZIP + colorimetry.json,0
+10_pixelPATT,GDTF-MA-MA-HOG-GDTF,CIE → RGB precision loss,CIE/XYZ preserved within numerical tolerance,MA2 ZIP + colorimetry.json,0
+10_pixelPATT,GDTF-MA-MA-GDTF-GDTF,CIE → RGB precision loss,CIE/XYZ preserved within numerical tolerance,MA2 ZIP + colorimetry.json,0
+10_pixelPATT,GDTF-MA-HOG-MA-GDTF,CIE → RGB precision loss,CIE/XYZ preserved within numerical tolerance,MA2 ZIP + colorimetry.json,0
+10_pixelPATT,GDTF-MA-HOG-HOG-GDTF,CIE → RGB precision loss,CIE/XYZ preserved within numerical tolerance,MA2 ZIP + colorimetry.json,0
+10_pixelPATT,GDTF-MA-HOG-GDTF-GDTF,CIE → RGB precision loss,CIE/XYZ preserved within numerical tolerance,MA2 ZIP + colorimetry.json,0
+10_pixelPATT,GDTF-MA-GDTF-MA-GDTF,CIE → RGB precision loss,CIE/XYZ preserved within numerical tolerance,MA2 ZIP + colorimetry.json,0
+10_pixelPATT,GDTF-MA-GDTF-HOG-GDTF,CIE → RGB precision loss,CIE/XYZ preserved within numerical tolerance,MA2 ZIP + colorimetry.json,0
+10_pixelPATT,GDTF-MA-GDTF-GDTF-GDTF,CIE → RGB precision loss,CIE/XYZ preserved within numerical tolerance,MA2 ZIP + colorimetry.json,0
+10_pixelPATT,GDTF-HOG-MA-MA-GDTF,CIE → RGB precision loss,CIE/XYZ preserved within numerical tolerance,MA2 ZIP + colorimetry.json,0
+10_pixelPATT,GDTF-HOG-MA-HOG-GDTF,CIE → RGB precision loss,CIE/XYZ preserved within numerical tolerance,MA2 ZIP + colorimetry.json,0
+10_pixelPATT,GDTF-HOG-MA-GDTF-GDTF,CIE → RGB precision loss,CIE/XYZ preserved within numerical tolerance,MA2 ZIP + colorimetry.json,0
+10_pixelPATT,GDTF-HOG-HOG-MA-GDTF,CIE → RGB precision loss,CIE/XYZ preserved within numerical tolerance,MA2 ZIP + colorimetry.json,0
+10_pixelPATT,GDTF-HOG-HOG-HOG-GDTF,CIE → RGB precision loss,CIE/XYZ preserved within numerical tolerance,native HOG XYZ / GDTF CIE,0
+10_pixelPATT,GDTF-HOG-HOG-GDTF-GDTF,CIE → RGB precision loss,CIE/XYZ preserved within numerical tolerance,native HOG XYZ / GDTF CIE,0
+10_pixelPATT,GDTF-HOG-GDTF-MA-GDTF,CIE → RGB precision loss,CIE/XYZ preserved within numerical tolerance,MA2 ZIP + colorimetry.json,0
+10_pixelPATT,GDTF-HOG-GDTF-HOG-GDTF,CIE → RGB precision loss,CIE/XYZ preserved within numerical tolerance,native HOG XYZ / GDTF CIE,0
+10_pixelPATT,GDTF-HOG-GDTF-GDTF-GDTF,CIE → RGB precision loss,CIE/XYZ preserved within numerical tolerance,native HOG XYZ / GDTF CIE,0
+10_pixelPATT,GDTF-GDTF-MA-MA-GDTF,CIE → RGB precision loss,CIE/XYZ preserved within numerical tolerance,MA2 ZIP + colorimetry.json,0
+10_pixelPATT,GDTF-GDTF-MA-HOG-GDTF,CIE → RGB precision loss,CIE/XYZ preserved within numerical tolerance,MA2 ZIP + colorimetry.json,0
+10_pixelPATT,GDTF-GDTF-MA-GDTF-GDTF,CIE → RGB precision loss,CIE/XYZ preserved within numerical tolerance,MA2 ZIP + colorimetry.json,0
+10_pixelPATT,GDTF-GDTF-HOG-MA-GDTF,CIE → RGB precision loss,CIE/XYZ preserved within numerical tolerance,MA2 ZIP + colorimetry.json,0
+10_pixelPATT,GDTF-GDTF-HOG-HOG-GDTF,CIE → RGB precision loss,CIE/XYZ preserved within numerical tolerance,native HOG XYZ / GDTF CIE,0
+10_pixelPATT,GDTF-GDTF-HOG-GDTF-GDTF,CIE → RGB precision loss,CIE/XYZ preserved within numerical tolerance,native HOG XYZ / GDTF CIE,0
+10_pixelPATT,GDTF-GDTF-GDTF-MA-GDTF,CIE → RGB precision loss,CIE/XYZ preserved within numerical tolerance,MA2 ZIP + colorimetry.json,0
+10_pixelPATT,GDTF-GDTF-GDTF-HOG-GDTF,CIE → RGB precision loss,CIE/XYZ preserved within numerical tolerance,native HOG XYZ / GDTF CIE,0

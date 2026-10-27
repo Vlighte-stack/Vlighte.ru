@@ -1,0 +1,530 @@
+[
+  {
+    "fixture": "IP1000",
+    "format": "MA",
+    "status": "READY",
+    "stats": {
+      "footprint": 42,
+      "slots": 42,
+      "modules": 3,
+      "instances": 13,
+      "channels": 42,
+      "virtual": 1,
+      "functions": 42,
+      "sets": 67,
+      "defaults": 3
+    },
+    "native": true
+  },
+  {
+    "fixture": "IP1000",
+    "format": "HOG",
+    "status": "READY",
+    "stats": {
+      "footprint": 42,
+      "modules": 3,
+      "instances": 13,
+      "channels": 44,
+      "functions": 86
+    },
+    "native": false
+  },
+  {
+    "fixture": "IP1000",
+    "format": "GDTF",
+    "status": "READY",
+    "stats": {
+      "footprint": 42,
+      "slots": 42,
+      "modules": 3,
+      "instances": 13,
+      "channels": 42,
+      "virtual": 1,
+      "functions": 42,
+      "sets": 69,
+      "defaults": 42,
+      "mode": "42ch"
+    },
+    "native": false
+  },
+  {
+    "fixture": "01_AlpineTubeRGB",
+    "format": "MA",
+    "status": "READY",
+    "stats": {
+      "footprint": 3,
+      "slots": 3,
+      "modules": 1,
+      "instances": 1,
+      "channels": 3,
+      "virtual": 0,
+      "functions": 3,
+      "sets": 0,
+      "defaults": 3
+    },
+    "native": false
+  },
+  {
+    "fixture": "01_AlpineTubeRGB",
+    "format": "HOG",
+    "status": "READY",
+    "stats": {
+      "footprint": 3,
+      "modules": 1,
+      "instances": 1,
+      "channels": 6,
+      "functions": 6
+    },
+    "native": false
+  },
+  {
+    "fixture": "01_AlpineTubeRGB",
+    "format": "GDTF",
+    "status": "READY",
+    "stats": {
+      "footprint": 3,
+      "slots": 3,
+      "modules": 1,
+      "instances": 1,
+      "channels": 3,
+      "virtual": 0,
+      "functions": 3,
+      "sets": 0,
+      "defaults": 3,
+      "mode": "RGB Simple"
+    },
+    "native": true
+  },
+  {
+    "fixture": "02_BeskydBeam",
+    "format": "MA",
+    "status": "READY",
+    "stats": {
+      "footprint": 17,
+      "slots": 17,
+      "modules": 1,
+      "instances": 1,
+      "channels": 15,
+      "virtual": 0,
+      "functions": 57,
+      "sets": 60,
+      "defaults": 15
+    },
+    "native": false
+  },
+  {
+    "fixture": "02_BeskydBeam",
+    "format": "HOG",
+    "status": "READY",
+    "stats": {
+      "footprint": 17,
+      "modules": 1,
+      "instances": 1,
+      "channels": 30,
+      "functions": 77
+    },
+    "native": false
+  },
+  {
+    "fixture": "02_BeskydBeam",
+    "format": "GDTF",
+    "status": "READY",
+    "stats": {
+      "footprint": 17,
+      "slots": 17,
+      "modules": 1,
+      "instances": 1,
+      "channels": 15,
+      "virtual": 0,
+      "functions": 57,
+      "sets": 60,
+      "defaults": 15,
+      "mode": "Default"
+    },
+    "native": true
+  },
+  {
+    "fixture": "03_BlenderControl",
+    "format": "MA",
+    "status": "READY",
+    "stats": {
+      "footprint": 6,
+      "slots": 6,
+      "modules": 2,
+      "instances": 2,
+      "channels": 6,
+      "virtual": 0,
+      "functions": 6,
+      "sets": 8,
+      "defaults": 6
+    },
+    "native": false
+  },
+  {
+    "fixture": "03_BlenderControl",
+    "format": "HOG",
+    "status": "READY",
+    "stats": {
+      "footprint": 6,
+      "modules": 2,
+      "instances": 2,
+      "channels": 12,
+      "functions": 15
+    },
+    "native": false
+  },
+  {
+    "fixture": "03_BlenderControl",
+    "format": "GDTF",
+    "status": "READY",
+    "stats": {
+      "footprint": 6,
+      "slots": 6,
+      "modules": 2,
+      "instances": 2,
+      "channels": 6,
+      "virtual": 0,
+      "functions": 6,
+      "sets": 8,
+      "defaults": 6,
+      "mode": "Basic"
+    },
+    "native": true
+  },
+  {
+    "fixture": "04_BrdoBulbLED",
+    "format": "MA",
+    "status": "READY",
+    "stats": {
+      "footprint": 9,
+      "slots": 9,
+      "modules": 1,
+      "instances": 1,
+      "channels": 8,
+      "virtual": 0,
+      "functions": 11,
+      "sets": 23,
+      "defaults": 8
+    },
+    "native": false
+  },
+  {
+    "fixture": "04_BrdoBulbLED",
+    "format": "HOG",
+    "status": "READY",
+    "stats": {
+      "footprint": 9,
+      "modules": 1,
+      "instances": 1,
+      "channels": 16,
+      "functions": 34
+    },
+    "native": false
+  },
+  {
+    "fixture": "04_BrdoBulbLED",
+    "format": "GDTF",
+    "status": "READY",
+    "stats": {
+      "footprint": 9,
+      "slots": 9,
+      "modules": 1,
+      "instances": 1,
+      "channels": 8,
+      "virtual": 0,
+      "functions": 11,
+      "sets": 23,
+      "defaults": 8,
+      "mode": "Standard mode"
+    },
+    "native": true
+  },
+  {
+    "fixture": "05_NeblinaWash",
+    "format": "MA",
+    "status": "READY",
+    "stats": {
+      "footprint": 11,
+      "slots": 11,
+      "modules": 3,
+      "instances": 3,
+      "channels": 9,
+      "virtual": 0,
+      "functions": 12,
+      "sets": 12,
+      "defaults": 9
+    },
+    "native": false
+  },
+  {
+    "fixture": "05_NeblinaWash",
+    "format": "HOG",
+    "status": "READY",
+    "stats": {
+      "footprint": 11,
+      "modules": 4,
+      "instances": 4,
+      "channels": 25,
+      "functions": 21
+    },
+    "native": false
+  },
+  {
+    "fixture": "05_NeblinaWash",
+    "format": "GDTF",
+    "status": "READY",
+    "stats": {
+      "footprint": 11,
+      "slots": 11,
+      "modules": 3,
+      "instances": 3,
+      "channels": 9,
+      "virtual": 0,
+      "functions": 12,
+      "sets": 12,
+      "defaults": 9,
+      "mode": "Default"
+    },
+    "native": true
+  },
+  {
+    "fixture": "06_RysyParLED",
+    "format": "MA",
+    "status": "READY",
+    "stats": {
+      "footprint": 6,
+      "slots": 6,
+      "modules": 1,
+      "instances": 1,
+      "channels": 6,
+      "virtual": 0,
+      "functions": 9,
+      "sets": 17,
+      "defaults": 6
+    },
+    "native": false
+  },
+  {
+    "fixture": "06_RysyParLED",
+    "format": "HOG",
+    "status": "READY",
+    "stats": {
+      "footprint": 6,
+      "modules": 1,
+      "instances": 1,
+      "channels": 12,
+      "functions": 28
+    },
+    "native": false
+  },
+  {
+    "fixture": "06_RysyParLED",
+    "format": "GDTF",
+    "status": "READY",
+    "stats": {
+      "footprint": 6,
+      "slots": 6,
+      "modules": 1,
+      "instances": 1,
+      "channels": 6,
+      "virtual": 0,
+      "functions": 9,
+      "sets": 17,
+      "defaults": 6,
+      "mode": "RGBW"
+    },
+    "native": true
+  },
+  {
+    "fixture": "07_TriglavCubeXYZ",
+    "format": "MA",
+    "status": "READY",
+    "stats": {
+      "footprint": 12,
+      "slots": 12,
+      "modules": 1,
+      "instances": 1,
+      "channels": 12,
+      "virtual": 0,
+      "functions": 15,
+      "sets": 2,
+      "defaults": 12
+    },
+    "native": false
+  },
+  {
+    "fixture": "07_TriglavCubeXYZ",
+    "format": "HOG",
+    "status": "READY",
+    "stats": {
+      "footprint": 12,
+      "modules": 1,
+      "instances": 1,
+      "channels": 24,
+      "functions": 18
+    },
+    "native": false
+  },
+  {
+    "fixture": "07_TriglavCubeXYZ",
+    "format": "GDTF",
+    "status": "READY",
+    "stats": {
+      "footprint": 12,
+      "slots": 12,
+      "modules": 1,
+      "instances": 1,
+      "channels": 12,
+      "virtual": 0,
+      "functions": 15,
+      "sets": 2,
+      "defaults": 12,
+      "mode": "Default"
+    },
+    "native": true
+  },
+  {
+    "fixture": "08_TyrolPAR",
+    "format": "MA",
+    "status": "READY",
+    "stats": {
+      "footprint": 1,
+      "slots": 1,
+      "modules": 1,
+      "instances": 1,
+      "channels": 1,
+      "virtual": 0,
+      "functions": 1,
+      "sets": 3,
+      "defaults": 1
+    },
+    "native": false
+  },
+  {
+    "fixture": "08_TyrolPAR",
+    "format": "HOG",
+    "status": "READY",
+    "stats": {
+      "footprint": 1,
+      "modules": 1,
+      "instances": 1,
+      "channels": 2,
+      "functions": 3
+    },
+    "native": false
+  },
+  {
+    "fixture": "08_TyrolPAR",
+    "format": "GDTF",
+    "status": "READY",
+    "stats": {
+      "footprint": 1,
+      "slots": 1,
+      "modules": 1,
+      "instances": 1,
+      "channels": 1,
+      "virtual": 0,
+      "functions": 1,
+      "sets": 3,
+      "defaults": 1,
+      "mode": "Default"
+    },
+    "native": true
+  },
+  {
+    "fixture": "09_Robin iSpiiderX",
+    "format": "MA",
+    "status": "READY",
+    "stats": {
+      "footprint": 123,
+      "slots": 123,
+      "modules": 7,
+      "instances": 25,
+      "channels": 133,
+      "virtual": 19,
+      "functions": 332,
+      "sets": 778,
+      "defaults": 133
+    },
+    "native": false
+  },
+  {
+    "fixture": "09_Robin iSpiiderX",
+    "format": "HOG",
+    "status": "READY",
+    "stats": {
+      "footprint": 123,
+      "modules": 10,
+      "instances": 28,
+      "channels": 258,
+      "functions": 550
+    },
+    "native": false
+  },
+  {
+    "fixture": "09_Robin iSpiiderX",
+    "format": "GDTF",
+    "status": "READY",
+    "stats": {
+      "footprint": 123,
+      "slots": 123,
+      "modules": 7,
+      "instances": 25,
+      "channels": 133,
+      "virtual": 19,
+      "functions": 332,
+      "sets": 778,
+      "defaults": 133,
+      "mode": "Mode 10 - Pattern full RGBW"
+    },
+    "native": true
+  },
+  {
+    "fixture": "10_pixelPATT",
+    "format": "MA",
+    "status": "READY",
+    "stats": {
+      "footprint": 13,
+      "slots": 13,
+      "modules": 2,
+      "instances": 2,
+      "channels": 13,
+      "virtual": 0,
+      "functions": 166,
+      "sets": 199,
+      "defaults": 13
+    },
+    "native": false
+  },
+  {
+    "fixture": "10_pixelPATT",
+    "format": "HOG",
+    "status": "READY",
+    "stats": {
+      "footprint": 13,
+      "modules": 3,
+      "instances": 3,
+      "channels": 30,
+      "functions": 213
+    },
+    "native": false
+  },
+  {
+    "fixture": "10_pixelPATT",
+    "format": "GDTF",
+    "status": "READY",
+    "stats": {
+      "footprint": 13,
+      "slots": 13,
+      "modules": 2,
+      "instances": 2,
+      "channels": 13,
+      "virtual": 0,
+      "functions": 166,
+      "sets": 199,
+      "defaults": 13,
+      "mode": "Mode 1 - Wash"
+    },
+    "native": true
+  }
+]

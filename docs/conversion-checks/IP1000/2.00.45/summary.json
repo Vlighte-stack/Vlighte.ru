@@ -1,0 +1,82 @@
+{
+  "version": "2.00.45",
+  "deployed": true,
+  "liveVersion": "2.00.45",
+  "fixtures": 11,
+  "uniqueClosedFourConversionChains": 891,
+  "separateRuns": 3,
+  "matrixCounts": {
+    "same-inputs-891-2.00.45": {
+      "MATCH": 228,
+      "DIFFERENT": 663
+    },
+    "IP1000_external_no-recovery_2.00.45": {
+      "MATCH": 228,
+      "DIFFERENT": 663
+    },
+    "resource-matrix-891-2.00.45": {
+      "MATCH": 228,
+      "DIFFERENT": 663
+    }
+  },
+  "oldPrecisionCases": 79,
+  "oldPrecisionCasesFixedWithZip": 79,
+  "oldCasesNativeRoute": 22,
+  "oldCasesMaZipRoute": 57,
+  "functionalOrAssignmentDifferencesByRun": {
+    "same-inputs-891-2.00.45": 0,
+    "IP1000_external_no-recovery_2.00.45": 0,
+    "resource-matrix-891-2.00.45": 0
+  },
+  "wheelSummaries": {
+    "same-inputs-891-2.00.45": {
+      "precisionMetrics": {
+        "probes": 12339,
+        "maxXYZDelta": 2.136541074316685,
+        "maxCieComponentDelta": 11.552749369822436
+      },
+      "rows": 891,
+      "categoryRows": {
+        "wheel_media": 26,
+        "xyz_precision_change": 57,
+        "cie_to_rgb_representation": 57
+      },
+      "imageChangedRows": 26,
+      "sourceUnboundRows": 0,
+      "resultUnboundRows": 0
+    },
+    "IP1000_external_no-recovery_2.00.45": {
+      "precisionMetrics": {
+        "probes": 22169,
+        "maxXYZDelta": 2.1365410743166855,
+        "maxCieComponentDelta": 11.552749369822436
+      },
+      "rows": 891,
+      "categoryRows": {
+        "wheel_media": 64,
+        "missing_exact_xyz": 39,
+        "xyz_precision_change": 101,
+        "cie_to_rgb_representation": 57
+      },
+      "imageChangedRows": 26,
+      "sourceUnboundRows": 81,
+      "resultUnboundRows": 3
+    },
+    "resource-matrix-891-2.00.45": {
+      "precisionMetrics": {
+        "probes": 37017,
+        "maxXYZDelta": 2.6645352591003757e-15,
+        "maxCieComponentDelta": 7.105427357601002e-15
+      },
+      "rows": 891,
+      "categoryRows": {},
+      "imageChangedRows": 0,
+      "sourceUnboundRows": 81,
+      "resultUnboundRows": 3
+    }
+  },
+  "appSha256": "687b8ea164b99ae4258086a1e7122801d4cd0784c113cb35b88651d8e870f429",
+  "consoleImportTested": false,
+  "plainMaXmlStillRgbOnly": true,
+  "precisionRequiresMaZip": true
+}

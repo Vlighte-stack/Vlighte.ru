@@ -1,0 +1,12 @@
+{
+  "chain": "GDTF-HOG-MA-HOG-GDTF",
+  "maxCieComponentDelta": 5.551115123125783e-17,
+  "inputWheelSlotCount": 12,
+  "finalWheelSlotCount": 15,
+  "commentsStrippedAtEveryBoundary": true,
+  "maPackageCarriesOpenXyzBindings": true,
+  "maNativeRgbApproximationUnchanged": true,
+  "mismatchedProfileRejected": true,
+  "nonfiniteColorRejected": true,
+  "consoleImportTested": false
+}

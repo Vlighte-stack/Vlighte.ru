@@ -1,0 +1,16 @@
+{
+  "precisionMetrics": {
+    "probes": 12339,
+    "maxXYZDelta": 2.136541074316685,
+    "maxCieComponentDelta": 11.552749369822436
+  },
+  "rows": 891,
+  "categoryRows": {
+    "wheel_media": 26,
+    "xyz_precision_change": 57,
+    "cie_to_rgb_representation": 57
+  },
+  "imageChangedRows": 26,
+  "sourceUnboundRows": 0,
+  "resultUnboundRows": 0
+}

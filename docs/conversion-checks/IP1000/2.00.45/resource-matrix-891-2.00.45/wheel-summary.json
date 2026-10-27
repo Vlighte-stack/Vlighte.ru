@@ -1,0 +1,12 @@
+{
+  "precisionMetrics": {
+    "probes": 37017,
+    "maxXYZDelta": 2.6645352591003757e-15,
+    "maxCieComponentDelta": 7.105427357601002e-15
+  },
+  "rows": 891,
+  "categoryRows": {},
+  "imageChangedRows": 0,
+  "sourceUnboundRows": 81,
+  "resultUnboundRows": 3
+}

@@ -844,11 +844,12 @@ def capture_origin(environ):
  address=request_ip(environ)
  return {'ip':address,'countryCode':lookup_country(address),'generatedAt':datetime.datetime.now(datetime.timezone.utc).isoformat()}
 
-def origin_receipt(origin,hog,ma,gdtf=None):
+def origin_receipt(origin,hog,ma,gdtf=None,resources=None):
  record=owner_credentials()
  if not record:return None
  data={**origin,'expires':int(time.time())+86400,'hog':hashlib.sha256(hog.encode()).hexdigest(),'ma':hashlib.sha256((ma or '').encode()).hexdigest()}
  if gdtf:data['gdtf']=hashlib.sha256(gdtf.encode()).hexdigest()
+ if resources:data['resources']=hashlib.sha256(resources.encode()).hexdigest()
  value=base64.urlsafe_b64encode(json.dumps(data,separators=(',',':')).encode()).decode()
  signature=hmac.new(bytes.fromhex(record['hash']),('vlighte-origin:'+value).encode(),hashlib.sha256).hexdigest()
  return value+'.'+signature
@@ -865,6 +866,7 @@ def archive_origin(payload,environ):
   if not 0<data['expires']-int(time.time())<=86400:raise ValueError()
   if data['hog']!=hashlib.sha256(payload['xml'].encode()).hexdigest() or data['ma']!=hashlib.sha256((payload.get('ma2Xml') or '').encode()).hexdigest():raise ValueError()
   if (data.get('gdtf') or payload.get('gdtfBase64')) and data.get('gdtf')!=hashlib.sha256((payload.get('gdtfBase64') or '').encode()).hexdigest():raise ValueError()
+  if (data.get('resources') or payload.get('resourceBase64')) and data.get('resources')!=hashlib.sha256((payload.get('resourceBase64') or '').encode()).hexdigest():raise ValueError()
   return {key:data[key] for key in ('ip','countryCode','generatedAt')}
  except (ValueError,TypeError,KeyError,AttributeError):raise ValueError('Срок подтверждения генерации истёк или данные изменились. Сгенерируйте файл повторно.')
 
@@ -920,6 +922,7 @@ def find_existing(payload,generated):
     else:
      sources=list(info_path.parent.glob('source_*.xml'))
      if len(sources)!=1 or object_fingerprint(sources[0].read_text(encoding='utf-8'))!=object_fingerprint(payload['sourceXml']):continue
+   if not resource_identity_matches44(info,payload):continue
    return info
   except (OSError,ValueError,KeyError,TypeError):continue
  return None
@@ -1115,7 +1118,7 @@ def gdtf_to_ma(root,fixture,mode):
  if len(reached)!=len(channels):raise ValueError('Некоторые каналы GDTF не связаны с геометрией выбранного режима.')
  ma=E.Element(mq('MA'),major_vers='3',minor_vers='9',stream_vers='60');f=E.SubElement(ma,mq('FixtureType'),name=fixture.get('Name','GDTF'),manufacturer=fixture.get('Manufacturer',''),mode=mode.get('Name'))
  mods=E.SubElement(f,mq('Modules'));instances=E.SubElement(f,mq('Instances'));occupied=set();virtual=0;functions=0;sets=0;unmapped=set();built=[]
- aliases={'Dimmer':'DIM','Pan':'PAN','Tilt':'TILT','ColorAdd_R':'COLORRGB1','ColorAdd_G':'COLORRGB2','ColorAdd_B':'COLORRGB3','ColorAdd_W':'WHITE','ColorAdd_A':'AMBER','ColorAdd_C':'CYAN','ColorSub_C':'CYAN','ColorSub_M':'MAGENTA','ColorSub_Y':'YELLOW','PositionMSpeed':'PANTILTSPEED','IntensityMSpeed':'DIMMERSPEED','Effects1':'EFFECT','ColorEffects1':'COLORMACRO','ColorMacro1Rate':'MACRORATE','StrobeMode':'SHUTTER1','Shutter1':'SHUTTER1','Shutter1Strobe':'SHUTTER1','NoFeature':'DUMMY','ColorMacro1Rate':'MACRORATE','ColorEffects1':'COLORMACRO','PanRotate':'PAN2','TiltRotate':'TILT2','Gobo1Pos':'GOBO1_POS','Gobo1PosRotate':'GOBO1_POS','Gobo2Pos':'GOBO2_POS','Gobo2PosRotate':'GOBO2_POS'}
+ aliases={'Dimmer':'DIM','Pan':'PAN','Tilt':'TILT','ColorAdd_R':'COLORRGB1','ColorAdd_G':'COLORRGB2','ColorAdd_B':'COLORRGB3','ColorAdd_W':'WHITE','ColorAdd_A':'AMBER','ColorAdd_RY':'COLORRGB4','ColorAdd_C':'CYAN','ColorSub_C':'CYAN','ColorSub_M':'MAGENTA','ColorSub_Y':'YELLOW','PositionMSpeed':'PANTILTSPEED','IntensityMSpeed':'DIMMERSPEED','Effects1':'EFFECT','ColorEffects1':'COLORMACRO','ColorMacro1Rate':'MACRORATE','StrobeMode':'SHUTTER1','Shutter1':'SHUTTER1','Shutter1Strobe':'SHUTTER1','NoFeature':'DUMMY','ColorMacro1Rate':'MACRORATE','ColorEffects1':'COLORMACRO','PanRotate':'PAN2','TiltRotate':'TILT2','Gobo1Pos':'GOBO1_POS','Gobo1PosRotate':'GOBO1_POS','Gobo2Pos':'GOBO2_POS','Gobo2PosRotate':'GOBO2_POS'}
  for key,shift,own in groups:
   physical=[]
   for c in own:
@@ -1180,6 +1183,7 @@ def gdtf_to_ma(root,fixture,mode):
     if fi==0 or fn.get('Name')==initial:c.set('default',str(gdtf_dmx(fn.get('Default','0/1'),bits)))
     attrs={'index':str(fi),'attribute':mapped,'subattribute':'RESERVED' if mapped=='DUMMY' else mapped,'attribute_user_name':fn.get('Name',attr),'feature':feature,'preset':preset,'min_dmx_24':str(round(lo*16777215/maximum)),'max_dmx_24':str(round(hi*16777215/maximum)),'physfrom':str(pf),'physto':str(pt),'from':str(pf*scale),'to':str(pt*scale)}
     if condition[0]:attrs.update(mode_dmx_start=str(condition[1]),mode_dmx_end=str(condition[2]))
+    if intervals and all(item[0].get('Attribute',logical.get('Attribute'))=='NoFeature' for item in intervals):attrs.update(attribute='DUMMY',subattribute='RESERVED',feature='CONTROL',preset='CONTROL')
     out=E.SubElement(c,mq('ChannelFunction'),attrs);functions+=1
     channel_sets=fn.findall('ChannelSet');set_starts=[gdtf_dmx(s.get('DMXFrom','0/1'),bits) for s in channel_sets]
     if any(a>=b for a,b in zip(set_starts,set_starts[1:])) or any(not lo<=s<=hi for s in set_starts):raise ValueError('Некорректные ChannelSet в GDTF.')
@@ -1187,10 +1191,11 @@ def gdtf_to_ma(root,fixture,mode):
      end=set_starts[si+1]-1 if si+1<len(set_starts) else hi
      E.SubElement(out,mq('ChannelSet'),index=str(si),name=s.get('Name',''),from_dmx=str(set_starts[si]),to_dmx=str(end));sets+=1
  if not occupied:raise ValueError('Нет физических каналов GDTF.')
+ import_gdtf_wheels44(ma,fixture,mode)
  merge_identical_modules(f)
  validate_ma2(ma)
  ma.insert(0,E.Comment(GDTF_MARKER+base64.b64encode(json.dumps({'mode':mode.get('Name'),'descriptionXml':serialize(root)},ensure_ascii=True,separators=(',',':')).encode()).decode()))
- warnings=['Импортируются DMX-данные; 3D-модели, колёса и изображения GDTF в HOG4/MA2 не переносятся.']
+ warnings=['Переносятся DMX-данные и поддерживаемые данные колёс; 3D-модели не включены.']
  if unmapped:warnings.append('Общие управляющие каналы, требующие проверки на пульте: '+', '.join(sorted(unmapped)))
  return ma,{'mode':mode.get('Name'),'footprint':max(occupied),'dmxSlots':len(occupied),'modules':len(list(mods)),'instances':len(built),'virtualChannels':virtual,'functions':functions,'channelSets':sets},warnings
 
@@ -1248,7 +1253,7 @@ def gdtf_from_ma(ma_xml,name):
   definitions=E.SubElement(f,'AttributeDefinitions');features=E.SubElement(definitions,'FeatureGroups');attributes=E.SubElement(definitions,'Attributes');defined=set();feature_groups={}
   geometries=E.SubElement(f,'Geometries');base=E.SubElement(geometries,'Geometry',Name='Base',Position=identity);modes=E.SubElement(f,'DMXModes');mode=E.SubElement(modes,'DMXMode',Name=fixture.get('mode') or str(validate_ma2(ma))+'ch',Geometry='Base');dmx=E.SubElement(mode,'DMXChannels')
   modules={n.get('index'):n for n in descendants(fixture,'Module')}
-  aliases={'DIM':'Dimmer','PAN':'Pan','TILT':'Tilt','COLORRGB1':'ColorAdd_R','COLORRGB2':'ColorAdd_G','COLORRGB3':'ColorAdd_B','COLORRGB4':'ColorAdd_A','COLORRGB5':'ColorAdd_W','COLORRGB7':'ColorAdd_W','WHITE':'ColorAdd_W','RED':'ColorAdd_R','GREEN':'ColorAdd_G','BLUE':'ColorAdd_B','AMBER':'ColorAdd_A','COLORCMY1':'ColorSub_C','COLORCMY2':'ColorSub_M','COLORCMY3':'ColorSub_Y','DUMMY':'NoFeature','RESERVED':'NoFeature','SHUTTER1':'Shutter1','STROBE':'Shutter1Strobe','ZOOM':'Zoom','FOCUS':'Focus','IRIS':'Iris','FROST':'Frost','CTO':'CTO','CTB':'CTB','PANTILTSPEED':'PositionMSpeed','DIMMERSPEED':'IntensityMSpeed','MACRORATE':'ColorMacro1Rate','COLORMACRO':'ColorEffects1','EFFECT':'Effects1'}
+  aliases={'DIM':'Dimmer','PAN':'Pan','TILT':'Tilt','COLORRGB1':'ColorAdd_R','COLORRGB2':'ColorAdd_G','COLORRGB3':'ColorAdd_B','COLORRGB4':'ColorAdd_RY','COLORRGB5':'ColorAdd_W','COLORRGB7':'ColorAdd_W','WHITE':'ColorAdd_W','RED':'ColorAdd_R','GREEN':'ColorAdd_G','BLUE':'ColorAdd_B','AMBER':'ColorAdd_RY','COLORCMY1':'ColorSub_C','COLORCMY2':'ColorSub_M','COLORCMY3':'ColorSub_Y','DUMMY':'NoFeature','RESERVED':'NoFeature','SHUTTER1':'Shutter1','STROBE':'Shutter1Strobe','ZOOM':'Zoom','FOCUS':'Focus','IRIS':'Iris','FROST':'Frost','CTO':'CTO','CTB':'CTB','PANTILTSPEED':'PositionMSpeed','DIMMERSPEED':'IntensityMSpeed','MACRORATE':'ColorMacro1Rate','COLORMACRO':'ColorEffects1','EFFECT':'Effects1'}
   def attribute(value):
    if value in aliases:result=aliases[value]
    elif re.fullmatch(r'DIM\d+',value):result='Dimmer'+value[3:]
@@ -1414,7 +1419,10 @@ def convert(root):
    default=round(default) # HOG range boundaries and DMX output are integer slots.
    candidates=[r for r in descendants(ch,'Range') if int(r.get('dmxstart'))<=default<=int(r.get('dmxend',r.get('dmxstart')))]
    if not candidates:raise ValueError('Default MA2 не входит в диапазоны HOG.')
-   r=candidates[0];low=int(r.get('dmxstart'));high=int(r.get('dmxend',str(low)));start=real_number(r.get('start','0'));end=real_number(r.get('end',str(start)));value=start+(end-start)*(default-low)/(high-low) if high!=low else start
+   r=candidates[0]
+   if r.get('feature')=='Slots':
+    E.SubElement(hog_type_section(t,'Defaults'),q('Default'),function=r.get('function'),feature=r.get('feature'),value=r.get('start'));continue
+   low=int(r.get('dmxstart'));high=int(r.get('dmxend',str(low)));start=real_number(r.get('start','0'));end=real_number(r.get('end',str(start)));value=start+(end-start)*(default-low)/(high-low) if high!=low else start
    E.SubElement(hog_type_section(t,'Defaults'),q('Default'),function=r.get('function'),feature=r.get('feature'),value=str(value))
   virtual=[c for c in children(module,'ChannelType') if 'coarse' not in c.attrib]
   for c in virtual:
@@ -1472,24 +1480,18 @@ def ma2_from_hog(payload,hog_xml):
      low=int(r.get('dmxstart','0'));high=int(r.get('dmxend',str(low)))
      condition=native_qualifier_condition(t,r)
      if not 0<=low<=high<=maximum or low<=previous.get(condition,-1):raise ValueError('Пересечение диапазонов при одинаковом условии HOG4.')
-     previous[condition]=high;start=real_number(r.get('start','0'));end=real_number(r.get('end',r.get('start','0')))
+     previous[condition]=high;start,end=hog_physical42(r)
      fn=E.SubElement(c,mq('ChannelFunction'),index=str(ri),**{'from':str(start),'to':str(end),'min_dmx_24':str(round(low*16777215/maximum)),'max_dmx_24':str(round(high*16777215/maximum)),'physfrom':str(start*scale),'physto':str(end*scale),'subattribute':'RESERVED' if attr=='DUMMY' else attr,'attribute':attr,'attribute_user_name':label,'feature':feature,'preset':preset})
      if condition:
       c.set('mode',condition[0]);fn.set('mode_dmx_start',str(condition[1]));fn.set('mode_dmx_end',str(condition[2]))
-    if 'constant' in ch.attrib:c.set('default',str(int(ch.get('constant'))))
-    else:
-     default=next((d for d in descendants(t,'Default') if d.get('function')==label and any(r.get('feature')==d.get('feature') for r in rs)),None)
-     if default is not None:
-      value=real_number(default.get('value','0'))
-      for r in rs:
-       start=real_number(r.get('start','0'));end=real_number(r.get('end',str(start)))
-       if min(start,end)<=value<=max(start,end):
-        low=int(r.get('dmxstart'));high=int(r.get('dmxend',str(low)));dmx=low+(high-low)*(value-start)/(end-start) if end!=start else low;c.set('default',str(dmx));break
+    default=hog_default42(t,ch,rs)
+    if default is not None:c.set('default',str(default))
     if label.startswith(('Macro','Beam Fx')):warnings.append(label+': исходный атрибут неоднозначен; сохранены независимое управление и числовые диапазоны как '+attr+'.')
    for offset in range(1,width+1):
     if offset not in occupied:
      c=E.SubElement(module,mq('ChannelType'),index=str(len(children(module,'ChannelType'))),attribute='DUMMY',feature='CONTROL',preset='CONTROL',coarse=str(offset));E.SubElement(c,mq('ChannelFunction'),index='0',**{'from':'0','to':'100','min_dmx_24':'0','max_dmx_24':'16777215','physfrom':'0','physto':'100','subattribute':'RESERVED','attribute':'DUMMY','feature':'CONTROL','preset':'CONTROL'})
    for vi,v in enumerate(descendants(t,'Virtual')):
+    validate_virtual_scope43(t,v)
     if v.get('function')!='Intensity' or v.get('feature')!='Intensity':raise ValueError('Неизвестный виртуальный канал HOG4.')
     if 'DIM' in attrs:raise ValueError('Физический и виртуальный DIM одного модуля требуют сопоставления.')
     attrs.add('DIM');c=E.SubElement(module,mq('ChannelType'),index=str(len(children(module,'ChannelType'))),attribute='DIM',feature='DIMMER',preset='DIMMER');start=real_number(v.get('start','0'));end=real_number(v.get('end','100'))
@@ -1610,7 +1612,7 @@ def gdtf_function_intervals(logical,bits,mode):
 _gdtf_to_ma39=gdtf_to_ma
 def gdtf_to_ma(root,fixture,mode,selected_break=None):
  normalized,f,selected,warnings=normalize_gdtf_break(root,fixture,mode,selected_break);ma,summary,notes=_gdtf_to_ma39(normalized,f,selected)
- if any(c.get('mode') for c in descendants(ma,'ChannelType')):warnings.append('ModeMaster сохранён; управляющие параметры HOG используют шкалу DMX вместо исходной физической шкалы селектора.')
+ if any(c.get('mode') for c in descendants(ma,'ChannelType')):warnings.append('ModeMaster переносится в штатные Qualifiers HOG с физической шкалой входного профиля.')
  return ma,summary,notes+warnings
 
 _import_profile39=import_profile
@@ -1730,7 +1732,907 @@ def gdtf_from_ma(ma_xml,name):
  if len(description)>2_000_000:raise ValueError('GDTF превышает 2 МБ.')
  buf=io.BytesIO()
  with zipfile.ZipFile(buf,'w',zipfile.ZIP_DEFLATED) as z:z.writestr('description.xml',description)
- return base64.b64encode(buf.getvalue()).decode(),warnings+['Условия ModeMaster сохранены; управляющие параметры HOG используют шкалу DMX.']
+ return base64.b64encode(buf.getvalue()).decode(),warnings+['Условия ModeMaster и физические шкалы входного профиля перенесены в определения GDTF.']
+
+
+# Preserve native numeric physical curves; no recovery metadata is added.
+_gdtf_function_intervals40=gdtf_function_intervals
+def gdtf_function_intervals(logical,bits,mode):
+ original=_gdtf_function_intervals40(logical,bits,mode);output=[];resolution=bits//8
+ for fn,low,high,condition in original:
+  sets=fn.findall('ChannelSet')
+  if not any('PhysicalFrom' in s.attrib or 'PhysicalTo' in s.attrib for s in sets):output.append((fn,low,high,condition));continue
+  starts=[gdtf_dmx(s.get('DMXFrom','0/1'),bits) for s in sets]
+  if len(set(starts))!=len(starts) or any(a>=b for a,b in zip(starts,starts[1:])):raise ValueError('Неупорядоченные физические ChannelSet.')
+  spans=[(start,starts[i+1]-1 if i+1<len(starts) else high,s) for i,(start,s) in enumerate(zip(starts,sets))];points={low,high+1}
+  for a,b,s in spans:
+   if not low<=a<=b<=high:raise ValueError('Физический ChannelSet выходит за диапазон функции.')
+   points.update((a,b+1))
+  pf=real_number(fn.get('PhysicalFrom','0'));pt=real_number(fn.get('PhysicalTo','1'))
+  for a,stop in zip(sorted(points),sorted(points)[1:]):
+   b=stop-1;source=next(((x,y,s) for x,y,s in spans if x<=a<=y),None);clone=copy.deepcopy(fn)
+   for s in list(clone.findall('ChannelSet')):clone.remove(s)
+   if source and ('PhysicalFrom' in source[2].attrib or 'PhysicalTo' in source[2].attrib):
+    x,y,s=source;left=real_number(s.get('PhysicalFrom',str(pf)));right=real_number(s.get('PhysicalTo',str(pt)));pa=left+(right-left)*(a-x)/(y-x) if y!=x else left;pb=left+(right-left)*(b-x)/(y-x) if y!=x else left
+   else:pa=pf+(pt-pf)*(a-low)/(high-low) if high!=low else pf;pb=pf+(pt-pf)*(b-low)/(high-low) if high!=low else pf
+   clone.set('PhysicalFrom',str(pa));clone.set('PhysicalTo',str(pb));clone.set('DMXFrom',str(a)+'/'+str(resolution))
+   if source:
+    label=copy.deepcopy(source[2]);label.set('DMXFrom',str(a)+'/'+str(resolution));label.attrib.pop('PhysicalFrom',None);label.attrib.pop('PhysicalTo',None);clone.append(label)
+   output.append((clone,a,b,condition))
+ return output
+
+_map_module_channels40=map_module_channels
+def map_module_channels(target,source,module):
+ normalized=copy.deepcopy(source)
+ # Display From/To is not a substitute for physical From/To. MA2 defaults
+ # these physical bounds to 0 and 1 when either field is absent.
+ for c in normalized:
+  for fn in children(c,'ChannelFunction'):
+   if 'physfrom' not in fn.attrib:fn.set('physfrom','0')
+   if 'physto' not in fn.attrib:fn.set('physto','1')
+ _map_module_channels40(target,normalized,module)
+ for ch,c in zip(children(target,'Channel'),normalized):
+  if c.get('attribute')!='COLORMIXMODE':continue
+  # ColourMixMode is a selector, not a continuous physical measurement. A
+  # native Colour Mode control with raw DMX values keeps every mode reachable
+  # and makes the stored DMX Default uniquely invertible (e.g. 45 stays 45).
+  for r in descendants(ch,'Range'):
+   r.set('function','Colour Mode');r.set('feature','Continuous');r.set('start',r.get('dmxstart'));r.set('end',r.get('dmxend',r.get('dmxstart')))
+
+_ma2_attribute40=ma2_attribute
+def ma2_attribute(function,feature):
+ if function=='Colour Mode':return ('COLORMIXMODE','COLOR','COLOR',1)
+ return _ma2_attribute40(function,feature)
+
+_gdtf_to_ma40=gdtf_to_ma
+def gdtf_to_ma(root,fixture,mode,selected_break=None):
+ ma,summary,warnings=_gdtf_to_ma40(root,fixture,mode,selected_break)
+ # The underlying converter counts the expanded native functions/sets.
+ if any(c.get('attribute')=='COLORMIXMODE' for c in descendants(ma,'ChannelType')):warnings.append('ColorMixMode переносится в штатный Colour Mode; нулевая физическая шкала использует дискретные Slots.')
+ return ma,summary,warnings
+
+
+def slot_number42(value):
+ match=re.fullmatch(r'slot ([1-9]\d*)',value or '')
+ return int(match[1]) if match else None
+
+def hog_physical42(r):
+ if r.get('feature')=='Slots':
+  if r.get('function')=='Colour Mode':return 0.0,0.0
+  if re.fullmatch(r'Gobo(?: [2-3])?',r.get('function','')):return 1.0,1.0
+  raise ValueError('Физическая семантика дискретного параметра HOG требует сопоставления.')
+ return real_number(r.get('start','0')),real_number(r.get('end',r.get('start','0')))
+
+def range_slice42(r,low,high):
+ original_low=int(r.get('dmxstart'));original_high=int(r.get('dmxend',str(original_low)));a,b=hog_physical42(r);out=copy.deepcopy(r);out.set('dmxstart',str(low));out.set('dmxend',str(high))
+ for child in list(out):
+  if local(child)=='Qualifiers':out.remove(child)
+ interpolate=lambda n:a+(b-a)*(n-original_low)/(original_high-original_low) if original_high!=original_low else a
+ out.set('start',str(interpolate(low)));out.set('end',str(interpolate(high)));return out
+
+_ma2_attribute41=ma2_attribute
+def ma2_attribute(function,feature):
+ mapping={'Gobo':('GOBO1','GOBO1','GOBO',1),'Gobo 2':('GOBO2','GOBO2','GOBO',1),'Gobo <>':('GOBO1_POS','GOBO1','GOBO',1),'Gobo 2 <>':('GOBO2_POS','GOBO2','GOBO',1)}
+ return mapping.get(function) or _ma2_attribute41(function,feature)
+
+def slots_candidate42(c):
+ return c.get('attribute')=='COLORMIXMODE' and all(real_number(f.get('physfrom','0'))==real_number(f.get('physto','1'))==0 for f in children(c,'ChannelFunction'))
+
+_map_module_channels41=map_module_channels
+def map_module_channels(target,source,module):
+ # Start before the old raw-DMX substitution. Native Range retains physical
+ # endpoints; Feature is part of parameter identity and disambiguates modes.
+ prepared=copy.deepcopy(source)
+ for c in prepared:
+  if re.fullmatch(r'(PAN|TILT)[2-6]',c.get('attribute','')):c.set('attribute',c.get('attribute')[:-1])
+  for fn in children(c,'ChannelFunction'):
+   fn.set('physfrom',fn.get('physfrom','0'));fn.set('physto',fn.get('physto','1'))
+ _map_module_channels39(target,prepared,module)
+ pairs=list(zip(children(target,'Channel'),source));controls={c.get('attribute'):ch for ch,c in pairs};definitions={c.get('attribute'):c for _,c in pairs};masters={c.get('mode') for _,c in pairs if c.get('mode')}
+ for ch,c in pairs:
+  attr=c.get('attribute');controller=attr in masters;discrete=slots_candidate42(c)
+  if not controller and not discrete:continue
+  maximum=65535 if 'fine' in c.attrib else 255;cuts={0,maximum+1}
+  for _,follower in pairs:
+   if follower.get('mode')==attr:
+    for fn in children(follower,'ChannelFunction'):cuts.update((int(fn.get('mode_dmx_start','0')),int(fn.get('mode_dmx_end',str(maximum)))+1))
+  cuts=sorted(cuts)
+  if len(cuts)>3:raise ValueError('Для более двух областей ModeMaster нужно дополнительное штатное сопоставление HOG.')
+  ranges=first(ch,'Ranges')
+  if ranges is None:raise ValueError('Режимный контроллер не имеет диапазонов.')
+  old=children(ranges,'Range');new=[];slot=0;default=round(real_number(c.get('default','0')))
+  for r in old:
+   low=int(r.get('dmxstart'));high=int(r.get('dmxend',str(low)));points={low,high+1};points.update(n for n in cuts if low<n<=high)
+   a,b=hog_physical42(r);make_slot=discrete or attr=='GOBO1' and a==b==1
+   if make_slot and low<default<=high:points.update((default,default+1))
+   points=sorted(points)
+   for begin,stop in zip(points,points[1:]):
+    end=stop-1;node=range_slice42(r,begin,end);area=max(i for i,start in enumerate(cuts[:-1]) if start<=begin)
+    if discrete:node.set('function','Colour Mode')
+    elif attr=='GOBO1':node.set('function','Gobo')
+    elif attr=='GOBO2':node.set('function','Gobo 2')
+    if make_slot:
+     slot+=1
+     if slot>48:raise ValueError('Дискретный контроллер превышает 48 штатных слотов HOG.')
+     node.set('feature','Slots');node.set('start','slot '+str(slot));node.attrib.pop('end',None)
+    elif attr.startswith(('PAN','TILT')):node.set('feature','Index' if area==0 else 'Rotate')
+    else:node.set('feature','Continuous' if area==0 else 'Spin')
+    new.append(node)
+  ranges.clear();ranges.extend(new)
+ # Follower controls use their native position identity instead of an
+ # unrelated Macro slot, preventing collisions with the restored wheel.
+ for ch,c in pairs:
+  if c.get('attribute') in ('GOBO1_POS','GOBO2_POS'):
+   for r in descendants(ch,'Range'):r.set('function','Gobo <>' if c.get('attribute')=='GOBO1_POS' else 'Gobo 2 <>')
+ for ch,c in pairs:
+  master=c.get('mode')
+  if not master:continue
+  if master not in controls:raise ValueError('ModeMaster отсутствует в модуле.')
+  controller=controls[master];maximum=65535 if 'fine' in definitions[master].attrib else 255;followers=[r for r in descendants(ch,'Range') if r.get('function') not in ('Cyan','Magenta','Yellow')];index=0
+  for fn in children(c,'ChannelFunction'):
+   cmax=65535 if 'fine' in c.attrib else 255;lo=round(int(fn.get('min_dmx_24','0'))*cmax/16777215);hi=round(int(fn.get('max_dmx_24','16777215'))*cmax/16777215);points={lo,hi+1}
+   for s in children(fn,'ChannelSet'):points.update((int(s.get('from_dmx',str(lo))),int(s.get('to_dmx',str(hi)))+1))
+   count=len(points)-1;mode_lo=int(fn.get('mode_dmx_start','0'));mode_hi=int(fn.get('mode_dmx_end',str(maximum)));qs=[]
+   for cr in descendants(controller,'Range'):
+    left=max(mode_lo,int(cr.get('dmxstart')));right=min(mode_hi,int(cr.get('dmxend',cr.get('dmxstart'))))
+    if left>right:continue
+    if cr.get('feature')=='Slots':start=end=cr.get('start')
+    else:
+     cut=range_slice42(cr,left,right);a,b=hog_physical42(cut);start=str(min(a,b));end=str(max(a,b))
+    attrs={'function':cr.get('function'),'feature':cr.get('feature'),'start':start,'end':end}
+    if attrs not in qs:qs.append(attrs)
+   if not qs:raise ValueError('Пустое условие ModeMaster.')
+   for r in followers[index:index+count]:
+    group=E.SubElement(r,q('Qualifiers'),match='any')
+    for attrs in qs:E.SubElement(group,q('Qualifier'),attrs)
+   index+=count
+  if index!=len(followers):raise ValueError('Не сопоставлены диапазоны управляемого канала.')
+
+def native_qualifier_condition(t,r):
+ import math
+ groups=children(r,'Qualifiers')
+ if not groups:return None
+ if len(groups)!=1:raise ValueError('Несколько групп Qualifiers требуют сопоставления.')
+ group=groups[0];qualifiers=children(group,'Qualifier');allspans=[];owners=set();identity=None
+ for qualifier in qualifiers:
+  spans=[]
+  for c in descendants(t,'Channel'):
+   for candidate in descendants(c,'Range'):
+    if any(candidate.get(k)!=qualifier.get(k) for k in ('function','feature')):continue
+    low=int(candidate.get('dmxstart'));high=int(candidate.get('dmxend',str(low)));slot=slot_number42(candidate.get('start'))
+    if candidate.get('feature')=='Slots':
+     qslot=slot_number42(qualifier.get('start'));qend=slot_number42(qualifier.get('end',qualifier.get('start')))
+     if qslot is None or qend!=qslot:raise ValueError('Неоднозначный дискретный Qualifier.')
+     if slot!=qslot:continue
+     left,right=low,high
+    else:
+     a,b=hog_physical42(candidate);start=real_number(qualifier.get('start','0'));end=real_number(qualifier.get('end',str(start)));qlo=max(min(a,b),start);qhi=min(max(a,b),end)
+     if qlo>qhi+1e-9:continue
+     if a==b:left,right=low,high
+     else:
+      da=low+(high-low)*(qlo-a)/(b-a);db=low+(high-low)*(qhi-a)/(b-a);left=math.ceil(min(da,db)-1e-6);right=math.floor(max(da,db)+1e-6)
+    if left<=right:
+     spans.append((left,right));owners.add(id(c));mapped=ma2_attribute(candidate.get('function'),candidate.get('feature'))[0];identity=identity or mapped
+     if mapped!=identity:raise ValueError('Несколько режимных органов управления в одном условии.')
+  if not spans:raise ValueError('Qualifier не соответствует ни одному интервалу контроллера.')
+  allspans.append(spans)
+ if len(owners)!=1:raise ValueError('Qualifier неоднозначен между каналами.')
+ if group.get('match')=='all' and len(allspans)>1:
+  spans=allspans[0]
+  for alternatives in allspans[1:]:spans=[(max(a,x),min(b,y)) for a,b in spans for x,y in alternatives if max(a,x)<=min(b,y)]
+ else:spans=[pair for part in allspans for pair in part]
+ if not spans:raise ValueError('Пустое пересечение Qualifiers.')
+ spans.sort();left,right=spans[0]
+ for a,b in spans[1:]:
+  if a>right+1:raise ValueError('Несвязное условие требует нескольких ModeMaster-интервалов MA2.')
+  right=max(right,b)
+ return identity,left,right
+
+def hog_default42(t,ch,rs):
+ if 'constant' in ch.attrib:return float(ch.get('constant'))
+ for default in descendants(t,'Default'):
+  for r in rs:
+   if any(r.get(k)!=default.get(k) for k in ('function','feature')):continue
+   low=int(r.get('dmxstart'));high=int(r.get('dmxend',str(low)))
+   if r.get('feature')=='Slots':
+    if r.get('start')==default.get('value'):return float(low)
+    continue
+   value=real_number(default.get('value','0'));a,b=hog_physical42(r)
+   if min(a,b)-1e-9<=value<=max(a,b)+1e-9:return low+(high-low)*(value-a)/(b-a) if a!=b else float(low)
+ return None
+
+
+
+# Native controls, not stored source snapshots or encoded display labels.
+CONTROL_MAP43={
+ 'PLAYMODE':('Play Mode','Continuous','CONTROL','CONTROL'),
+ 'CONTROL1':('Fixture Control','Continuous','CONTROL','CONTROL'),
+ 'LEDZONEMODE':('Zone','Continuous','CONTROL','CONTROL'),
+ 'PATTERNSELECTION':('Pattern','Continuous','GOBOALL','GOBO'),
+ 'PATTERNSIZE':('Pattern','Size','GOBOALL','GOBO'),
+ 'PATTERNROTATION':('Pattern <>','Continuous','GOBOALL','GOBO'),
+ 'PATTERNFADE':('Pattern Fade','Continuous','GOBOALL','GOBO'),
+ 'PATTERNTRANSITION':('Pattern Mode','Continuous','GOBOALL','GOBO'),
+ 'PATTERNCROSSFADE':('Macro Xfade','Continuous','GOBOALL','GOBO'),
+ 'COLORMACRO1':('Colour Fx','Continuous','COLOR','COLOR'),
+ 'XYZ_X':('X','Position','POSITION','POSITION'),
+ 'XYZ_Y':('Y','Position','POSITION','POSITION'),
+ 'XYZ_Z':('Z','Position','POSITION','POSITION'),
+ 'ROT_X':('X','Rotate','POSITION','POSITION'),
+ 'ROT_Y':('Y','Rotate','POSITION','POSITION'),
+ 'ROT_Z':('Z','Rotate','POSITION','POSITION'),
+}
+_ma2_attribute42=ma2_attribute
+
+def ma2_attribute(function,feature):
+ if function=='I Amber':return 'COLORRGB4','COLORRGB','COLOR',.01
+ for attribute,definition in CONTROL_MAP43.items():
+  if (function,feature)==definition[:2]:return attribute,definition[2],definition[3],1
+ match=re.fullmatch(r'Beam Fx(?: ([1-9]))?( <>)?',function)
+ if match:
+  # A generic effect is not a gobo wheel. Keep its native effect bank and
+  # position control distinct, including gaps in the numbering.
+  suffix=match[1] or '';return 'EFFECT'+suffix+('_POS' if match[2] else ''),'BEAM','BEAM',1
+ return _ma2_attribute42(function,feature)
+
+_map_module_channels42=map_module_channels
+
+def map_module_channels(target,source,module):
+ normalized=copy.deepcopy(source)
+ for c in normalized:
+  if c.get('attribute') in ('COLORADD_RY','AMBER'):
+   original=c.get('attribute');c.set('attribute','COLORRGB4')
+   for fn in children(c,'ChannelFunction'):
+    for key in ('attribute','subattribute'):
+     if fn.get(key)==original:fn.set(key,'COLORRGB4')
+ _map_module_channels42(target,normalized,module)
+ for ch,c in zip(children(target,'Channel'),source):
+  attr=c.get('attribute','');definition=CONTROL_MAP43.get(attr)
+  match=re.fullmatch(r'EFFECT([2-9])?(_POS)?',attr)
+  if match:definition=('Beam Fx'+(' '+match[1] if match[1] else '')+(' <>' if match[2] else ''),'Continuous','BEAM','BEAM')
+  if not definition:continue
+  if c.get('mode') or any(n.get('mode')==attr for n in source):raise ValueError('Условный управляющий параметр требует отдельного штатного сопоставления.')
+  for r in descendants(ch,'Range'):
+   r.set('function',definition[0]);r.set('feature',definition[1])
+
+def validate_virtual_scope43(t,v):
+ if v.get('function')!='Intensity' or v.get('feature')!='Intensity':raise ValueError('Неизвестный виртуальный орган управления.')
+ affected={(n.get('function'),n.get('feature')) for n in children(v,'Affected')}
+ eligible={(r.get('function'),r.get('feature')) for r in descendants(t,'Range') if r.get('feature')=='Intensity' and r.get('dmxstart')!=r.get('dmxend')}
+ if not affected or affected!=eligible:raise ValueError('Область действия виртуального диммера не представима автоматическим DIM MA2; требуется отдельный модуль. Экспорт остановлен без расширения области действия.')
+
+
+# Typed mappings use native HOG parameters, not source snapshots or tags.
+CONTROL_MAP43.update({
+ 'RECORDING':('Capture','Continuous','VIDEO','VIDEO'),
+ 'FLOWEREFFECT':('Beam Split','Rotate','BEAM','BEAM'),
+})
+for _bank44 in range(4,9):
+ CONTROL_MAP43['MACRO'+str(_bank44)]=('Macro '+str(_bank44),'Continuous','GOBOALL','GOBO')
+_ma2_attribute43=ma2_attribute
+
+def ma2_attribute(function,feature):
+ if function=='Colour Fx' and feature=='Index':return 'COLORMACRO1','COLOR','COLOR',1
+ if function=='Beam Split' and feature in ('Off','Rotate'):return 'FLOWEREFFECT','BEAM','BEAM',1
+ match=re.fullmatch(r'Beam Fx ([4-8])( <>| Offset)?',function)
+ if match:
+  bank=match[1];modifier=match[2] or ''
+  if (modifier,feature) in (('','Index'),(' <>','Index'),(' Offset','Continuous')):
+   attr='GOBO'+bank+('_POS' if modifier==' <>' else 'FORWARD' if modifier else '')
+   return attr,'GOBO'+bank,'GOBO',1
+ match=re.fullmatch(r'Macro ([4-8])',function)
+ if match and feature=='Continuous':return 'MACRO'+match[1],'GOBOALL','GOBO',1
+ return _ma2_attribute43(function,feature)
+
+_map_module_channels43=map_module_channels
+
+def map_module_channels(target,source,module):
+ _map_module_channels43(target,source,module)
+ for ch,c in zip(children(target,'Channel'),source):
+  # The indexed wheel and a continuous rainbow may share 0..1 physical
+  # values. Keep their native features separate, preserving both ramps.
+  if c.get('attribute') in ('COLOR1','COLORMACRO1'):
+   for r in descendants(ch,'Range'):
+    fn,_=source_functions44(c,r,target)
+    if fn is not None and fn.get('wheel') and any('slot_index' in s.attrib for s in children(fn,'ChannelSet')):
+     wheels=getattr(_wheel_context44,'wheels',[]);wi=int(fn.get('wheel','0'))-1
+     if 0<=wi<len(wheels) and any(tuple(int(s.get(k,'255')) for k in ('r','g','b'))!=(255,255,255) for s in children(wheels[wi],'Slot')):r.set('feature','Index')
+  if c.get('attribute')=='FLOWEREFFECT':
+   for r in descendants(ch,'Range'):
+    if r.get('dmxstart')==r.get('dmxend')=='0' and hog_physical42(r)==(0.,0.):r.set('feature','Off')
+  match=re.fullmatch(r'GOBO([4-8])(_POS|FORWARD)?',c.get('attribute',''))
+  if not match:continue
+  if c.get('mode') or any(n.get('mode')==c.get('attribute') for n in source):raise ValueError('Условный RGB-гобо требует отдельного сопоставления.')
+  bank=match[1];modifier=match[2] or '';function='Beam Fx '+bank+(' <>' if modifier=='_POS' else ' Offset' if modifier else '');feature='Continuous' if modifier=='FORWARD' else 'Index'
+  for r in descendants(ch,'Range'):r.set('function',function);r.set('feature',feature)
+ owners={}
+ for ch in children(target,'Channel'):
+  for r in descendants(ch,'Range'):
+   key=(r.get('function'),r.get('feature'))
+   if key in owners and owners[key] is not ch:raise ValueError('Коллизия независимых параметров HOG: '+' / '.join(key))
+   owners[key]=ch
+
+def safe_media_ref44(value):
+ value=(value or '').replace('\\','/')
+ if not value or value.startswith('/') or ':' in value or any(n in ('..','') for n in value.split('/')):return None
+ return value
+
+def rgb_from_xyY44(value):
+ try:x,y,Y=map(float,value.split(','));Y/=100
+ except (ValueError,AttributeError):return (255,255,255)
+ if y<=0:return (0,0,0)
+ X=x*Y/y;Z=(1-x-y)*Y/y
+ raw=(3.2406*X-1.5372*Y-.4986*Z,-.9689*X+1.8758*Y+.0415*Z,.0557*X-.2040*Y+1.0570*Z)
+ def encode(v):
+  v=max(0,min(1,v));return round(255*(12.92*v if v<=.0031308 else 1.055*v**(1/2.4)-.055))
+ return tuple(encode(v) for v in raw)
+
+def xyz_from_rgb44(rgb):
+ def decode(v):
+  v=max(0,min(255,int(v)))/255;return v/12.92 if v<=.04045 else ((v+.055)/1.055)**2.4
+ r,g,b=map(decode,rgb)
+ return (.4124*r+.3576*g+.1805*b,.2126*r+.7152*g+.0722*b,.0193*r+.1192*g+.9505*b)
+
+def rgb_from_xyz44(values):
+ X,Y,Z=map(float,values);raw=(3.2406*X-1.5372*Y-.4986*Z,-.9689*X+1.8758*Y+.0415*Z,.0557*X-.2040*Y+1.0570*Z)
+ return tuple(round(255*(12.92*max(0,min(1,v)) if v<=.0031308 else 1.055*max(0,min(1,v))**(1/2.4)-.055)) for v in raw)
+
+def xyY_from_rgb44(rgb):
+ X,Y,Z=xyz_from_rgb44(rgb);total=X+Y+Z
+ return ','.join(format(n,'.9g') for n in ((X/total,Y/total,100*Y) if total else (0,0,0)))
+
+def ma_physical_channels44(ma):
+ fixture=first(ma,'FixtureType');mods={n.get('index'):n for n in children(first(fixture,'Modules'),'Module')};result={}
+ for inst in children(first(fixture,'Instances'),'Instance'):
+  for c in children(mods[inst.get('module_index')],'ChannelType'):
+   if c.get('coarse'):result[int(inst.get('patch','1'))+int(c.get('coarse'))-1]=c
+ return result
+
+def import_gdtf_wheels44(ma,fixture,mode):
+ source={w.get('Name'):w for w in fixture.findall('./Wheels/Wheel')};target=first(ma,'FixtureType');wheels=E.SubElement(target,mq('Wheels'),index='2');lookup={};channels=ma_physical_channels44(ma)
+ for path,dc,brk,offsets in expanded_gdtf_channels(fixture,mode):
+  if not offsets:continue
+  c=channels.get(offsets[0])
+  if c is None:continue
+  logical=dc.find('LogicalChannel');intervals=gdtf_function_intervals(logical,len(offsets)*8,mode);functions=children(c,'ChannelFunction')
+  if len(intervals)!=len(functions):raise ValueError('Не сопоставлены функции для переноса колёс.')
+  for (original,_,_,_),fn in zip(intervals,functions):
+   name=original.get('Wheel');wheel=source.get(name)
+   if wheel is None:continue
+   if name not in lookup:
+    idx=len(lookup);lookup[name]=idx;out=E.SubElement(wheels,mq('Wheel'),index=str(idx),subattribute=fn.get('subattribute',c.get('attribute')),attribute=c.get('attribute'),feature=c.get('feature','BEAM'),preset=c.get('preset','BEAM'))
+    for si,slot in enumerate(wheel.findall('Slot')):
+     attrs={'index':str(si),'media_name':slot.get('Name','')};attrs.update(zip(('r','g','b'),map(str,rgb_from_xyY44(slot.get('Color','0.3127,0.329,100')))))
+     media=safe_media_ref44(slot.get('MediaFileName'))
+     if media:attrs['media_filename']='wheels/'+media+( '' if media.lower().endswith(('.png','.jpg','.jpeg','.bmp')) else '.png')
+     E.SubElement(out,mq('Slot'),attrs)
+   fn.set('wheel',str(lookup[name]+1));slots=wheel.findall('Slot')
+   for original_set,result_set in zip(original.findall('ChannelSet'),children(fn,'ChannelSet')):
+    index=int(original_set.get('WheelSlotIndex','0'))
+    if index>len(slots):raise ValueError('Индекс слота вне определённого колеса GDTF.')
+    if index>0:result_set.set('slot_index',str(index-1))
+
+def source_functions44(c,r,t):
+ maximum=65535 if c.get('fine') else 255;low=int(r.get('dmxstart'));high=int(r.get('dmxend',str(low)));condition=native_qualifier_condition(t,r)
+ found=[]
+ for fn in children(c,'ChannelFunction'):
+  a=round(int(fn.get('min_dmx_24','0'))*maximum/16777215);b=round(int(fn.get('max_dmx_24','16777215'))*maximum/16777215)
+  own=(c.get('mode'),int(fn.get('mode_dmx_start','0')),int(fn.get('mode_dmx_end','255'))) if c.get('mode') else None
+  if a<=low<=high<=b and condition==own:found.append(fn)
+ if len(found)!=1:return None,None
+ fn=found[0];sets=[s for s in children(fn,'ChannelSet') if int(s.get('from_dmx',str(low)))<=low and int(s.get('to_dmx',str(high)))>=high]
+ return fn,sets[0] if len(sets)==1 else None
+
+def native_value44(r):
+ if r.get('feature')=='Slots':return r.get('start')
+ a,b=hog_physical42(r);return format((a+b)/2,'.15g')
+
+def value_matches44(r,value):
+ if r.get('feature')=='Slots':return value==r.get('start')
+ try:p=float(value)
+ except (TypeError,ValueError):return False
+ a,b=hog_physical42(r);return min(a,b)-1e-9<=p<=max(a,b)+1e-9
+
+_convert43=convert
+_wheel_context44=threading.local()
+
+def convert(root):
+ previous=getattr(_wheel_context44,'wheels',[]);holder=first(root,'Wheels');_wheel_context44.wheels=children(holder,'Wheel') if holder is not None else []
+ try:hog,system=_convert43(root)
+ finally:_wheel_context44.wheels=previous
+ if root.tag!=mq('MA') or read_hog_roundtrip(root) is not None:return hog,system
+ fixture=first(root,'FixtureType');wheels=children(first(fixture,'Wheels'),'Wheel') if first(fixture,'Wheels') is not None else [];types={t.get('name'):t for t in descendants(hog,'Type')}
+ for module in children(first(fixture,'Modules'),'Module'):
+  t=types.get(f"{fixture.get('name','MA2')} M{module.get('index')}")
+  if t is None:continue
+  definitions={};colorrefs={};physical=sorted([c for c in children(module,'ChannelType') if c.get('coarse')],key=lambda c:int(c.get('coarse')))
+  for ch,c in zip(descendants(t,'Channel'),physical):
+   for r in descendants(ch,'Range'):
+    if r.get('function') in ('Cyan','Magenta','Yellow') and any(other.get('function') in ('I Red','I Green','I Blue') for other in descendants(ch,'Range')):continue
+    fn,s=source_functions44(c,r,t)
+    if fn is None or s is None:continue
+    slot=None;wi=int(fn.get('wheel','0'))-1;si=int(s.get('slot_index','-1'))
+    if 0<=wi<len(wheels):
+     ws=children(wheels[wi],'Slot')
+     if 0<=si<len(ws):slot=ws[si]
+    label=slot.get('media_name','') if slot is not None else s.get('name','')
+    if not label:continue
+    value=native_value44(r);identity=(r.get('function'),r.get('feature'));matches=[other for other in descendants(t,'Range') if (other.get('function'),other.get('feature'))==identity and value_matches44(other,value)]
+    if len(matches)!=1:continue # No fabricated lookup for non-invertible physical scales.
+    if identity not in definitions:
+     package=first(t,'Previewpackages')
+     if package is None:package=E.SubElement(t,q('Previewpackages'))
+     holder=first(package,'Package')
+     if holder is None:holder=E.SubElement(package,q('Package'),name='Fixture library')
+     preview=E.SubElement(holder,q('Funcpreview'));definition=E.SubElement(preview,q('Definition'),name=c.get('attribute',''));E.SubElement(definition,q('Funcref'),function=identity[0],feature=identity[1]);definitions[identity]=preview
+    entry=E.SubElement(definitions[identity],q('Entry'),value=value,name=label)
+    if slot is not None:
+     media=safe_media_ref44(slot.get('media_filename'))
+     if media:entry.set('thumbnail',media)
+     rgb=tuple(int(slot.get(k,'255')) for k in ('r','g','b'))
+     if rgb!=(255,255,255):colorrefs.setdefault(identity,[]).append((value,rgb))
+  if colorrefs:
+   matcher=first(t,'ColourMatcher')
+   if matcher is None:
+    matcher=E.Element(q('ColourMatcher'),type='slotted',quality='estimated');pos=list(t).index(first(t,'Protocols'));t.insert(pos,matcher)
+   for (function,feature),items in colorrefs.items():
+    ref=E.SubElement(matcher,q('funcref'),function=function,feature=feature)
+    for value,rgb in items:E.SubElement(ref,q('entry'),value=value,**dict(zip(('x','y','z'),map(str,xyz_from_rgb44(rgb)))))
+ return hog,system
+
+def parameter_bank44(function):
+ return re.sub(r'(?: <>| Offset)$','',function or '')
+
+_ma2_from_hog43=ma2_from_hog
+
+def ma2_from_hog(payload,hog_xml):
+ xml,warnings=_ma2_from_hog43(payload,hog_xml);ma=parse(xml);fixture=first(ma,'FixtureType');wheels=first(fixture,'Wheels');hog=parse(hog_xml);types={t.get('name'):t for t in descendants(hog,'Type')};mods={n.get('index'):n for n in children(first(fixture,'Modules'),'Module')};compound=next(c for c in descendants(hog,'CompoundType') if c.get('name')==payload['name'].strip());processed=set();registry={}
+ for part,inst in zip(children(first(compound,'Parts'),'Part'),children(first(fixture,'Instances'),'Instance')):
+  t=types[part.get('type')];module=mods[inst.get('module_index')]
+  if id(module) in processed:continue
+  processed.add(id(module));banks={};presets={}
+  for preview in descendants(t,'Funcpreview'):
+   refs=descendants(first(preview,'Definition'),'Funcref')
+   if len(refs)!=1 or any(children(e,'Entry') for e in children(preview,'Entry')):continue
+   identity=(refs[0].get('function'),refs[0].get('feature'));entries=children(preview,'Entry');palette=[];indices={};bindings=[]
+   colors=[e for ref in descendants(t,'funcref') if (ref.get('function'),ref.get('feature'))==identity for e in children(ref,'entry')]
+   for entry in entries:
+    value=entry.get('value');color=next((x for x in colors if x.get('value')==value),None);rgb=rgb_from_xyz44([color.get(k,'0') for k in ('x','y','z')]) if color is not None else (255,255,255);media=safe_media_ref44(entry.get('thumbnail'));item=(entry.get('name',''),rgb,media)
+    if item not in indices:indices[item]=len(palette);palette.append(item)
+    bindings.append((value,indices[item]))
+   if not palette:continue
+   signature=tuple(palette)
+   if signature not in registry:
+    idx=len(children(wheels,'Wheel'));registry[signature]=idx;attribute,feature,preset,_=ma2_attribute(*identity);wheel=E.SubElement(wheels,mq('Wheel'),index=str(idx),attribute=attribute,subattribute=attribute,feature=feature,preset=preset)
+    for si,(name,rgb,media) in enumerate(palette):
+     attrs={'index':str(si),'media_name':name};attrs.update(zip(('r','g','b'),map(str,rgb)))
+     if media:attrs['media_filename']=media
+     E.SubElement(wheel,mq('Slot'),attrs)
+   presets[identity]=(registry[signature]+1,bindings)
+   if parameter_bank44(identity[0])==identity[0]:banks[parameter_bank44(identity[0])]=registry[signature]+1
+  for ch in descendants(t,'Channel'):
+   c=next((n for n in children(module,'ChannelType') if n.get('coarse')==ch.get('number')),None)
+   if c is None:continue
+   inverse={'I Red':'Cyan','I Green':'Magenta','I Blue':'Yellow'}.get(first(ch,'Range').get('function') if first(ch,'Range') is not None else '')
+   ranges=[r for r in descendants(ch,'Range') if r.get('function')!=inverse]
+   ranges.sort(key=lambda n:int(n.get('dmxstart')))
+   for r,fn in zip(ranges,children(c,'ChannelFunction')):
+    identity=(r.get('function'),r.get('feature'));choice=presets.get(identity)
+    if choice:
+     matches=[si for value,si in choice[1] if value_matches44(r,value)]
+     if len(matches)==1:
+      fn.set('wheel',str(choice[0]));s=E.SubElement(fn,mq('ChannelSet'),index='0',name=children(children(wheels,'Wheel')[choice[0]-1],'Slot')[matches[0]].get('media_name',''),from_dmx=r.get('dmxstart'),to_dmx=r.get('dmxend',r.get('dmxstart')),slot_index=str(matches[0]))
+      if c.get('preset') in ('VIDEO','CONTROL'):s.set('auto_create','false')
+    elif r.get('function','').endswith(' <>') and parameter_bank44(r.get('function')) in banks:fn.set('wheel',str(banks[parameter_bank44(r.get('function'))]))
+ return ma2_serialize(ma),warnings
+
+_gdtf_from_ma43=gdtf_from_ma
+
+def gdtf_from_ma(ma_xml,name):
+ encoded,warnings=_gdtf_from_ma43(ma_xml,name);ma=parse(ma_xml);fixture=first(ma,'FixtureType');native=children(first(fixture,'Wheels'),'Wheel') if first(fixture,'Wheels') is not None else []
+ if not native:return encoded,warnings
+ root,gf,modes=read_gdtf(encoded)
+ # Unedited recovery can already contain the complete original wheel graph.
+ if gf.find('Wheels') is not None:return encoded,warnings
+ wheels=E.Element('Wheels');gf.insert(list(gf).index(gf.find('AttributeDefinitions'))+1,wheels);names=[]
+ for index,w in enumerate(native):
+  wheel_name='Wheel_'+str(index+1);names.append(wheel_name);wheel=E.SubElement(wheels,'Wheel',Name=wheel_name)
+  for s in children(w,'Slot'):
+   E.SubElement(wheel,'Slot',Name=s.get('media_name',''),Color=xyY_from_rgb44(tuple(int(s.get(k,'255')) for k in ('r','g','b'))))
+   # XML alone cannot supply external media bytes. Never emit a dangling
+   # GDTF MediaFileName here; resource packages are handled separately.
+ mods={n.get('index'):n for n in descendants(fixture,'Module')};expanded=[c for inst in descendants(fixture,'Instance') for c in children(mods[inst.get('module_index')],'ChannelType')];dcs=modes[0].findall('./DMXChannels/DMXChannel')
+ if len(expanded)!=len(dcs):raise ValueError('Не сопоставлены каналы для экспорта колёс.')
+ for c,dc in zip(expanded,dcs):
+  for fn,gfn in zip(children(c,'ChannelFunction'),dc.findall('./LogicalChannel/ChannelFunction')):
+   wi=int(fn.get('wheel','0'))-1
+   if not 0<=wi<len(names):continue
+   gfn.set('Wheel',names[wi]);native_sets=children(fn,'ChannelSet');generated=gfn.findall('ChannelSet')
+   for s in native_sets:
+    if 'slot_index' not in s.attrib:continue
+    bits=16 if c.get('fine') else 8;lo=int(s.get('from_dmx','0'));match=next((g for g in generated if gdtf_dmx(g.get('DMXFrom','0/1'),bits)==lo),None)
+    if match is not None:match.set('WheelSlotIndex',str(int(s.get('slot_index'))+1))
+ # Native wheel edits change description hashes; regenerate the ordinary
+ # signed recovery comment rather than leaving a stale signature.
+ for child in list(root):
+  if child.tag is E.Comment:root.remove(child)
+ data={'hash':object_fingerprint(serialize(root)),'ma2Xml':ma2_serialize(strip_recovery(ma))};root.insert(0,E.Comment(GDTF_EXPORT_MARKER+base64.b64encode(json.dumps(data,separators=(',',':')).encode()).decode()));description=serialize(root).encode()
+ if len(description)>2_000_000:raise ValueError('GDTF превышает 2 МБ после переноса колёс.')
+ buf=io.BytesIO()
+ with zipfile.ZipFile(buf,'w',zipfile.ZIP_DEFLATED) as archive:archive.writestr('description.xml',description)
+ if any(s.get('media_filename') for w in native for s in children(w,'Slot')):warnings.append('Ссылки на изображения требуют пакета ресурсов; в одиночном XML/GDTF без исходных файлов текстуры отсутствуют.')
+ return base64.b64encode(buf.getvalue()).decode(),list(dict.fromkeys(warnings))
+
+RESOURCE_LIMIT44=6_000_000
+
+def image_signature44(name,data):
+ ext=name.rsplit('.',1)[-1].lower()
+ if ext=='png':
+  import zlib,struct
+  if not data.startswith(b'\x89PNG\r\n\x1a\n'):return False
+  pos=8;chunks=[]
+  while pos+12<=len(data):
+   length=int.from_bytes(data[pos:pos+4],'big');kind=data[pos+4:pos+8];end=pos+12+length
+   if end>len(data) or zlib.crc32(data[pos+4:pos+8+length])&0xffffffff!=int.from_bytes(data[pos+8+length:end],'big'):return False
+   if not chunks:
+    if kind!=b'IHDR' or length!=13:return False
+    width,height=struct.unpack('>II',data[pos+8:pos+16])
+    if not width or not height or width*height>4_194_304:return False
+   chunks.append(kind);pos=end
+   if kind==b'IEND':return length==0 and pos==len(data) and b'IDAT' in chunks
+  return False
+ return (ext in ('jpg','jpeg') and data.startswith(b'\xff\xd8\xff') and data.endswith(b'\xff\xd9')) or (ext=='bmp' and len(data)>=54 and data.startswith(b'BM') and int.from_bytes(data[2:6],'little')==len(data))
+
+def pack_resources44(resources,profile=None,filename='profile.xml'):
+ out=io.BytesIO()
+ with zipfile.ZipFile(out,'w',zipfile.ZIP_DEFLATED) as z:
+  if profile is not None:
+   if not safe_media_ref44(filename) or '/' in filename or not filename.lower().endswith('.xml'):raise ValueError('Некорректное имя XML в пакете.')
+   z.writestr(zipfile.ZipInfo(filename,date_time=(2026,1,1,0,0,0)),profile.encode())
+  for name,data in sorted(resources.items()):
+   info=zipfile.ZipInfo(name,date_time=(2026,1,1,0,0,0));info.compress_type=zipfile.ZIP_DEFLATED;z.writestr(info,data)
+ raw=out.getvalue()
+ if len(raw)>RESOURCE_LIMIT44+(2_100_000 if profile is not None else 0):raise ValueError('Пакет ресурсов превышает 6 МБ.')
+ return base64.b64encode(raw).decode()
+
+def read_resources44(encoded,profile=False,gdtf=False):
+ if not isinstance(encoded,str) or len(encoded)>28_000_000:raise ValueError('Некорректный пакет ресурсов.')
+ try:raw=base64.b64decode(encoded,validate=True)
+ except (ValueError,base64.binascii.Error):raise ValueError('Некорректная кодировка пакета ресурсов.')
+ if len(raw)>(20_000_000 if gdtf else RESOURCE_LIMIT44+2_100_000):raise ValueError('Пакет ресурсов превышает лимит.')
+ result={};seen=set();xml=None;total=0
+ try:
+  with zipfile.ZipFile(io.BytesIO(raw)) as z:
+   if len(z.infolist())>2048:raise ValueError('Слишком много файлов в пакете.')
+   for info in z.infolist():
+    if info.is_dir():continue
+    name=safe_media_ref44(info.filename)
+    if not name or name.casefold() in seen or info.flag_bits&1:raise ValueError('Опасное имя, повтор файла или шифрование в пакете.')
+    seen.add(name.casefold())
+    if '/' not in name and name.lower().endswith('.xml') and profile:
+     if xml is not None:raise ValueError('В ZIP должно быть ровно одно XML в корне.')
+     if info.file_size>2_000_000:raise ValueError('XML в пакете превышает 2 МБ.')
+     xml=z.read(info).decode('utf-8-sig');parse(xml);continue
+    if name=='colorimetry.json' and not gdtf:
+     if info.file_size>512_000:raise ValueError('colorimetry.json превышает 512 КБ.')
+     data=z.read(info);color_manifest45(data);result[name]=data;continue
+    if gdtf and not name.startswith('wheels/'):continue
+    if name.rsplit('.',1)[-1].lower() not in ('png','jpg','jpeg','bmp'):
+     if gdtf:continue
+     raise ValueError('Пакет допускает только XML в корне и PNG/JPEG/BMP.')
+    total+=info.file_size
+    if info.file_size>4_000_000 or total>8_000_000:raise ValueError('Изображения в пакете превышают лимит.')
+    data=z.read(info)
+    if not image_signature44(name,data):raise ValueError('Тип изображения не соответствует содержимому.')
+    result[name]=data
+ except (zipfile.BadZipFile,RuntimeError,UnicodeError,NotImplementedError):raise ValueError('Повреждён ZIP-пакет.')
+ if profile and xml is None:raise ValueError('В ZIP требуется один XML-профиль в корне.')
+ # The smaller compressed resource limit is enforced independently of the
+ # original archive's compression ratio and profile size.
+ pack_resources44(result)
+ return xml,result
+
+_import_profile_wheels44=import_profile
+
+def import_profile(payload):
+ if payload.get('package'):
+  xml,resources=read_resources44(payload['package'],profile=True);result=_import_profile_wheels44({'xml':xml});result.update(sourceXml=xml,resourceBase64=pack_resources44(resources) if resources else None,resourceCount=len(resources));return result
+ result=_import_profile_wheels44(payload)
+ if payload.get('gdtf') and payload.get('mode') is not None:
+  _,resources=read_resources44(payload['gdtf'],gdtf=True);result.update(resourceBase64=pack_resources44(resources) if resources else None,resourceCount=len(resources))
+ return result
+
+def gdtf_with_resources44(encoded,ma_xml,resources):
+ root,fixture,modes=read_gdtf(encoded);ma=parse(ma_xml);native=children(first(ma,'Wheels'),'Wheel') if first(ma,'Wheels') is not None else [];wheels=fixture.findall('./Wheels/Wheel');by_name={w.get('Name'):w for w in wheels};by_attr={}
+ mods={n.get('index'):n for n in descendants(ma,'Module')};expanded=[c for inst in descendants(ma,'Instance') for c in children(mods[inst.get('module_index')],'ChannelType')];dcs=modes[0].findall('./DMXChannels/DMXChannel')
+ for c,dc in zip(expanded,dcs):
+  for fn,gfn in zip(children(c,'ChannelFunction'),dc.findall('./LogicalChannel/ChannelFunction')):
+   wi=int(fn.get('wheel','0'))-1;target=by_name.get(gfn.get('Wheel'))
+   if not 0<=wi<len(native) or target is None:continue
+   for ns,gs in zip(children(native[wi],'Slot'),target.findall('Slot')):
+    name=safe_media_ref44(ns.get('media_filename'))
+    if name in resources and name.lower().endswith('.png') and name.startswith('wheels/'):
+     gs.set('MediaFileName',name[len('wheels/'):-4])
+ for child in list(root):
+  if child.tag is E.Comment:root.remove(child)
+ data={'hash':object_fingerprint(serialize(root)),'ma2Xml':ma2_serialize(strip_recovery(ma))};root.insert(0,E.Comment(GDTF_EXPORT_MARKER+base64.b64encode(json.dumps(data,separators=(',',':')).encode()).decode()));description=serialize(root).encode()
+ if len(description)>2_000_000:raise ValueError('GDTF description.xml превышает 2 МБ.')
+ out=io.BytesIO()
+ with zipfile.ZipFile(out,'w',zipfile.ZIP_DEFLATED) as z:
+  z.writestr('description.xml',description)
+  for name,data in sorted(resources.items()):z.writestr(name,data)
+ return base64.b64encode(out.getvalue()).decode()
+
+_generate_formats_wheels44=generate_formats
+
+def generate_formats(payload):
+ resources=read_resources44(payload['resourceBase64'])[1] if payload.get('resourceBase64') else {};result=_generate_formats_wheels44(payload)
+ if resources:
+  result['resourceBase64']=pack_resources44(resources);result['resourceCount']=len(resources)
+  if result.get('gdtfBase64'):result['gdtfBase64']=gdtf_with_resources44(result['gdtfBase64'],result['ma2Xml'],resources)
+  refs=[safe_media_ref44(s.get('media_filename')) for s in descendants(parse(result['ma2Xml']),'Slot') if s.get('media_filename')]
+  if all(ref in resources and ref.lower().endswith('.png') for ref in refs):result['warnings']=[w for w in result.get('warnings',[]) if 'без 3D-моделей и изображений' not in w and not w.startswith('Ссылки на изображения требуют пакета ресурсов')]
+  result['warnings'].append('Включено ресурсов изображений: '+str(len(resources))+'.')
+ if payload.get('packageFormat') in ('hog','ma2'):
+  refs=[n.get('thumbnail') for n in descendants(parse(result['xml']),'Entry') if n.get('thumbnail')]+[s.get('media_filename') for s in descendants(parse(result['ma2Xml']),'Slot') if s.get('media_filename')]
+  if any(safe_media_ref44(ref) is None or safe_media_ref44(ref) not in resources for ref in refs):raise ValueError('Для ZIP не хватает файлов изображений. Загрузите исходный GDTF или ZIP с XML и ресурсами, либо выберите обычный XML.')
+  result['packageBase64']=pack_resources44(resources,result['xml' if payload['packageFormat']=='hog' else 'ma2Xml'],export_filename(payload.get('sourceXml') or payload['xml'],payload['packageFormat'],payload['name']))
+ return result
+
+_save_pair_unlocked43=save_pair_unlocked
+
+def save_pair_unlocked(payload,generated):
+ resources=read_resources44(payload['resourceBase64'])[1] if payload.get('resourceBase64') else {};record=_save_pair_unlocked43(payload,generated)
+ if record is None:return None
+ try:return attach_resources44(record,resources)
+ except Exception:
+  folder=(STORE/record['id']).resolve()
+  if re.fullmatch(r'[a-f0-9]{32}',record['id']) and folder.parent==STORE.resolve():shutil.rmtree(folder)
+  refresh_library();raise
+
+def attach_resources44(record,resources):
+ if resources:
+  folder=STORE/record['id'];temporary=folder/('.resources.'+uuid.uuid4().hex+'.new');temporary.write_bytes(base64.b64decode(pack_resources44(resources)));temporary.replace(folder/'.resources.zip')
+  archive_path=folder/'bundle.zip'
+  if archive_path.exists():
+   with zipfile.ZipFile(archive_path) as z:items={n:z.read(n) for n in z.namelist()}
+   items.update({record['folder']+'/'+name:data for name,data in resources.items()});temporary=folder/('bundle.'+uuid.uuid4().hex+'.new')
+   with zipfile.ZipFile(temporary,'w',zipfile.ZIP_DEFLATED) as z:
+    for name,data in items.items():z.writestr(name,data)
+   temporary.replace(archive_path)
+ return record
+
+_complete_gdtf_record43=complete_gdtf_record
+
+def complete_gdtf_record(info,payload):
+ result=_complete_gdtf_record43(info,payload)
+ sidecar=STORE/info['id']/'.resources.zip'
+ if sidecar.is_file():attach_resources44(result,read_resources44(base64.b64encode(sidecar.read_bytes()).decode())[1])
+ return result
+
+def resource_identity_matches44(info,payload):
+ if not payload.get('resourceBase64'):return True
+ def signature(resources):return tuple((name,hashlib.sha256(data).hexdigest()) for name,data in sorted(resources.items()))
+ _,incoming=read_resources44(payload['resourceBase64']);stored=STORE/info['id']/'.resources.zip'
+ if not stored.is_file():return not incoming
+ if stored.stat().st_size>RESOURCE_LIMIT44:return False
+ try:_,previous=read_resources44(base64.b64encode(stored.read_bytes()).decode())
+ except ValueError:return False
+ return signature(incoming)==signature(previous)
+
+_read_saved_xml43=read_saved_xml
+
+def read_saved_xml(path):
+ result=_read_saved_xml43(path)
+ if result:
+  match=re.fullmatch(r'/api/files/([a-f0-9]{32})/(source|hog|ma2)',path);resource=STORE/match[1]/'.resources.zip'
+  if resource.is_file():
+   encoded=base64.b64encode(resource.read_bytes()).decode();_,items=read_resources44(encoded);result['resourceBase64']=pack_resources44(items)
+ return result
+
+_validate_gdtf_export43=validate_gdtf_export
+
+def validate_gdtf_export(encoded):
+ raw=_validate_gdtf_export43(encoded);read_resources44(encoded,gdtf=True);return raw
+
+
+"""Native XYZ transfer plus explicit, profile-bound MA2 ZIP color data."""
+import math
+COLOR_MANIFEST45='colorimetry.json'
+
+def xyz45(value):
+ try:x,y,Y=map(real_number,value.split(','))
+ except (AttributeError,ValueError):raise ValueError('Некорректный цвет CIE xyY.')
+ if x<0 or y<0 or x+y>1.000001 or not 0<=Y<=100:raise ValueError('Цвет CIE выходит за допустимые границы.')
+ if y==0:
+  if Y!=0:raise ValueError('Ненулевая яркость CIE при y=0.')
+  return (0.,0.,0.)
+ values=(x*Y/(100*y),Y/100,(1-x-y)*Y/(100*y))
+ if any(not 0<=v<100 for v in values):raise ValueError('Цвет XYZ не представим в нативном HOG.')
+ return values
+
+def cie45(values):
+ X,Y,Z=map(real_number,values);total=X+Y+Z
+ if not total:return '0,0,0'
+ return ','.join(format(v,'.17g') for v in (X/total,Y/total,100*Y))
+
+def color_manifest45(raw):
+ if len(raw)>512_000:raise ValueError('colorimetry.json превышает 512 КБ.')
+ try:doc=json.loads(raw)
+ except (UnicodeError,ValueError):raise ValueError('Повреждён colorimetry.json.')
+ if not isinstance(doc,dict) or set(doc)!={'schema','profiles'} or doc['schema']!='vlighte.colorimetry/1' or not isinstance(doc['profiles'],list) or len(doc['profiles'])>2:raise ValueError('Неизвестная структура colorimetry.json.')
+ seen=set()
+ for p in doc['profiles']:
+  if not isinstance(p,dict) or set(p)!={'format','fingerprint','bindings'} or p['format']!='MA2' or not isinstance(p['fingerprint'],str) or not re.fullmatch('[0-9a-f]{64}',p['fingerprint']) or p['fingerprint'] in seen:raise ValueError('Некорректная привязка цветовых данных.')
+  seen.add(p['fingerprint'])
+  if not isinstance(p['bindings'],list) or len(p['bindings'])>4096:raise ValueError('Слишком много цветовых привязок.')
+  for b in p['bindings']:
+   if not isinstance(b,dict) or set(b)!={'channel','dmxFrom','dmxTo','wheel','slot','name','rgb','xyz'}:raise ValueError('Некорректная запись цвета.')
+   for k in ('channel','dmxFrom','dmxTo','wheel','slot'):
+    if type(b[k]) is not int:raise ValueError('Цветовая привязка требует целых индексов.')
+   if not 1<=b['channel']<=65535 or not 0<=b['dmxFrom']<=b['dmxTo']<=65535 or not 1<=b['wheel']<=4096 or not 0<=b['slot']<4096 or not isinstance(b['name'],str) or len(b['name'])>4096:raise ValueError('Цветовая привязка вне допустимых границ.')
+   if not isinstance(b['rgb'],list) or len(b['rgb'])!=3 or any(type(v) is not int or not 0<=v<=255 for v in b['rgb']):raise ValueError('Некорректный RGB цвета.')
+   if not isinstance(b['xyz'],list) or len(b['xyz'])!=3 or any(type(v) not in (int,float) or not math.isfinite(v) or not 0<=v<100 for v in b['xyz']) or b['xyz'][1]>1:raise ValueError('Некорректный XYZ цвета.')
+ return doc
+
+def ma_color_bindings45(ma):
+ holder=first(ma,'Wheels');wheels=children(holder,'Wheel') if holder is not None else [];result=[]
+ for address,c in ma_physical_channels44(ma).items():
+  for fn in children(c,'ChannelFunction'):
+   wi=int(fn.get('wheel','0'))-1
+   if not 0<=wi<len(wheels):continue
+   slots=children(wheels[wi],'Slot')
+   for s in children(fn,'ChannelSet'):
+    si=int(s.get('slot_index','-1'))
+    if not 0<=si<len(slots):continue
+    slot=slots[si];result.append({'channel':address,'dmxFrom':int(s.get('from_dmx','0')),'dmxTo':int(s.get('to_dmx','255')),'wheel':wi+1,'slot':si,'name':slot.get('media_name',''),'rgb':[int(slot.get(k,'255')) for k in ('r','g','b')]})
+ return result
+
+def hog_color_bindings45(hog):
+ types={t.get('name'):t for t in descendants(hog,'Type')};compound=first(hog,'CompoundType');result=[];cursor=1
+ for part in children(first(compound,'Parts'),'Part'):
+  t=types[part.get('type')]
+  for preview in descendants(t,'Funcpreview'):
+   refs=descendants(first(preview,'Definition'),'Funcref')
+   if len(refs)!=1:continue
+   identity=(refs[0].get('function'),refs[0].get('feature'))
+   refs_colors=[e for ref in descendants(t,'funcref') if (ref.get('function'),ref.get('feature'))==identity for e in children(ref,'entry')]
+   for entry in children(preview,'Entry'):
+    colors=[n for n in refs_colors if n.get('value')==entry.get('value') and all(k in n.attrib for k in ('x','y','z'))]
+    if len(colors)!=1:continue
+    matches=[(c,r) for c in descendants(t,'Channel') for r in descendants(c,'Range') if (r.get('function'),r.get('feature'))==identity and value_matches44(r,entry.get('value'))]
+    if len(matches)!=1:continue
+    c,r=matches[0];result.append({'channel':cursor+int(c.get('number'))-1,'dmxFrom':int(r.get('dmxstart')),'dmxTo':int(r.get('dmxend',r.get('dmxstart'))),'name':entry.get('name',''),'xyz':[real_number(colors[0].get(k)) for k in ('x','y','z')],'_type':t,'_range':r,'_entry':entry})
+  cursor+=int(first(t,'Dmxfootprint').get('size'))
+ return result
+
+def apply_hog_colors45(hog,bindings):
+ # Existing native previews define the actual slot. We never encode a
+ # source document or invent a color channel to transport metadata.
+ types={t.get('name'):t for t in descendants(hog,'Type')};cursor=1;written={};layout=module_metadata(hog)
+ for part_index,part in enumerate(children(first(first(hog,'CompoundType'),'Parts'),'Part')):
+  t=types[part.get('type')]
+  for preview in descendants(t,'Funcpreview'):
+   refs=descendants(first(preview,'Definition'),'Funcref')
+   if len(refs)!=1:continue
+   identity=(refs[0].get('function'),refs[0].get('feature'))
+   for entry in children(preview,'Entry'):
+    matches=[(c,r) for c in descendants(t,'Channel') for r in descendants(c,'Range') if (r.get('function'),r.get('feature'))==identity and value_matches44(r,entry.get('value'))]
+    if len(matches)!=1:continue
+    c,r=matches[0];address=cursor+int(c.get('number'))-1;lo=int(r.get('dmxstart'));hi=int(r.get('dmxend',str(lo)))
+    # During an import, compact editable modules can have interleaved DMX
+    # patches. Resolve their existing layout before applying native colors.
+    # Once generated, HOG parts are contiguous and need no import metadata.
+    if layout:
+     placement=layout['placements'][part_index];definition=layout['modules'][part.get('type')];spec=next(n for n in definition['channels'] if n['number']==int(c.get('number')));address=placement['patch']+spec['offset']-1
+    colors=[b for b in bindings if b['channel']==address and b['dmxFrom']<=lo<=hi<=b['dmxTo'] and b['name']==entry.get('name','')]
+    values={tuple(b['xyz']) for b in colors}
+    if not values:continue
+    if len(values)!=1:raise ValueError('Неоднозначная привязка CIE к HOG-превью.')
+    xyz=next(iter(values));key=(id(t),identity,entry.get('value'))
+    if key in written and written[key]!=xyz:raise ValueError('Общий модуль содержит разные цвета CIE; требуется отдельный модуль.')
+    written[key]=xyz;cm=first(t,'ColourMatcher')
+    if cm is None:cm=hog_type_section(t,'ColourMatcher');cm.set('type','slotted');cm.set('quality','chromaticity')
+    refs_cm=[n for n in children(cm,'funcref') if (n.get('function'),n.get('feature'))==identity]
+    ref=refs_cm[0] if refs_cm else E.SubElement(cm,q('funcref'),function=identity[0],feature=identity[1])
+    entries=[n for n in children(ref,'entry') if n.get('value')==entry.get('value')]
+    color=entries[0] if entries else E.SubElement(ref,q('entry'),value=entry.get('value'))
+    for k,v in zip(('x','y','z'),xyz):color.set(k,format(v,'.17g'))
+ return hog
+
+def gdtf_color_bindings45(encoded,label):
+ root,fixture,modes=read_gdtf(encoded);chosen=None
+ for mode in modes:
+  active=sorted({b for _,_,b,offsets in expanded_gdtf_channels(fixture,mode) if offsets})
+  for brk in active:
+   name=mode.get('Name') if len(active)==1 else mode.get('Name')+' [DMX Break '+str(brk)+']'
+   if name==label:chosen=(mode,brk)
+ if chosen is None:raise ValueError('Не найден режим для цветовых данных GDTF.')
+ mode,selected=chosen;wheels={w.get('Name'):w for w in fixture.findall('./Wheels/Wheel')};result=[]
+ for _,dc,brk,offsets in expanded_gdtf_channels(fixture,mode):
+  if not offsets or brk!=selected:continue
+  bits=len(offsets)*8
+  for fn,lo,hi,_ in gdtf_function_intervals(dc.find('LogicalChannel'),bits,mode):
+   wheel=wheels.get(fn.get('Wheel'));slots=wheel.findall('Slot') if wheel is not None else [];sets=fn.findall('ChannelSet')
+   for i,s in enumerate(sets):
+    si=int(s.get('WheelSlotIndex','0'))-1
+    if not 0<=si<len(slots):continue
+    a=gdtf_dmx(s.get('DMXFrom','0/1'),bits);b=gdtf_dmx(sets[i+1].get('DMXFrom','0/1'),bits)-1 if i+1<len(sets) else hi;slot=slots[si]
+    result.append({'channel':offsets[0],'dmxFrom':a,'dmxTo':b,'name':slot.get('Name',''),'xyz':xyz45(slot.get('Color','0.3127,0.329,100'))})
+ return result
+
+def apply_gdtf_colors45(encoded,bindings):
+ raw=base64.b64decode(encoded);root,fixture,modes=read_gdtf(encoded);wheels={w.get('Name'):w for w in fixture.findall('./Wheels/Wheel')};written={}
+ for _,dc,_,offsets in expanded_gdtf_channels(fixture,modes[0]):
+  if not offsets:continue
+  bits=len(offsets)*8
+  for fn,lo,hi,_ in gdtf_function_intervals(dc.find('LogicalChannel'),bits,modes[0]):
+   wheel=wheels.get(fn.get('Wheel'));slots=wheel.findall('Slot') if wheel is not None else [];sets=fn.findall('ChannelSet')
+   for i,s in enumerate(sets):
+    si=int(s.get('WheelSlotIndex','0'))-1
+    if not 0<=si<len(slots):continue
+    slot=slots[si];a=gdtf_dmx(s.get('DMXFrom','0/1'),bits);b=gdtf_dmx(sets[i+1].get('DMXFrom','0/1'),bits)-1 if i+1<len(sets) else hi
+    values={tuple(n['xyz']) for n in bindings if n['channel']==offsets[0] and n['dmxFrom']<=a<=b<=n['dmxTo'] and n['name']==slot.get('Name','')}
+    if not values:continue
+    if len(values)!=1:raise ValueError('Неоднозначная привязка CIE к слоту GDTF.')
+    value=cie45(next(iter(values)))
+    if id(slot) in written and written[id(slot)]!=value:raise ValueError('Один слот объединяет разные исходные цвета CIE.')
+    written[id(slot)]=value;slot.set('Color',value)
+ # Keep the existing ordinary generation receipt valid. This comment is
+ # neither read nor needed by the color path, and audits strip it.
+ for c in root:
+  if c.tag is E.Comment and (c.text or '').startswith(GDTF_EXPORT_MARKER):
+   data=json.loads(base64.b64decode(c.text[len(GDTF_EXPORT_MARKER):]));data['hash']=object_fingerprint(serialize(root));c.text=GDTF_EXPORT_MARKER+base64.b64encode(json.dumps(data,separators=(',',':')).encode()).decode()
+ out=io.BytesIO()
+ with zipfile.ZipFile(io.BytesIO(raw)) as old,zipfile.ZipFile(out,'w',zipfile.ZIP_DEFLATED) as z:
+  for info in old.infolist():
+   if info.filename!=COLOR_MANIFEST45:z.writestr(info,serialize(root).encode() if info.filename=='description.xml' else old.read(info))
+ return base64.b64encode(out.getvalue()).decode()
+
+_import_profile44=import_profile
+
+def import_profile(payload):
+ result=_import_profile44(payload)
+ if 'xml' not in result:return result
+ bindings=[]
+ if payload.get('gdtf') and payload.get('mode') is not None:bindings=gdtf_color_bindings45(payload['gdtf'],payload['mode'])
+ elif payload.get('package') or payload.get('resourceBase64'):
+  if payload.get('package'):xml,resources=read_resources44(payload['package'],profile=True)
+  else:xml=payload['xml'];_,resources=read_resources44(payload['resourceBase64'])
+  source=parse(xml)
+  if source.tag==mq('MA') and COLOR_MANIFEST45 in resources:
+   doc=color_manifest45(resources[COLOR_MANIFEST45]);p=next((p for p in doc['profiles'] if p['fingerprint']==object_fingerprint(xml)),None)
+   if p is None:raise ValueError('colorimetry.json не соответствует MA2 XML. Загрузите согласованный ZIP или обычный XML без точных цветовых данных.')
+   native=ma_color_bindings45(source)
+   for b in p['bindings']:
+    guard={k:v for k,v in b.items() if k!='xyz'}
+    if guard not in native:raise ValueError('Привязка CIE не соответствует слоту MA2.')
+   bindings=p['bindings']
+ if bindings:result['xml']=serialize(apply_hog_colors45(strip_recovery(parse(result['xml'])),bindings))
+ result['preciseColors']=bool(hog_color_bindings45(parse(result['xml'])))
+ return result
+
+_generate_formats44=generate_formats
+
+def generate_formats(payload):
+ result=_generate_formats44(payload);hog=parse(result['xml']);bindings=hog_color_bindings45(hog)
+ if not bindings:return result
+ if result.get('gdtfBase64'):result['gdtfBase64']=apply_gdtf_colors45(result['gdtfBase64'],bindings)
+ resources=read_resources44(payload['resourceBase64'])[1] if payload.get('resourceBase64') else {};resources.pop(COLOR_MANIFEST45,None);profiles={}
+ for xml in [result['ma2Xml'],payload.get('sourceXml')]:
+  if not xml or parse(xml).tag!=mq('MA'):continue
+  native=ma_color_bindings45(parse(xml));records=[]
+  for b in native:
+   values={tuple(n['xyz']) for n in bindings if n['channel']==b['channel'] and n['dmxFrom']<=b['dmxFrom']<=b['dmxTo']<=n['dmxTo'] and n['name']==b['name']}
+   if len(values)==1:records.append({**b,'xyz':list(next(iter(values)))})
+  if records:
+   fingerprint=object_fingerprint(xml);profiles[fingerprint]={'format':'MA2','fingerprint':fingerprint,'bindings':records}
+ if profiles:
+  data=json.dumps({'schema':'vlighte.colorimetry/1','profiles':list(profiles.values())},ensure_ascii=False,separators=(',',':')).encode();color_manifest45(data);resources[COLOR_MANIFEST45]=data
+  result['warnings']=list(dict.fromkeys(result.get('warnings',[])+['Точные XYZ сохранены в GDTF/HOG и colorimetry.json пакета. В самой MA2 и отдельном MA2 XML используется приближённый RGB.']))
+  result['resourceBase64']=pack_resources44(resources);result['resourceCount']=sum(n!=COLOR_MANIFEST45 for n in resources)
+ if payload.get('packageFormat') in ('hog','ma2'):result['packageBase64']=pack_resources44(resources,result['xml' if payload['packageFormat']=='hog' else 'ma2Xml'],export_filename(payload.get('sourceXml') or payload['xml'],payload['packageFormat'],payload['name']))
+ return result
 
 
 def application(environ,start_response):
@@ -1748,13 +2650,13 @@ def application(environ,start_response):
    origin=environ.get('HTTP_ORIGIN');host=environ.get('HTTP_HOST','')
    if origin and urlsplit(origin).netloc!=host:raise ValueError('Запрос с другого сайта запрещён.')
    size=int(environ.get('CONTENT_LENGTH','0'))
-   if not 0<size<=(12_600_000 if path=='/api/archive' else 8_400_000 if path=='/api/generate' else 28_100_000):raise ValueError('Размер запроса превышает лимит.')
+   if not 0<size<=(32_000_000 if path=='/api/archive' else 16_800_000 if path=='/api/generate' else 28_100_000):raise ValueError('Размер запроса превышает лимит.')
    if not environ.get('CONTENT_TYPE','').startswith('application/json'):raise ValueError('Ожидается JSON.')
    payload=json.loads(environ['wsgi.input'].read(size))
    if path=='/api/import':data=import_profile(payload)
    elif path=='/api/generate':
     data=generate_formats(payload) if payload.get('exportBoth') else {'xml':generate(payload)}
-    data['originReceipt']=origin_receipt(capture_origin(environ),data['xml'],data.get('ma2Xml'),data.get('gdtfBase64'))
+    data['originReceipt']=origin_receipt(capture_origin(environ),data['xml'],data.get('ma2Xml'),data.get('gdtfBase64'),data.get('resourceBase64'))
     existing=find_existing({**payload,'ma2Xml':data.get('ma2Xml')},data['xml'])
     if existing:data['existingId']=existing['id']
    else:

@@ -1,0 +1,30 @@
+[
+  {
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "GDTF-HOG-MA-HOG-GDTF",
+    "sourceBindings": 84,
+    "maxCieComponentDelta": 7.105427357601002e-15,
+    "hogStepsUseOnlyNativeXml": false
+  },
+  {
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "GDTF-HOG-GDTF-HOG-GDTF",
+    "sourceBindings": 84,
+    "maxCieComponentDelta": 7.105427357601002e-15,
+    "hogStepsUseOnlyNativeXml": true
+  },
+  {
+    "fixture": "10_pixelPATT",
+    "chain": "GDTF-HOG-MA-HOG-GDTF",
+    "sourceBindings": 67,
+    "maxCieComponentDelta": 7.105427357601002e-15,
+    "hogStepsUseOnlyNativeXml": false
+  },
+  {
+    "fixture": "10_pixelPATT",
+    "chain": "GDTF-HOG-GDTF-HOG-GDTF",
+    "sourceBindings": 67,
+    "maxCieComponentDelta": 7.105427357601002e-15,
+    "hogStepsUseOnlyNativeXml": true
+  }
+]

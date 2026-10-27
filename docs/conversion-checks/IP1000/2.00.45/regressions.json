@@ -1,0 +1,68 @@
+[
+  {
+    "script": "work\\colors45_controls43_scales42_physical41_breaks40_native39_test_backend38.py",
+    "exit": 0,
+    "stdout": "PASS owner-only IP, public IP excluded, owner-only purge/POST/CSRF, malformed IDs rejected, snapshot-only deletion, active/new trash protected, empty trash idempotent\n",
+    "stderr": ""
+  },
+  {
+    "script": "work\\colors45_controls43_scales42_physical41_breaks40_native39_test_export38.py",
+    "exit": 0,
+    "stdout": "{'mode': '44ch Mode', 'footprint': 44, 'dmxSlots': 44, 'modules': 6, 'instances': 16, 'virtualChannels': 8, 'functions': 64, 'channelSets': 19}\nPASS GDTF -> HOG + MA2: all 44 DMX slots, 16-bit Tilt, 8 RGB/4 white pixels, 8 virtual dimmers, source definitions and filename\nPASS malformed archives and unknown modes rejected\n",
+    "stderr": ""
+  },
+  {
+    "script": "work\\colors45_controls43_scales42_physical41_breaks40_native39_test_export_library38.py",
+    "exit": 0,
+    "stdout": "PASS MA -> GDTF, 42 DMX, exact MA recovery, existing record upgraded without duplicate, three-file ZIP, GDTF download/index, signed GDTF hash rejects tampering\n",
+    "stderr": ""
+  },
+  {
+    "script": "work\\colors45_controls43_scales42_physical41_breaks40_native39_test_hog_gdtf38.py",
+    "exit": 0,
+    "stdout": "PASS HOG -> GDTF, 42 DMX; validates official GDTF 1.2 XSD\n",
+    "stderr": ""
+  },
+  {
+    "script": "work\\colors45_controls43_scales42_physical41_breaks40_native39_test_padding_edges37.py",
+    "exit": 0,
+    "stdout": "PASS leading/trailing padding attaches to working module; all-empty profile rejected\n",
+    "stderr": ""
+  },
+  {
+    "script": "work\\colors45_controls43_scales42_physical41_breaks40_test_native39.py",
+    "exit": 0,
+    "stdout": "{\"nativeVirtualDimmerInBothHogStages\": true, \"finalMaVirtualDimmer\": 1, \"footprint\": 42, \"rangeBoundariesCompared\": 71, \"whiteGoboSegments\": 7, \"rgbGoboSegments\": 52, \"whiteShutterSegments\": 7, \"constantDmx3\": 255, \"hogNativeDefinitionsXsdValid\": true, \"hogSchemaStructuralRelocationForValidationOnly\": true, \"allAuditArtifactsCommentFree\": true, \"macroReverseMapping\": true}\n",
+    "stderr": ""
+  },
+  {
+    "script": "work\\colors45_controls43_scales42_physical41_test_breaks40.py",
+    "exit": 0,
+    "stdout": "{\"twoActiveBreaksYieldTwoProfiles\": true, \"profileFootprints\": [1, 3], \"sameAddressAcrossBreaksDoesNotCollide\": true, \"overwriteOffsets\": [[1, 11], [2, 21]], \"implicitDropRejected\": true, \"unsortedFunctionsCorrectlyPartitioned\": true, \"duplicateUnconditionalFunctionsRejected\": true, \"beskydModeMasterConditionsPreserved\": {\"2\": [[6, 0, 0]], \"4\": [[7, 0, 0]], \"14\": [[13, 0, 127], [13, 128, 255]], \"16\": [[15, 0, 127], [15, 128, 255]]}, \"beskydHogQualifierDefinitionsXsdValidWithCompoundLocationAdaptation\": true}\n",
+    "stderr": ""
+  },
+  {
+    "script": "work\\colors45_controls43_scales42_test_physical41.py",
+    "exit": 0,
+    "stdout": "{\"defaults45Preserved\": true, \"maImplicitPhysicalBoundsPreserved\": true, \"explicitGdtfChannelSetPhysicalOverridesPreserved\": true, \"hogDefinitionsXsdValidWithCompoundLocationAdaptation\": true, \"checks\": [{\"fixture\": \"09_Robin iSpiiderX\", \"dmx\": 21, \"defaultBefore\": 45, \"defaultAfter\": 45}, {\"fixture\": \"10_pixelPATT\", \"dmx\": 11, \"defaultBefore\": 45, \"defaultAfter\": 45}, {\"fixture\": \"04_BrdoBulbLED\", \"channel\": 9, \"physicalProbes\": [[12, 0], [37, 1]]}, {\"fixture\": \"09_Robin iSpiiderX\", \"channel\": 16, \"physicalProbes\": [[64, 5600], [128, 4200], [192, 3200]]}, {\"fixture\": \"10_pixelPATT\", \"channel\": 2, \"physicalProbes\": [[236, 0], [245, 1], [246, 0], [255, 1]]}]}\n",
+    "stderr": ""
+  },
+  {
+    "script": "work\\colors45_controls43_test_scales42.py",
+    "exit": 0,
+    "stdout": "{\"physicalSamples\": 1536, \"checks\": [{\"fixture\": \"02_BeskydBeam\", \"dmx\": 6, \"all256PhysicalValuesPreserved\": true, \"originalDefault\": 0.0, \"finalDefault\": 0.0}, {\"fixture\": \"02_BeskydBeam\", \"dmx\": 7, \"all256PhysicalValuesPreserved\": true, \"originalDefault\": 0.0, \"finalDefault\": 0.0}, {\"fixture\": \"02_BeskydBeam\", \"dmx\": 13, \"all256PhysicalValuesPreserved\": true, \"originalDefault\": 0.0, \"finalDefault\": 0.0}, {\"fixture\": \"02_BeskydBeam\", \"dmx\": 15, \"all256PhysicalValuesPreserved\": true, \"originalDefault\": 0.0, \"finalDefault\": 0.0}, {\"fixture\": \"09_Robin iSpiiderX\", \"dmx\": 21, \"all256PhysicalValuesPreserved\": true, \"originalDefault\": 45.0, \"finalDefault\": 45.0}, {\"fixture\": \"10_pixelPATT\", \"dmx\": 11, \"all256PhysicalValuesPreserved\": true, \"originalDefault\": 45.0, \"finalDefault\": 45.0}], \"nativeHogDefinitionsXsdValidated\": 6, \"compoundRelocatedForXsdValidationOnly\": true, \"qualifierIntervalsIndependentlyDecoded\": 20, \"beskydModeMasterExact\": true, \"default45Preserved\": true, \"unknownSlotSemanticsRejected\": true, \"consoleImportTested\": false}\n",
+    "stderr": ""
+  },
+  {
+    "script": "work\\colors45_test_controls43.py",
+    "exit": 0,
+    "stdout": "{\"genericHogEffectBanksPreserved\": [[\"Beam Fx\", \"EFFECT\"], [\"Beam Fx 2\", \"EFFECT2\"], [\"Beam Fx 3\", \"EFFECT3\"], [\"Beam Fx 4\", \"EFFECT4\"], [\"Beam Fx 5\", \"EFFECT5\"], [\"Beam Fx 6\", \"EFFECT6\"], [\"Beam Fx 7\", \"EFFECT7\"], [\"Beam Fx 8\", \"EFFECT8\"], [\"Beam Fx 9\", \"EFFECT9\"]], \"nativeControlMappingsHaveUniqueReverse\": 23, \"virtualScopeSubsetRejected\": true, \"originalIp1000VirtualScopeAccepted\": true, \"amberMappedToAdditiveIntensityAndMaColorRgb4\": true, \"ip1000Footprint\": 42, \"consoleTested\": false}\n",
+    "stderr": ""
+  },
+  {
+    "script": "work\\colors45_test_native_controls43.py",
+    "exit": 0,
+    "stdout": "{\"hogNativeDefinitionsValidated\": 10, \"files\": [\"outputs\\\\IP1000_external_no-recovery_2.00.45\\\\03_BlenderControl\\\\seed-HOG.xml\", \"outputs\\\\IP1000_external_no-recovery_2.00.45\\\\03_BlenderControl\\\\steps\\\\MA-HOG-GDTF-HOG.xml\", \"outputs\\\\IP1000_external_no-recovery_2.00.45\\\\04_BrdoBulbLED\\\\seed-HOG.xml\", \"outputs\\\\IP1000_external_no-recovery_2.00.45\\\\04_BrdoBulbLED\\\\steps\\\\MA-HOG-GDTF-HOG.xml\", \"outputs\\\\IP1000_external_no-recovery_2.00.45\\\\07_TriglavCubeXYZ\\\\seed-HOG.xml\", \"outputs\\\\IP1000_external_no-recovery_2.00.45\\\\07_TriglavCubeXYZ\\\\steps\\\\MA-HOG-GDTF-HOG.xml\", \"outputs\\\\IP1000_external_no-recovery_2.00.45\\\\09_Robin iSpiiderX\\\\seed-HOG.xml\", \"outputs\\\\IP1000_external_no-recovery_2.00.45\\\\09_Robin iSpiiderX\\\\steps\\\\MA-HOG-GDTF-HOG.xml\", \"outputs\\\\IP1000_external_no-recovery_2.00.45\\\\10_pixelPATT\\\\seed-HOG.xml\", \"outputs\\\\IP1000_external_no-recovery_2.00.45\\\\10_pixelPATT\\\\steps\\\\MA-HOG-GDTF-HOG.xml\"], \"structuralRelocationForValidationOnly\": true, \"functionFeaturePairsConsoleTested\": false}\n",
+    "stderr": ""
+  }
+]

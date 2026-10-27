@@ -1,0 +1,26 @@
+{
+  "version": "2.00.45",
+  "verifiedAt": "2026-10-27T05:49:12.464116+00:00",
+  "userSelected": "Добавить colorimetry.json в ZIP",
+  "filesReadBackAfterSave": {
+    "~/fixture-stage/app.py": "687b8ea164b99ae4258086a1e7122801d4cd0784c113cb35b88651d8e870f429",
+    "~/www/vlighte.ru/public/index.html": "c60f6d5b3ae4102c5694489c830f7cf644b655be3627ac85763c09a08d7a3600",
+    "~/fixture-stage/public/index.html": "c60f6d5b3ae4102c5694489c830f7cf644b655be3627ac85763c09a08d7a3600",
+    "~/fixture-stage/library/index.html": "3ef730d0ca9e12ca69ffe93802f503917631e87dbbaa31af848594ebd46eb2e0"
+  },
+  "restartMarker": "native-cie-precision-2.00.45",
+  "restartReadBack": true,
+  "liveHomeVersion": "2.00.45",
+  "liveLibraryVersion": "2.00.45",
+  "liveMaZipImported": true,
+  "liveMaZipIncludesColorimetry": true,
+  "liveMaZipDmx": 17,
+  "liveMaZipResourceFiles": 12,
+  "zipAutomaticallyChecked": true,
+  "cieHintVisible": true,
+  "guestLibraryLoaded": true,
+  "zipDownloadButtonAbsent": true,
+  "liveTestGenerationOrArchive": false,
+  "consoleImportTested": false,
+  "screenshot": "live-2.00.45.png"
+}

@@ -1,0 +1,316 @@
+[
+  {
+    "id": "IP1000",
+    "format": "MA",
+    "source": "User MA2 @strobe1000_light@42ch.xml"
+  },
+  {
+    "id": "01_AlpineTubeRGB",
+    "format": "GDTF",
+    "mode": "RGB Simple",
+    "source": {
+      "file": "BlenderDMX@AlpineTubeRGB@version5.gdtf",
+      "url": "https://raw.githubusercontent.com/open-stage/blender-dmx/main/assets/profiles/BlenderDMX@AlpineTubeRGB@version5.gdtf",
+      "repository": "open-stage/blender-dmx",
+      "blobSha": "4d0e1e00077aed01a7d85753ec10c32b4fb8b3cd",
+      "sha256": "259d318a26a7666b6bc6425fd8eab0040a6f9e46b54ab02c4d156d429b34f129",
+      "bytes": 147685
+    },
+    "fixture": {
+      "CanHaveChildren": "No",
+      "Description": "",
+      "FixtureTypeID": "0CCC66E4-CAA4-4476-AE7D-2EE24E89C69F",
+      "LongName": "AlpineTubeRGB",
+      "Manufacturer": "BlenderDMX",
+      "Name": "AlpineTubeRGB",
+      "RefFT": "",
+      "ShortName": "AlpineTubeRGB",
+      "Thumbnail": "thumbnail",
+      "ThumbnailOffsetX": "500",
+      "ThumbnailOffsetY": "25"
+    },
+    "availableModes": [
+      "RGB Simple",
+      "RGB Full",
+      "RGB Full Extra"
+    ]
+  },
+  {
+    "id": "02_BeskydBeam",
+    "format": "GDTF",
+    "mode": "Default",
+    "source": {
+      "file": "BlenderDMX@BeskydBeam@version10.gdtf",
+      "url": "https://raw.githubusercontent.com/open-stage/blender-dmx/main/assets/profiles/BlenderDMX@BeskydBeam@version10.gdtf",
+      "repository": "open-stage/blender-dmx",
+      "blobSha": "12c8cfb19c324e4e504d8624f6fa64f74d224513",
+      "sha256": "7b9787ae6bc7de83eb9d4b4814064f5762913c3bfbe4dc51c3e0c3c093117fe4",
+      "bytes": 294027
+    },
+    "fixture": {
+      "CanHaveChildren": "Yes",
+      "Description": "",
+      "FixtureTypeID": "AEB77B41-D095-4728-979E-1221208DA80D",
+      "LongName": "BeskydBeam",
+      "Manufacturer": "BlenderDMX",
+      "Name": "BeskydBeam",
+      "RefFT": "",
+      "ShortName": "BeskydBeam",
+      "Thumbnail": "thumbnail",
+      "ThumbnailOffsetX": "0",
+      "ThumbnailOffsetY": "0"
+    },
+    "availableModes": [
+      "Default"
+    ]
+  },
+  {
+    "id": "03_BlenderControl",
+    "format": "GDTF",
+    "mode": "Basic",
+    "source": {
+      "file": "BlenderDMX@BlenderControl@ver1.gdtf",
+      "url": "https://raw.githubusercontent.com/open-stage/blender-dmx/main/assets/profiles/BlenderDMX@BlenderControl@ver1.gdtf",
+      "repository": "open-stage/blender-dmx",
+      "blobSha": "6911414812e860039e9d1645d806be2496d33698",
+      "sha256": "5f13e53d58b19bf5935efa427719869a8715759ffcc34201fb18f87b904c047c",
+      "bytes": 34492
+    },
+    "fixture": {
+      "CanHaveChildren": "No",
+      "Description": "A device file to allow control of Blender properties. Currently supported properties: background color (RGB, Dimmer), animation/timeline play state, auto-keying.",
+      "FixtureTypeID": "B504AA63-2AC7-46E5-9A5A-13F14EE59448",
+      "LongName": "BlenderControl",
+      "Manufacturer": "BlenderDMX",
+      "Name": "BlenderControl",
+      "RefFT": "",
+      "ShortName": "BlenderControl",
+      "Thumbnail": "thumbnail",
+      "ThumbnailOffsetX": "43",
+      "ThumbnailOffsetY": "43"
+    },
+    "availableModes": [
+      "Basic"
+    ]
+  },
+  {
+    "id": "04_BrdoBulbLED",
+    "format": "GDTF",
+    "mode": "Standard mode",
+    "source": {
+      "file": "BlenderDMX@BrdoBulbLED@version3.gdtf",
+      "url": "https://raw.githubusercontent.com/open-stage/blender-dmx/main/assets/profiles/BlenderDMX@BrdoBulbLED@version3.gdtf",
+      "repository": "open-stage/blender-dmx",
+      "blobSha": "6a7926d5e37974065ef59ec35a0fb35f265e046c",
+      "sha256": "f8a88d8421599cb1d1976c63ccdeabbbe3ab6d76f734e248c0971a00f5c836b7",
+      "bytes": 60740
+    },
+    "fixture": {
+      "CanHaveChildren": "No",
+      "Description": "",
+      "FixtureTypeID": "2B35AC1F-F665-4F1B-93A2-65A56CA1AA87",
+      "LongName": "BrdoBulbLED",
+      "Manufacturer": "BlenderDMX",
+      "Name": "BrdoBulbLED",
+      "RefFT": "",
+      "ShortName": "BrdoBulbLED",
+      "Thumbnail": "thumbnail",
+      "ThumbnailOffsetX": "5",
+      "ThumbnailOffsetY": "5"
+    },
+    "availableModes": [
+      "Standard mode"
+    ]
+  },
+  {
+    "id": "05_NeblinaWash",
+    "format": "GDTF",
+    "mode": "Default",
+    "source": {
+      "file": "BlenderDMX@NeblinaWash@version1.gdtf",
+      "url": "https://raw.githubusercontent.com/open-stage/blender-dmx/main/assets/profiles/BlenderDMX@NeblinaWash@version1.gdtf",
+      "repository": "open-stage/blender-dmx",
+      "blobSha": "76e31aa070166eec1b3fe8ec0edf449c83751526",
+      "sha256": "f4b1481a62b2c7668d0a038beea69ba66c21e3369786673c02ab348c3cad14b0",
+      "bytes": 120049
+    },
+    "fixture": {
+      "CanHaveChildren": "Yes",
+      "Description": "",
+      "FixtureTypeID": "B23A4BE7-73EC-4781-851B-B4AA8E0EB367",
+      "LongName": "NeblinaWash",
+      "Manufacturer": "BlenderDMX",
+      "Name": "NeblinaWash",
+      "RefFT": "",
+      "ShortName": "NeblinaWash",
+      "Thumbnail": "thumbnail",
+      "ThumbnailOffsetX": "0",
+      "ThumbnailOffsetY": "0"
+    },
+    "availableModes": [
+      "Default"
+    ]
+  },
+  {
+    "id": "06_RysyParLED",
+    "format": "GDTF",
+    "mode": "RGBW",
+    "source": {
+      "file": "BlenderDMX@RysyParLED@version7.gdtf",
+      "url": "https://raw.githubusercontent.com/open-stage/blender-dmx/main/assets/profiles/BlenderDMX@RysyParLED@version7.gdtf",
+      "repository": "open-stage/blender-dmx",
+      "blobSha": "48135349517796cc0221b3c5cae6f19a9938acfc",
+      "sha256": "7a76f0c78021c5219f1f2a2c14d531d805b1ae1285c2c364382440730ae76e56",
+      "bytes": 278419
+    },
+    "fixture": {
+      "CanHaveChildren": "No",
+      "Description": "A generic LED PAR 64 RGBW created for BlenderDMX.",
+      "FixtureTypeID": "77D0E573-ADBB-40D7-BBDF-264D833D7ABE",
+      "LongName": "RysyParLED",
+      "Manufacturer": "BlenderDMX",
+      "Name": "RysyParLED",
+      "RefFT": "",
+      "ShortName": "RysyParLED",
+      "Thumbnail": "thumbnail",
+      "ThumbnailOffsetX": "0",
+      "ThumbnailOffsetY": "0"
+    },
+    "availableModes": [
+      "RGBW",
+      "RGBA"
+    ]
+  },
+  {
+    "id": "07_TriglavCubeXYZ",
+    "format": "GDTF",
+    "mode": "Default",
+    "source": {
+      "file": "BlenderDMX@TriglavCubeXYZ@version3.gdtf",
+      "url": "https://raw.githubusercontent.com/open-stage/blender-dmx/main/assets/profiles/BlenderDMX@TriglavCubeXYZ@version3.gdtf",
+      "repository": "open-stage/blender-dmx",
+      "blobSha": "b7e7fedcffd0327c62e09bc7ddf8662c2c06f3e6",
+      "sha256": "c5356cc81e292cdf3853e3a1592fef06cd625557dcd40d738d9a9c536fb56a6e",
+      "bytes": 65487
+    },
+    "fixture": {
+      "CanHaveChildren": "No",
+      "Description": "Generic fixture with XYZ movement and rotation, contains RGB,Zoom and Dimmer.",
+      "FixtureTypeID": "C7544FF5-783F-48A2-B3EE-63F58B3953BA",
+      "LongName": "TriglavCubeXYZ",
+      "Manufacturer": "BlenderDMX",
+      "Name": "TriglavCubeXYZ",
+      "RefFT": "",
+      "ShortName": "TriglavCubeXYZ",
+      "Thumbnail": "thumbnail",
+      "ThumbnailOffsetX": "5",
+      "ThumbnailOffsetY": "5"
+    },
+    "availableModes": [
+      "Default"
+    ]
+  },
+  {
+    "id": "08_TyrolPAR",
+    "format": "GDTF",
+    "mode": "Default",
+    "source": {
+      "file": "BlenderDMX@TyrolPAR@version6.gdtf",
+      "url": "https://raw.githubusercontent.com/open-stage/blender-dmx/main/assets/profiles/BlenderDMX@TyrolPAR@version6.gdtf",
+      "repository": "open-stage/blender-dmx",
+      "blobSha": "3706a39b0fa5614a7aebf1f9d1e8fe114394335d",
+      "sha256": "c390dcc5bbaa5e29d9d0dc248f850059429b1d27050d103cfbe54a3e6fb60490",
+      "bytes": 67210
+    },
+    "fixture": {
+      "CanHaveChildren": "No",
+      "Description": "A generic conventional PAR 64 created for BlenderDMX.",
+      "FixtureTypeID": "D0549705-BC37-470F-B1D3-5D1FE4868E90",
+      "LongName": "TyrolPAR",
+      "Manufacturer": "BlenderDMX",
+      "Name": "TyrolPAR",
+      "RefFT": "",
+      "ShortName": "TyrolPAR",
+      "Thumbnail": "thumbnail",
+      "ThumbnailOffsetX": "0",
+      "ThumbnailOffsetY": "0"
+    },
+    "availableModes": [
+      "Default",
+      "RGB"
+    ]
+  },
+  {
+    "id": "09_Robin iSpiiderX",
+    "format": "GDTF",
+    "mode": "Mode 10 - Pattern full RGBW",
+    "source": {
+      "file": "test1.xml",
+      "url": "https://raw.githubusercontent.com/open-stage/python-gdtf/master/tests/test1.xml",
+      "repository": "open-stage/python-gdtf",
+      "blobSha": "b014bcfcc2e2f135d63c67e9124f1000ebf8f05a",
+      "sha256": "6857ce46623bf1e3462d6aa1285e9aa60004af2a52ef65107b66724e21da4ea5",
+      "bytes": 989800
+    },
+    "fixture": {
+      "CanHaveChildren": "Yes",
+      "Description": "Introducing the iSpiiderX®, a pinnacle of cutting-edge design, construction, and protection technology. Evolving from the esteemed legacy of its predecessor, the original iSpiider®, this high-performance fixture boasts an IP65 rating, ensuring resilience against any weather conditions.",
+      "FixtureTypeID": "AC70980B-8E18-4355-AD16-05441F030039",
+      "LongName": "Robin iSpiiderX® ",
+      "Manufacturer": "Robe Lighting",
+      "Name": "Robin iSpiiderX",
+      "RefFT": "",
+      "ShortName": "iSpiiderX",
+      "Thumbnail": "thumbnail",
+      "ThumbnailOffsetX": "212",
+      "ThumbnailOffsetY": "151"
+    },
+    "availableModes": [
+      "Mode 10 - Pattern full RGBW",
+      "Mode 9 - Pattern full RGB",
+      "Mode 8 - Pixel RGBW ",
+      "Mode 7 - Pixel RGB",
+      "Mode 6 - Pattern",
+      "Mode 5 - Wash",
+      "Mode 1 - Zones",
+      "Mode 2 - Basic",
+      "Mode 3 - Advanced",
+      "Mode 4 - Full RGBW"
+    ]
+  },
+  {
+    "id": "10_pixelPATT",
+    "format": "GDTF",
+    "mode": "Mode 1 - Wash",
+    "source": {
+      "file": "test2.xml",
+      "url": "https://raw.githubusercontent.com/open-stage/python-gdtf/master/tests/test2.xml",
+      "repository": "open-stage/python-gdtf",
+      "blobSha": "5b66b569d5bfe249b23d802762eca1a52eb8e096",
+      "sha256": "df89e4132f30b4f43a360db6fc565f408d39cdc3d5201f6af2083fbb13f05929",
+      "bytes": 472729
+    },
+    "fixture": {
+      "CanHaveChildren": "Yes",
+      "Description": "Joining Robe’s line of retro style lighting products is pixelPATT, the latest addition to the PATT family. In spite of its eye catching retro design, pixelPATT is based on modern LED pixel controlled technology.\n\nFor full data (consuption, voltage etc.) please add PATT Driver.",
+      "FixtureTypeID": "41A5C4F0-9C42-4068-BEE8-4478B2283F98",
+      "LongName": "pixelPATT™",
+      "Manufacturer": "Robe Lighting",
+      "Name": "pixelPATT",
+      "RefFT": "12FD5B48-1C7D-4315-9979-97B704559EEC",
+      "ShortName": "pixelPATT",
+      "Thumbnail": "thumbnail",
+      "ThumbnailOffsetX": "413",
+      "ThumbnailOffsetY": "412"
+    },
+    "availableModes": [
+      "Mode 1 - Wash",
+      "Mode 2 - Pattern",
+      "Mode 3 - Pixel RGB",
+      "Mode 4 - Pixel RGBW",
+      "Mode 5 - Pattern full RGB",
+      "Mode 6 - Pattern full RGBW",
+      "Mode 7 - Pixel RGBW only"
+    ]
+  }
+]
