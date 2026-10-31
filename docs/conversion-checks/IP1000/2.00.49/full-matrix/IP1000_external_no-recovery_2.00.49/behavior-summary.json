@@ -1,0 +1,18 @@
+{
+  "version": "IP1000_external_no-recovery_2.00.49",
+  "rows": 810,
+  "previousDifferentRows": 592,
+  "classifications": {
+    "labels_structure_or_quantization": 607,
+    "functional_difference": 32,
+    "control_or_visualization_change": 171
+  },
+  "categoryRows": {
+    "control_assignment": 32,
+    "physical_curve": 32,
+    "quantization": 26,
+    "virtual_scope": 13,
+    "set_labels": 254,
+    "wheel_visualization": 171
+  }
+}

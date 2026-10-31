@@ -147,7 +147,7 @@ def map_module_channels(target,source,module):
   if macro>8:raise ValueError('Нужно сопоставить дополнительные Macro-каналы.')
   return ('Macro' if macro==1 else f'Macro {macro}')+(' Rate' if rate else '')
  rgb={'COLORRGB1':('I Red','Cyan'),'COLORRGB2':('I Green','Magenta'),'COLORRGB3':('I Blue','Yellow')}
- color_names={'RED':'I Red','GREEN':'I Green','BLUE':'I Blue','WHITE':'I White','AMBER':'I Amber','COLORRGB4':'I Amber','COLORRGB5':'I White','COLORRGB14':'Yellow','CYAN':'Cyan','MAGENTA':'Magenta','YELLOW':'Yellow'}
+ color_names={'RED':'I Red','GREEN':'I Green','BLUE':'I Blue','WHITE':'I White','AMBER':'I Amber','COLORRGB4':'I Amber','COLORRGB5':'I White','COLORRGB7':'I White','COLORRGB14':'Yellow','CYAN':'Cyan','MAGENTA':'Magenta','YELLOW':'Yellow'}
  motion={'PAN':'Pan','TILT':'Tilt'}
  controls={'RESET','CONTROL','DIMMERCURVE','DIMMER_CURVE','FIXTURECONTROL','LAMPON','LAMPOFF','LAMPRESET'}
  rate_functions={}
@@ -157,7 +157,7 @@ def map_module_channels(target,source,module):
   label=fn.get('attribute_user_name',attr) if fn is not None else attr
   sub=fn.get('subattribute','').upper() if fn is not None else ''
   coarse=int(c.get('coarse'));maximum=65535 if 'fine' in c.attrib else 255
-  if effective in ('DUMMY','RESERVED') or attr in ('DUMMY','RESERVED'):
+  if attr in ('DUMMY','RESERVED') or (effective in ('DUMMY','RESERVED') and not re.fullmatch(r'COLORRGB[0-9]+',attr)):
    attached=first(ch,'AttachedChannels');ch.clear();ch.set('number',str(sum((2 if 'fine' in prior.attrib else 1) for prior in source[:list(source).index(c)])+1));ch.set('unused','true');continue
   attached=next(iter(children(ch,'AttachedChannels')),None)
   for child in list(ch):
@@ -1425,13 +1425,29 @@ def convert(root):
    low=int(r.get('dmxstart'));high=int(r.get('dmxend',str(low)));start=real_number(r.get('start','0'));end=real_number(r.get('end',str(start)));value=start+(end-start)*(default-low)/(high-low) if high!=low else start
    E.SubElement(hog_type_section(t,'Defaults'),q('Default'),function=r.get('function'),feature=r.get('feature'),value=str(value))
   virtual=[c for c in children(module,'ChannelType') if 'coarse' not in c.attrib]
+  if len(virtual)>1:raise ValueError('Несколько виртуальных органов в одном модуле требуют явных зависимостей; экспорт остановлен без расширения области DIM.')
   for c in virtual:
-   if not re.fullmatch(r'DIM(?:MER)?\d*',c.get('attribute','')):raise ValueError('Требуется сопоставление виртуального канала '+c.get('attribute',''))
-   affected=sorted({(r.get('function'),r.get('feature')) for r in descendants(t,'Range') if r.get('feature')=='Intensity' and r.get('dmxstart')!=r.get('dmxend')})
-   if not affected:raise ValueError('Виртуальный DIM не имеет управляемых каналов интенсивности в своём модуле.')
-   fns=children(c,'ChannelFunction');low=min(real_number(f.get('physfrom','0')) for f in fns)*100;high=max(real_number(f.get('physto','1')) for f in fns)*100
+   if c.get('attribute') not in ('DIM','DIMMER'):raise ValueError('Требуется сопоставление виртуального канала '+c.get('attribute',''))
+   affected=set()
+   for source,ch in zip(physical,children(first(t,'Channels'),'Channel')):
+    if not ma_virtual_emitter48(source):continue
+    affected.update(hog_virtual_targets48(ch))
+    if source.get('attribute')=='COLORRGB7':
+     affected.update((r.get('function'),r.get('feature')) for r in descendants(ch,'Range') if r.get('function')=='Sub Intensity 1' and r.get('feature')=='Intensity')
+   if not affected:raise ValueError('Виртуальный DIM не имеет цветовых каналов в своём модуле.')
+   fns=children(c,'ChannelFunction')
+   if len(fns)!=1:raise ValueError('Составная шкала виртуального DIM не представима одним штатным HOG Virtual.')
+   fn=fns[0]
+   if int(fn.get('min_dmx_24','0'))!=0 or int(fn.get('max_dmx_24','16777215'))!=16777215 or c.get('mode'):raise ValueError('Условная шкала виртуального DIM требует отдельного сопоставления.')
+   low=real_number(fn.get('physfrom',str(real_number(fn.get('from','0'))/100)))*100
+   high=real_number(fn.get('physto',str(real_number(fn.get('to','100'))/100)))*100
+   if low>=high:raise ValueError('Некорректная шкала виртуального DIM.')
    v=E.SubElement(hog_type_section(t,'Virtuals'),q('Virtual'),function='Intensity',feature='Intensity',start=str(low),end=str(high))
-   for function,feature in affected:E.SubElement(v,q('Affected'),function=function,feature=feature)
+   for function,feature in sorted(affected):E.SubElement(v,q('Affected'),function=function,feature=feature)
+   if 'default' in c.attrib:
+    value=real_number(c.get('default'))
+    if not 0<=value<=255:raise ValueError('Некорректное 8-битное Default виртуального DIM MA2.')
+    E.SubElement(hog_type_section(t,'Defaults'),q('Default'),function='Intensity',feature='Intensity',value=str(low+(high-low)*value/255))
  return hog,system
 
 _ma2_attribute38=ma2_attribute
@@ -1995,11 +2011,29 @@ def map_module_channels(target,source,module):
   for r in descendants(ch,'Range'):
    r.set('function',definition[0]);r.set('feature',definition[1])
 
+def ma_virtual_emitter48(c):
+ attr=c.get('attribute','').upper()
+ return bool(re.fullmatch(r'COLORRGB[0-9]+|(?:RED|GREEN|BLUE|WHITE|AMBER|CYAN|MAGENTA|YELLOW)[0-9]*',attr))
+
+
+def hog_virtual_targets48(ch):
+ ranges=descendants(ch,'Range');pairs={(r.get('function'),r.get('feature')) for r in ranges}
+ result=set();inverse={'I Red':'Cyan','I Green':'Magenta','I Blue':'Yellow'}
+ for r in ranges:
+  fn=r.get('function');feature=r.get('feature')
+  if feature!='Intensity' or r.get('dmxstart')==r.get('dmxend'):continue
+  if not ma_virtual_emitter48(E.Element('ChannelType',attribute=ma2_attribute(fn,feature)[0])):continue
+  alternate=(inverse.get(fn),'Variable')
+  result.add(alternate if alternate in pairs else (fn,feature))
+ return result
+
+
 def validate_virtual_scope43(t,v):
  if v.get('function')!='Intensity' or v.get('feature')!='Intensity':raise ValueError('Неизвестный виртуальный орган управления.')
  affected={(n.get('function'),n.get('feature')) for n in children(v,'Affected')}
- eligible={(r.get('function'),r.get('feature')) for r in descendants(t,'Range') if r.get('feature')=='Intensity' and r.get('dmxstart')!=r.get('dmxend')}
+ eligible=set().union(*(hog_virtual_targets48(ch) for ch in descendants(t,'Channel')))
  if not affected or affected!=eligible:raise ValueError('Область действия виртуального диммера не представима автоматическим DIM MA2; требуется отдельный модуль. Экспорт остановлен без расширения области действия.')
+
 
 
 # Typed mappings use native HOG parameters, not source snapshots or tags.
@@ -2043,7 +2077,7 @@ def map_module_channels(target,source,module):
   match=re.fullmatch(r'GOBO([4-8])(_POS|FORWARD)?',c.get('attribute',''))
   if not match:continue
   if c.get('mode') or any(n.get('mode')==c.get('attribute') for n in source):raise ValueError('Условный RGB-гобо требует отдельного сопоставления.')
-  bank=match[1];modifier=match[2] or '';function='Beam Fx '+bank+(' <>' if modifier=='_POS' else ' Offset' if modifier else '');feature='Continuous' if modifier=='FORWARD' else 'Index'
+  bank=match[1];modifier=match[2] or '';function='Beam Fx '+bank+(' <>' if modifier=='_POS' else ' Offset' if modifier else '');feature='Offset' if modifier=='FORWARD' else 'Index' if modifier=='_POS' else 'Continuous'
   for r in descendants(ch,'Range'):r.set('function',function);r.set('feature',feature)
  owners={}
  for ch in children(target,'Channel'):
@@ -2633,6 +2667,118 @@ def generate_formats(payload):
   result['resourceBase64']=pack_resources44(resources);result['resourceCount']=sum(n!=COLOR_MANIFEST45 for n in resources)
  if payload.get('packageFormat') in ('hog','ma2'):result['packageBase64']=pack_resources44(resources,result['xml' if payload['packageFormat']=='hog' else 'ma2Xml'],export_filename(payload.get('sourceXml') or payload['xml'],payload['packageFormat'],payload['name']))
  return result
+
+
+
+# HOG 3.21.2: Type/Continuous, Offset/Offset and <>/Index are native
+# Beam Fx bank features. A generic EFFECT uses Continuous too, so only a
+# bank with its dedicated Offset control identifies an RGB-gobo group.
+_ma2_attribute45_hog46=ma2_attribute
+_ma2_from_hog45_hog46=ma2_from_hog
+
+def ma2_attribute(function,feature):
+ match=re.fullmatch(r'Beam Fx ([4-8])( Offset)?',function)
+ if match:
+  bank=match[1]
+  if match[2] and feature=='Offset':return 'GOBO'+bank+'FORWARD','GOBO'+bank,'GOBO',1
+ return _ma2_attribute45_hog46(function,feature)
+
+def ma2_from_hog(payload,hog_xml):
+ # Scope inference per Type: bank numbers can be reused in unrelated modules.
+ root=parse(hog_xml)
+ banks={}
+ for t in descendants(root,'Type'):
+  banks[t.get('name')]={r.get('function').split()[2] for r in descendants(t,'Range') if re.fullmatch(r'Beam Fx [4-8] Offset',r.get('function','')) and r.get('feature')=='Offset'}
+ # Attribute conversion is called per channel without a Type parameter.
+ # Temporarily normalize only identified RGB-gobo bank selectors to their
+ # legacy identity for the existing converter; no legacy XML is emitted.
+ for t in descendants(root,'Type'):
+  for n in t.iter():
+   if n.get('function','') in {'Beam Fx '+b for b in banks[t.get('name')]} and n.get('feature')=='Continuous':n.set('feature','Index')
+ return _ma2_from_hog45_hog46(payload,serialize(root))
+
+
+
+# Unknown MA physical endpoints are not a constant strobe frequency.
+# These two native percentage controls keep raw shutter DMX independently
+# addressable without assigning fabricated Hz or named strobe behaviours.
+RAW_SHUTTER47={'SHUTTER2':('Strobe Mode','Continuous'),'SHUTTER3':('Out Strobe','Continuous')}
+_map_module_channels46_shutter47=map_module_channels
+_ma2_attribute46_shutter47=ma2_attribute
+_ma2_from_hog46_shutter47=ma2_from_hog
+
+def map_module_channels(target,source,module):
+ _map_module_channels46_shutter47(target,source,module)
+ for ch,c in zip(children(target,'Channel'),source):
+  identity=RAW_SHUTTER47.get(c.get('attribute'))
+  functions=children(c,'ChannelFunction')
+  if not identity or not functions or all('physfrom' in f.attrib and 'physto' in f.attrib for f in functions):continue
+  if c.get('mode') or any(other.get('mode')==c.get('attribute') for other in source):raise ValueError('SHUTTER с неполной физической шкалой и ModeMaster требует отдельного сопоставления.')
+  for other in children(target,'Channel'):
+   if other is not ch and any((r.get('function'),r.get('feature'))==identity for r in descendants(other,'Range')):raise ValueError('Коллизия независимого SHUTTER-контроллера: '+identity[0])
+  ranges=first(ch,'Ranges');ranges.clear();maximum=65535 if 'fine' in c.attrib else 255
+  for f in functions:
+   low=round(int(f.get('min_dmx_24','0'))*maximum/16777215);high=round(int(f.get('max_dmx_24','16777215'))*maximum/16777215)
+   a=real_number(f.get('from','0'));b=real_number(f.get('to','100'))
+   if a==b:raise ValueError('SHUTTER без физической шкалы имеет неоднозначную пользовательскую шкалу.')
+   cuts={low,high+1}
+   for item in children(f,'ChannelSet'):cuts.update((int(item.get('from_dmx',low)),int(item.get('to_dmx',high))+1))
+   cuts=sorted(cuts)
+   for begin,stop in zip(cuts,cuts[1:]):
+    end=stop-1
+    interpolate=lambda n:a+(b-a)*(n-low)/(high-low) if high!=low else a
+    E.SubElement(ranges,q('Range'),dmxstart=str(begin),dmxend=str(end),function=identity[0],feature=identity[1],start=str(interpolate(begin)),end=str(interpolate(end)))
+
+def ma2_attribute(function,feature):
+ for attr,identity in RAW_SHUTTER47.items():
+  if (function,feature)==identity:return attr,'SHUTTER','BEAM',1
+ return _ma2_attribute46_shutter47(function,feature)
+
+def ma2_from_hog(payload,hog_xml):
+ xml,warnings=_ma2_from_hog46_shutter47(payload,hog_xml)
+ hog=parse(hog_xml);ma=parse(xml);types={t.get('name'):t for t in descendants(hog,'Type')};compound=next(c for c in descendants(hog,'CompoundType') if c.get('name')==payload['name'].strip());modules={c.get('index'):c for c in descendants(ma,'Module')}
+ for part,inst in zip(children(first(compound,'Parts'),'Part'),descendants(ma,'Instance')):
+  for ch in descendants(types[part.get('type')],'Channel'):
+   if not any((r.get('function'),r.get('feature')) in RAW_SHUTTER47.values() for r in descendants(ch,'Range')):continue
+   c=next(c for c in children(modules[inst.get('module_index')],'ChannelType') if c.get('coarse')==ch.get('number'))
+   for f in children(c,'ChannelFunction'):
+    f.attrib.pop('physfrom',None);f.attrib.pop('physto',None)
+   warnings.append(c.get('attribute')+': сохранена процентная шкала управления; физические значения не заданы в HOG raw-контроллере.')
+ return ma2_serialize(ma),sorted(set(warnings))
+
+
+
+# The source virtual DIM controls COLORRGB7 independently of the RGB colour
+# model. A native I White emitter switches colour models in HOG 3.21.2;
+# use an auxiliary level (default 100%) multiplied by virtual Intensity.
+_map_module_channels48_virtual49=map_module_channels
+_ma2_from_hog48_virtual49=ma2_from_hog
+
+def map_module_channels(target,source,module):
+ _map_module_channels48_virtual49(target,source,module)
+ if not any(c.get('attribute') in ('DIM','DIMMER') and 'coarse' not in c.attrib for c in children(module,'ChannelType')):return
+ for ch,c in zip(children(target,'Channel'),source):
+  if c.get('attribute')!='COLORRGB7':continue
+  if any(r.get('function')=='Sub Intensity 1' for other in children(target,'Channel') if other is not ch for r in descendants(other,'Range')):raise ValueError('Независимый цветовой канал виртуального DIM конфликтует с Sub Intensity 1.')
+  for r in descendants(ch,'Range'):
+   if (r.get('function'),r.get('feature'))!=('I White','Intensity'):raise ValueError('Составной COLORRGB7 требует отдельного сопоставления виртуального DIM.')
+   r.set('function','Sub Intensity 1')
+
+def ma2_from_hog(payload,hog_xml):
+ root=parse(hog_xml)
+ for t in descendants(root,'Type'):
+  affected=[a for v in descendants(t,'Virtual') for a in children(v,'Affected') if (a.get('function'),a.get('feature'))==('Sub Intensity 1','Intensity')]
+  if not affected:continue
+  if any(r.get('function')=='I White' for r in descendants(t,'Range')):raise ValueError('Виртуальный Sub Intensity 1 и I White требуют раздельных атрибутов MA2.')
+  # MA's automatic DIM acts on emitter attributes, not physical DIM2.
+  # Normalize only an explicitly affected auxiliary level; ordinary DIM2
+  # remains a physical dimmer. No source snapshots or recovery comments.
+  for r in descendants(t,'Range'):
+   if (r.get('function'),r.get('feature'))==('Sub Intensity 1','Intensity'):r.set('function','I White')
+  for a in affected:a.set('function','I White')
+  for d in descendants(t,'Default'):
+   if (d.get('function'),d.get('feature'))==('Sub Intensity 1','Intensity'):d.set('function','I White')
+ return _ma2_from_hog48_virtual49(payload,serialize(root))
 
 
 def application(environ,start_response):

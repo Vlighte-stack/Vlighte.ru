@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MA xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://schemas.malighting.de/grandma2/xml/MA http://schemas.malighting.de/grandma2/xml/3.1.2/MA.xsd" major_vers="3" minor_vers="1" stream_vers="2" xmlns="http://schemas.malighting.de/grandma2/xml/MA">
+	<Info datetime="2026-10-31T03:51:08.331076+00:00" showfile="Vlighte" />
+	<FixtureType index="0" name="strobe1000 light 42ch HOG4" mode="42ch">
+		<short_name>strobe1000 light 42ch HOG4</short_name>
+		<Modules index="0">
+			<Module index="0" name="strobe1000 light M0" class="LED" beamtype="Wash">
+				<ChannelType index="0" attribute="TILT" feature="POSITION" preset="POSITION" coarse="1" fine="2" default="32768.0">
+					<ChannelFunction index="0" from="-90.0" to="-0.0013733119707097785" min_dmx_24="0" max_dmx_24="8388479" physfrom="-90.0" physto="-0.0013733119707097785" subattribute="TILT" attribute="TILT" attribute_user_name="Tilt" feature="POSITION" preset="POSITION" />
+					<ChannelFunction index="1" from="0.0013733119707097785" to="0.0013733119707097785" min_dmx_24="8388736" max_dmx_24="8388736" physfrom="0.0013733119707097785" physto="0.0013733119707097785" subattribute="TILT" attribute="TILT" attribute_user_name="Tilt" feature="POSITION" preset="POSITION" />
+					<ChannelFunction index="2" from="0.004119935912115125" to="90.0" min_dmx_24="8388992" max_dmx_24="16777215" physfrom="0.004119935912115125" physto="90.0" subattribute="TILT" attribute="TILT" attribute_user_name="Tilt" feature="POSITION" preset="POSITION" />
+				</ChannelType>
+				<ChannelType index="1" attribute="COLORRGB7" feature="COLORRGB" preset="COLOR" coarse="3" default="255.0">
+					<ChannelFunction index="0" from="0.0" to="100.0" min_dmx_24="0" max_dmx_24="16777215" physfrom="0.0" physto="1.0" subattribute="COLORRGB7" attribute="COLORRGB7" attribute_user_name="I White" feature="COLORRGB" preset="COLOR" />
+				</ChannelType>
+				<ChannelType index="2" attribute="SHUTTER2" feature="SHUTTER" preset="BEAM" coarse="4">
+					<ChannelFunction index="0" from="0.0" to="1.9607843137254901" min_dmx_24="0" max_dmx_24="328965" subattribute="SHUTTER2" attribute="SHUTTER2" attribute_user_name="Strobe Mode" feature="SHUTTER" preset="BEAM" wheel="1">
+						<ChannelSet index="0" name="off" from_dmx="0" to_dmx="5" slot_index="0" />
+					</ChannelFunction>
+					<ChannelFunction index="1" from="2.3529411764705883" to="16.470588235294116" min_dmx_24="394758" max_dmx_24="2763306" subattribute="SHUTTER2" attribute="SHUTTER2" attribute_user_name="Strobe Mode" feature="SHUTTER" preset="BEAM" wheel="1">
+						<ChannelSet index="0" name="Mode 1" from_dmx="6" to_dmx="42" slot_index="1" />
+					</ChannelFunction>
+					<ChannelFunction index="2" from="16.862745098039216" to="33.333333333333336" min_dmx_24="2829099" max_dmx_24="5592405" subattribute="SHUTTER2" attribute="SHUTTER2" attribute_user_name="Strobe Mode" feature="SHUTTER" preset="BEAM" wheel="1">
+						<ChannelSet index="0" name="Mode 2" from_dmx="43" to_dmx="85" slot_index="2" />
+					</ChannelFunction>
+					<ChannelFunction index="3" from="33.72549019607843" to="50.19607843137255" min_dmx_24="5658198" max_dmx_24="8421504" subattribute="SHUTTER2" attribute="SHUTTER2" attribute_user_name="Strobe Mode" feature="SHUTTER" preset="BEAM" wheel="1">
+						<ChannelSet index="0" name="Mode 3" from_dmx="86" to_dmx="128" slot_index="3" />
+					</ChannelFunction>
+					<ChannelFunction index="4" from="50.588235294117645" to="67.05882352941177" min_dmx_24="8487297" max_dmx_24="11250603" subattribute="SHUTTER2" attribute="SHUTTER2" attribute_user_name="Strobe Mode" feature="SHUTTER" preset="BEAM" wheel="1">
+						<ChannelSet index="0" name="Mode 4" from_dmx="129" to_dmx="171" slot_index="4" />
+					</ChannelFunction>
+					<ChannelFunction index="5" from="67.45098039215686" to="83.92156862745098" min_dmx_24="11316396" max_dmx_24="14079702" subattribute="SHUTTER2" attribute="SHUTTER2" attribute_user_name="Strobe Mode" feature="SHUTTER" preset="BEAM" wheel="1">
+						<ChannelSet index="0" name="Mode 5" from_dmx="172" to_dmx="214" slot_index="5" />
+					</ChannelFunction>
+					<ChannelFunction index="6" from="84.31372549019608" to="100.0" min_dmx_24="14145495" max_dmx_24="16777215" subattribute="SHUTTER2" attribute="SHUTTER2" attribute_user_name="Strobe Mode" feature="SHUTTER" preset="BEAM" wheel="1">
+						<ChannelSet index="0" name="Mode 6" from_dmx="215" to_dmx="255" slot_index="6" />
+					</ChannelFunction>
+				</ChannelType>
+				<ChannelType index="3" attribute="DUMMY" feature="CONTROL" preset="CONTROL" coarse="5">
+					<ChannelFunction index="0" from="0.0" to="100.0" min_dmx_24="0" max_dmx_24="16777215" physfrom="0.0" physto="100.0" subattribute="RESERVED" attribute="DUMMY" attribute_user_name="Unused" feature="CONTROL" preset="CONTROL" />
+				</ChannelType>
+				<ChannelType index="4" attribute="GOBOWHEELS" feature="GOBOALL" preset="GOBO" coarse="6">
+					<ChannelFunction index="0" from="0.0" to="0.058823529411764705" min_dmx_24="0" max_dmx_24="986895" physfrom="0.0" physto="0.058823529411764705" subattribute="GOBOWHEELS" attribute="GOBOWHEELS" attribute_user_name="Macro" feature="GOBOALL" preset="GOBO" wheel="2">
+						<ChannelSet index="0" name="off" from_dmx="0" to_dmx="15" slot_index="0" />
+					</ChannelFunction>
+					<ChannelFunction index="1" from="0.06274509803921569" to="0.2235294117647059" min_dmx_24="1052688" max_dmx_24="3750201" physfrom="0.06274509803921569" physto="0.2235294117647059" subattribute="GOBOWHEELS" attribute="GOBOWHEELS" attribute_user_name="Macro" feature="GOBOALL" preset="GOBO" wheel="2">
+						<ChannelSet index="0" name="gobo 1" from_dmx="16" to_dmx="57" slot_index="1" />
+					</ChannelFunction>
+					<ChannelFunction index="2" from="0.22745098039215686" to="0.38823529411764707" min_dmx_24="3815994" max_dmx_24="6513507" physfrom="0.22745098039215686" physto="0.38823529411764707" subattribute="GOBOWHEELS" attribute="GOBOWHEELS" attribute_user_name="Macro" feature="GOBOALL" preset="GOBO" wheel="2">
+						<ChannelSet index="0" name="gobo 2" from_dmx="58" to_dmx="99" slot_index="2" />
+					</ChannelFunction>
+					<ChannelFunction index="3" from="0.39215686274509803" to="0.5529411764705883" min_dmx_24="6579300" max_dmx_24="9276813" physfrom="0.39215686274509803" physto="0.5529411764705883" subattribute="GOBOWHEELS" attribute="GOBOWHEELS" attribute_user_name="Macro" feature="GOBOALL" preset="GOBO" wheel="2">
+						<ChannelSet index="0" name="gobo 3" from_dmx="100" to_dmx="141" slot_index="3" />
+					</ChannelFunction>
+					<ChannelFunction index="4" from="0.5568627450980392" to="0.7176470588235294" min_dmx_24="9342606" max_dmx_24="12040119" physfrom="0.5568627450980392" physto="0.7176470588235294" subattribute="GOBOWHEELS" attribute="GOBOWHEELS" attribute_user_name="Macro" feature="GOBOALL" preset="GOBO" wheel="2">
+						<ChannelSet index="0" name="gobo 4" from_dmx="142" to_dmx="183" slot_index="4" />
+					</ChannelFunction>
+					<ChannelFunction index="5" from="0.7215686274509804" to="0.8823529411764706" min_dmx_24="12105912" max_dmx_24="14803425" physfrom="0.7215686274509804" physto="0.8823529411764706" subattribute="GOBOWHEELS" attribute="GOBOWHEELS" attribute_user_name="Macro" feature="GOBOALL" preset="GOBO" wheel="2">
+						<ChannelSet index="0" name="gobo 5" from_dmx="184" to_dmx="225" slot_index="5" />
+					</ChannelFunction>
+					<ChannelFunction index="6" from="0.8862745098039215" to="1.0" min_dmx_24="14869218" max_dmx_24="16777215" physfrom="0.8862745098039215" physto="1.0" subattribute="GOBOWHEELS" attribute="GOBOWHEELS" attribute_user_name="Macro" feature="GOBOALL" preset="GOBO" wheel="2">
+						<ChannelSet index="0" name="gobo 6" from_dmx="226" to_dmx="255" slot_index="6" />
+					</ChannelFunction>
+				</ChannelType>
+				<ChannelType index="5" attribute="COLORRGB1" feature="COLORRGB" preset="COLOR" coarse="7">
+					<ChannelFunction index="0" from="0.0" to="100.0" min_dmx_24="0" max_dmx_24="16777215" physfrom="0.0" physto="1.0" subattribute="COLORRGB1" attribute="COLORRGB1" attribute_user_name="I Red" feature="COLORRGB" preset="COLOR" />
+				</ChannelType>
+				<ChannelType index="6" attribute="COLORRGB2" feature="COLORRGB" preset="COLOR" coarse="8">
+					<ChannelFunction index="0" from="0.0" to="100.0" min_dmx_24="0" max_dmx_24="16777215" physfrom="0.0" physto="1.0" subattribute="COLORRGB2" attribute="COLORRGB2" attribute_user_name="I Green" feature="COLORRGB" preset="COLOR" />
+				</ChannelType>
+				<ChannelType index="7" attribute="COLORRGB3" feature="COLORRGB" preset="COLOR" coarse="9">
+					<ChannelFunction index="0" from="0.0" to="100.0" min_dmx_24="0" max_dmx_24="16777215" physfrom="0.0" physto="1.0" subattribute="COLORRGB3" attribute="COLORRGB3" attribute_user_name="I Blue" feature="COLORRGB" preset="COLOR" />
+				</ChannelType>
+				<ChannelType index="8" attribute="SHUTTER3" feature="SHUTTER" preset="BEAM" coarse="10">
+					<ChannelFunction index="0" from="0.0" to="100.0" min_dmx_24="0" max_dmx_24="16777215" subattribute="SHUTTER3" attribute="SHUTTER3" attribute_user_name="Out Strobe" feature="SHUTTER" preset="BEAM" />
+				</ChannelType>
+				<ChannelType index="9" attribute="GOBO5" feature="GOBO5" preset="GOBO" coarse="11">
+					<ChannelFunction index="0" from="0.0" to="0.01568627450980392" min_dmx_24="0" max_dmx_24="263172" physfrom="0.0" physto="0.01568627450980392" subattribute="GOBO5" attribute="GOBO5" attribute_user_name="Beam Fx 5" feature="GOBO5" preset="GOBO" wheel="3">
+						<ChannelSet index="0" name="off" from_dmx="0" to_dmx="4" slot_index="0" />
+					</ChannelFunction>
+					<ChannelFunction index="1" from="0.0196078431372549" to="0.03529411764705882" min_dmx_24="328965" max_dmx_24="592137" physfrom="0.0196078431372549" physto="0.03529411764705882" subattribute="GOBO5" attribute="GOBO5" attribute_user_name="Beam Fx 5" feature="GOBO5" preset="GOBO" wheel="3">
+						<ChannelSet index="0" name="gobo 1" from_dmx="5" to_dmx="9" slot_index="1" />
+					</ChannelFunction>
+					<ChannelFunction index="2" from="0.0392156862745098" to="0.054901960784313725" min_dmx_24="657930" max_dmx_24="921102" physfrom="0.0392156862745098" physto="0.054901960784313725" subattribute="GOBO5" attribute="GOBO5" attribute_user_name="Beam Fx 5" feature="GOBO5" preset="GOBO" wheel="3">
+						<ChannelSet index="0" name="gobo 2" from_dmx="10" to_dmx="14" slot_index="2" />
+					</ChannelFunction>
+					<ChannelFunction index="3" from="0.058823529411764705" to="0.07450980392156863" min_dmx_24="986895" max_dmx_24="1250067" physfrom="0.058823529411764705" physto="0.07450980392156863" subattribute="GOBO5" attribute="GOBO5" attribute_user_name="Beam Fx 5" feature="GOBO5" preset="GOBO" wheel="3">
+						<ChannelSet index="0" name="gobo 3" from_dmx="15" to_dmx="19" slot_index="3" />
+					</ChannelFunction>
+					<ChannelFunction index="4" from="0.0784313725490196" to="0.09411764705882353" min_dmx_24="1315860" max_dmx_24="1579032" physfrom="0.0784313725490196" physto="0.09411764705882353" subattribute="GOBO5" attribute="GOBO5" attribute_user_name="Beam Fx 5" feature="GOBO5" preset="GOBO" wheel="3">
+						<ChannelSet index="0" name="gobo 4" from_dmx="20" to_dmx="24" slot_index="4" />
+					</ChannelFunction>
+					<ChannelFunction index="5" from="0.09803921568627451" to="0.11372549019607843" min_dmx_24="1644825" max_dmx_24="1907997" physfrom="0.09803921568627451" physto="0.11372549019607843" subattribute="GOBO5" attribute="GOBO5" attribute_user_name="Beam Fx 5" feature="GOBO5" preset="GOBO" wheel="3">
+						<ChannelSet index="0" name="gobo 5" from_dmx="25" to_dmx="29" slot_index="5" />
+					</ChannelFunction>
+					<ChannelFunction index="6" from="0.11764705882352941" to="0.13333333333333333" min_dmx_24="1973790" max_dmx_24="2236962" physfrom="0.11764705882352941" physto="0.13333333333333333" subattribute="GOBO5" attribute="GOBO5" attribute_user_name="Beam Fx 5" feature="GOBO5" preset="GOBO" wheel="3">
+						<ChannelSet index="0" name="gobo 6" from_dmx="30" to_dmx="34" slot_index="6" />
+					</ChannelFunction>
+					<ChannelFunction index="7" from="0.13725490196078433" to="0.15294117647058825" min_dmx_24="2302755" max_dmx_24="2565927" physfrom="0.13725490196078433" physto="0.15294117647058825" subattribute="GOBO5" attribute="GOBO5" attribute_user_name="Beam Fx 5" feature="GOBO5" preset="GOBO" wheel="3">
+						<ChannelSet index="0" name="gobo 7" from_dmx="35" to_dmx="39" slot_index="7" />
+					</ChannelFunction>
+					<ChannelFunction index="8" from="0.1568627450980392" to="0.17254901960784313" min_dmx_24="2631720" max_dmx_24="2894892" physfrom="0.1568627450980392" physto="0.17254901960784313" subattribute="GOBO5" attribute="GOBO5" attribute_user_name="Beam Fx 5" feature="GOBO5" preset="GOBO" wheel="3">
+						<ChannelSet index="0" name="gobo 8" from_dmx="40" to_dmx="44" slot_index="8" />
+					</ChannelFunction>
+					<ChannelFunction index="9" from="0.17647058823529413" to="0.19215686274509805" min_dmx_24="2960685" max_dmx_24="3223857" physfrom="0.17647058823529413" physto="0.19215686274509805" subattribute="GOBO5" attribute="GOBO5" attribute_user_name="Beam Fx 5" feature="GOBO5" preset="GOBO" wheel="3">
+						<ChannelSet index="0" name="gobo 9" from_dmx="45" to_dmx="49" slot_index="9" />
+					</ChannelFunction>
+					<ChannelFunction index="10" from="0.19607843137254902" to="0.21176470588235294" min_dmx_24="3289650" max_dmx_24="3552822" physfrom="0.19607843137254902" physto="0.21176470588235294" subattribute="GOBO5" attribute="GOBO5" attribute_user_name="Beam Fx 5" feature="GOBO5" preset="GOBO" wheel="3">
+						<ChannelSet index="0" name="gobo 10" from_dmx="50" to_dmx="54" slot_index="10" />
+					</ChannelFunction>
+					<ChannelFunction index="11" from="0.21568627450980393" to="0.23137254901960785" min_dmx_24="3618615" max_dmx_24="3881787" physfrom="0.21568627450980393" physto="0.23137254901960785" subattribute="GOBO5" attribute="GOBO5" attribute_user_name="Beam Fx 5" feature="GOBO5" preset="GOBO" wheel="3">
+						<ChannelSet index="0" name="gobo 11" from_dmx="55" to_dmx="59" slot_index="11" />
+					</ChannelFunction>
+					<ChannelFunction index="12" from="0.23529411764705882" to="0.25098039215686274" min_dmx_24="3947580" max_dmx_24="4210752" physfrom="0.23529411764705882" physto="0.25098039215686274" subattribute="GOBO5" attribute="GOBO5" attribute_user_name="Beam Fx 5" feature="GOBO5" preset="GOBO" wheel="3">
+						<ChannelSet index="0" name="gobo 12" from_dmx="60" to_dmx="64" slot_index="12" />
+					</ChannelFunction>
+					<ChannelFunction index="13" from="0.2549019607843137" to="0.27058823529411763" min_dmx_24="4276545" max_dmx_24="4539717" physfrom="0.2549019607843137" physto="0.27058823529411763" subattribute="GOBO5" attribute="GOBO5" attribute_user_name="Beam Fx 5" feature="GOBO5" preset="GOBO" wheel="3">
+						<ChannelSet index="0" name="gobo 13" from_dmx="65" to_dmx="69" slot_index="13" />
+					</ChannelFunction>
+					<ChannelFunction index="14" from="0.27450980392156865" to="0.2901960784313726" min_dmx_24="4605510" max_dmx_24="4868682" physfrom="0.27450980392156865" physto="0.2901960784313726" subattribute="GOBO5" attribute="GOBO5" attribute_user_name="Beam Fx 5" feature="GOBO5" preset="GOBO" wheel="3">
+						<ChannelSet index="0" name="gobo 14" from_dmx="70" to_dmx="74" slot_index="14" />
+					</ChannelFunction>
+					<ChannelFunction index="15" from="0.29411764705882354" to="0.30980392156862746" min_dmx_24="4934475" max_dmx_24="5197647" physfrom="0.29411764705882354" physto="0.30980392156862746" subattribute="GOBO5" attribute="GOBO5" attribute_user_name="Beam Fx 5" feature="GOBO5" preset="GOBO" wheel="3">
+						<ChannelSet index="0" name="gobo 15" from_dmx="75" to_dmx="79" slot_index="15" />
+					</ChannelFunction>
+					<ChannelFunction index="16" from="0.3137254901960784" to="0.32941176470588235" min_dmx_24="5263440" max_dmx_24="5526612" physfrom="0.3137254901960784" physto="0.32941176470588235" subattribute="GOBO5" attribute="GOBO5" attribute_user_name="Beam Fx 5" feature="GOBO5" preset="GOBO" wheel="3">
+						<ChannelSet index="0" name="gobo 16" from_dmx="80" to_dmx="84" slot_index="16" />
+					</ChannelFunction>
+					<ChannelFunction index="17" from="0.3333333333333333" to="0.34901960784313724" min_dmx_24="5592405" max_dmx_24="5855577" physfrom="0.3333333333333333" physto="0.34901960784313724" subattribute="GOBO5" attribute="GOBO5" attribute_user_name="Beam Fx 5" feature="GOBO5" preset="GOBO" wheel="3">
+						<ChannelSet index="0" name="gobo 17" from_dmx="85" to_dmx="89" slot_index="17" />
+					</ChannelFunction>
+					<ChannelFunction index="18" from="0.35294117647058826" to="0.3686274509803922" min_dmx_24="5921370" max_dmx_24="6184542" physfrom="0.35294117647058826" physto="0.3686274509803922" subattribute="GOBO5" attribute="GOBO5" attribute_user_name="Beam Fx 5" feature="GOBO5" preset="GOBO" wheel="3">
+						<ChannelSet index="0" name="gobo 18" from_dmx="90" to_dmx="94" slot_index="18" />
+					</ChannelFunction>
+					<ChannelFunction index="19" from="0.37254901960784315" to="0.38823529411764707" min_dmx_24="6250335" max_dmx_24="6513507" physfrom="0.37254901960784315" physto="0.38823529411764707" subattribute="GOBO5" attribute="GOBO5" attribute_user_name="Beam Fx 5" feature="GOBO5" preset="GOBO" wheel="3">
+						<ChannelSet index="0" name="gobo 19" from_dmx="95" to_dmx="99" slot_index="19" />
+					</ChannelFunction>
+					<ChannelFunction index="20" from="0.39215686274509803" to="0.40784313725490196" min_dmx_24="6579300" max_dmx_24="6842472" physfrom="0.39215686274509803" physto="0.40784313725490196" subattribute="GOBO5" attribute="GOBO5" attribute_user_name="Beam Fx 5" feature="GOBO5" preset="GOBO" wheel="3">
+						<ChannelSet index="0" name="gobo 20" from_dmx="100" to_dmx="104" slot_index="20" />
+					</ChannelFunction>
+					<ChannelFunction index="21" from="0.4117647058823529" to="0.42745098039215684" min_dmx_24="6908265" max_dmx_24="7171437" physfrom="0.4117647058823529" physto="0.42745098039215684" subattribute="GOBO5" attribute="GOBO5" attribute_user_name="Beam Fx 5" feature="GOBO5" preset="GOBO" wheel="3">
+						<ChannelSet index="0" name="gobo 21" from_dmx="105" to_dmx="109" slot_index="21" />
+					</ChannelFunction>
+					<ChannelFunction index="22" from="0.43137254901960786" to="0.4470588235294118" min_dmx_24="7237230" max_dmx_24="7500402" physfrom="0.43137254901960786" physto="0.4470588235294118" subattribute="GOBO5" attribute="GOBO5" attribute_user_name="Beam Fx 5" feature="GOBO5" preset="GOBO" wheel="3">
+						<ChannelSet index="0" name="gobo 22" from_dmx="110" to_dmx="114" slot_index="22" />
+					</ChannelFunction>
+					<ChannelFunction index="23" from="0.45098039215686275" to="0.4666666666666667" min_dmx_24="7566195" max_dmx_24="7829367" physfrom="0.45098039215686275" physto="0.4666666666666667" subattribute="GOBO5" attribute="GOBO5" attribute_user_name="Beam Fx 5" feature="GOBO5" preset="GOBO" wheel="3">
+						<ChannelSet index="0" name="gobo 23" from_dmx="115" to_dmx="119" slot_index="23" />
+					</ChannelFunction>
+					<ChannelFunction index="24" from="0.47058823529411764" to="0.48627450980392156" min_dmx_24="7895160" max_dmx_24="8158332" physfrom="0.47058823529411764" physto="0.48627450980392156" subattribute="GOBO5" attribute="GOBO5" attribute_user_name="Beam Fx 5" feature="GOBO5" preset="GOBO" wheel="3">
+						<ChannelSet index="0" name="gobo 24" from_dmx="120" to_dmx="124" slot_index="24" />
+					</ChannelFunction>
+					<ChannelFunction index="25" from="0.49019607843137253" to="0.5058823529411764" min_dmx_24="8224125" max_dmx_24="8487297" physfrom="0.49019607843137253" physto="0.5058823529411764" subattribute="GOBO5" attribute="GOBO5" attribute_user_name="Beam Fx 5" feature="GOBO5" preset="GOBO" wheel="3">
+						<ChannelSet index="0" name="gobo 25" from_dmx="125" to_dmx="129" slot_index="25" />
+					</ChannelFunction>
+					<ChannelFunction index="26" from="0.5098039215686274" to="0.5254901960784314" min_dmx_24="8553090" max_dmx_24="8816262" physfrom="0.5098039215686274" physto="0.5254901960784314" subattribute="GOBO5" attribute="GOBO5" attribute_user_name="Beam Fx 5" feature="GOBO5" preset="GOBO" wheel="3">
+						<ChannelSet index="0" name="gobo 26" from_dmx="130" to_dmx="134" slot_index="26" />
+					</ChannelFunction>
+					<ChannelFunction index="27" from="0.5294117647058824" to="0.5450980392156862" min_dmx_24="8882055" max_dmx_24="9145227" physfrom="0.5294117647058824" physto="0.5450980392156862" subattribute="GOBO5" attribute="GOBO5" attribute_user_name="Beam Fx 5" feature="GOBO5" preset="GOBO" wheel="3">
+						<ChannelSet index="0" name="gobo 27" from_dmx="135" to_dmx="139" slot_index="27" />
+					</ChannelFunction>
+					<ChannelFunction index="28" from="0.5490196078431373" to="0.5647058823529412" min_dmx_24="9211020" max_dmx_24="9474192" physfrom="0.5490196078431373" physto="0.5647058823529412" subattribute="GOBO5" attribute="GOBO5" attribute_user_name="Beam Fx 5" feature="GOBO5" preset="GOBO" wheel="3">
+						<ChannelSet index="0" name="gobo 28" from_dmx="140" to_dmx="144" slot_index="28" />
+					</ChannelFunction>
+					<ChannelFunction index="29" from="0.5686274509803921" to="0.5843137254901961" min_dmx_24="9539985" max_dmx_24="9803157" physfrom="0.5686274509803921" physto="0.5843137254901961" subattribute="GOBO5" attribute="GOBO5" attribute_user_name="Beam Fx 5" feature="GOBO5" preset="GOBO" wheel="3">
+						<ChannelSet index="0" name="gobo 29" from_dmx="145" to_dmx="149" slot_index="29" />
+					</ChannelFunction>
+					<ChannelFunction index="30" from="0.5882352941176471" to="0.6039215686274509" min_dmx_24="9868950" max_dmx_24="10132122" physfrom="0.5882352941176471" physto="0.6039215686274509" subattribute="GOBO5" attribute="GOBO5" attribute_user_name="Beam Fx 5" feature="GOBO5" preset="GOBO" wheel="3">
+						<ChannelSet index="0" name="gobo 30" from_dmx="150" to_dmx="154" slot_index="30" />
+					</ChannelFunction>
+					<ChannelFunction index="31" from="0.6078431372549019" to="0.6235294117647059" min_dmx_24="10197915" max_dmx_24="10461087" physfrom="0.6078431372549019" physto="0.6235294117647059" subattribute="GOBO5" attribute="GOBO5" attribute_user_name="Beam Fx 5" feature="GOBO5" preset="GOBO" wheel="3">
+						<ChannelSet index="0" name="gobo 31" from_dmx="155" to_dmx="159" slot_index="31" />
+					</ChannelFunction>
+					<ChannelFunction index="32" from="0.6274509803921569" to="0.6431372549019608" min_dmx_24="10526880" max_dmx_24="10790052" physfrom="0.6274509803921569" physto="0.6431372549019608" subattribute="GOBO5" attribute="GOBO5" attribute_user_name="Beam Fx 5" feature="GOBO5" preset="GOBO" wheel="3">
+						<ChannelSet index="0" name="gobo 32" from_dmx="160" to_dmx="164" slot_index="32" />
+					</ChannelFunction>
+					<ChannelFunction index="33" from="0.6470588235294118" to="0.6627450980392157" min_dmx_24="10855845" max_dmx_24="11119017" physfrom="0.6470588235294118" physto="0.6627450980392157" subattribute="GOBO5" attribute="GOBO5" attribute_user_name="Beam Fx 5" feature="GOBO5" preset="GOBO" wheel="3">
+						<ChannelSet index="0" name="gobo 33" from_dmx="165" to_dmx="169" slot_index="33" />
+					</ChannelFunction>
+					<ChannelFunction index="34" from="0.6666666666666666" to="0.6823529411764706" min_dmx_24="11184810" max_dmx_24="11447982" physfrom="0.6666666666666666" physto="0.6823529411764706" subattribute="GOBO5" attribute="GOBO5" attribute_user_name="Beam Fx 5" feature="GOBO5" preset="GOBO" wheel="3">
+						<ChannelSet index="0" name="gobo 34" from_dmx="170" to_dmx="174" slot_index="34" />
+					</ChannelFunction>
+					<ChannelFunction index="35" from="0.6862745098039216" to="0.7019607843137254" min_dmx_24="11513775" max_dmx_24="11776947" physfrom="0.6862745098039216" physto="0.7019607843137254" subattribute="GOBO5" attribute="GOBO5" attribute_user_name="Beam Fx 5" feature="GOBO5" preset="GOBO" wheel="3">
+						<ChannelSet index="0" name="gobo 35" from_dmx="175" to_dmx="179" slot_index="35" />
+					</ChannelFunction>
+					<ChannelFunction index="36" from="0.7058823529411765" to="0.7215686274509804" min_dmx_24="11842740" max_dmx_24="12105912" physfrom="0.7058823529411765" physto="0.7215686274509804" subattribute="GOBO5" attribute="GOBO5" attribute_user_name="Beam Fx 5" feature="GOBO5" preset="GOBO" wheel="3">
+						<ChannelSet index="0" name="gobo 36" from_dmx="180" to_dmx="184" slot_index="36" />
+					</ChannelFunction>
+					<ChannelFunction index="37" from="0.7254901960784313" to="0.7411764705882353" min_dmx_24="12171705" max_dmx_24="12434877" physfrom="0.7254901960784313" physto="0.7411764705882353" subattribute="GOBO5" attribute="GOBO5" attribute_user_name="Beam Fx 5" feature="GOBO5" preset="GOBO" wheel="3">
+						<ChannelSet index="0" name="gobo 37" from_dmx="185" to_dmx="189" slot_index="37" />
+					</ChannelFunction>
+					<ChannelFunction index="38" from="0.7450980392156863" to="0.7607843137254902" min_dmx_24="12500670" max_dmx_24="12763842" physfrom="0.7450980392156863" physto="0.7607843137254902" subattribute="GOBO5" attribute="GOBO5" attribute_user_name="Beam Fx 5" feature="GOBO5" preset="GOBO" wheel="3">
+						<ChannelSet index="0" name="gobo 38" from_dmx="190" to_dmx="194" slot_index="38" />
+					</ChannelFunction>
+					<ChannelFunction index="39" from="0.7647058823529411" to="0.7803921568627451" min_dmx_24="12829635" max_dmx_24="13092807" physfrom="0.7647058823529411" physto="0.7803921568627451" subattribute="GOBO5" attribute="GOBO5" attribute_user_name="Beam Fx 5" feature="GOBO5" preset="GOBO" wheel="3">
+						<ChannelSet index="0" name="gobo 39" from_dmx="195" to_dmx="199" slot_index="39" />
+					</ChannelFunction>
+					<ChannelFunction index="40" from="0.7843137254901961" to="0.8" min_dmx_24="13158600" max_dmx_24="13421772" physfrom="0.7843137254901961" physto="0.8" subattribute="GOBO5" attribute="GOBO5" attribute_user_name="Beam Fx 5" feature="GOBO5" preset="GOBO" wheel="3">
+						<ChannelSet index="0" name="gobo 40" from_dmx="200" to_dmx="204" slot_index="40" />
+					</ChannelFunction>
+					<ChannelFunction index="41" from="0.803921568627451" to="0.8196078431372549" min_dmx_24="13487565" max_dmx_24="13750737" physfrom="0.803921568627451" physto="0.8196078431372549" subattribute="GOBO5" attribute="GOBO5" attribute_user_name="Beam Fx 5" feature="GOBO5" preset="GOBO" wheel="3">
+						<ChannelSet index="0" name="gobo 41" from_dmx="205" to_dmx="209" slot_index="41" />
+					</ChannelFunction>
+					<ChannelFunction index="42" from="0.8235294117647058" to="0.8392156862745098" min_dmx_24="13816530" max_dmx_24="14079702" physfrom="0.8235294117647058" physto="0.8392156862745098" subattribute="GOBO5" attribute="GOBO5" attribute_user_name="Beam Fx 5" feature="GOBO5" preset="GOBO" wheel="3">
+						<ChannelSet index="0" name="gobo 42" from_dmx="210" to_dmx="214" slot_index="42" />
+					</ChannelFunction>
+					<ChannelFunction index="43" from="0.8431372549019608" to="0.8588235294117647" min_dmx_24="14145495" max_dmx_24="14408667" physfrom="0.8431372549019608" physto="0.8588235294117647" subattribute="GOBO5" attribute="GOBO5" attribute_user_name="Beam Fx 5" feature="GOBO5" preset="GOBO" wheel="3">
+						<ChannelSet index="0" name="gobo 43" from_dmx="215" to_dmx="219" slot_index="43" />
+					</ChannelFunction>
+					<ChannelFunction index="44" from="0.8627450980392157" to="0.8784313725490196" min_dmx_24="14474460" max_dmx_24="14737632" physfrom="0.8627450980392157" physto="0.8784313725490196" subattribute="GOBO5" attribute="GOBO5" attribute_user_name="Beam Fx 5" feature="GOBO5" preset="GOBO" wheel="3">
+						<ChannelSet index="0" name="gobo 44" from_dmx="220" to_dmx="224" slot_index="44" />
+					</ChannelFunction>
+					<ChannelFunction index="45" from="0.8823529411764706" to="0.8980392156862745" min_dmx_24="14803425" max_dmx_24="15066597" physfrom="0.8823529411764706" physto="0.8980392156862745" subattribute="GOBO5" attribute="GOBO5" attribute_user_name="Beam Fx 5" feature="GOBO5" preset="GOBO" wheel="3">
+						<ChannelSet index="0" name="gobo 45" from_dmx="225" to_dmx="229" slot_index="45" />
+					</ChannelFunction>
+					<ChannelFunction index="46" from="0.9019607843137255" to="0.9176470588235294" min_dmx_24="15132390" max_dmx_24="15395562" physfrom="0.9019607843137255" physto="0.9176470588235294" subattribute="GOBO5" attribute="GOBO5" attribute_user_name="Beam Fx 5" feature="GOBO5" preset="GOBO" wheel="3">
+						<ChannelSet index="0" name="gobo 46" from_dmx="230" to_dmx="234" slot_index="46" />
+					</ChannelFunction>
+					<ChannelFunction index="47" from="0.9215686274509803" to="0.9372549019607843" min_dmx_24="15461355" max_dmx_24="15724527" physfrom="0.9215686274509803" physto="0.9372549019607843" subattribute="GOBO5" attribute="GOBO5" attribute_user_name="Beam Fx 5" feature="GOBO5" preset="GOBO" wheel="3">
+						<ChannelSet index="0" name="gobo 47" from_dmx="235" to_dmx="239" slot_index="47" />
+					</ChannelFunction>
+					<ChannelFunction index="48" from="0.9411764705882353" to="0.9568627450980393" min_dmx_24="15790320" max_dmx_24="16053492" physfrom="0.9411764705882353" physto="0.9568627450980393" subattribute="GOBO5" attribute="GOBO5" attribute_user_name="Beam Fx 5" feature="GOBO5" preset="GOBO" wheel="3">
+						<ChannelSet index="0" name="gobo 48" from_dmx="240" to_dmx="244" slot_index="48" />
+					</ChannelFunction>
+					<ChannelFunction index="49" from="0.9607843137254902" to="0.9764705882352941" min_dmx_24="16119285" max_dmx_24="16382457" physfrom="0.9607843137254902" physto="0.9764705882352941" subattribute="GOBO5" attribute="GOBO5" attribute_user_name="Beam Fx 5" feature="GOBO5" preset="GOBO" wheel="3">
+						<ChannelSet index="0" name="gobo 49" from_dmx="245" to_dmx="249" slot_index="49" />
+					</ChannelFunction>
+					<ChannelFunction index="50" from="0.9803921568627451" to="0.996078431372549" min_dmx_24="16448250" max_dmx_24="16711422" physfrom="0.9803921568627451" physto="0.996078431372549" subattribute="GOBO5" attribute="GOBO5" attribute_user_name="Beam Fx 5" feature="GOBO5" preset="GOBO" wheel="3">
+						<ChannelSet index="0" name="gobo 50" from_dmx="250" to_dmx="254" slot_index="50" />
+					</ChannelFunction>
+					<ChannelFunction index="51" from="1.0" to="1.0" min_dmx_24="16777215" max_dmx_24="16777215" physfrom="1.0" physto="1.0" subattribute="GOBO5" attribute="GOBO5" attribute_user_name="Beam Fx 5" feature="GOBO5" preset="GOBO" wheel="3">
+						<ChannelSet index="0" name="gobo 51" from_dmx="255" to_dmx="255" slot_index="51" />
+					</ChannelFunction>
+				</ChannelType>
+				<ChannelType index="10" attribute="GOBO5FORWARD" feature="GOBO5" preset="GOBO" coarse="12">
+					<ChannelFunction index="0" from="0.0" to="1.0" min_dmx_24="0" max_dmx_24="16777215" physfrom="0.0" physto="1.0" subattribute="GOBO5FORWARD" attribute="GOBO5FORWARD" attribute_user_name="Beam Fx 5 Offset" feature="GOBO5" preset="GOBO" />
+				</ChannelType>
+				<ChannelType index="11" attribute="GOBO5_POS" feature="GOBO5" preset="GOBO" coarse="13">
+					<ChannelFunction index="0" from="0.0" to="360.0" min_dmx_24="0" max_dmx_24="16777215" physfrom="0.0" physto="360.0" subattribute="GOBO5_POS" attribute="GOBO5_POS" attribute_user_name="Beam Fx 5 &lt;&gt;" feature="GOBO5" preset="GOBO" wheel="3" />
+				</ChannelType>
+				<ChannelType index="12" attribute="DIM3" feature="DIMMER" preset="DIMMER" coarse="14" default="255.0">
+					<ChannelFunction index="0" from="0.0" to="100.0" min_dmx_24="0" max_dmx_24="16777215" physfrom="0.0" physto="1.0" subattribute="DIM3" attribute="DIM3" attribute_user_name="Sub Intensity 2" feature="DIMMER" preset="DIMMER" />
+				</ChannelType>
+				<ChannelType index="13" attribute="DIM" feature="DIMMER" preset="DIMMER">
+					<ChannelFunction index="0" from="0.0" to="100.0" min_dmx_24="0" max_dmx_24="16777215" physfrom="0.0" physto="1.0" subattribute="DIM" attribute="DIM" feature="DIMMER" preset="DIMMER" />
+				</ChannelType>
+			</Module>
+			<Module index="1" name="strobe1000 light M2" class="LED" beamtype="Wash">
+				<ChannelType index="0" attribute="COLORRGB7" feature="COLORRGB" preset="COLOR" coarse="1">
+					<ChannelFunction index="0" from="0.0" to="100.0" min_dmx_24="0" max_dmx_24="16777215" physfrom="0.0" physto="1.0" subattribute="COLORRGB7" attribute="COLORRGB7" attribute_user_name="I White" feature="COLORRGB" preset="COLOR" />
+				</ChannelType>
+			</Module>
+			<Module index="2" name="strobe1000 light M1" class="LED" beamtype="Wash">
+				<ChannelType index="0" attribute="COLORRGB1" feature="COLORRGB" preset="COLOR" coarse="1">
+					<ChannelFunction index="0" from="0.0" to="100.0" min_dmx_24="0" max_dmx_24="16777215" physfrom="0.0" physto="1.0" subattribute="COLORRGB1" attribute="COLORRGB1" attribute_user_name="I Red" feature="COLORRGB" preset="COLOR" />
+				</ChannelType>
+				<ChannelType index="1" attribute="COLORRGB2" feature="COLORRGB" preset="COLOR" coarse="2">
+					<ChannelFunction index="0" from="0.0" to="100.0" min_dmx_24="0" max_dmx_24="16777215" physfrom="0.0" physto="1.0" subattribute="COLORRGB2" attribute="COLORRGB2" attribute_user_name="I Green" feature="COLORRGB" preset="COLOR" />
+				</ChannelType>
+				<ChannelType index="2" attribute="COLORRGB3" feature="COLORRGB" preset="COLOR" coarse="3">
+					<ChannelFunction index="0" from="0.0" to="100.0" min_dmx_24="0" max_dmx_24="16777215" physfrom="0.0" physto="1.0" subattribute="COLORRGB3" attribute="COLORRGB3" attribute_user_name="I Blue" feature="COLORRGB" preset="COLOR" />
+				</ChannelType>
+			</Module>
+		</Modules>
+		<Instances index="1">
+			<Instance index="0" module_index="0" patch="1" X="0" Y="0" />
+			<Instance index="1" module_index="1" patch="15" X="0" Y="-1" />
+			<Instance index="2" module_index="1" patch="16" X="1" Y="-1" />
+			<Instance index="3" module_index="1" patch="17" X="2" Y="-1" />
+			<Instance index="4" module_index="1" patch="18" X="3" Y="-1" />
+			<Instance index="5" module_index="2" patch="19" X="0" Y="-2" />
+			<Instance index="6" module_index="2" patch="22" X="1" Y="-2" />
+			<Instance index="7" module_index="2" patch="25" X="2" Y="-2" />
+			<Instance index="8" module_index="2" patch="28" X="3" Y="-2" />
+			<Instance index="9" module_index="2" patch="31" X="4" Y="-2" />
+			<Instance index="10" module_index="2" patch="34" X="5" Y="-2" />
+			<Instance index="11" module_index="2" patch="37" X="6" Y="-2" />
+			<Instance index="12" module_index="2" patch="40" X="7" Y="-2" />
+		</Instances>
+		<Wheels index="2">
+			<Wheel index="0" attribute="SHUTTER2" subattribute="SHUTTER2" feature="SHUTTER" preset="BEAM">
+				<Slot index="0" media_name="off" r="255" g="255" b="255" />
+				<Slot index="1" media_name="Mode 1" r="255" g="255" b="255" />
+				<Slot index="2" media_name="Mode 2" r="255" g="255" b="255" />
+				<Slot index="3" media_name="Mode 3" r="255" g="255" b="255" />
+				<Slot index="4" media_name="Mode 4" r="255" g="255" b="255" />
+				<Slot index="5" media_name="Mode 5" r="255" g="255" b="255" />
+				<Slot index="6" media_name="Mode 6" r="255" g="255" b="255" />
+			</Wheel>
+			<Wheel index="1" attribute="GOBOWHEELS" subattribute="GOBOWHEELS" feature="GOBOALL" preset="GOBO">
+				<Slot index="0" media_name="off" r="255" g="255" b="255" />
+				<Slot index="1" media_name="gobo 1" r="255" g="255" b="255" />
+				<Slot index="2" media_name="gobo 2" r="255" g="255" b="255" />
+				<Slot index="3" media_name="gobo 3" r="255" g="255" b="255" />
+				<Slot index="4" media_name="gobo 4" r="255" g="255" b="255" />
+				<Slot index="5" media_name="gobo 5" r="255" g="255" b="255" />
+				<Slot index="6" media_name="gobo 6" r="255" g="255" b="255" />
+			</Wheel>
+			<Wheel index="2" attribute="GOBO5" subattribute="GOBO5" feature="GOBO5" preset="GOBO">
+				<Slot index="0" media_name="off" r="255" g="255" b="255" />
+				<Slot index="1" media_name="gobo 1" r="255" g="255" b="255" />
+				<Slot index="2" media_name="gobo 2" r="255" g="255" b="255" />
+				<Slot index="3" media_name="gobo 3" r="255" g="255" b="255" />
+				<Slot index="4" media_name="gobo 4" r="255" g="255" b="255" />
+				<Slot index="5" media_name="gobo 5" r="255" g="255" b="255" />
+				<Slot index="6" media_name="gobo 6" r="255" g="255" b="255" />
+				<Slot index="7" media_name="gobo 7" r="255" g="255" b="255" />
+				<Slot index="8" media_name="gobo 8" r="255" g="255" b="255" />
+				<Slot index="9" media_name="gobo 9" r="255" g="255" b="255" />
+				<Slot index="10" media_name="gobo 10" r="255" g="255" b="255" />
+				<Slot index="11" media_name="gobo 11" r="255" g="255" b="255" />
+				<Slot index="12" media_name="gobo 12" r="255" g="255" b="255" />
+				<Slot index="13" media_name="gobo 13" r="255" g="255" b="255" />
+				<Slot index="14" media_name="gobo 14" r="255" g="255" b="255" />
+				<Slot index="15" media_name="gobo 15" r="255" g="255" b="255" />
+				<Slot index="16" media_name="gobo 16" r="255" g="255" b="255" />
+				<Slot index="17" media_name="gobo 17" r="255" g="255" b="255" />
+				<Slot index="18" media_name="gobo 18" r="255" g="255" b="255" />
+				<Slot index="19" media_name="gobo 19" r="255" g="255" b="255" />
+				<Slot index="20" media_name="gobo 20" r="255" g="255" b="255" />
+				<Slot index="21" media_name="gobo 21" r="255" g="255" b="255" />
+				<Slot index="22" media_name="gobo 22" r="255" g="255" b="255" />
+				<Slot index="23" media_name="gobo 23" r="255" g="255" b="255" />
+				<Slot index="24" media_name="gobo 24" r="255" g="255" b="255" />
+				<Slot index="25" media_name="gobo 25" r="255" g="255" b="255" />
+				<Slot index="26" media_name="gobo 26" r="255" g="255" b="255" />
+				<Slot index="27" media_name="gobo 27" r="255" g="255" b="255" />
+				<Slot index="28" media_name="gobo 28" r="255" g="255" b="255" />
+				<Slot index="29" media_name="gobo 29" r="255" g="255" b="255" />
+				<Slot index="30" media_name="gobo 30" r="255" g="255" b="255" />
+				<Slot index="31" media_name="gobo 31" r="255" g="255" b="255" />
+				<Slot index="32" media_name="gobo 32" r="255" g="255" b="255" />
+				<Slot index="33" media_name="gobo 33" r="255" g="255" b="255" />
+				<Slot index="34" media_name="gobo 34" r="255" g="255" b="255" />
+				<Slot index="35" media_name="gobo 35" r="255" g="255" b="255" />
+				<Slot index="36" media_name="gobo 36" r="255" g="255" b="255" />
+				<Slot index="37" media_name="gobo 37" r="255" g="255" b="255" />
+				<Slot index="38" media_name="gobo 38" r="255" g="255" b="255" />
+				<Slot index="39" media_name="gobo 39" r="255" g="255" b="255" />
+				<Slot index="40" media_name="gobo 40" r="255" g="255" b="255" />
+				<Slot index="41" media_name="gobo 41" r="255" g="255" b="255" />
+				<Slot index="42" media_name="gobo 42" r="255" g="255" b="255" />
+				<Slot index="43" media_name="gobo 43" r="255" g="255" b="255" />
+				<Slot index="44" media_name="gobo 44" r="255" g="255" b="255" />
+				<Slot index="45" media_name="gobo 45" r="255" g="255" b="255" />
+				<Slot index="46" media_name="gobo 46" r="255" g="255" b="255" />
+				<Slot index="47" media_name="gobo 47" r="255" g="255" b="255" />
+				<Slot index="48" media_name="gobo 48" r="255" g="255" b="255" />
+				<Slot index="49" media_name="gobo 49" r="255" g="255" b="255" />
+				<Slot index="50" media_name="gobo 50" r="255" g="255" b="255" />
+				<Slot index="51" media_name="gobo 51" r="255" g="255" b="255" />
+			</Wheel>
+		</Wheels>
+		<VirtualFunctionBlocks index="3" />
+		<FixtureMacroCollect index="5" />
+		<Body />
+		<AutoPresets index="4" />
+	</FixtureType>
+</MA>

@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Hog xmlns="http://schema.hogfour.com/Fixture" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://schema.hogfour.com/Fixture http://schema.hogfour.com/fixture.xsd">
+	<Creator name="Hog" version="v3.19.1 (b 3500)" />
+	<Library>
+		<Manufacturer name="User Created">
+			<Product name="strobe1000 light">
+				<Types>
+					<Type name="strobe1000 light M0" revisionid="0" status="User" uuid="ccef9408-94fb-4bf0-81b6-fcdc25067f7a" part="M0">
+						<History revision="0" author="" date="2026-07-30" comment="" />
+						<Origin>User</Origin>
+						<Icon type="circle" size="medium" />
+						<Defaults>
+							<Default function="Tilt" feature="Tilt" value="0.0013733119707097785" />
+							<Default function="Sub Intensity 1" feature="Intensity" value="100.0" />
+							<Default function="Sub Intensity 2" feature="Intensity" value="100.0" />
+						</Defaults>
+						<Virtuals>
+							<Virtual function="Intensity" feature="Intensity" start="0.0" end="100.0">
+								<Affected function="Cyan" feature="Variable" />
+								<Affected function="Magenta" feature="Variable" />
+								<Affected function="Sub Intensity 1" feature="Intensity" />
+								<Affected function="Yellow" feature="Variable" />
+							</Virtual>
+						</Virtuals>
+						<Protocols>
+							<Protocol name="DMX">
+								<Dmxfootprint size="14" />
+								<Channels>
+									<Channel number="1">
+										<AttachedChannels>
+											<AttachedChannel>2</AttachedChannel>
+										</AttachedChannels>
+										<Ranges>
+											<Range dmxstart="0" dmxend="32767" function="Tilt" feature="Tilt" start="-90.0" end="-0.0013733119707097785" />
+											<Range dmxstart="32768" dmxend="32768" function="Tilt" feature="Tilt" start="0.0013733119707097785" end="0.0013733119707097785" />
+											<Range dmxstart="32769" dmxend="65535" function="Tilt" feature="Tilt" start="0.004119935912115125" end="90.0" />
+										</Ranges>
+									</Channel>
+									<Channel number="3">
+										<Ranges>
+											<Range dmxstart="0" dmxend="255" function="Sub Intensity 1" feature="Intensity" start="0.0" end="100.0" />
+										</Ranges>
+									</Channel>
+									<Channel number="4">
+										<Ranges>
+											<Range dmxstart="0" dmxend="5" function="Strobe Mode" feature="Continuous" start="0.0" end="1.9607843137254901" />
+											<Range dmxstart="6" dmxend="42" function="Strobe Mode" feature="Continuous" start="2.3529411764705883" end="16.470588235294116" />
+											<Range dmxstart="43" dmxend="85" function="Strobe Mode" feature="Continuous" start="16.862745098039216" end="33.333333333333336" />
+											<Range dmxstart="86" dmxend="128" function="Strobe Mode" feature="Continuous" start="33.72549019607843" end="50.19607843137255" />
+											<Range dmxstart="129" dmxend="171" function="Strobe Mode" feature="Continuous" start="50.588235294117645" end="67.05882352941177" />
+											<Range dmxstart="172" dmxend="214" function="Strobe Mode" feature="Continuous" start="67.45098039215686" end="83.92156862745098" />
+											<Range dmxstart="215" dmxend="255" function="Strobe Mode" feature="Continuous" start="84.31372549019608" end="100.0" />
+										</Ranges>
+									</Channel>
+									<Channel number="5" unused="true" />
+									<Channel number="6">
+										<Ranges>
+											<Range dmxstart="0" dmxend="15" function="Macro" feature="Continuous" start="0.0" end="0.058823529411764705" />
+											<Range dmxstart="16" dmxend="57" function="Macro" feature="Continuous" start="0.06274509803921569" end="0.2235294117647059" />
+											<Range dmxstart="58" dmxend="99" function="Macro" feature="Continuous" start="0.22745098039215686" end="0.38823529411764707" />
+											<Range dmxstart="100" dmxend="141" function="Macro" feature="Continuous" start="0.39215686274509803" end="0.5529411764705883" />
+											<Range dmxstart="142" dmxend="183" function="Macro" feature="Continuous" start="0.5568627450980392" end="0.7176470588235294" />
+											<Range dmxstart="184" dmxend="225" function="Macro" feature="Continuous" start="0.7215686274509804" end="0.8823529411764706" />
+											<Range dmxstart="226" dmxend="255" function="Macro" feature="Continuous" start="0.8862745098039215" end="1.0" />
+										</Ranges>
+									</Channel>
+									<Channel number="7">
+										<Ranges>
+											<Range dmxstart="0" dmxend="255" function="I Red" feature="Intensity" start="0.0" end="100.0" />
+											<Range dmxstart="255" dmxend="0" function="Cyan" feature="Variable" start="0.0" end="100.0" />
+										</Ranges>
+									</Channel>
+									<Channel number="8">
+										<Ranges>
+											<Range dmxstart="0" dmxend="255" function="I Green" feature="Intensity" start="0.0" end="100.0" />
+											<Range dmxstart="255" dmxend="0" function="Magenta" feature="Variable" start="0.0" end="100.0" />
+										</Ranges>
+									</Channel>
+									<Channel number="9">
+										<Ranges>
+											<Range dmxstart="0" dmxend="255" function="I Blue" feature="Intensity" start="0.0" end="100.0" />
+											<Range dmxstart="255" dmxend="0" function="Yellow" feature="Variable" start="0.0" end="100.0" />
+										</Ranges>
+									</Channel>
+									<Channel number="10">
+										<Ranges>
+											<Range dmxstart="0" dmxend="255" function="Out Strobe" feature="Continuous" start="0.0" end="100.0" />
+										</Ranges>
+									</Channel>
+									<Channel number="11">
+										<Ranges>
+											<Range dmxstart="0" dmxend="4" function="Beam Fx 5" feature="Continuous" start="0.0" end="0.01568627450980392" />
+											<Range dmxstart="5" dmxend="9" function="Beam Fx 5" feature="Continuous" start="0.0196078431372549" end="0.03529411764705882" />
+											<Range dmxstart="10" dmxend="14" function="Beam Fx 5" feature="Continuous" start="0.0392156862745098" end="0.054901960784313725" />
+											<Range dmxstart="15" dmxend="19" function="Beam Fx 5" feature="Continuous" start="0.058823529411764705" end="0.07450980392156863" />
+											<Range dmxstart="20" dmxend="24" function="Beam Fx 5" feature="Continuous" start="0.0784313725490196" end="0.09411764705882353" />
+											<Range dmxstart="25" dmxend="29" function="Beam Fx 5" feature="Continuous" start="0.09803921568627451" end="0.11372549019607843" />
+											<Range dmxstart="30" dmxend="34" function="Beam Fx 5" feature="Continuous" start="0.11764705882352941" end="0.13333333333333333" />
+											<Range dmxstart="35" dmxend="39" function="Beam Fx 5" feature="Continuous" start="0.13725490196078433" end="0.15294117647058825" />
+											<Range dmxstart="40" dmxend="44" function="Beam Fx 5" feature="Continuous" start="0.1568627450980392" end="0.17254901960784313" />
+											<Range dmxstart="45" dmxend="49" function="Beam Fx 5" feature="Continuous" start="0.17647058823529413" end="0.19215686274509805" />
+											<Range dmxstart="50" dmxend="54" function="Beam Fx 5" feature="Continuous" start="0.19607843137254902" end="0.21176470588235294" />
+											<Range dmxstart="55" dmxend="59" function="Beam Fx 5" feature="Continuous" start="0.21568627450980393" end="0.23137254901960785" />
+											<Range dmxstart="60" dmxend="64" function="Beam Fx 5" feature="Continuous" start="0.23529411764705882" end="0.25098039215686274" />
+											<Range dmxstart="65" dmxend="69" function="Beam Fx 5" feature="Continuous" start="0.2549019607843137" end="0.27058823529411763" />
+											<Range dmxstart="70" dmxend="74" function="Beam Fx 5" feature="Continuous" start="0.27450980392156865" end="0.2901960784313726" />
+											<Range dmxstart="75" dmxend="79" function="Beam Fx 5" feature="Continuous" start="0.29411764705882354" end="0.30980392156862746" />
+											<Range dmxstart="80" dmxend="84" function="Beam Fx 5" feature="Continuous" start="0.3137254901960784" end="0.32941176470588235" />
+											<Range dmxstart="85" dmxend="89" function="Beam Fx 5" feature="Continuous" start="0.3333333333333333" end="0.34901960784313724" />
+											<Range dmxstart="90" dmxend="94" function="Beam Fx 5" feature="Continuous" start="0.35294117647058826" end="0.3686274509803922" />
+											<Range dmxstart="95" dmxend="99" function="Beam Fx 5" feature="Continuous" start="0.37254901960784315" end="0.38823529411764707" />
+											<Range dmxstart="100" dmxend="104" function="Beam Fx 5" feature="Continuous" start="0.39215686274509803" end="0.40784313725490196" />
+											<Range dmxstart="105" dmxend="109" function="Beam Fx 5" feature="Continuous" start="0.4117647058823529" end="0.42745098039215684" />
+											<Range dmxstart="110" dmxend="114" function="Beam Fx 5" feature="Continuous" start="0.43137254901960786" end="0.4470588235294118" />
+											<Range dmxstart="115" dmxend="119" function="Beam Fx 5" feature="Continuous" start="0.45098039215686275" end="0.4666666666666667" />
+											<Range dmxstart="120" dmxend="124" function="Beam Fx 5" feature="Continuous" start="0.47058823529411764" end="0.48627450980392156" />
+											<Range dmxstart="125" dmxend="129" function="Beam Fx 5" feature="Continuous" start="0.49019607843137253" end="0.5058823529411764" />
+											<Range dmxstart="130" dmxend="134" function="Beam Fx 5" feature="Continuous" start="0.5098039215686274" end="0.5254901960784314" />
+											<Range dmxstart="135" dmxend="139" function="Beam Fx 5" feature="Continuous" start="0.5294117647058824" end="0.5450980392156862" />
+											<Range dmxstart="140" dmxend="144" function="Beam Fx 5" feature="Continuous" start="0.5490196078431373" end="0.5647058823529412" />
+											<Range dmxstart="145" dmxend="149" function="Beam Fx 5" feature="Continuous" start="0.5686274509803921" end="0.5843137254901961" />
+											<Range dmxstart="150" dmxend="154" function="Beam Fx 5" feature="Continuous" start="0.5882352941176471" end="0.6039215686274509" />
+											<Range dmxstart="155" dmxend="159" function="Beam Fx 5" feature="Continuous" start="0.6078431372549019" end="0.6235294117647059" />
+											<Range dmxstart="160" dmxend="164" function="Beam Fx 5" feature="Continuous" start="0.6274509803921569" end="0.6431372549019608" />
+											<Range dmxstart="165" dmxend="169" function="Beam Fx 5" feature="Continuous" start="0.6470588235294118" end="0.6627450980392157" />
+											<Range dmxstart="170" dmxend="174" function="Beam Fx 5" feature="Continuous" start="0.6666666666666666" end="0.6823529411764706" />
+											<Range dmxstart="175" dmxend="179" function="Beam Fx 5" feature="Continuous" start="0.6862745098039216" end="0.7019607843137254" />
+											<Range dmxstart="180" dmxend="184" function="Beam Fx 5" feature="Continuous" start="0.7058823529411765" end="0.7215686274509804" />
+											<Range dmxstart="185" dmxend="189" function="Beam Fx 5" feature="Continuous" start="0.7254901960784313" end="0.7411764705882353" />
+											<Range dmxstart="190" dmxend="194" function="Beam Fx 5" feature="Continuous" start="0.7450980392156863" end="0.7607843137254902" />
+											<Range dmxstart="195" dmxend="199" function="Beam Fx 5" feature="Continuous" start="0.7647058823529411" end="0.7803921568627451" />
+											<Range dmxstart="200" dmxend="204" function="Beam Fx 5" feature="Continuous" start="0.7843137254901961" end="0.8" />
+											<Range dmxstart="205" dmxend="209" function="Beam Fx 5" feature="Continuous" start="0.803921568627451" end="0.8196078431372549" />
+											<Range dmxstart="210" dmxend="214" function="Beam Fx 5" feature="Continuous" start="0.8235294117647058" end="0.8392156862745098" />
+											<Range dmxstart="215" dmxend="219" function="Beam Fx 5" feature="Continuous" start="0.8431372549019608" end="0.8588235294117647" />
+											<Range dmxstart="220" dmxend="224" function="Beam Fx 5" feature="Continuous" start="0.8627450980392157" end="0.8784313725490196" />
+											<Range dmxstart="225" dmxend="229" function="Beam Fx 5" feature="Continuous" start="0.8823529411764706" end="0.8980392156862745" />
+											<Range dmxstart="230" dmxend="234" function="Beam Fx 5" feature="Continuous" start="0.9019607843137255" end="0.9176470588235294" />
+											<Range dmxstart="235" dmxend="239" function="Beam Fx 5" feature="Continuous" start="0.9215686274509803" end="0.9372549019607843" />
+											<Range dmxstart="240" dmxend="244" function="Beam Fx 5" feature="Continuous" start="0.9411764705882353" end="0.9568627450980393" />
+											<Range dmxstart="245" dmxend="249" function="Beam Fx 5" feature="Continuous" start="0.9607843137254902" end="0.9764705882352941" />
+											<Range dmxstart="250" dmxend="254" function="Beam Fx 5" feature="Continuous" start="0.9803921568627451" end="0.996078431372549" />
+											<Range dmxstart="255" dmxend="255" function="Beam Fx 5" feature="Continuous" start="1.0" end="1.0" />
+										</Ranges>
+									</Channel>
+									<Channel number="12">
+										<Ranges>
+											<Range dmxstart="0" dmxend="255" function="Beam Fx 5 Offset" feature="Offset" start="0.0" end="1.0" />
+										</Ranges>
+									</Channel>
+									<Channel number="13">
+										<Ranges>
+											<Range dmxstart="0" dmxend="255" function="Beam Fx 5 &lt;&gt;" feature="Index" start="0.0" end="360.0" />
+										</Ranges>
+									</Channel>
+									<Channel number="14">
+										<Ranges>
+											<Range dmxstart="0" dmxend="255" function="Sub Intensity 2" feature="Intensity" start="0.0" end="100.0" />
+										</Ranges>
+									</Channel>
+								</Channels>
+							</Protocol>
+						</Protocols>
+						<Previewpackages>
+							<Package name="Fixture library">
+								<Funcpreview>
+									<Definition name="SHUTTER2">
+										<Funcref function="Strobe Mode" feature="Continuous" />
+									</Definition>
+									<Entry value="0.980392156862745" name="off" />
+									<Entry value="9.41176470588235" name="Mode 1" />
+									<Entry value="25.0980392156863" name="Mode 2" />
+									<Entry value="41.9607843137255" name="Mode 3" />
+									<Entry value="58.8235294117647" name="Mode 4" />
+									<Entry value="75.6862745098039" name="Mode 5" />
+									<Entry value="92.156862745098" name="Mode 6" />
+								</Funcpreview>
+								<Funcpreview>
+									<Definition name="GOBOWHEELS">
+										<Funcref function="Macro" feature="Continuous" />
+									</Definition>
+									<Entry value="0.0294117647058824" name="off" />
+									<Entry value="0.143137254901961" name="gobo 1" />
+									<Entry value="0.307843137254902" name="gobo 2" />
+									<Entry value="0.472549019607843" name="gobo 3" />
+									<Entry value="0.637254901960784" name="gobo 4" />
+									<Entry value="0.801960784313726" name="gobo 5" />
+									<Entry value="0.943137254901961" name="gobo 6" />
+								</Funcpreview>
+								<Funcpreview>
+									<Definition name="GOBO5">
+										<Funcref function="Beam Fx 5" feature="Continuous" />
+									</Definition>
+									<Entry value="0.00784313725490196" name="off" />
+									<Entry value="0.0274509803921569" name="gobo 1" />
+									<Entry value="0.0470588235294118" name="gobo 2" />
+									<Entry value="0.0666666666666667" name="gobo 3" />
+									<Entry value="0.0862745098039216" name="gobo 4" />
+									<Entry value="0.105882352941176" name="gobo 5" />
+									<Entry value="0.125490196078431" name="gobo 6" />
+									<Entry value="0.145098039215686" name="gobo 7" />
+									<Entry value="0.164705882352941" name="gobo 8" />
+									<Entry value="0.184313725490196" name="gobo 9" />
+									<Entry value="0.203921568627451" name="gobo 10" />
+									<Entry value="0.223529411764706" name="gobo 11" />
+									<Entry value="0.243137254901961" name="gobo 12" />
+									<Entry value="0.262745098039216" name="gobo 13" />
+									<Entry value="0.282352941176471" name="gobo 14" />
+									<Entry value="0.301960784313726" name="gobo 15" />
+									<Entry value="0.32156862745098" name="gobo 16" />
+									<Entry value="0.341176470588235" name="gobo 17" />
+									<Entry value="0.36078431372549" name="gobo 18" />
+									<Entry value="0.380392156862745" name="gobo 19" />
+									<Entry value="0.4" name="gobo 20" />
+									<Entry value="0.419607843137255" name="gobo 21" />
+									<Entry value="0.43921568627451" name="gobo 22" />
+									<Entry value="0.458823529411765" name="gobo 23" />
+									<Entry value="0.47843137254902" name="gobo 24" />
+									<Entry value="0.498039215686275" name="gobo 25" />
+									<Entry value="0.517647058823529" name="gobo 26" />
+									<Entry value="0.537254901960784" name="gobo 27" />
+									<Entry value="0.556862745098039" name="gobo 28" />
+									<Entry value="0.576470588235294" name="gobo 29" />
+									<Entry value="0.596078431372549" name="gobo 30" />
+									<Entry value="0.615686274509804" name="gobo 31" />
+									<Entry value="0.635294117647059" name="gobo 32" />
+									<Entry value="0.654901960784314" name="gobo 33" />
+									<Entry value="0.674509803921569" name="gobo 34" />
+									<Entry value="0.694117647058824" name="gobo 35" />
+									<Entry value="0.713725490196078" name="gobo 36" />
+									<Entry value="0.733333333333333" name="gobo 37" />
+									<Entry value="0.752941176470588" name="gobo 38" />
+									<Entry value="0.772549019607843" name="gobo 39" />
+									<Entry value="0.792156862745098" name="gobo 40" />
+									<Entry value="0.811764705882353" name="gobo 41" />
+									<Entry value="0.831372549019608" name="gobo 42" />
+									<Entry value="0.850980392156863" name="gobo 43" />
+									<Entry value="0.870588235294118" name="gobo 44" />
+									<Entry value="0.890196078431372" name="gobo 45" />
+									<Entry value="0.909803921568627" name="gobo 46" />
+									<Entry value="0.929411764705882" name="gobo 47" />
+									<Entry value="0.949019607843137" name="gobo 48" />
+									<Entry value="0.968627450980392" name="gobo 49" />
+									<Entry value="0.988235294117647" name="gobo 50" />
+									<Entry value="1" name="gobo 51" />
+								</Funcpreview>
+							</Package>
+						</Previewpackages>
+					</Type>
+					<Type name="strobe1000 light M2" revisionid="0" status="User" uuid="21c6a041-1a10-43c2-947f-b2551df777ef" part="M2">
+						<History revision="0" author="" date="2026-07-30" comment="" />
+						<Origin>User</Origin>
+						<Icon type="circle" size="medium" />
+						<Protocols>
+							<Protocol name="DMX">
+								<Dmxfootprint size="1" />
+								<Channels>
+									<Channel number="1">
+										<Ranges>
+											<Range dmxstart="0" dmxend="255" function="I White" feature="Intensity" start="0.0" end="100.0" />
+										</Ranges>
+									</Channel>
+								</Channels>
+							</Protocol>
+						</Protocols>
+					</Type>
+					<Type name="strobe1000 light M1" revisionid="0" status="User" uuid="7920bd98-e5cf-4cbc-98d0-9720d0525ad6" part="M1">
+						<History revision="0" author="" date="2026-07-30" comment="" />
+						<Origin>User</Origin>
+						<Icon type="circle" size="medium" />
+						<Protocols>
+							<Protocol name="DMX">
+								<Dmxfootprint size="3" />
+								<Channels>
+									<Channel number="1">
+										<Ranges>
+											<Range dmxstart="0" dmxend="255" function="I Red" feature="Intensity" start="0.0" end="100.0" />
+											<Range dmxstart="255" dmxend="0" function="Cyan" feature="Variable" start="0.0" end="100.0" />
+										</Ranges>
+									</Channel>
+									<Channel number="2">
+										<Ranges>
+											<Range dmxstart="0" dmxend="255" function="I Green" feature="Intensity" start="0.0" end="100.0" />
+											<Range dmxstart="255" dmxend="0" function="Magenta" feature="Variable" start="0.0" end="100.0" />
+										</Ranges>
+									</Channel>
+									<Channel number="3">
+										<Ranges>
+											<Range dmxstart="0" dmxend="255" function="I Blue" feature="Intensity" start="0.0" end="100.0" />
+											<Range dmxstart="255" dmxend="0" function="Yellow" feature="Variable" start="0.0" end="100.0" />
+										</Ranges>
+									</Channel>
+								</Channels>
+							</Protocol>
+						</Protocols>
+					</Type>
+				</Types>
+			</Product>
+		</Manufacturer>
+		<CompoundTypes>
+			<CompoundType revisionId="0" name="strobe1000 light 42ch HOG4" mode="42ch" uuid="60f0baab-35fb-407b-84a4-ecd33a00a878">
+				<History revision="0" author="Vlighte" date="2026-10-31" comment="EDIT" />
+				<Origin>User</Origin>
+				<Icon type="circle" size="medium" />
+				<Parts>
+					<Part type="strobe1000 light M0" number="0" plotX="0" plotY="0" />
+					<Part type="strobe1000 light M2" number="0.11" plotX="0" plotY="-1" />
+					<Part type="strobe1000 light M2" number="0.12" plotX="1" plotY="-1" />
+					<Part type="strobe1000 light M2" number="0.13" plotX="2" plotY="-1" />
+					<Part type="strobe1000 light M2" number="0.14" plotX="3" plotY="-1" />
+					<Part type="strobe1000 light M1" number="0.21" plotX="0" plotY="-2" />
+					<Part type="strobe1000 light M1" number="0.22" plotX="1" plotY="-2" />
+					<Part type="strobe1000 light M1" number="0.23" plotX="2" plotY="-2" />
+					<Part type="strobe1000 light M1" number="0.24" plotX="3" plotY="-2" />
+					<Part type="strobe1000 light M1" number="0.25" plotX="4" plotY="-2" />
+					<Part type="strobe1000 light M1" number="0.26" plotX="5" plotY="-2" />
+					<Part type="strobe1000 light M1" number="0.27" plotX="6" plotY="-2" />
+					<Part type="strobe1000 light M1" number="0.28" plotX="7" plotY="-2" />
+				</Parts>
+			</CompoundType>
+		</CompoundTypes>
+	</Library>
+</Hog>

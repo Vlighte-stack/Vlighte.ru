@@ -1,0 +1,33 @@
+{
+  "version": "2.00.49",
+  "importHttpStatus": 200,
+  "generateHttpStatus": 200,
+  "hogMatchesConsoleTestedDefinitions": true,
+  "mainAffected": [
+    [
+      "Cyan",
+      "Variable"
+    ],
+    [
+      "Magenta",
+      "Variable"
+    ],
+    [
+      "Sub Intensity 1",
+      "Intensity"
+    ],
+    [
+      "Yellow",
+      "Variable"
+    ]
+  ],
+  "channel3": "Sub Intensity 1 / Intensity",
+  "physicalDIM3Excluded": true,
+  "compoundParts": 13,
+  "ma2Generated": true,
+  "gdtfGenerated": true,
+  "guestLibraryJsonHttpStatus": 200,
+  "guestLibraryRecordCount": 11,
+  "archiveEndpointCalled": false,
+  "originReceiptStored": false
+}

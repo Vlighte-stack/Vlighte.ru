@@ -1,0 +1,16 @@
+{
+  "attemptedRows": 891,
+  "skippedConversionErrors": 81,
+  "precisionMetrics": {
+    "probes": 22437,
+    "maxXYZDelta": 6.661338147750939e-16,
+    "maxCieComponentDelta": 7.105427357601002e-15
+  },
+  "rows": 810,
+  "categoryRows": {
+    "wheel_binding": 19
+  },
+  "imageChangedRows": 0,
+  "sourceUnboundRows": 54,
+  "resultUnboundRows": 2
+}

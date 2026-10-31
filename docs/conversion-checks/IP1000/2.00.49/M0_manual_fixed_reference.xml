@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Hog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schema.hogfour.com/Fixture" xsi:schemaLocation="http://schema.hogfour.com/Fixture http://schema.hogfour.com/fixture.xsd">
+  <Creator name="Hog" version="v3.21.2 (b 3662)"/>
+  <Library>
+    <Manufacturer name="User Created">
+      <Product name="">
+        <Types>
+          <Type name="strobe1000 light M0" mode="" revisionid="0" status="User" uuid="fc6f6a7d-d4ac-11f1-9bae-8be3d2eb8df2">
+            <History revision="0" author="" date="2026-07-30" comment=""/>
+            <Origin>User</Origin>
+            <Icon type="Circle" size="Medium"/>
+            <Defaults>
+              <Default function="Tilt" feature="Tilt" value="0.00"/>
+              <Default function="Sub Intensity 2" feature="Intensity" value="100"/>
+            </Defaults>
+            <Virtuals>
+              <Virtual function="Intensity" feature="Intensity" start="0" end="100">
+                <Affected function="Cyan" feature="Variable"/>
+                <Affected function="Magenta" feature="Variable"/>
+                <Affected function="Yellow" feature="Variable"/>
+              </Virtual>
+            </Virtuals>
+            <Protocols>
+              <Protocol name="DMX">
+                <Dmxfootprint size="14"/>
+                <Channels>
+                  <Channel number="1">
+                    <AttachedChannels>
+                      <AttachedChannel>2</AttachedChannel>
+                    </AttachedChannels>
+                    <Ranges>
+                      <Range dmxstart="0" dmxend="32767" function="Tilt" feature="Tilt" start="-90" end="-0.00"/>
+                      <Range dmxstart="32768" dmxend="32768" function="Tilt" feature="Tilt" start="0.00"/>
+                      <Range dmxstart="32769" dmxend="65535" function="Tilt" feature="Tilt" start="0.00" end="90"/>
+                    </Ranges>
+                  </Channel>
+                  <Channel number="3" constant="255"/>
+                  <Channel number="4">
+                    <Ranges>
+                      <Range dmxstart="0" dmxend="5" function="Strobe Mode" feature="Continuous" start="0" end="1.96"/>
+                      <Range dmxstart="6" dmxend="42" function="Strobe Mode" feature="Continuous" start="2.35" end="16.47"/>
+                      <Range dmxstart="43" dmxend="85" function="Strobe Mode" feature="Continuous" start="16.86" end="33.33"/>
+                      <Range dmxstart="86" dmxend="128" function="Strobe Mode" feature="Continuous" start="33.73" end="50.2"/>
+                      <Range dmxstart="129" dmxend="171" function="Strobe Mode" feature="Continuous" start="50.59" end="67.06"/>
+                      <Range dmxstart="172" dmxend="214" function="Strobe Mode" feature="Continuous" start="67.45" end="83.92"/>
+                      <Range dmxstart="215" dmxend="255" function="Strobe Mode" feature="Continuous" start="84.31" end="100"/>
+                    </Ranges>
+                  </Channel>
+                  <Channel number="5" unused="true"/>
+                  <Channel number="6">
+                    <Ranges>
+                      <Range dmxstart="0" dmxend="15" function="Macro" feature="Continuous" start="0" end="0.06"/>
+                      <Range dmxstart="16" dmxend="57" function="Macro" feature="Continuous" start="0.06" end="0.22"/>
+                      <Range dmxstart="58" dmxend="99" function="Macro" feature="Continuous" start="0.23" end="0.39"/>
+                      <Range dmxstart="100" dmxend="141" function="Macro" feature="Continuous" start="0.39" end="0.55"/>
+                      <Range dmxstart="142" dmxend="183" function="Macro" feature="Continuous" start="0.56" end="0.72"/>
+                      <Range dmxstart="184" dmxend="225" function="Macro" feature="Continuous" start="0.72" end="0.88"/>
+                      <Range dmxstart="226" dmxend="255" function="Macro" feature="Continuous" start="0.89" end="1"/>
+                    </Ranges>
+                  </Channel>
+                  <Channel number="7">
+                    <Ranges>
+                      <Range dmxstart="0" dmxend="255" function="I Red" feature="Intensity" start="0" end="100"/>
+                      <Range dmxstart="255" dmxend="0" function="Cyan" feature="Variable" start="0" end="100"/>
+                    </Ranges>
+                  </Channel>
+                  <Channel number="8">
+                    <Ranges>
+                      <Range dmxstart="0" dmxend="255" function="I Green" feature="Intensity" start="0" end="100"/>
+                      <Range dmxstart="255" dmxend="0" function="Magenta" feature="Variable" start="0" end="100"/>
+                    </Ranges>
+                  </Channel>
+                  <Channel number="9">
+                    <Ranges>
+                      <Range dmxstart="0" dmxend="255" function="I Blue" feature="Intensity" start="0" end="100"/>
+                      <Range dmxstart="255" dmxend="0" function="Yellow" feature="Variable" start="0" end="100"/>
+                    </Ranges>
+                  </Channel>
+                  <Channel number="10">
+                    <Ranges>
+                      <Range dmxstart="0" dmxend="255" function="Out Strobe" feature="Continuous" start="0" end="100"/>
+                    </Ranges>
+                  </Channel>
+                  <Channel number="11">
+                    <Ranges>
+                      <Range dmxstart="0" dmxend="4" function="Beam Fx 5" feature="Continuous" start="0" end="0.02"/>
+                      <Range dmxstart="5" dmxend="9" function="Beam Fx 5" feature="Continuous" start="0.02" end="0.04"/>
+                      <Range dmxstart="10" dmxend="14" function="Beam Fx 5" feature="Continuous" start="0.04" end="0.05"/>
+                      <Range dmxstart="15" dmxend="19" function="Beam Fx 5" feature="Continuous" start="0.06" end="0.07"/>
+                      <Range dmxstart="20" dmxend="24" function="Beam Fx 5" feature="Continuous" start="0.08" end="0.09"/>
+                      <Range dmxstart="25" dmxend="29" function="Beam Fx 5" feature="Continuous" start="0.1" end="0.11"/>
+                      <Range dmxstart="30" dmxend="34" function="Beam Fx 5" feature="Continuous" start="0.12" end="0.13"/>
+                      <Range dmxstart="35" dmxend="39" function="Beam Fx 5" feature="Continuous" start="0.14" end="0.15"/>
+                      <Range dmxstart="40" dmxend="44" function="Beam Fx 5" feature="Continuous" start="0.16" end="0.17"/>
+                      <Range dmxstart="45" dmxend="49" function="Beam Fx 5" feature="Continuous" start="0.18" end="0.19"/>
+                      <Range dmxstart="50" dmxend="54" function="Beam Fx 5" feature="Continuous" start="0.2" end="0.21"/>
+                      <Range dmxstart="55" dmxend="59" function="Beam Fx 5" feature="Continuous" start="0.22" end="0.23"/>
+                      <Range dmxstart="60" dmxend="64" function="Beam Fx 5" feature="Continuous" start="0.24" end="0.25"/>
+                      <Range dmxstart="65" dmxend="69" function="Beam Fx 5" feature="Continuous" start="0.25" end="0.27"/>
+                      <Range dmxstart="70" dmxend="74" function="Beam Fx 5" feature="Continuous" start="0.27" end="0.29"/>
+                      <Range dmxstart="75" dmxend="79" function="Beam Fx 5" feature="Continuous" start="0.29" end="0.31"/>
+                      <Range dmxstart="80" dmxend="84" function="Beam Fx 5" feature="Continuous" start="0.31" end="0.33"/>
+                      <Range dmxstart="85" dmxend="89" function="Beam Fx 5" feature="Continuous" start="0.33" end="0.35"/>
+                      <Range dmxstart="90" dmxend="94" function="Beam Fx 5" feature="Continuous" start="0.35" end="0.37"/>
+                      <Range dmxstart="95" dmxend="99" function="Beam Fx 5" feature="Continuous" start="0.37" end="0.39"/>
+                      <Range dmxstart="100" dmxend="104" function="Beam Fx 5" feature="Continuous" start="0.39" end="0.41"/>
+                      <Range dmxstart="105" dmxend="109" function="Beam Fx 5" feature="Continuous" start="0.41" end="0.43"/>
+                      <Range dmxstart="110" dmxend="114" function="Beam Fx 5" feature="Continuous" start="0.43" end="0.45"/>
+                      <Range dmxstart="115" dmxend="119" function="Beam Fx 5" feature="Continuous" start="0.45" end="0.47"/>
+                      <Range dmxstart="120" dmxend="124" function="Beam Fx 5" feature="Continuous" start="0.47" end="0.49"/>
+                      <Range dmxstart="125" dmxend="129" function="Beam Fx 5" feature="Continuous" start="0.49" end="0.51"/>
+                      <Range dmxstart="130" dmxend="134" function="Beam Fx 5" feature="Continuous" start="0.51" end="0.53"/>
+                      <Range dmxstart="135" dmxend="139" function="Beam Fx 5" feature="Continuous" start="0.53" end="0.55"/>
+                      <Range dmxstart="140" dmxend="144" function="Beam Fx 5" feature="Continuous" start="0.55" end="0.56"/>
+                      <Range dmxstart="145" dmxend="149" function="Beam Fx 5" feature="Continuous" start="0.57" end="0.58"/>
+                      <Range dmxstart="150" dmxend="154" function="Beam Fx 5" feature="Continuous" start="0.59" end="0.60"/>
+                      <Range dmxstart="155" dmxend="159" function="Beam Fx 5" feature="Continuous" start="0.61" end="0.62"/>
+                      <Range dmxstart="160" dmxend="164" function="Beam Fx 5" feature="Continuous" start="0.63" end="0.64"/>
+                      <Range dmxstart="165" dmxend="169" function="Beam Fx 5" feature="Continuous" start="0.65" end="0.66"/>
+                      <Range dmxstart="170" dmxend="174" function="Beam Fx 5" feature="Continuous" start="0.67" end="0.68"/>
+                      <Range dmxstart="175" dmxend="179" function="Beam Fx 5" feature="Continuous" start="0.69" end="0.70"/>
+                      <Range dmxstart="180" dmxend="184" function="Beam Fx 5" feature="Continuous" start="0.71" end="0.72"/>
+                      <Range dmxstart="185" dmxend="189" function="Beam Fx 5" feature="Continuous" start="0.73" end="0.74"/>
+                      <Range dmxstart="190" dmxend="194" function="Beam Fx 5" feature="Continuous" start="0.75" end="0.76"/>
+                      <Range dmxstart="195" dmxend="199" function="Beam Fx 5" feature="Continuous" start="0.76" end="0.78"/>
+                      <Range dmxstart="200" dmxend="204" function="Beam Fx 5" feature="Continuous" start="0.78" end="0.8"/>
+                      <Range dmxstart="205" dmxend="209" function="Beam Fx 5" feature="Continuous" start="0.80" end="0.82"/>
+                      <Range dmxstart="210" dmxend="214" function="Beam Fx 5" feature="Continuous" start="0.82" end="0.84"/>
+                      <Range dmxstart="215" dmxend="219" function="Beam Fx 5" feature="Continuous" start="0.84" end="0.86"/>
+                      <Range dmxstart="220" dmxend="224" function="Beam Fx 5" feature="Continuous" start="0.86" end="0.88"/>
+                      <Range dmxstart="225" dmxend="229" function="Beam Fx 5" feature="Continuous" start="0.88" end="0.9"/>
+                      <Range dmxstart="230" dmxend="234" function="Beam Fx 5" feature="Continuous" start="0.90" end="0.92"/>
+                      <Range dmxstart="235" dmxend="239" function="Beam Fx 5" feature="Continuous" start="0.92" end="0.94"/>
+                      <Range dmxstart="240" dmxend="244" function="Beam Fx 5" feature="Continuous" start="0.94" end="0.96"/>
+                      <Range dmxstart="245" dmxend="249" function="Beam Fx 5" feature="Continuous" start="0.96" end="0.98"/>
+                      <Range dmxstart="250" dmxend="254" function="Beam Fx 5" feature="Continuous" start="0.98" end="1"/>
+                      <Range dmxstart="255" dmxend="255" function="Beam Fx 5" feature="Continuous" start="1"/>
+                    </Ranges>
+                  </Channel>
+                  <Channel number="12">
+                    <Ranges>
+                      <Range dmxstart="0" dmxend="255" function="Beam Fx 5 Offset" feature="Offset" start="0" end="1"/>
+                    </Ranges>
+                  </Channel>
+                  <Channel number="13">
+                    <Ranges>
+                      <Range dmxstart="0" dmxend="255" function="Beam Fx 5 &lt;&gt;" feature="Index" start="0" end="360"/>
+                    </Ranges>
+                  </Channel>
+                  <Channel number="14">
+                    <Ranges>
+                      <Range dmxstart="0" dmxend="255" function="Sub Intensity 2" feature="Intensity" start="0" end="100"/>
+                    </Ranges>
+                  </Channel>
+                </Channels>
+              </Protocol>
+            </Protocols>
+          </Type>
+        </Types>
+      </Product>
+    </Manufacturer>
+  </Library>
+</Hog>

@@ -1,10 +1,11 @@
 {
   ".gitignore": "0f45c0acfa57ab1fa449b424002d2e8cf3a685d3ec73317ebeb64c1d3a88beec",
-  "app.py": "687b8ea164b99ae4258086a1e7122801d4cd0784c113cb35b88651d8e870f429",
-  "library/index.html": "3ef730d0ca9e12ca69ffe93802f503917631e87dbbaa31af848594ebd46eb2e0",
-  "public/index.html": "c60f6d5b3ae4102c5694489c830f7cf644b655be3627ac85763c09a08d7a3600",
+  "app.py": "30e9895bf86717de7cc044fabcdff4e2cd6cbaecc014a6dd21d3d355ef9fe71e",
+  "library/index.html": "98abd17d8da1653b9e1f32b42fbab1e5f938025b93337d9342703a0983a6250b",
+  "public/index.html": "439a31b75351ced3ec13da0f14bf79dd95e301a75e12e51254955d80343011a3",
   "public/logo-pencil.webp": "59ae9f334112826ef17bda34292f3aed6dc3b5253b8d3596b7f77b093ca68c0e",
-  "README.md": "7f28d0fded946f77420a95477e0390272787993fe71c5924f9ac043cc1fee73c",
+  "README.md": "633f35bc168d7c5c4e72c95634c50cd7a61e738e30530ef123e9cf5dba931428",
+  "tests/fixtures/IP1000_MA42_original.xml": "03d2574c72c6b811d273d29b3e6d65b32a9bd5fb457f57254eeebb3517889bdd",
   "tests/test_breaks.py": "ecf468e623684231e6562bffb14eb046cae10513b6dbb13fff3d6bd2141f077f",
   "tests/test_colorimetry.py": "a759e5eac958f553f3039eac4256d87c402fce3b4e54a5dff9d59f1776d8d0d0",
   "tests/test_gdtf.py": "4d601ecb8e9352dfd8454a87554bf144aa81ac8f3ee9822997c6b3de90405e5d",
@@ -12,5 +13,6 @@
   "tests/test_library.py": "fef2647597d24071caad9cbe99955798a283ab46b250e4eaac26233a0052a9e6",
   "tests/test_padding.py": "ef2b6cea5c0a5f7c982dc845d1a8359f70ce55b9512974d1e184b7f76f6a5c30",
   "tests/test_save_flow.js": "3cc1a99761f838c8a6aed477d4ca29b52d9e27cff2f2fdd90c4a571de3c47c14",
-  "VERSION": "1d0562766df9077e23da915a0ed9026b6b0362730889c266a54723e20e9e0857"
+  "tests/test_virtual_dimmer.py": "931868c046e774acccc093ad6c3cc75ba345d6868db0b985b19f5db9089435f9",
+  "VERSION": "96839161eb4cbaac00977697c83002ce1f1d28dea630dd0cf0213d17ef801fe0"
 }

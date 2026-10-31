@@ -1,0 +1,197 @@
+{
+  "version": "2.00.49",
+  "date": "2026-10-31",
+  "appSha256": "30e9895bf86717de7cc044fabcdff4e2cd6cbaecc014a6dd21d3d355ef9fe71e",
+  "appSha256NormalizedLF": "cca293d72d95a5087bf03248d14fed1b3ac36c449a107b8cddaf6aa9bb577ba7",
+  "overallPassed": false,
+  "runs": {
+    "same-inputs-891-2.00.49": {
+      "label": "Прежние 33 входа",
+      "counts": {
+        "MATCH": 217,
+        "DIFFERENT": 566,
+        "ERROR": 108
+      },
+      "changedEveryStepCounts": {
+        "DIFFERENT": 131,
+        "ERROR": 24,
+        "MATCH": 43
+      },
+      "newConversionErrorsVs45": 108,
+      "behavior": {
+        "version": "same-inputs-891-2.00.49",
+        "rows": 783,
+        "previousDifferentRows": 566,
+        "classifications": {
+          "labels_structure_or_quantization": 599,
+          "functional_difference": 13,
+          "control_or_visualization_change": 171
+        },
+        "categoryRows": {
+          "control_assignment": 13,
+          "physical_curve": 13,
+          "quantization": 26,
+          "virtual_scope": 13,
+          "set_labels": 254,
+          "wheel_visualization": 171
+        }
+      },
+      "wheels": {
+        "attemptedRows": 891,
+        "skippedConversionErrors": 108,
+        "precisionMetrics": {
+          "probes": 7479,
+          "maxXYZDelta": 1.182071590019297,
+          "maxCieComponentDelta": 11.552749369822436
+        },
+        "rows": 783,
+        "categoryRows": {
+          "cie_to_rgb_representation": 38,
+          "xyz_precision_change": 38,
+          "wheel_media": 26
+        },
+        "imageChangedRows": 26,
+        "sourceUnboundRows": 0,
+        "resultUnboundRows": 0
+      }
+    },
+    "IP1000_external_no-recovery_2.00.49": {
+      "label": "Новые производные форматы",
+      "counts": {
+        "MATCH": 218,
+        "DIFFERENT": 592,
+        "ERROR": 81
+      },
+      "changedEveryStepCounts": {
+        "DIFFERENT": 137,
+        "MATCH": 43,
+        "ERROR": 18
+      },
+      "newConversionErrorsVs45": 81,
+      "behavior": {
+        "version": "IP1000_external_no-recovery_2.00.49",
+        "rows": 810,
+        "previousDifferentRows": 592,
+        "classifications": {
+          "labels_structure_or_quantization": 607,
+          "functional_difference": 32,
+          "control_or_visualization_change": 171
+        },
+        "categoryRows": {
+          "control_assignment": 32,
+          "physical_curve": 32,
+          "quantization": 26,
+          "virtual_scope": 13,
+          "set_labels": 254,
+          "wheel_visualization": 171
+        }
+      },
+      "wheels": {
+        "attemptedRows": 891,
+        "skippedConversionErrors": 81,
+        "precisionMetrics": {
+          "probes": 13073,
+          "maxXYZDelta": 1.182071590019297,
+          "maxCieComponentDelta": 11.552749369822436
+        },
+        "rows": 810,
+        "categoryRows": {
+          "wheel_binding": 19,
+          "wheel_media": 64,
+          "missing_exact_xyz": 26,
+          "xyz_precision_change": 63,
+          "cie_to_rgb_representation": 38
+        },
+        "imageChangedRows": 26,
+        "sourceUnboundRows": 54,
+        "resultUnboundRows": 2
+      }
+    },
+    "resource-matrix-891-2.00.49": {
+      "label": "ZIP с ресурсами и colorimetry.json",
+      "counts": {
+        "MATCH": 218,
+        "DIFFERENT": 592,
+        "ERROR": 81
+      },
+      "changedEveryStepCounts": {
+        "DIFFERENT": 137,
+        "MATCH": 43,
+        "ERROR": 18
+      },
+      "newConversionErrorsVs45": 81,
+      "behavior": {
+        "version": "resource-matrix-891-2.00.49",
+        "rows": 810,
+        "previousDifferentRows": 592,
+        "classifications": {
+          "labels_structure_or_quantization": 607,
+          "functional_difference": 32,
+          "control_or_visualization_change": 171
+        },
+        "categoryRows": {
+          "control_assignment": 32,
+          "physical_curve": 32,
+          "quantization": 26,
+          "virtual_scope": 13,
+          "set_labels": 254,
+          "wheel_visualization": 171
+        }
+      },
+      "wheels": {
+        "attemptedRows": 891,
+        "skippedConversionErrors": 81,
+        "precisionMetrics": {
+          "probes": 22437,
+          "maxXYZDelta": 6.661338147750939e-16,
+          "maxCieComponentDelta": 7.105427357601002e-15
+        },
+        "rows": 810,
+        "categoryRows": {
+          "wheel_binding": 19
+        },
+        "imageChangedRows": 0,
+        "sourceUnboundRows": 54,
+        "resultUnboundRows": 2
+      }
+    }
+  },
+  "totalScenarios": 2673,
+  "scenariosPerRun": 891,
+  "fixtures": 11,
+  "commentsRemovedAtEachBoundary": true,
+  "emptyKnownRegistry": true,
+  "codeModifiedDuringRun": false,
+  "siteModifiedDuringRun": false,
+  "integrity": {
+    "same-inputs-891-2.00.49": {
+      "commentFreeProfiles": 2746,
+      "files": 2764
+    },
+    "IP1000_external_no-recovery_2.00.49": {
+      "commentFreeProfiles": 2837,
+      "files": 2855
+    },
+    "resource-matrix-891-2.00.49": {
+      "commentFreeProfiles": 2837,
+      "files": 2855
+    }
+  },
+  "knownRegressions": [
+    {
+      "id": "virtual-default-32bit",
+      "fixture": "09_Robin iSpiiderX",
+      "sourceDefault": 4294967295,
+      "incorrectLimit": 255,
+      "effect": "valid 32-bit virtual DIM default rejected"
+    },
+    {
+      "id": "legacy-native-virtual-scope",
+      "fixture": [
+        "IP1000",
+        "09_Robin iSpiiderX"
+      ],
+      "effect": "legacy HOG virtual scope cannot be represented by automatic MA2 DIM; generator rejects all destinations because it builds counterpart MA2"
+    }
+  ]
+}

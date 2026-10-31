@@ -1,0 +1,40 @@
+{
+  "version": "2.00.49",
+  "files": [
+    {
+      "target": "~/fixture-stage/app.py",
+      "sha256Normalized": "cca293d72d95a5087bf03248d14fed1b3ac36c449a107b8cddaf6aa9bb577ba7",
+      "bytesNormalized": 213160,
+      "saved": true,
+      "readbackVerified": true
+    },
+    {
+      "target": "~/fixture-stage/library/index.html",
+      "sha256Normalized": "474b389dd9adc96f568f1227490617c0de2e278ed203f102624f2763bb25000f",
+      "bytesNormalized": 28674,
+      "saved": true,
+      "readbackVerified": true
+    },
+    {
+      "target": "~/fixture-stage/public/index.html",
+      "sha256Normalized": "e94ad7d3e9210d0ed17f06ff8b472ad544be897b8c3841b517fd80ca83efbb2f",
+      "bytesNormalized": 54254,
+      "saved": true,
+      "readbackVerified": true
+    },
+    {
+      "target": "~/www/vlighte.ru/public/index.html",
+      "sha256Normalized": "e94ad7d3e9210d0ed17f06ff8b472ad544be897b8c3841b517fd80ca83efbb2f",
+      "bytesNormalized": 54254,
+      "saved": true,
+      "readbackVerified": true
+    },
+    {
+      "target": "~/www/vlighte.ru/public/tmp/restart.txt",
+      "sha256Normalized": "cc78e4912069c69245b2a5d949c1bf4a3fad24a5789aca57af61c749ca61ae99",
+      "bytesNormalized": 36,
+      "saved": true,
+      "readbackVerified": true
+    }
+  ]
+}

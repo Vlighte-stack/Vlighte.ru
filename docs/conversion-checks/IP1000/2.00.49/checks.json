@@ -1,0 +1,138 @@
+{
+  "version": "2.00.49",
+  "fileSha256": "ecbf1a373aec440311065ae0a5dd421560fce8caacdcd48ac3675428007b5844",
+  "source": "IP1000_MA42_original.xml",
+  "affected": [
+    "Cyan",
+    "Magenta",
+    "Sub Intensity 1",
+    "Yellow"
+  ],
+  "channel3": "Sub Intensity 1 / Intensity; no constant; default100; affected by virtual Intensity",
+  "physicalDIM3Excluded": true,
+  "independentCellsUnchanged": true,
+  "unrelatedChannelsUnchanged": true,
+  "nativeHogInputScopePreserved": true,
+  "noDimInventedWhenAbsent": true,
+  "customScaleAndDefaultChecked": true,
+  "unsupportedCompositeCurveRejected": true,
+  "noRecoveryReverseConversion": true,
+  "nativeManualExportCompared": true,
+  "nativeImport": "built_and_patched_named_test49",
+  "nativeDmx": "pass_sampled_virtual_dimmer_scope_with_1LSB_rounding_difference",
+  "deployed": true,
+  "individualTypesXsdValid": true,
+  "uniquelyNamedTestProfile": {
+    "file": "IP1000_TEST_2.00.49.xml",
+    "compound": "IP1000 42ch TEST 2.00.49",
+    "sha256": "360fa8eb1d902c411ad61e06ad49574eee2273a3508e46f3eb0c31d5e75d79f0",
+    "sameControlDefinitions": true,
+    "nativeImport": "built_and_patched",
+    "fixture": 1
+  },
+  "nativeDmxObservations": [
+    {
+      "intensity": 50,
+      "cmy": [
+        0,
+        0,
+        0
+      ],
+      "subIntensityVisible": "one 100%, other cell blank/default; not both explicit entries",
+      "channel3": 127,
+      "rgb": [
+        127,
+        127,
+        127
+      ],
+      "channel14": 255,
+      "evidence": [
+        "hog49-dim50-programmer.png",
+        "hog49-dim50-dmx.png"
+      ]
+    },
+    {
+      "intensity": 0,
+      "cmy": [
+        0,
+        0,
+        0
+      ],
+      "whiteCell1_11": 100,
+      "rgbCell1_21": [
+        100,
+        0,
+        0
+      ],
+      "channel3": 0,
+      "rgb": [
+        0,
+        0,
+        0
+      ],
+      "channel14": 255,
+      "channel15": 255,
+      "channel19": 255,
+      "evidence": [
+        "hog49-dim0-cells-programmer.png",
+        "hog49-dim0-cells-dmx.png"
+      ]
+    },
+    {
+      "intensity": 100,
+      "cmy": [
+        0,
+        0,
+        0
+      ],
+      "channel3": 255,
+      "rgb": [
+        255,
+        255,
+        255
+      ],
+      "channel14": 255,
+      "channel15": 255,
+      "channel19": 255,
+      "evidence": [
+        "hog49-dim100-programmer.png",
+        "hog49-dim100-dmx.png"
+      ]
+    },
+    {
+      "intensity": 100,
+      "cmy": [
+        100,
+        50,
+        100
+      ],
+      "channel3": 255,
+      "rgb": [
+        0,
+        127,
+        0
+      ],
+      "channel14": 255,
+      "channel15": 255,
+      "channel19": 255,
+      "evidence": [
+        "hog49-color-cmy-programmer.png",
+        "hog49-color-cmy-dmx.png"
+      ]
+    }
+  ],
+  "nativeScopeChecks": {
+    "dimmer0_50_100": true,
+    "channel3FollowsDimmer": true,
+    "channel3IndependentOfColorAtTestedCMY": true,
+    "physicalDIM3Independent": true,
+    "firstWhiteAndFirstRGBCellIndependent": true,
+    "allCellsAndAllLevelsTested": false,
+    "physicalFixtureTested": false,
+    "colorCMYAtDimmer0Tested": false,
+    "shutterAndTiltRetested": false,
+    "fullConversionMatrixRepeated": false,
+    "deployed": false
+  },
+  "deploymentProof": "deployment.json"
+}

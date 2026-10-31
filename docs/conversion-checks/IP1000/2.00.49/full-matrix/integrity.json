@@ -1,0 +1,150 @@
+{
+  "same33SeedsByteIdenticalTo45": [
+    {
+      "file": "01_AlpineTubeRGB/seed-GDTF.gdtf",
+      "sha256": "05c0a6c5ea2d447a187105b9a4c01a036337def079cc4d15bdc9e902b40f3dc4"
+    },
+    {
+      "file": "01_AlpineTubeRGB/seed-HOG.xml",
+      "sha256": "7780935049e06c01cd10787c37aa7c54984ec5647ee9e975a5353567d6db7f6b"
+    },
+    {
+      "file": "01_AlpineTubeRGB/seed-MA.xml",
+      "sha256": "70ce50aa4c53f2b43baac3e779d55fcdb71e3bc4e82342ee492ceb3d58d28294"
+    },
+    {
+      "file": "02_BeskydBeam/seed-GDTF.gdtf",
+      "sha256": "50997536022ac4059b7263dc3e2eaa324e4b1b5e8b4be2f05354776b5c966411"
+    },
+    {
+      "file": "02_BeskydBeam/seed-HOG.xml",
+      "sha256": "b8b95c077ed21b595fdd8a83bc27b1edf3ac330644078c1e7bcc3bc5f1e01c0a"
+    },
+    {
+      "file": "02_BeskydBeam/seed-MA.xml",
+      "sha256": "c5a1b08c022fb0b157c5d1fd9ed8b3bc04eda954f01441694163d65200f69fa2"
+    },
+    {
+      "file": "03_BlenderControl/seed-GDTF.gdtf",
+      "sha256": "1d9e96525c5b3b6a236f098802d9afe9bf6fd7e08a6249bdc2ab795ea34dfbc8"
+    },
+    {
+      "file": "03_BlenderControl/seed-HOG.xml",
+      "sha256": "2b35cbc327b8a2b9ad41d40c5c30c329c109ce05af6f5f9dad6732ff42874128"
+    },
+    {
+      "file": "03_BlenderControl/seed-MA.xml",
+      "sha256": "b28b014be2603f80fe4c1985331913a1ed414b6003b079fe1903e0b7545ec3ff"
+    },
+    {
+      "file": "04_BrdoBulbLED/seed-GDTF.gdtf",
+      "sha256": "0d4f8e9eebe9c56b4627137c33a15063ccb37d119406393c5e1113dbc1b57ab1"
+    },
+    {
+      "file": "04_BrdoBulbLED/seed-HOG.xml",
+      "sha256": "39b99cdde153b8a554f345a5267f1be84eaaf7c58f5d675e6ed651cd07de6c31"
+    },
+    {
+      "file": "04_BrdoBulbLED/seed-MA.xml",
+      "sha256": "4f7dbe8e89c06a1b763d964567823f1b8714d8012955c56193dea57147af7df5"
+    },
+    {
+      "file": "05_NeblinaWash/seed-GDTF.gdtf",
+      "sha256": "521f5fb4e7eb5a29c17ef6c0c541844ab1064895f5b2d1a85340b22606f496bb"
+    },
+    {
+      "file": "05_NeblinaWash/seed-HOG.xml",
+      "sha256": "0deebbc440286443c6eb512bf41f711db8c544b847e42133a1ab7bfec40ec659"
+    },
+    {
+      "file": "05_NeblinaWash/seed-MA.xml",
+      "sha256": "857e4b3a931936a6947fb4a50841f6601c22916e3fde0bf27437d4cff3b86f42"
+    },
+    {
+      "file": "06_RysyParLED/seed-GDTF.gdtf",
+      "sha256": "23c43bc94e917d43aabb4a85d0dae4df15e35b1e1977f19de9cd89f305b13cce"
+    },
+    {
+      "file": "06_RysyParLED/seed-HOG.xml",
+      "sha256": "278131e65d03f3aa1ad158f532b32bc7e7b6685adfa8c6d09998c11298a9d46e"
+    },
+    {
+      "file": "06_RysyParLED/seed-MA.xml",
+      "sha256": "ae603b28da2c4362478dc468bd00a1f1ca7afcd4bd5caffb5441acab79b20630"
+    },
+    {
+      "file": "07_TriglavCubeXYZ/seed-GDTF.gdtf",
+      "sha256": "5ec206cb8ccc75a31cc279b5d673b076ab28dfa0c506808a1a0ccb57081fc495"
+    },
+    {
+      "file": "07_TriglavCubeXYZ/seed-HOG.xml",
+      "sha256": "9f4c80aa5f769460b843cdc79573d57860bbf827387e77050569e7df88c87b7f"
+    },
+    {
+      "file": "07_TriglavCubeXYZ/seed-MA.xml",
+      "sha256": "01306dbe7bb8f8d43871bbf36166a4eed98c86f8bc7c62e782850cd1b4f05e56"
+    },
+    {
+      "file": "08_TyrolPAR/seed-GDTF.gdtf",
+      "sha256": "d6239fd6b441cd91b8cef19ef6e22824d1e947f49b64dfed2a2167806a1fc840"
+    },
+    {
+      "file": "08_TyrolPAR/seed-HOG.xml",
+      "sha256": "9584b44f436f8b5af6c9c2ffbd628522b68ab68fc2e043a039eb950f3ee195b5"
+    },
+    {
+      "file": "08_TyrolPAR/seed-MA.xml",
+      "sha256": "6f1596ab6c3be60c747b52beda2797ce1cea1d1e1b7920a55c55fc7f96071075"
+    },
+    {
+      "file": "09_Robin iSpiiderX/seed-GDTF.gdtf",
+      "sha256": "5da65b35f0ff38f11e9a908783f1e871122328d7b68f031d2140333c41fbbd10"
+    },
+    {
+      "file": "09_Robin iSpiiderX/seed-HOG.xml",
+      "sha256": "4542612cbca191e1d1257c7491efb5edbfe1919bb2467b1b33b234c2951ef7b8"
+    },
+    {
+      "file": "09_Robin iSpiiderX/seed-MA.xml",
+      "sha256": "a37274103e548123b957b60f6e44cb3c3677b25b09f69827450fb188071eccd8"
+    },
+    {
+      "file": "10_pixelPATT/seed-GDTF.gdtf",
+      "sha256": "493e93ee1ba95177126bdd55ac071baa35580f66cf10877af0cc60cfa81331f7"
+    },
+    {
+      "file": "10_pixelPATT/seed-HOG.xml",
+      "sha256": "bdc58f6bc55ec079c376f008173e1e7158a173fb961a5530bff73f2091c89f03"
+    },
+    {
+      "file": "10_pixelPATT/seed-MA.xml",
+      "sha256": "8b140823d45590c0de854013a14b9820c72562b771508838c00fe2c9372f87ce"
+    },
+    {
+      "file": "IP1000/seed-GDTF.gdtf",
+      "sha256": "1aeb433476dda574372f7371709339dcf5acb75fc8f9f8f68b60588a2a12daa8"
+    },
+    {
+      "file": "IP1000/seed-HOG.xml",
+      "sha256": "1e64577acc9542ae00088219ee22fbe568eba974ca363fe5fef12460f05ba2ca"
+    },
+    {
+      "file": "IP1000/seed-MA.xml",
+      "sha256": "5bc85e522be410a5319f651661504cff3372eee299611decc0a92c20a9839678"
+    }
+  ],
+  "commentFreeProfiles": {
+    "same-inputs-891-2.00.49": {
+      "commentFreeProfiles": 2746,
+      "files": 2764
+    },
+    "IP1000_external_no-recovery_2.00.49": {
+      "commentFreeProfiles": 2837,
+      "files": 2855
+    },
+    "resource-matrix-891-2.00.49": {
+      "commentFreeProfiles": 2837,
+      "files": 2855
+    }
+  }
+}

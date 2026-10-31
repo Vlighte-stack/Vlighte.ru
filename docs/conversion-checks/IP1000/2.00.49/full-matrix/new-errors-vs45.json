@@ -1,0 +1,2162 @@
+[
+  {
+    "run": "same-inputs-891-2.00.49",
+    "fixture": "IP1000",
+    "chain": "HOG-MA-MA-MA-HOG",
+    "was": "MATCH",
+    "now": "ERROR",
+    "error": "Область действия виртуального диммера не представима автоматическим DIM MA2; требуется отдельный модуль. Экспорт остановлен без расширения области действия."
+  },
+  {
+    "run": "same-inputs-891-2.00.49",
+    "fixture": "IP1000",
+    "chain": "HOG-MA-MA-HOG-HOG",
+    "was": "MATCH",
+    "now": "ERROR",
+    "error": "Область действия виртуального диммера не представима автоматическим DIM MA2; требуется отдельный модуль. Экспорт остановлен без расширения области действия."
+  },
+  {
+    "run": "same-inputs-891-2.00.49",
+    "fixture": "IP1000",
+    "chain": "HOG-MA-MA-GDTF-HOG",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Область действия виртуального диммера не представима автоматическим DIM MA2; требуется отдельный модуль. Экспорт остановлен без расширения области действия."
+  },
+  {
+    "run": "same-inputs-891-2.00.49",
+    "fixture": "IP1000",
+    "chain": "HOG-MA-HOG-MA-HOG",
+    "was": "MATCH",
+    "now": "ERROR",
+    "error": "Область действия виртуального диммера не представима автоматическим DIM MA2; требуется отдельный модуль. Экспорт остановлен без расширения области действия."
+  },
+  {
+    "run": "same-inputs-891-2.00.49",
+    "fixture": "IP1000",
+    "chain": "HOG-MA-HOG-HOG-HOG",
+    "was": "MATCH",
+    "now": "ERROR",
+    "error": "Область действия виртуального диммера не представима автоматическим DIM MA2; требуется отдельный модуль. Экспорт остановлен без расширения области действия."
+  },
+  {
+    "run": "same-inputs-891-2.00.49",
+    "fixture": "IP1000",
+    "chain": "HOG-MA-HOG-GDTF-HOG",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Область действия виртуального диммера не представима автоматическим DIM MA2; требуется отдельный модуль. Экспорт остановлен без расширения области действия."
+  },
+  {
+    "run": "same-inputs-891-2.00.49",
+    "fixture": "IP1000",
+    "chain": "HOG-MA-GDTF-MA-HOG",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Область действия виртуального диммера не представима автоматическим DIM MA2; требуется отдельный модуль. Экспорт остановлен без расширения области действия."
+  },
+  {
+    "run": "same-inputs-891-2.00.49",
+    "fixture": "IP1000",
+    "chain": "HOG-MA-GDTF-HOG-HOG",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Область действия виртуального диммера не представима автоматическим DIM MA2; требуется отдельный модуль. Экспорт остановлен без расширения области действия."
+  },
+  {
+    "run": "same-inputs-891-2.00.49",
+    "fixture": "IP1000",
+    "chain": "HOG-MA-GDTF-GDTF-HOG",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Область действия виртуального диммера не представима автоматическим DIM MA2; требуется отдельный модуль. Экспорт остановлен без расширения области действия."
+  },
+  {
+    "run": "same-inputs-891-2.00.49",
+    "fixture": "IP1000",
+    "chain": "HOG-HOG-MA-MA-HOG",
+    "was": "MATCH",
+    "now": "ERROR",
+    "error": "Область действия виртуального диммера не представима автоматическим DIM MA2; требуется отдельный модуль. Экспорт остановлен без расширения области действия."
+  },
+  {
+    "run": "same-inputs-891-2.00.49",
+    "fixture": "IP1000",
+    "chain": "HOG-HOG-MA-HOG-HOG",
+    "was": "MATCH",
+    "now": "ERROR",
+    "error": "Область действия виртуального диммера не представима автоматическим DIM MA2; требуется отдельный модуль. Экспорт остановлен без расширения области действия."
+  },
+  {
+    "run": "same-inputs-891-2.00.49",
+    "fixture": "IP1000",
+    "chain": "HOG-HOG-MA-GDTF-HOG",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Область действия виртуального диммера не представима автоматическим DIM MA2; требуется отдельный модуль. Экспорт остановлен без расширения области действия."
+  },
+  {
+    "run": "same-inputs-891-2.00.49",
+    "fixture": "IP1000",
+    "chain": "HOG-HOG-HOG-MA-HOG",
+    "was": "MATCH",
+    "now": "ERROR",
+    "error": "Область действия виртуального диммера не представима автоматическим DIM MA2; требуется отдельный модуль. Экспорт остановлен без расширения области действия."
+  },
+  {
+    "run": "same-inputs-891-2.00.49",
+    "fixture": "IP1000",
+    "chain": "HOG-HOG-HOG-HOG-HOG",
+    "was": "MATCH",
+    "now": "ERROR",
+    "error": "Область действия виртуального диммера не представима автоматическим DIM MA2; требуется отдельный модуль. Экспорт остановлен без расширения области действия."
+  },
+  {
+    "run": "same-inputs-891-2.00.49",
+    "fixture": "IP1000",
+    "chain": "HOG-HOG-HOG-GDTF-HOG",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Область действия виртуального диммера не представима автоматическим DIM MA2; требуется отдельный модуль. Экспорт остановлен без расширения области действия."
+  },
+  {
+    "run": "same-inputs-891-2.00.49",
+    "fixture": "IP1000",
+    "chain": "HOG-HOG-GDTF-MA-HOG",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Область действия виртуального диммера не представима автоматическим DIM MA2; требуется отдельный модуль. Экспорт остановлен без расширения области действия."
+  },
+  {
+    "run": "same-inputs-891-2.00.49",
+    "fixture": "IP1000",
+    "chain": "HOG-HOG-GDTF-HOG-HOG",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Область действия виртуального диммера не представима автоматическим DIM MA2; требуется отдельный модуль. Экспорт остановлен без расширения области действия."
+  },
+  {
+    "run": "same-inputs-891-2.00.49",
+    "fixture": "IP1000",
+    "chain": "HOG-HOG-GDTF-GDTF-HOG",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Область действия виртуального диммера не представима автоматическим DIM MA2; требуется отдельный модуль. Экспорт остановлен без расширения области действия."
+  },
+  {
+    "run": "same-inputs-891-2.00.49",
+    "fixture": "IP1000",
+    "chain": "HOG-GDTF-MA-MA-HOG",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Область действия виртуального диммера не представима автоматическим DIM MA2; требуется отдельный модуль. Экспорт остановлен без расширения области действия."
+  },
+  {
+    "run": "same-inputs-891-2.00.49",
+    "fixture": "IP1000",
+    "chain": "HOG-GDTF-MA-HOG-HOG",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Область действия виртуального диммера не представима автоматическим DIM MA2; требуется отдельный модуль. Экспорт остановлен без расширения области действия."
+  },
+  {
+    "run": "same-inputs-891-2.00.49",
+    "fixture": "IP1000",
+    "chain": "HOG-GDTF-MA-GDTF-HOG",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Область действия виртуального диммера не представима автоматическим DIM MA2; требуется отдельный модуль. Экспорт остановлен без расширения области действия."
+  },
+  {
+    "run": "same-inputs-891-2.00.49",
+    "fixture": "IP1000",
+    "chain": "HOG-GDTF-HOG-MA-HOG",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Область действия виртуального диммера не представима автоматическим DIM MA2; требуется отдельный модуль. Экспорт остановлен без расширения области действия."
+  },
+  {
+    "run": "same-inputs-891-2.00.49",
+    "fixture": "IP1000",
+    "chain": "HOG-GDTF-HOG-HOG-HOG",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Область действия виртуального диммера не представима автоматическим DIM MA2; требуется отдельный модуль. Экспорт остановлен без расширения области действия."
+  },
+  {
+    "run": "same-inputs-891-2.00.49",
+    "fixture": "IP1000",
+    "chain": "HOG-GDTF-HOG-GDTF-HOG",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Область действия виртуального диммера не представима автоматическим DIM MA2; требуется отдельный модуль. Экспорт остановлен без расширения области действия."
+  },
+  {
+    "run": "same-inputs-891-2.00.49",
+    "fixture": "IP1000",
+    "chain": "HOG-GDTF-GDTF-MA-HOG",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Область действия виртуального диммера не представима автоматическим DIM MA2; требуется отдельный модуль. Экспорт остановлен без расширения области действия."
+  },
+  {
+    "run": "same-inputs-891-2.00.49",
+    "fixture": "IP1000",
+    "chain": "HOG-GDTF-GDTF-HOG-HOG",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Область действия виртуального диммера не представима автоматическим DIM MA2; требуется отдельный модуль. Экспорт остановлен без расширения области действия."
+  },
+  {
+    "run": "same-inputs-891-2.00.49",
+    "fixture": "IP1000",
+    "chain": "HOG-GDTF-GDTF-GDTF-HOG",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Область действия виртуального диммера не представима автоматическим DIM MA2; требуется отдельный модуль. Экспорт остановлен без расширения области действия."
+  },
+  {
+    "run": "same-inputs-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "MA-MA-MA-MA-MA",
+    "was": "MATCH",
+    "now": "ERROR",
+    "error": "Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "same-inputs-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "MA-MA-MA-HOG-MA",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "same-inputs-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "MA-MA-MA-GDTF-MA",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "same-inputs-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "MA-MA-HOG-MA-MA",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "same-inputs-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "MA-MA-HOG-HOG-MA",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "same-inputs-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "MA-MA-HOG-GDTF-MA",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "same-inputs-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "MA-MA-GDTF-MA-MA",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "same-inputs-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "MA-MA-GDTF-HOG-MA",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "same-inputs-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "MA-MA-GDTF-GDTF-MA",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "same-inputs-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "MA-HOG-MA-MA-MA",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "same-inputs-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "MA-HOG-MA-HOG-MA",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "same-inputs-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "MA-HOG-MA-GDTF-MA",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "same-inputs-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "MA-HOG-HOG-MA-MA",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "same-inputs-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "MA-HOG-HOG-HOG-MA",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "same-inputs-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "MA-HOG-HOG-GDTF-MA",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "same-inputs-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "MA-HOG-GDTF-MA-MA",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "same-inputs-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "MA-HOG-GDTF-HOG-MA",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "same-inputs-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "MA-HOG-GDTF-GDTF-MA",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "same-inputs-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "MA-GDTF-MA-MA-MA",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "same-inputs-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "MA-GDTF-MA-HOG-MA",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "same-inputs-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "MA-GDTF-MA-GDTF-MA",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "same-inputs-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "MA-GDTF-HOG-MA-MA",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "same-inputs-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "MA-GDTF-HOG-HOG-MA",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "same-inputs-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "MA-GDTF-HOG-GDTF-MA",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "same-inputs-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "MA-GDTF-GDTF-MA-MA",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "same-inputs-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "MA-GDTF-GDTF-HOG-MA",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "same-inputs-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "MA-GDTF-GDTF-GDTF-MA",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "same-inputs-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "HOG-MA-MA-MA-HOG",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Область действия виртуального диммера не представима автоматическим DIM MA2; требуется отдельный модуль. Экспорт остановлен без расширения области действия."
+  },
+  {
+    "run": "same-inputs-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "HOG-MA-MA-HOG-HOG",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Область действия виртуального диммера не представима автоматическим DIM MA2; требуется отдельный модуль. Экспорт остановлен без расширения области действия."
+  },
+  {
+    "run": "same-inputs-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "HOG-MA-MA-GDTF-HOG",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Область действия виртуального диммера не представима автоматическим DIM MA2; требуется отдельный модуль. Экспорт остановлен без расширения области действия."
+  },
+  {
+    "run": "same-inputs-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "HOG-MA-HOG-MA-HOG",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Область действия виртуального диммера не представима автоматическим DIM MA2; требуется отдельный модуль. Экспорт остановлен без расширения области действия."
+  },
+  {
+    "run": "same-inputs-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "HOG-MA-HOG-HOG-HOG",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Область действия виртуального диммера не представима автоматическим DIM MA2; требуется отдельный модуль. Экспорт остановлен без расширения области действия."
+  },
+  {
+    "run": "same-inputs-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "HOG-MA-HOG-GDTF-HOG",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Область действия виртуального диммера не представима автоматическим DIM MA2; требуется отдельный модуль. Экспорт остановлен без расширения области действия."
+  },
+  {
+    "run": "same-inputs-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "HOG-MA-GDTF-MA-HOG",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Область действия виртуального диммера не представима автоматическим DIM MA2; требуется отдельный модуль. Экспорт остановлен без расширения области действия."
+  },
+  {
+    "run": "same-inputs-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "HOG-MA-GDTF-HOG-HOG",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Область действия виртуального диммера не представима автоматическим DIM MA2; требуется отдельный модуль. Экспорт остановлен без расширения области действия."
+  },
+  {
+    "run": "same-inputs-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "HOG-MA-GDTF-GDTF-HOG",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Область действия виртуального диммера не представима автоматическим DIM MA2; требуется отдельный модуль. Экспорт остановлен без расширения области действия."
+  },
+  {
+    "run": "same-inputs-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "HOG-HOG-MA-MA-HOG",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Область действия виртуального диммера не представима автоматическим DIM MA2; требуется отдельный модуль. Экспорт остановлен без расширения области действия."
+  },
+  {
+    "run": "same-inputs-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "HOG-HOG-MA-HOG-HOG",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Область действия виртуального диммера не представима автоматическим DIM MA2; требуется отдельный модуль. Экспорт остановлен без расширения области действия."
+  },
+  {
+    "run": "same-inputs-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "HOG-HOG-MA-GDTF-HOG",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Область действия виртуального диммера не представима автоматическим DIM MA2; требуется отдельный модуль. Экспорт остановлен без расширения области действия."
+  },
+  {
+    "run": "same-inputs-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "HOG-HOG-HOG-MA-HOG",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Область действия виртуального диммера не представима автоматическим DIM MA2; требуется отдельный модуль. Экспорт остановлен без расширения области действия."
+  },
+  {
+    "run": "same-inputs-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "HOG-HOG-HOG-HOG-HOG",
+    "was": "MATCH",
+    "now": "ERROR",
+    "error": "Область действия виртуального диммера не представима автоматическим DIM MA2; требуется отдельный модуль. Экспорт остановлен без расширения области действия."
+  },
+  {
+    "run": "same-inputs-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "HOG-HOG-HOG-GDTF-HOG",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Область действия виртуального диммера не представима автоматическим DIM MA2; требуется отдельный модуль. Экспорт остановлен без расширения области действия."
+  },
+  {
+    "run": "same-inputs-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "HOG-HOG-GDTF-MA-HOG",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Область действия виртуального диммера не представима автоматическим DIM MA2; требуется отдельный модуль. Экспорт остановлен без расширения области действия."
+  },
+  {
+    "run": "same-inputs-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "HOG-HOG-GDTF-HOG-HOG",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Область действия виртуального диммера не представима автоматическим DIM MA2; требуется отдельный модуль. Экспорт остановлен без расширения области действия."
+  },
+  {
+    "run": "same-inputs-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "HOG-HOG-GDTF-GDTF-HOG",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Область действия виртуального диммера не представима автоматическим DIM MA2; требуется отдельный модуль. Экспорт остановлен без расширения области действия."
+  },
+  {
+    "run": "same-inputs-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "HOG-GDTF-MA-MA-HOG",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Область действия виртуального диммера не представима автоматическим DIM MA2; требуется отдельный модуль. Экспорт остановлен без расширения области действия."
+  },
+  {
+    "run": "same-inputs-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "HOG-GDTF-MA-HOG-HOG",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Область действия виртуального диммера не представима автоматическим DIM MA2; требуется отдельный модуль. Экспорт остановлен без расширения области действия."
+  },
+  {
+    "run": "same-inputs-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "HOG-GDTF-MA-GDTF-HOG",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Область действия виртуального диммера не представима автоматическим DIM MA2; требуется отдельный модуль. Экспорт остановлен без расширения области действия."
+  },
+  {
+    "run": "same-inputs-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "HOG-GDTF-HOG-MA-HOG",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Область действия виртуального диммера не представима автоматическим DIM MA2; требуется отдельный модуль. Экспорт остановлен без расширения области действия."
+  },
+  {
+    "run": "same-inputs-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "HOG-GDTF-HOG-HOG-HOG",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Область действия виртуального диммера не представима автоматическим DIM MA2; требуется отдельный модуль. Экспорт остановлен без расширения области действия."
+  },
+  {
+    "run": "same-inputs-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "HOG-GDTF-HOG-GDTF-HOG",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Область действия виртуального диммера не представима автоматическим DIM MA2; требуется отдельный модуль. Экспорт остановлен без расширения области действия."
+  },
+  {
+    "run": "same-inputs-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "HOG-GDTF-GDTF-MA-HOG",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Область действия виртуального диммера не представима автоматическим DIM MA2; требуется отдельный модуль. Экспорт остановлен без расширения области действия."
+  },
+  {
+    "run": "same-inputs-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "HOG-GDTF-GDTF-HOG-HOG",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Область действия виртуального диммера не представима автоматическим DIM MA2; требуется отдельный модуль. Экспорт остановлен без расширения области действия."
+  },
+  {
+    "run": "same-inputs-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "HOG-GDTF-GDTF-GDTF-HOG",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Область действия виртуального диммера не представима автоматическим DIM MA2; требуется отдельный модуль. Экспорт остановлен без расширения области действия."
+  },
+  {
+    "run": "same-inputs-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "GDTF-MA-MA-MA-GDTF",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "same-inputs-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "GDTF-MA-MA-HOG-GDTF",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "same-inputs-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "GDTF-MA-MA-GDTF-GDTF",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "same-inputs-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "GDTF-MA-HOG-MA-GDTF",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "same-inputs-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "GDTF-MA-HOG-HOG-GDTF",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "same-inputs-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "GDTF-MA-HOG-GDTF-GDTF",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "same-inputs-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "GDTF-MA-GDTF-MA-GDTF",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "same-inputs-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "GDTF-MA-GDTF-HOG-GDTF",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "same-inputs-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "GDTF-MA-GDTF-GDTF-GDTF",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "same-inputs-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "GDTF-HOG-MA-MA-GDTF",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "same-inputs-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "GDTF-HOG-MA-HOG-GDTF",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "same-inputs-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "GDTF-HOG-MA-GDTF-GDTF",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "same-inputs-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "GDTF-HOG-HOG-MA-GDTF",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "same-inputs-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "GDTF-HOG-HOG-HOG-GDTF",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "same-inputs-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "GDTF-HOG-HOG-GDTF-GDTF",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "same-inputs-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "GDTF-HOG-GDTF-MA-GDTF",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "same-inputs-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "GDTF-HOG-GDTF-HOG-GDTF",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "same-inputs-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "GDTF-HOG-GDTF-GDTF-GDTF",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "same-inputs-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "GDTF-GDTF-MA-MA-GDTF",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "same-inputs-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "GDTF-GDTF-MA-HOG-GDTF",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "same-inputs-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "GDTF-GDTF-MA-GDTF-GDTF",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "same-inputs-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "GDTF-GDTF-HOG-MA-GDTF",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "same-inputs-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "GDTF-GDTF-HOG-HOG-GDTF",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "same-inputs-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "GDTF-GDTF-HOG-GDTF-GDTF",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "same-inputs-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "GDTF-GDTF-GDTF-MA-GDTF",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "same-inputs-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "GDTF-GDTF-GDTF-HOG-GDTF",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "same-inputs-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "GDTF-GDTF-GDTF-GDTF-GDTF",
+    "was": "MATCH",
+    "now": "ERROR",
+    "error": "Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "IP1000_external_no-recovery_2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "MA-MA-MA-MA-MA",
+    "was": "MATCH",
+    "now": "ERROR",
+    "error": "Initial MA unavailable: Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "IP1000_external_no-recovery_2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "MA-MA-MA-HOG-MA",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Initial MA unavailable: Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "IP1000_external_no-recovery_2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "MA-MA-MA-GDTF-MA",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Initial MA unavailable: Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "IP1000_external_no-recovery_2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "MA-MA-HOG-MA-MA",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Initial MA unavailable: Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "IP1000_external_no-recovery_2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "MA-MA-HOG-HOG-MA",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Initial MA unavailable: Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "IP1000_external_no-recovery_2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "MA-MA-HOG-GDTF-MA",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Initial MA unavailable: Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "IP1000_external_no-recovery_2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "MA-MA-GDTF-MA-MA",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Initial MA unavailable: Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "IP1000_external_no-recovery_2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "MA-MA-GDTF-HOG-MA",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Initial MA unavailable: Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "IP1000_external_no-recovery_2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "MA-MA-GDTF-GDTF-MA",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Initial MA unavailable: Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "IP1000_external_no-recovery_2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "MA-HOG-MA-MA-MA",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Initial MA unavailable: Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "IP1000_external_no-recovery_2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "MA-HOG-MA-HOG-MA",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Initial MA unavailable: Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "IP1000_external_no-recovery_2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "MA-HOG-MA-GDTF-MA",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Initial MA unavailable: Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "IP1000_external_no-recovery_2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "MA-HOG-HOG-MA-MA",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Initial MA unavailable: Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "IP1000_external_no-recovery_2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "MA-HOG-HOG-HOG-MA",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Initial MA unavailable: Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "IP1000_external_no-recovery_2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "MA-HOG-HOG-GDTF-MA",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Initial MA unavailable: Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "IP1000_external_no-recovery_2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "MA-HOG-GDTF-MA-MA",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Initial MA unavailable: Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "IP1000_external_no-recovery_2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "MA-HOG-GDTF-HOG-MA",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Initial MA unavailable: Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "IP1000_external_no-recovery_2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "MA-HOG-GDTF-GDTF-MA",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Initial MA unavailable: Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "IP1000_external_no-recovery_2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "MA-GDTF-MA-MA-MA",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Initial MA unavailable: Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "IP1000_external_no-recovery_2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "MA-GDTF-MA-HOG-MA",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Initial MA unavailable: Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "IP1000_external_no-recovery_2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "MA-GDTF-MA-GDTF-MA",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Initial MA unavailable: Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "IP1000_external_no-recovery_2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "MA-GDTF-HOG-MA-MA",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Initial MA unavailable: Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "IP1000_external_no-recovery_2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "MA-GDTF-HOG-HOG-MA",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Initial MA unavailable: Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "IP1000_external_no-recovery_2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "MA-GDTF-HOG-GDTF-MA",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Initial MA unavailable: Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "IP1000_external_no-recovery_2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "MA-GDTF-GDTF-MA-MA",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Initial MA unavailable: Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "IP1000_external_no-recovery_2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "MA-GDTF-GDTF-HOG-MA",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Initial MA unavailable: Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "IP1000_external_no-recovery_2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "MA-GDTF-GDTF-GDTF-MA",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Initial MA unavailable: Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "IP1000_external_no-recovery_2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "HOG-MA-MA-MA-HOG",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Initial HOG unavailable: Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "IP1000_external_no-recovery_2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "HOG-MA-MA-HOG-HOG",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Initial HOG unavailable: Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "IP1000_external_no-recovery_2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "HOG-MA-MA-GDTF-HOG",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Initial HOG unavailable: Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "IP1000_external_no-recovery_2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "HOG-MA-HOG-MA-HOG",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Initial HOG unavailable: Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "IP1000_external_no-recovery_2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "HOG-MA-HOG-HOG-HOG",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Initial HOG unavailable: Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "IP1000_external_no-recovery_2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "HOG-MA-HOG-GDTF-HOG",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Initial HOG unavailable: Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "IP1000_external_no-recovery_2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "HOG-MA-GDTF-MA-HOG",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Initial HOG unavailable: Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "IP1000_external_no-recovery_2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "HOG-MA-GDTF-HOG-HOG",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Initial HOG unavailable: Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "IP1000_external_no-recovery_2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "HOG-MA-GDTF-GDTF-HOG",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Initial HOG unavailable: Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "IP1000_external_no-recovery_2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "HOG-HOG-MA-MA-HOG",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Initial HOG unavailable: Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "IP1000_external_no-recovery_2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "HOG-HOG-MA-HOG-HOG",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Initial HOG unavailable: Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "IP1000_external_no-recovery_2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "HOG-HOG-MA-GDTF-HOG",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Initial HOG unavailable: Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "IP1000_external_no-recovery_2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "HOG-HOG-HOG-MA-HOG",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Initial HOG unavailable: Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "IP1000_external_no-recovery_2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "HOG-HOG-HOG-HOG-HOG",
+    "was": "MATCH",
+    "now": "ERROR",
+    "error": "Initial HOG unavailable: Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "IP1000_external_no-recovery_2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "HOG-HOG-HOG-GDTF-HOG",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Initial HOG unavailable: Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "IP1000_external_no-recovery_2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "HOG-HOG-GDTF-MA-HOG",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Initial HOG unavailable: Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "IP1000_external_no-recovery_2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "HOG-HOG-GDTF-HOG-HOG",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Initial HOG unavailable: Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "IP1000_external_no-recovery_2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "HOG-HOG-GDTF-GDTF-HOG",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Initial HOG unavailable: Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "IP1000_external_no-recovery_2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "HOG-GDTF-MA-MA-HOG",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Initial HOG unavailable: Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "IP1000_external_no-recovery_2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "HOG-GDTF-MA-HOG-HOG",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Initial HOG unavailable: Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "IP1000_external_no-recovery_2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "HOG-GDTF-MA-GDTF-HOG",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Initial HOG unavailable: Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "IP1000_external_no-recovery_2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "HOG-GDTF-HOG-MA-HOG",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Initial HOG unavailable: Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "IP1000_external_no-recovery_2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "HOG-GDTF-HOG-HOG-HOG",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Initial HOG unavailable: Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "IP1000_external_no-recovery_2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "HOG-GDTF-HOG-GDTF-HOG",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Initial HOG unavailable: Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "IP1000_external_no-recovery_2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "HOG-GDTF-GDTF-MA-HOG",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Initial HOG unavailable: Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "IP1000_external_no-recovery_2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "HOG-GDTF-GDTF-HOG-HOG",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Initial HOG unavailable: Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "IP1000_external_no-recovery_2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "HOG-GDTF-GDTF-GDTF-HOG",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Initial HOG unavailable: Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "IP1000_external_no-recovery_2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "GDTF-MA-MA-MA-GDTF",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "IP1000_external_no-recovery_2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "GDTF-MA-MA-HOG-GDTF",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "IP1000_external_no-recovery_2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "GDTF-MA-MA-GDTF-GDTF",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "IP1000_external_no-recovery_2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "GDTF-MA-HOG-MA-GDTF",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "IP1000_external_no-recovery_2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "GDTF-MA-HOG-HOG-GDTF",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "IP1000_external_no-recovery_2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "GDTF-MA-HOG-GDTF-GDTF",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "IP1000_external_no-recovery_2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "GDTF-MA-GDTF-MA-GDTF",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "IP1000_external_no-recovery_2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "GDTF-MA-GDTF-HOG-GDTF",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "IP1000_external_no-recovery_2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "GDTF-MA-GDTF-GDTF-GDTF",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "IP1000_external_no-recovery_2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "GDTF-HOG-MA-MA-GDTF",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "IP1000_external_no-recovery_2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "GDTF-HOG-MA-HOG-GDTF",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "IP1000_external_no-recovery_2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "GDTF-HOG-MA-GDTF-GDTF",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "IP1000_external_no-recovery_2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "GDTF-HOG-HOG-MA-GDTF",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "IP1000_external_no-recovery_2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "GDTF-HOG-HOG-HOG-GDTF",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "IP1000_external_no-recovery_2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "GDTF-HOG-HOG-GDTF-GDTF",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "IP1000_external_no-recovery_2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "GDTF-HOG-GDTF-MA-GDTF",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "IP1000_external_no-recovery_2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "GDTF-HOG-GDTF-HOG-GDTF",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "IP1000_external_no-recovery_2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "GDTF-HOG-GDTF-GDTF-GDTF",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "IP1000_external_no-recovery_2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "GDTF-GDTF-MA-MA-GDTF",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "IP1000_external_no-recovery_2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "GDTF-GDTF-MA-HOG-GDTF",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "IP1000_external_no-recovery_2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "GDTF-GDTF-MA-GDTF-GDTF",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "IP1000_external_no-recovery_2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "GDTF-GDTF-HOG-MA-GDTF",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "IP1000_external_no-recovery_2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "GDTF-GDTF-HOG-HOG-GDTF",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "IP1000_external_no-recovery_2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "GDTF-GDTF-HOG-GDTF-GDTF",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "IP1000_external_no-recovery_2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "GDTF-GDTF-GDTF-MA-GDTF",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "IP1000_external_no-recovery_2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "GDTF-GDTF-GDTF-HOG-GDTF",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "IP1000_external_no-recovery_2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "GDTF-GDTF-GDTF-GDTF-GDTF",
+    "was": "MATCH",
+    "now": "ERROR",
+    "error": "Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "resource-matrix-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "MA-MA-MA-MA-MA",
+    "was": "MATCH",
+    "now": "ERROR",
+    "error": "Initial MA unavailable: Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "resource-matrix-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "MA-MA-MA-HOG-MA",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Initial MA unavailable: Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "resource-matrix-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "MA-MA-MA-GDTF-MA",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Initial MA unavailable: Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "resource-matrix-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "MA-MA-HOG-MA-MA",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Initial MA unavailable: Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "resource-matrix-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "MA-MA-HOG-HOG-MA",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Initial MA unavailable: Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "resource-matrix-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "MA-MA-HOG-GDTF-MA",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Initial MA unavailable: Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "resource-matrix-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "MA-MA-GDTF-MA-MA",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Initial MA unavailable: Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "resource-matrix-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "MA-MA-GDTF-HOG-MA",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Initial MA unavailable: Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "resource-matrix-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "MA-MA-GDTF-GDTF-MA",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Initial MA unavailable: Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "resource-matrix-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "MA-HOG-MA-MA-MA",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Initial MA unavailable: Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "resource-matrix-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "MA-HOG-MA-HOG-MA",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Initial MA unavailable: Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "resource-matrix-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "MA-HOG-MA-GDTF-MA",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Initial MA unavailable: Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "resource-matrix-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "MA-HOG-HOG-MA-MA",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Initial MA unavailable: Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "resource-matrix-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "MA-HOG-HOG-HOG-MA",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Initial MA unavailable: Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "resource-matrix-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "MA-HOG-HOG-GDTF-MA",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Initial MA unavailable: Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "resource-matrix-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "MA-HOG-GDTF-MA-MA",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Initial MA unavailable: Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "resource-matrix-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "MA-HOG-GDTF-HOG-MA",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Initial MA unavailable: Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "resource-matrix-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "MA-HOG-GDTF-GDTF-MA",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Initial MA unavailable: Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "resource-matrix-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "MA-GDTF-MA-MA-MA",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Initial MA unavailable: Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "resource-matrix-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "MA-GDTF-MA-HOG-MA",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Initial MA unavailable: Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "resource-matrix-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "MA-GDTF-MA-GDTF-MA",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Initial MA unavailable: Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "resource-matrix-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "MA-GDTF-HOG-MA-MA",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Initial MA unavailable: Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "resource-matrix-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "MA-GDTF-HOG-HOG-MA",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Initial MA unavailable: Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "resource-matrix-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "MA-GDTF-HOG-GDTF-MA",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Initial MA unavailable: Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "resource-matrix-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "MA-GDTF-GDTF-MA-MA",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Initial MA unavailable: Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "resource-matrix-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "MA-GDTF-GDTF-HOG-MA",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Initial MA unavailable: Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "resource-matrix-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "MA-GDTF-GDTF-GDTF-MA",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Initial MA unavailable: Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "resource-matrix-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "HOG-MA-MA-MA-HOG",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Initial HOG unavailable: Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "resource-matrix-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "HOG-MA-MA-HOG-HOG",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Initial HOG unavailable: Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "resource-matrix-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "HOG-MA-MA-GDTF-HOG",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Initial HOG unavailable: Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "resource-matrix-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "HOG-MA-HOG-MA-HOG",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Initial HOG unavailable: Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "resource-matrix-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "HOG-MA-HOG-HOG-HOG",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Initial HOG unavailable: Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "resource-matrix-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "HOG-MA-HOG-GDTF-HOG",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Initial HOG unavailable: Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "resource-matrix-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "HOG-MA-GDTF-MA-HOG",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Initial HOG unavailable: Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "resource-matrix-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "HOG-MA-GDTF-HOG-HOG",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Initial HOG unavailable: Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "resource-matrix-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "HOG-MA-GDTF-GDTF-HOG",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Initial HOG unavailable: Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "resource-matrix-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "HOG-HOG-MA-MA-HOG",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Initial HOG unavailable: Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "resource-matrix-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "HOG-HOG-MA-HOG-HOG",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Initial HOG unavailable: Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "resource-matrix-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "HOG-HOG-MA-GDTF-HOG",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Initial HOG unavailable: Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "resource-matrix-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "HOG-HOG-HOG-MA-HOG",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Initial HOG unavailable: Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "resource-matrix-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "HOG-HOG-HOG-HOG-HOG",
+    "was": "MATCH",
+    "now": "ERROR",
+    "error": "Initial HOG unavailable: Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "resource-matrix-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "HOG-HOG-HOG-GDTF-HOG",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Initial HOG unavailable: Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "resource-matrix-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "HOG-HOG-GDTF-MA-HOG",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Initial HOG unavailable: Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "resource-matrix-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "HOG-HOG-GDTF-HOG-HOG",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Initial HOG unavailable: Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "resource-matrix-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "HOG-HOG-GDTF-GDTF-HOG",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Initial HOG unavailable: Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "resource-matrix-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "HOG-GDTF-MA-MA-HOG",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Initial HOG unavailable: Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "resource-matrix-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "HOG-GDTF-MA-HOG-HOG",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Initial HOG unavailable: Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "resource-matrix-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "HOG-GDTF-MA-GDTF-HOG",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Initial HOG unavailable: Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "resource-matrix-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "HOG-GDTF-HOG-MA-HOG",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Initial HOG unavailable: Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "resource-matrix-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "HOG-GDTF-HOG-HOG-HOG",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Initial HOG unavailable: Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "resource-matrix-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "HOG-GDTF-HOG-GDTF-HOG",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Initial HOG unavailable: Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "resource-matrix-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "HOG-GDTF-GDTF-MA-HOG",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Initial HOG unavailable: Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "resource-matrix-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "HOG-GDTF-GDTF-HOG-HOG",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Initial HOG unavailable: Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "resource-matrix-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "HOG-GDTF-GDTF-GDTF-HOG",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Initial HOG unavailable: Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "resource-matrix-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "GDTF-MA-MA-MA-GDTF",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "resource-matrix-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "GDTF-MA-MA-HOG-GDTF",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "resource-matrix-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "GDTF-MA-MA-GDTF-GDTF",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "resource-matrix-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "GDTF-MA-HOG-MA-GDTF",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "resource-matrix-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "GDTF-MA-HOG-HOG-GDTF",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "resource-matrix-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "GDTF-MA-HOG-GDTF-GDTF",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "resource-matrix-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "GDTF-MA-GDTF-MA-GDTF",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "resource-matrix-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "GDTF-MA-GDTF-HOG-GDTF",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "resource-matrix-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "GDTF-MA-GDTF-GDTF-GDTF",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "resource-matrix-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "GDTF-HOG-MA-MA-GDTF",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "resource-matrix-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "GDTF-HOG-MA-HOG-GDTF",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "resource-matrix-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "GDTF-HOG-MA-GDTF-GDTF",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "resource-matrix-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "GDTF-HOG-HOG-MA-GDTF",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "resource-matrix-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "GDTF-HOG-HOG-HOG-GDTF",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "resource-matrix-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "GDTF-HOG-HOG-GDTF-GDTF",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "resource-matrix-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "GDTF-HOG-GDTF-MA-GDTF",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "resource-matrix-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "GDTF-HOG-GDTF-HOG-GDTF",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "resource-matrix-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "GDTF-HOG-GDTF-GDTF-GDTF",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "resource-matrix-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "GDTF-GDTF-MA-MA-GDTF",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "resource-matrix-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "GDTF-GDTF-MA-HOG-GDTF",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "resource-matrix-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "GDTF-GDTF-MA-GDTF-GDTF",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "resource-matrix-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "GDTF-GDTF-HOG-MA-GDTF",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "resource-matrix-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "GDTF-GDTF-HOG-HOG-GDTF",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "resource-matrix-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "GDTF-GDTF-HOG-GDTF-GDTF",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "resource-matrix-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "GDTF-GDTF-GDTF-MA-GDTF",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "resource-matrix-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "GDTF-GDTF-GDTF-HOG-GDTF",
+    "was": "DIFFERENT",
+    "now": "ERROR",
+    "error": "Некорректное 8-битное Default виртуального DIM MA2."
+  },
+  {
+    "run": "resource-matrix-891-2.00.49",
+    "fixture": "09_Robin iSpiiderX",
+    "chain": "GDTF-GDTF-GDTF-GDTF-GDTF",
+    "was": "MATCH",
+    "now": "ERROR",
+    "error": "Некорректное 8-битное Default виртуального DIM MA2."
+  }
+]

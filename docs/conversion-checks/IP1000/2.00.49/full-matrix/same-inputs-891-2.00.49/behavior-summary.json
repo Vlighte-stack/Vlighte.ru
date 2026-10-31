@@ -1,0 +1,18 @@
+{
+  "version": "same-inputs-891-2.00.49",
+  "rows": 783,
+  "previousDifferentRows": 566,
+  "classifications": {
+    "labels_structure_or_quantization": 599,
+    "functional_difference": 13,
+    "control_or_visualization_change": 171
+  },
+  "categoryRows": {
+    "control_assignment": 13,
+    "physical_curve": 13,
+    "quantization": 26,
+    "virtual_scope": 13,
+    "set_labels": 254,
+    "wheel_visualization": 171
+  }
+}
